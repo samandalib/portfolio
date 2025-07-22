@@ -189,13 +189,6 @@ export default function ProjectSlider() {
                         </span>
                       ))}
                     </div>
-
-                    {/* View Project Button - only show on active card */}
-                    {isActive && (
-                      <button className="w-full py-3 px-4 bg-white/20 backdrop-blur-md text-white rounded-xl font-semibold transition-all duration-300 hover:bg-white/30 hover:scale-105 transform border border-white/30">
-                        View Project
-                      </button>
-                    )}
                   </div>
                 </div>
               </div>
