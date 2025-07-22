@@ -87,10 +87,10 @@ export default function ProjectSlider() {
   };
 
   return (
-    <div className="w-full max-w-2xl md:max-w-4xl lg:max-w-5xl mx-auto relative">
+    <div className="w-full max-w-4xl mx-auto relative">
       {/* Fanned Cards Container */}
       <div 
-        className="relative h-[400px] md:h-[600px] lg:h-[700px] w-full flex items-center justify-center touch-pan-y select-none" 
+        className="relative h-[500px] w-full flex items-center justify-center touch-pan-y select-none" 
         style={{ perspective: '1200px' }}
         onTouchStart={handleTouchStart}
         onTouchMove={handleTouchMove}
@@ -138,10 +138,9 @@ export default function ProjectSlider() {
                 zIndex,
                 opacity,
                 transformStyle: 'preserve-3d',
-                width: '280px',
-                height: '350px',
+                width: '320px',
+                height: '450px',
               }}
-              className="md:!w-[400px] md:!h-[500px] lg:!w-[480px] lg:!h-[600px]"
               onClick={() => !isActive && goToProject(index)}
             >
               <div className="w-full h-full rounded-2xl shadow-2xl overflow-hidden border border-white/10 relative group">
