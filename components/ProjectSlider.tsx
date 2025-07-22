@@ -16,7 +16,7 @@ const projects: Project[] = [
     id: 1,
     title: "E-commerce Platform",
     description: "A modern e-commerce platform with seamless user experience and intuitive design patterns.",
-    image: "https://images.pexels.com/photos/3184291/pexels-photo-3184291.jpeg?auto=compress&cs=tinysrgb&w=600",
+    image: "/assets/landing/acc.png",
     tags: ["UI/UX", "E-commerce", "Mobile"],
     color: "from-purple-500 to-pink-500"
   },
@@ -132,14 +132,14 @@ export default function ProjectSlider() {
               key={project.id}
               className={`absolute transition-all duration-700 ease-out cursor-pointer ${
                 !isActive ? 'hover:scale-105' : ''
-              }`}
+              } aspect-[4/5.5]`}
               style={{
                 transform,
                 zIndex,
                 opacity,
                 transformStyle: 'preserve-3d',
-                width: '320px',
-                height: '450px',
+                width: '400px',
+                height: undefined,
               }}
               onClick={() => !isActive && goToProject(index)}
             >
@@ -150,7 +150,8 @@ export default function ProjectSlider() {
                     src={project.image}
                     alt={project.title}
                     fill
-                    className="object-cover transition-transform duration-700 group-hover:scale-110"
+                    className={`object-cover transition-transform duration-700 group-hover:scale-110 ${index === 0 ? 'animate-zoomrotate' : ''}`}
+                    style={index === 0 ? { objectPosition: 'left center' } : {}}
                   />
                   
                   {/* Gradient Overlay */}
@@ -161,7 +162,7 @@ export default function ProjectSlider() {
                     <h3 className="text-xl font-bold mb-2 text-white drop-shadow-lg text-left">
                       {project.title}
                     </h3>
-                    <p className="text-white/90 text-sm mb-4 leading-relaxed line-clamp-2 drop-shadow-md text-left">
+                    <p className="font-sans text-white/90 mb-4 leading-relaxed line-clamp-2 drop-shadow-md text-left">
                       {project.description}
                     </p>
                     
@@ -170,7 +171,7 @@ export default function ProjectSlider() {
                       {project.tags.map((tag, tagIndex) => (
                         <span
                           key={tagIndex}
-                          className="px-3 py-1 text-xs font-medium bg-white/20 backdrop-blur-sm text-white rounded-full border border-white/30"
+                          className="font-sans px-3 py-1 font-medium bg-white/20 backdrop-blur-sm text-white rounded-full border border-white/30"
                         >
                           {tag}
                         </span>
