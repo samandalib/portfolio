@@ -20,7 +20,7 @@ export default function Home() {
         <div className="flex flex-col items-center md:items-start mt-8 md:mt-0">
           <span className="text-xl md:text-2xl font-light mb-2">Hi, I'm</span>
           <h1 className="text-5xl md:text-7xl font-light mb-2 font-heading">Hesam</h1>
-          <p className="text-lg md:text-xl font-light max-w-xl text-center md:text-left text-gray-200">
+          <p className="text-lg md:text-xl font-light max-w-xl text-center md:text-left text-foreground-light dark:text-foreground-dark">
             A product designer based in Austin, TX. I specialize in turning hairy problems into simple, thoughtful products people actually love to use.
           </p>
         </div>
