@@ -138,10 +138,10 @@ export default function ProjectSlider() {
                 zIndex,
                 opacity,
                 transformStyle: 'preserve-3d',
-                width: '280px',
-                height: '350px',
+                width: '320px',
+                height: '400px',
               }}
-              className="md:!w-[400px] md:!h-[500px] lg:!w-[480px] lg:!h-[600px]"
+              className="md:!w-[500px] md:!h-[650px] lg:!w-[600px] lg:!h-[750px]"
               onClick={() => !isActive && goToProject(index)}
             >
               <div className="w-full h-full rounded-2xl shadow-2xl overflow-hidden border border-white/10 relative group">
