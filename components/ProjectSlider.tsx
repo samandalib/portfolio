@@ -64,7 +64,7 @@ export default function ProjectSlider() {
   return (
     <div className="w-full max-w-lg mx-auto relative">
       {/* Stacked Cards Container */}
-      <div className="relative h-96 w-full perspective-1000">
+      <div className="relative h-[500px] w-full perspective-1000">
         {projects.map((project, index) => {
           const isActive = index === currentIndex;
           const offset = index - currentIndex;
@@ -107,49 +107,96 @@ export default function ProjectSlider() {
               }}
               onClick={() => !isActive && goToProject(index)}
             >
-              <div className="w-full h-full bg-white dark:bg-gray-800 rounded-3xl shadow-2xl overflow-hidden border border-gray-100 dark:border-gray-700">
-                {/* Gradient Overlay */}
-                <div className={`absolute inset-0 bg-gradient-to-br ${project.color} opacity-10 z-10`} />
-                
-                {/* Project Image */}
-                <div className="relative h-48 overflow-hidden">
+              <div className="w-full h-full rounded-3xl shadow-2xl overflow-hidden border border-white/20 relative group">
+                {/* Full Project Image */}
+                <div className="relative h-full w-full overflow-hidden">
                   <Image
                     src={project.image}
                     alt={project.title}
                     fill
-                    className="object-cover transition-transform duration-700"
+                    className="object-cover transition-transform duration-700 group-hover:scale-110"
                   />
-                  <div className={`absolute inset-0 bg-gradient-to-t ${project.color} opacity-20`} />
-                  <div className="absolute inset-0 bg-gradient-to-t from-black/40 via-transparent to-transparent" />
-                </div>
-
-                {/* Project Content */}
-                <div className="relative z-20 p-6">
-                  <h3 className="text-xl font-bold mb-3 text-foreground-light dark:text-foreground-dark">
-                    {project.title}
-                  </h3>
-                  <p className="text-gray-600 dark:text-gray-300 text-sm mb-4 leading-relaxed line-clamp-3">
-                    {project.description}
-                  </p>
                   
-                  {/* Tags */}
-                  <div className="flex flex-wrap gap-2 mb-4">
-                    {project.tags.map((tag, tagIndex) => (
-                      <span
-                        key={tagIndex}
-                        className={`px-3 py-1 text-xs font-medium bg-gradient-to-r ${project.color} text-white rounded-full shadow-sm`}
-                      >
-                        {tag}
-                      </span>
-                    ))}
-                  </div>
-
-                  {/* View Project Button - only show on active card */}
+                  {/* Gradient Overlay for better text readability */}
+                  <div className="absolute inset-0 bg-gradient-to-t from-black/60 via-black/20 to-transparent" />
+                  
+                  {/* Navigation Arrows - Only show on active card */}
                   {isActive && (
-                    <button className={`w-full py-3 px-4 bg-gradient-to-r ${project.color} text-white rounded-xl font-semibold transition-all duration-300 hover:shadow-lg hover:scale-105 transform`}>
-                      View Project
-                    </button>
+                    <>
+                      {/* Left Arrow */}
+                      <button
+                        onClick={(e) => {
+                          e.stopPropagation();
+                          prevProject();
+                        }}
+                        className="absolute left-4 top-1/2 -translate-y-1/2 z-30 p-3 rounded-full bg-white/20 backdrop-blur-md border border-white/30 hover:bg-white/30 transition-all duration-300 hover:scale-110 group/arrow"
+                        aria-label="Previous project"
+                      >
+                        <svg
+                          xmlns="http://www.w3.org/2000/svg"
+                          width="20"
+                          height="20"
+                          fill="none"
+                          viewBox="0 0 24 24"
+                          stroke="currentColor"
+                          className="text-white group-hover/arrow:text-white transition-colors duration-300"
+                        >
+                          <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2.5} d="M15 19l-7-7 7-7" />
+                        </svg>
+                      </button>
+
+                      {/* Right Arrow */}
+                      <button
+                        onClick={(e) => {
+                          e.stopPropagation();
+                          nextProject();
+                        }}
+                        className="absolute right-4 top-1/2 -translate-y-1/2 z-30 p-3 rounded-full bg-white/20 backdrop-blur-md border border-white/30 hover:bg-white/30 transition-all duration-300 hover:scale-110 group/arrow"
+                        aria-label="Next project"
+                      >
+                        <svg
+                          xmlns="http://www.w3.org/2000/svg"
+                          width="20"
+                          height="20"
+                          fill="none"
+                          viewBox="0 0 24 24"
+                          stroke="currentColor"
+                          className="text-white group-hover/arrow:text-white transition-colors duration-300"
+                        >
+                          <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2.5} d="M9 5l7 7-7 7" />
+                        </svg>
+                      </button>
+                    </>
                   )}
+
+                  {/* Frosted Glass Text Overlay */}
+                  <div className="absolute bottom-0 left-0 right-0 p-6 bg-white/10 backdrop-blur-lg border-t border-white/20">
+                    <h3 className="text-xl font-bold mb-2 text-white drop-shadow-lg">
+                      {project.title}
+                    </h3>
+                    <p className="text-white/90 text-sm mb-4 leading-relaxed line-clamp-2 drop-shadow-md">
+                      {project.description}
+                    </p>
+                    
+                    {/* Tags */}
+                    <div className="flex flex-wrap gap-2 mb-4">
+                      {project.tags.map((tag, tagIndex) => (
+                        <span
+                          key={tagIndex}
+                          className="px-3 py-1 text-xs font-medium bg-white/20 backdrop-blur-sm text-white rounded-full border border-white/30"
+                        >
+                          {tag}
+                        </span>
+                      ))}
+                    </div>
+
+                    {/* View Project Button - only show on active card */}
+                    {isActive && (
+                      <button className="w-full py-3 px-4 bg-white/20 backdrop-blur-md text-white rounded-xl font-semibold transition-all duration-300 hover:bg-white/30 hover:scale-105 transform border border-white/30">
+                        View Project
+                      </button>
+                    )}
+                  </div>
                 </div>
               </div>
             </div>
@@ -157,68 +204,20 @@ export default function ProjectSlider() {
         })}
       </div>
 
-      {/* Navigation Controls */}
-      <div className="flex items-center justify-center mt-8 space-x-6">
-        {/* Previous Button */}
-        <button
-          onClick={prevProject}
-          className="group p-3 rounded-full bg-white dark:bg-gray-800 shadow-lg hover:shadow-xl transition-all duration-300 hover:scale-110 border border-gray-100 dark:border-gray-700"
-          aria-label="Previous project"
-        >
-          <svg
-            xmlns="http://www.w3.org/2000/svg"
-            width="20"
-            height="20"
-            fill="none"
-            viewBox="0 0 24 24"
-            stroke="currentColor"
-            className="text-gray-600 dark:text-gray-300 group-hover:text-accent-light dark:group-hover:text-accent-dark transition-colors duration-300"
-          >
-            <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2.5} d="M15 19l-7-7 7-7" />
-          </svg>
-        </button>
-
-        {/* Dots Indicator */}
-        <div className="flex space-x-3">
-          {projects.map((_, index) => (
-            <button
-              key={index}
-              onClick={() => goToProject(index)}
-              className={`transition-all duration-300 rounded-full ${
-                index === currentIndex
-                  ? 'w-8 h-3 bg-gradient-to-r from-accent-light to-accent-dark'
-                  : 'w-3 h-3 bg-gray-300 dark:bg-gray-600 hover:bg-gray-400 dark:hover:bg-gray-500 hover:scale-125'
-              }`}
-              aria-label={`Go to project ${index + 1}`}
-            />
-          ))}
-        </div>
-
-        {/* Next Button */}
-        <button
-          onClick={nextProject}
-          className="group p-3 rounded-full bg-white dark:bg-gray-800 shadow-lg hover:shadow-xl transition-all duration-300 hover:scale-110 border border-gray-100 dark:border-gray-700"
-          aria-label="Next project"
-        >
-          <svg
-            xmlns="http://www.w3.org/2000/svg"
-            width="20"
-            height="20"
-            fill="none"
-            viewBox="0 0 24 24"
-            stroke="currentColor"
-            className="text-gray-600 dark:text-gray-300 group-hover:text-accent-light dark:group-hover:text-accent-dark transition-colors duration-300"
-          >
-            <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2.5} d="M9 5l7 7-7 7" />
-          </svg>
-        </button>
-      </div>
-
-      {/* Project Counter */}
-      <div className="text-center mt-6">
-        <span className="text-sm font-medium text-gray-500 dark:text-gray-400">
-          {currentIndex + 1} / {projects.length}
-        </span>
+      {/* Minimal Dots Indicator */}
+      <div className="flex justify-center mt-6 space-x-2">
+        {projects.map((_, index) => (
+          <button
+            key={index}
+            onClick={() => goToProject(index)}
+            className={`transition-all duration-300 rounded-full ${
+              index === currentIndex
+                ? 'w-8 h-2 bg-white/80'
+                : 'w-2 h-2 bg-white/40 hover:bg-white/60'
+            }`}
+            aria-label={`Go to project ${index + 1}`}
+          />
+        ))}
       </div>
     </div>
   );
