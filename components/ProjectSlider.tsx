@@ -170,7 +170,7 @@ export default function ProjectSlider() {
                   )}
 
                   {/* Frosted Glass Text Overlay */}
-                  <div className="absolute bottom-0 left-0 right-0 p-6 bg-white/10 backdrop-blur-lg border-t border-white/20">
+                  <div className="absolute bottom-4 left-4 right-4 p-6 bg-white/10 backdrop-blur-lg border border-white/20 rounded-2xl">
                     <h3 className="text-xl font-bold mb-2 text-white drop-shadow-lg">
                       {project.title}
                     </h3>
