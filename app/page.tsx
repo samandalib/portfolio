@@ -25,12 +25,6 @@ export default function Home() {
           </p>
         </div>
       </div>
-      {/* Down Arrow */}
-      <div className="mt-16 animate-bounce">
-        <svg width="48" height="48" viewBox="0 0 48 48" fill="none" xmlns="http://www.w3.org/2000/svg">
-          <path d="M24 34L14 24H34L24 34Z" fill="#16A34A"/>
-        </svg>
-      </div>
     </main>
   );
 }
