@@ -62,53 +62,58 @@ export default function ProjectSlider() {
   };
 
   return (
-    <div className="w-full max-w-lg mx-auto relative">
-      {/* Stacked Cards Container */}
-      <div className="relative h-[500px] w-full perspective-1000">
+    <div className="w-full max-w-4xl mx-auto relative">
+      {/* Fanned Cards Container */}
+      <div className="relative h-[500px] w-full flex items-center justify-center" style={{ perspective: '1200px' }}>
         {projects.map((project, index) => {
-          const isActive = index === currentIndex;
           const offset = index - currentIndex;
           const absOffset = Math.abs(offset);
+          const isActive = index === currentIndex;
           
-          // Calculate positioning and styling based on card position
+          // Calculate positioning for fanned effect
           let transform = '';
           let zIndex = projects.length - absOffset;
           let opacity = 1;
-          let scale = 1;
           
           if (offset === 0) {
-            // Active card - front and center
-            transform = 'translateX(0) translateY(0) rotateY(0deg)';
-            scale = 1;
+            // Active card - center front
+            transform = 'translateX(0) translateZ(0) rotateY(0deg)';
             opacity = 1;
+            zIndex = 10;
           } else if (offset > 0) {
-            // Cards to the right
-            transform = `translateX(${Math.min(offset * 20, 60)}px) translateY(${offset * 8}px) rotateY(-${Math.min(offset * 15, 25)}deg)`;
-            scale = Math.max(0.85 - (absOffset - 1) * 0.1, 0.7);
-            opacity = Math.max(0.4 - (absOffset - 1) * 0.2, 0.2);
+            // Cards to the right - fan out
+            const angle = Math.min(offset * 25, 45);
+            const translateX = Math.min(offset * 120, 200);
+            const translateZ = -Math.min(offset * 50, 100);
+            transform = `translateX(${translateX}px) translateZ(${translateZ}px) rotateY(-${angle}deg)`;
+            opacity = Math.max(0.7 - (absOffset - 1) * 0.2, 0.3);
           } else {
-            // Cards to the left
-            transform = `translateX(${Math.max(offset * 20, -60)}px) translateY(${absOffset * 8}px) rotateY(${Math.min(absOffset * 15, 25)}deg)`;
-            scale = Math.max(0.85 - (absOffset - 1) * 0.1, 0.7);
-            opacity = Math.max(0.4 - (absOffset - 1) * 0.2, 0.2);
+            // Cards to the left - fan out
+            const angle = Math.min(absOffset * 25, 45);
+            const translateX = -Math.min(absOffset * 120, 200);
+            const translateZ = -Math.min(absOffset * 50, 100);
+            transform = `translateX(${translateX}px) translateZ(${translateZ}px) rotateY(${angle}deg)`;
+            opacity = Math.max(0.7 - (absOffset - 1) * 0.2, 0.3);
           }
 
           return (
             <div
               key={project.id}
-              className={`absolute inset-0 transition-all duration-700 ease-out cursor-pointer ${
+              className={`absolute transition-all duration-700 ease-out cursor-pointer ${
                 !isActive ? 'hover:scale-105' : ''
               }`}
               style={{
-                transform: `${transform} scale(${scale})`,
+                transform,
                 zIndex,
                 opacity,
                 transformStyle: 'preserve-3d',
+                width: '320px',
+                height: '450px',
               }}
               onClick={() => !isActive && goToProject(index)}
             >
-              <div className="w-full h-full rounded-3xl shadow-2xl overflow-hidden border border-white/20 relative group">
-                {/* Full Project Image */}
+              <div className="w-full h-full rounded-2xl shadow-2xl overflow-hidden border border-white/10 relative group">
+                {/* Project Image */}
                 <div className="relative h-full w-full overflow-hidden">
                   <Image
                     src={project.image}
@@ -117,10 +122,10 @@ export default function ProjectSlider() {
                     className="object-cover transition-transform duration-700 group-hover:scale-110"
                   />
                   
-                  {/* Gradient Overlay for better text readability */}
-                  <div className="absolute inset-0 bg-gradient-to-t from-black/60 via-black/20 to-transparent" />
+                  {/* Gradient Overlay */}
+                  <div className="absolute inset-0 bg-gradient-to-t from-black/70 via-black/20 to-transparent" />
                   
-                  {/* Navigation Arrows - Only show on active card */}
+                  {/* Navigation Arrows - Only on active card */}
                   {isActive && (
                     <>
                       {/* Left Arrow */}
@@ -139,7 +144,7 @@ export default function ProjectSlider() {
                           fill="none"
                           viewBox="0 0 24 24"
                           stroke="currentColor"
-                          className="text-white group-hover/arrow:text-white transition-colors duration-300"
+                          className="text-white"
                         >
                           <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2.5} d="M15 19l-7-7 7-7" />
                         </svg>
@@ -161,7 +166,7 @@ export default function ProjectSlider() {
                           fill="none"
                           viewBox="0 0 24 24"
                           stroke="currentColor"
-                          className="text-white group-hover/arrow:text-white transition-colors duration-300"
+                          className="text-white"
                         >
                           <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2.5} d="M9 5l7 7-7 7" />
                         </svg>
@@ -179,7 +184,7 @@ export default function ProjectSlider() {
                     </p>
                     
                     {/* Tags */}
-                    <div className="flex flex-wrap gap-2 mb-4">
+                    <div className="flex flex-wrap gap-2">
                       {project.tags.map((tag, tagIndex) => (
                         <span
                           key={tagIndex}
@@ -198,15 +203,15 @@ export default function ProjectSlider() {
       </div>
 
       {/* Minimal Dots Indicator */}
-      <div className="flex justify-center mt-6 space-x-2">
+      <div className="flex justify-center mt-8 space-x-2">
         {projects.map((_, index) => (
           <button
             key={index}
             onClick={() => goToProject(index)}
             className={`transition-all duration-300 rounded-full ${
               index === currentIndex
-                ? 'w-8 h-2 bg-white/80'
-                : 'w-2 h-2 bg-white/40 hover:bg-white/60'
+                ? 'w-8 h-2 bg-foreground-light/60 dark:bg-foreground-dark/60'
+                : 'w-2 h-2 bg-foreground-light/30 dark:bg-foreground-dark/30 hover:bg-foreground-light/50 dark:hover:bg-foreground-dark/50'
             }`}
             aria-label={`Go to project ${index + 1}`}
           />
