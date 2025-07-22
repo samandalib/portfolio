@@ -1,5 +1,5 @@
 "use client";
-import { useState } from 'react';
+import { useState, useRef } from 'react';
 import Image from 'next/image';
 
 interface Project {
@@ -48,6 +48,8 @@ const projects: Project[] = [
 
 export default function ProjectSlider() {
   const [currentIndex, setCurrentIndex] = useState(0);
+  const touchStartX = useRef<number>(0);
+  const touchEndX = useRef<number>(0);
 
   const nextProject = () => {
     setCurrentIndex((prev) => (prev + 1) % projects.length);
@@ -61,10 +63,39 @@ export default function ProjectSlider() {
     setCurrentIndex(index);
   };
 
+  const handleTouchStart = (e: React.TouchEvent) => {
+    touchStartX.current = e.targetTouches[0].clientX;
+  };
+
+  const handleTouchMove = (e: React.TouchEvent) => {
+    touchEndX.current = e.targetTouches[0].clientX;
+  };
+
+  const handleTouchEnd = () => {
+    if (!touchStartX.current || !touchEndX.current) return;
+    
+    const distance = touchStartX.current - touchEndX.current;
+    const isLeftSwipe = distance > 50;
+    const isRightSwipe = distance < -50;
+
+    if (isLeftSwipe) {
+      nextProject();
+    }
+    if (isRightSwipe) {
+      prevProject();
+    }
+  };
+
   return (
     <div className="w-full max-w-4xl mx-auto relative">
       {/* Fanned Cards Container */}
-      <div className="relative h-[500px] w-full flex items-center justify-center" style={{ perspective: '1200px' }}>
+      <div 
+        className="relative h-[500px] w-full flex items-center justify-center touch-pan-y select-none" 
+        style={{ perspective: '1200px' }}
+        onTouchStart={handleTouchStart}
+        onTouchMove={handleTouchMove}
+        onTouchEnd={handleTouchEnd}
+      >
         {projects.map((project, index) => {
           const offset = index - currentIndex;
           const absOffset = Math.abs(offset);
@@ -125,55 +156,6 @@ export default function ProjectSlider() {
                   {/* Gradient Overlay */}
                   <div className="absolute inset-0 bg-gradient-to-t from-black/70 via-black/20 to-transparent" />
                   
-                  {/* Navigation Arrows - Only on active card */}
-                  {isActive && (
-                    <>
-                      {/* Left Arrow */}
-                      <button
-                        onClick={(e) => {
-                          e.stopPropagation();
-                          prevProject();
-                        }}
-                        className="absolute left-4 top-1/2 -translate-y-1/2 z-30 p-3 rounded-full bg-white/20 backdrop-blur-md border border-white/30 hover:bg-white/30 transition-all duration-300 hover:scale-110 group/arrow"
-                        aria-label="Previous project"
-                      >
-                        <svg
-                          xmlns="http://www.w3.org/2000/svg"
-                          width="20"
-                          height="20"
-                          fill="none"
-                          viewBox="0 0 24 24"
-                          stroke="currentColor"
-                          className="text-white"
-                        >
-                          <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2.5} d="M15 19l-7-7 7-7" />
-                        </svg>
-                      </button>
-
-                      {/* Right Arrow */}
-                      <button
-                        onClick={(e) => {
-                          e.stopPropagation();
-                          nextProject();
-                        }}
-                        className="absolute right-4 top-1/2 -translate-y-1/2 z-30 p-3 rounded-full bg-white/20 backdrop-blur-md border border-white/30 hover:bg-white/30 transition-all duration-300 hover:scale-110 group/arrow"
-                        aria-label="Next project"
-                      >
-                        <svg
-                          xmlns="http://www.w3.org/2000/svg"
-                          width="20"
-                          height="20"
-                          fill="none"
-                          viewBox="0 0 24 24"
-                          stroke="currentColor"
-                          className="text-white"
-                        >
-                          <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2.5} d="M9 5l7 7-7 7" />
-                        </svg>
-                      </button>
-                    </>
-                  )}
-
                   {/* Frosted Glass Text Overlay */}
                   <div className="absolute bottom-4 left-4 right-4 p-6 bg-white/10 backdrop-blur-lg border border-white/20 rounded-2xl">
                     <h3 className="text-xl font-bold mb-2 text-white drop-shadow-lg">
