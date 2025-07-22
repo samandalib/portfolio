@@ -32,7 +32,7 @@ export default function Home() {
         </div>
         
         {/* Right Column - Project Slider */}
-        <div className="flex items-center justify-center">
+        <div className="flex items-center justify-center w-full">
           <ProjectSlider />
         </div>
       </div>
