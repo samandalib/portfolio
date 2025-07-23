@@ -30,8 +30,8 @@ export const GlobalSettings = {
   },
   defaultTheme: 'light', // or 'dark'
   fonts: {
-    heading: 'Bodoni Moda, serif', // via --font-bodoni
-    body: 'Manrope, sans-serif',   // via --font-manrope
+    heading: 'Bodoni Moda', // via --font-bodoni
+    body: 'Manrope',   // via --font-manrope
     tailwind: {
       heading: "font-heading",
       sans: "font-sans"
@@ -42,18 +42,18 @@ export const GlobalSettings = {
     }
   },
   defaultFonts: {
-    heading: 'Bodoni Moda, serif',
-    body: 'Manrope, sans-serif'
+    heading: 'Bodoni Moda',
+    body: 'Manrope'
   },
   fontSize: {
     body: 'var(--body-font-size, 15px)'
   },
   fontPresets: [
     // Optionally add 'weight' (or headingWeight/bodyWeight) to control Google Fonts import weights
-    { label: "Serif", heading: "'Bodoni Moda', serif", body: "'Bodoni Moda', serif", icon: "serif.svg", weight: 400 },
-    { label: "Sans", heading: "'Manrope', sans-serif", body: "'Manrope', sans-serif", icon: "sans.svg", weight: 400 },
-    { label: "Retro", heading: "'Courier New', monospace", body: "'Courier New', monospace", icon: "retro.svg", weight: 400 },
-    { label: "Handwriting", heading: "'Rock Salt', cursive", body: "'Playwrite AU NSW', cursive", icon: "handwriting.svg", weight: 400 },
-    { label: "Combo", heading: "'Bodoni Moda', serif", body: "'Manrope', sans-serif", icon: "combo.svg", weight: 400 }
+    { label: "Serif", heading: "Bodoni Moda, Roboto Serif", body: "Bodoni Moda, Roboto Serif", icon: "serif.svg", weight: 400 },
+    { label: "Sans", heading: "Manrope, Roboto", body: "Manrope, Roboto", icon: "sans.svg", weight: 400 },
+    { label: "Retro", heading: "IBM Plex Mono", body: "IBM Plex Mono", icon: "retro.svg", weight: 400 },
+    { label: "Handwriting", heading: "Rock Salt, cursive", body: "Playwrite AU NSW, cursive", icon: "handwriting.svg", weight: 400 },
+    { label: "Combo", heading: "Bodoni Moda, Roboto Serif", body: "Manrope, Roboto", icon: "combo.svg", weight: 400 }
   ]
 }; 

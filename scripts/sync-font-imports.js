@@ -4,6 +4,12 @@ const path = require('path');
 const globalSettingsPath = path.join(__dirname, '../public/GlobalSettings.ts');
 const fontsTsPath = path.join(__dirname, '../app/fonts.ts');
 
+// Helper to extract only the primary font name (before first comma)
+function getPrimaryFont(fontString) {
+  if (!fontString) return null;
+  return fontString.split(',')[0].replace(/['"]/g, '').trim();
+}
+
 // 1. Extract font family names from GlobalSettings.ts
 const file = fs.readFileSync(globalSettingsPath, 'utf-8');
 const fontPresetRegex = /fontPresets:\s*\[([\s\S]*?)\]/m;
@@ -31,15 +37,11 @@ while ((presetMatch = presetObjRegex.exec(presetsBlock))) {
   let bodyMatch = presetStr.match(/body\s*:\s*['"]([^'"]+)['"]/);
   [headingMatch, bodyMatch].forEach(match => {
     if (match && match[1]) {
-      // Split by comma in case of fallback fonts, and trim
-      match[1].split(',').forEach(fontName => {
-        fontName = fontName.trim();
-        // Only add if not a generic family
-        if (fontName && !['serif', 'sans-serif', 'monospace', 'cursive', 'fantasy'].includes(fontName.toLowerCase())) {
-          fontNames.add(fontName);
-          fontWeights[fontName] = weight;
-        }
-      });
+      const fontName = getPrimaryFont(match[1]);
+      if (fontName && !['serif', 'sans-serif', 'monospace', 'cursive', 'fantasy'].includes(fontName.toLowerCase())) {
+        fontNames.add(fontName);
+        fontWeights[fontName] = weight;
+      }
     }
   });
 }
@@ -47,14 +49,18 @@ while ((presetMatch = presetObjRegex.exec(presetsBlock))) {
 // Extract from defaultFonts
 if (defaultFontsMatch) {
   const defaultFontsBlock = defaultFontsMatch[1];
-  for (const line of defaultFontsBlock.split('\n')) {
-    let m;
-    while ((m = fontNameRegex.exec(line))) {
-      if (!['serif', 'sans-serif', 'monospace', 'cursive', 'fantasy'].includes(m[1].toLowerCase())) {
-        fontNames.add(m[1].trim());
+  // Extract heading and body font names only
+  let headingMatch = defaultFontsBlock.match(/heading\s*:\s*['"]([^'"]+)['"]/);
+  let bodyMatch = defaultFontsBlock.match(/body\s*:\s*['"]([^'"]+)['"]/);
+  [headingMatch, bodyMatch].forEach(match => {
+    if (match && match[1]) {
+      const fontName = getPrimaryFont(match[1]);
+      if (fontName && !['serif', 'sans-serif', 'monospace', 'cursive', 'fantasy'].includes(fontName.toLowerCase())) {
+        fontNames.add(fontName);
+        fontWeights[fontName] = ['400']; // Default weight for defaultFonts
       }
     }
-  }
+  });
 }
 
 if (fontNames.size === 0) {
@@ -81,8 +87,21 @@ fontNames.forEach(font => {
   importLines.push(
     `import { ${varName} } from 'next/font/google';`
   );
+  // Build options object with only valid properties
+  let options = [];
+  if (fontWeights[font] && fontWeights[font][0] !== undefined) {
+    options.push(`weight: [${fontWeights[font].map(w => `'${w}'`).join(', ')}]`);
+  }
+  // Always include variable for CSS var
+  options.push(`variable: '--font-${varName.toLowerCase()}'`);
+  // Only include display if present (default to 'swap')
+  options.push(`display: 'swap'`);
+  // Only include subsets for Bodoni Moda and Manrope (or other known fonts that support it)
+  if (["Bodoni Moda", "Manrope"].includes(font)) {
+    options.unshift(`subsets: ['latin']`);
+  }
   exportLines.push(
-    `export const ${varName.toLowerCase()} = ${varName}({ subsets: ['latin'], weight: [${fontWeights[font].map(w => `'${w}'`).join(', ')}], variable: '--font-${varName.toLowerCase()}', display: 'swap' });`
+    `export const ${varName.toLowerCase()} = ${varName}({ ${options.join(', ')} });`
   );
 });
 
