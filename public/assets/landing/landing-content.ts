@@ -3,7 +3,7 @@ export const landingContent = {
   intro: "Hi, I'm",
   subheading: "A product designer specialize in turning hairy problems into simple, thoughtful products people actually love to use.",
   profileImage: {
-    src: "Profile2.png",
+    src: "https://res.cloudinary.com/dehugbvmc/image/upload/v1753301861/Profile2_pb1o0o.png",
     alt: "Hesam Andalib profile",
     width: 240,
     height: 320,
