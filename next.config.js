@@ -8,7 +8,7 @@ const withMDX = require('@next/mdx')({
 module.exports = withMDX({
   pageExtensions: ["ts", "tsx", "js", "jsx", "md", "mdx"],
   images: {
-    domains: ["images.pexels.com"],
+    domains: ["images.pexels.com", "res.cloudinary.com"],
   },
   // ...add any other Next.js config here
 }); 

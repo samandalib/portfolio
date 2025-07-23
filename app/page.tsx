@@ -35,7 +35,7 @@ export default function Home() {
               )}
               {/* Profile image on top of the circle */}
               <Image
-                src={`/assets/landing/${landingContent.profileImage.src}`}
+                src={landingContent.profileImage.src.startsWith('http') ? landingContent.profileImage.src : `/assets/landing/${landingContent.profileImage.src}`}
                 alt={landingContent.profileImage.alt}
                 width={landingContent.profileImage.width}
                 height={landingContent.profileImage.height}
