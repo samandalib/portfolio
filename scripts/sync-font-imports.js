@@ -19,22 +19,29 @@ if (!match) {
 const presetsBlock = match[1];
 const fontNames = new Set();
 const fontWeights = {};
-const fontNameRegex = /['"]([A-Za-z0-9\s]+)['"],?/g;
 const presetObjRegex = /{([^}]*)}/g;
 let presetMatch;
 while ((presetMatch = presetObjRegex.exec(presetsBlock))) {
   const presetStr = presetMatch[1];
-  let nameMatch;
   let weightMatch = presetStr.match(/weight\s*:\s*([0-9\[\], ]+)/);
   let weight = weightMatch ? weightMatch[1].replace(/\[|\]/g, '').split(',').map(w => w.trim()).filter(Boolean) : ['400'];
   if (weight.length === 0) weight = ['400'];
-  while ((nameMatch = fontNameRegex.exec(presetStr))) {
-    const fontName = nameMatch[1].trim();
-    if (!['serif', 'sans-serif', 'monospace', 'cursive', 'fantasy'].includes(fontName.toLowerCase())) {
-      fontNames.add(fontName);
-      fontWeights[fontName] = weight;
+  // Extract heading and body font names only
+  let headingMatch = presetStr.match(/heading\s*:\s*['"]([^'"]+)['"]/);
+  let bodyMatch = presetStr.match(/body\s*:\s*['"]([^'"]+)['"]/);
+  [headingMatch, bodyMatch].forEach(match => {
+    if (match && match[1]) {
+      // Split by comma in case of fallback fonts, and trim
+      match[1].split(',').forEach(fontName => {
+        fontName = fontName.trim();
+        // Only add if not a generic family
+        if (fontName && !['serif', 'sans-serif', 'monospace', 'cursive', 'fantasy'].includes(fontName.toLowerCase())) {
+          fontNames.add(fontName);
+          fontWeights[fontName] = weight;
+        }
+      });
     }
-  }
+  });
 }
 
 // Extract from defaultFonts
