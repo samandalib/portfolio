@@ -59,33 +59,40 @@ function syncAll() {
 // Initial sync
 syncAll();
 
-// Watch for changes, additions, deletions
-const watcher = chokidar.watch([...SOURCE_DIRS, GLOBAL_SETTINGS], { ignored: /template.*\.ts$/ });
+// Exit immediately after sync in production (including Vercel)
+if (process.env.NODE_ENV === 'production' || process.env.VERCEL === '1') {
+  process.exit(0);
+}
 
-watcher.on('add', src => {
-  if (shouldInclude(src)) {
-    const dest = getDestPath(src);
-    copyFile(src, dest);
-  }
-});
+// Only start the watcher in development (not in production or on Vercel)
+if (process.env.NODE_ENV !== 'production' && process.env.VERCEL !== '1') {
+  const watcher = chokidar.watch([...SOURCE_DIRS, GLOBAL_SETTINGS], { ignored: /template.*\.ts$/ });
 
-watcher.on('change', src => {
-  if (shouldInclude(src)) {
-    const dest = getDestPath(src);
-    copyFile(src, dest);
-  }
-  if (src === GLOBAL_SETTINGS) {
-    // Run the font sync script
-    exec('node scripts/sync-font-imports.js', (err, stdout, stderr) => {
-      if (err) console.error(stderr);
-      else console.log(stdout);
-    });
-  }
-});
+  watcher.on('add', src => {
+    if (shouldInclude(src)) {
+      const dest = getDestPath(src);
+      copyFile(src, dest);
+    }
+  });
 
-watcher.on('unlink', src => {
-  if (shouldInclude(src)) {
-    const dest = getDestPath(src);
-    removeFile(dest);
-  }
-}); 
+  watcher.on('change', src => {
+    if (shouldInclude(src)) {
+      const dest = getDestPath(src);
+      copyFile(src, dest);
+    }
+    if (src === GLOBAL_SETTINGS) {
+      // Run the font sync script
+      exec('node scripts/sync-font-imports.js', (err, stdout, stderr) => {
+        if (err) console.error(stderr);
+        else console.log(stdout);
+      });
+    }
+  });
+
+  watcher.on('unlink', src => {
+    if (shouldInclude(src)) {
+      const dest = getDestPath(src);
+      removeFile(dest);
+    }
+  });
+} 
