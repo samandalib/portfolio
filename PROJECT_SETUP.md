@@ -36,8 +36,9 @@
   - **Bodoni Moda**: For all headings and large text (applied via `font-heading` utility and CSS variable `--font-bodoni`).
   - **Manrope**: For all body, small, and default text (applied via `font-sans` utility and CSS variable `--font-manrope`).
 - **How to change:**
-  - Update the font import and variable in `app/layout.tsx`.
-  - Update the Tailwind `fontFamily` config in `tailwind.config.js`.
+  - Update the font settings in `public/GlobalSettings.ts` under both `defaultFonts` and `fontPresets`.
+  - The automation will ensure all unique fonts listed in either `defaultFonts` or `fontPresets` are imported and available in `app/fonts.ts`.
+  - Update the Tailwind `fontFamily` config in `tailwind.config.js` if you add new font variables.
   - All typography across the site will update automatically.
 
 ## Global Color Usage
@@ -72,7 +73,8 @@
 ## Core Architectural & Design Decisions (Impacting Future Development)
 
 - **Font Policy:**
-  - Only two user-provided fonts are used sitewide: Bodoni Moda (headings) and Manrope (body/small text). All typography must use these via Tailwind utilities and CSS variables for easy global changes.
+  - Only two user-provided fonts are used sitewide: Bodoni Moda (headings) and Manrope (body/small text) by default. All typography must use these via Tailwind utilities and CSS variables for easy global changes.
+  - If you add or change fonts in `defaultFonts` or `fontPresets` in `public/GlobalSettings.ts`, the automation will import and make them available for use throughout the project.
 
 - **Color & Theming:**
   - Strict light/dark mode support using Tailwind's `darkMode: 'class'` and CSS variables for background, foreground, and accent colors. All color changes are managed globally for consistency.
@@ -104,3 +106,24 @@
 > These decisions are foundational and should be considered before making future changes to typography, theming, layout, or asset management.
 
 > This file will be updated as the project evolves. Add new sections for features, content, or configuration changes as needed. 
+
+# Project Setup & Automation
+
+## Automated Content & Font Sync
+
+- **Watcher runs automatically on dev and build:**
+  - When you run `npm run dev`, a watcher script runs in the background to keep your content and font imports in sync.
+  - On every build (`npm run build`), the watcher also syncs content and fonts before building.
+- **Font imports are always up to date:**
+  - Any time you change font presets or default fonts in `public/GlobalSettings.ts`, the watcher will automatically update `app/fonts.ts` to import all unique fonts you use (from both `defaultFonts` and `fontPresets`).
+- **Error notifications:**
+  - If you add a font to your presets or defaults that is not available in Google Fonts, you’ll see a warning in the console.
+  - If no custom fonts are found, you’ll see a warning as well.
+- **How changes take effect:**
+  - Any change to `GlobalSettings.ts` (fonts, colors, etc.) will be picked up automatically by the watcher and reflected in your app after a refresh or rebuild.
+
+## Hands-off Workflow
+
+- You do not need to manually run any sync scripts for content or fonts.
+- Just edit your content files and font presets as needed; the system will keep everything in sync in the background.
+- For more details, see `PORTFOLIO_EDIT.md`. 

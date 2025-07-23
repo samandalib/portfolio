@@ -5,6 +5,7 @@
 :root {
   --background: #ffffff;
   --foreground: #171717;
+  --accent-color: #16A34A;
   --zoomrotate-scale-start: 0.8;
   --zoomrotate-scale-end: 1.08;
   --zoomrotate-rotate-start: 0deg;

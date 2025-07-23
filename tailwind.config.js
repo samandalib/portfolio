@@ -7,6 +7,9 @@ module.exports = {
     "./components/**/*.{js,ts,jsx,tsx,mdx}",
     "./content/**/*.{md,mdx}",
   ],
+  safelist: [
+    'bg-accent',
+  ],
   theme: {
     extend: {
       fontFamily: {
