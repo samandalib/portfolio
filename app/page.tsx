@@ -42,6 +42,7 @@ export default function Home() {
                 className="object-cover absolute"
                 style={{ ...(landingContent.profileImage.style as React.CSSProperties), zIndex: 2 }}
                 priority
+                unoptimized
               />
             </div>
             {/* Text Content */}

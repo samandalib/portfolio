@@ -82,15 +82,14 @@ export default function AccentDock() {
           <label htmlFor="font-size-slider" className="text-lg mb-2 text-gray-500 dark:text-gray-300">A</label>
           <input
             ref={sliderRef}
-            id="font-size-slider"
             type="range"
             min={12}
             max={18}
             value={fontSize}
             onChange={e => setFontSize(Number(e.target.value))}
-            className="appearance-none w-1 h-24 bg-gray-200 dark:bg-gray-700 rounded-full outline-none slider-thumb-vertical"
-            style={{ WebkitAppearance: 'slider-vertical' }} // For Chrome/Safari vertical slider
-            aria-label="Font size"
+            className="accent-slider"
+            style={{ writingMode: 'vertical-lr', direction: 'rtl' }}
+            aria-label="Font size slider"
           />
           <span className="text-xs mt-2 text-gray-500 dark:text-gray-300">A</span>
         </div>
