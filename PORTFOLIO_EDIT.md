@@ -57,10 +57,23 @@ This document explains how to edit and maintain the content and assets for your 
 
 ---
 
-## 4. Asset Organization
+## Case Study Display
+- Each card in the `ProjectSlider` can reveal a set of `InfoSnippet` components for its case study. Clicking a card scrolls to the corresponding section for a smooth user experience.
+- The `InfoSnippet` component is used for displaying project/case study information. See `InfoSnippet_COMPONENT.md` for details.
 
-- **All images, SVGs, and other media** should be placed in the appropriate folder under `public/assets/` (e.g., `landing/`, `about/`, `case studies/{project}/`).
-- **Reference asset filenames** in your content files to keep content and visuals tightly coupled.
+---
+
+## Asset Hosting and Usage
+
+- **All images and visual assets are now hosted on Cloudinary (or a similar external service).**
+- **How to use:**
+  - Reference the full external URL in your content files (e.g., `landing-content.ts`).
+  - The sync-content script will use these URLs for downstream usage.
+  - Local asset files in `public/assets/` are no longer required unless specifically needed for offline or fallback purposes.
+  - This keeps the repo lightweight and deploys fast.
+- **Adding new assets:**
+  - Upload to Cloudinary (or similar), copy the URL, and use it in your content/config files.
+  - Do not add large images or binaries to the repo unless absolutely necessary.
 
 ---
 

@@ -96,6 +96,11 @@
 
 - **Componentization:**
   - All interactive UI (theme toggle, accent dock, project slider, etc.) is implemented as reusable client components in `components/`.
+  - The `InfoSnippet` component is used to display project/case study information in a flexible, responsive, and theme-aware layout. Each instance manages its own Docker bar (floating control panel) and state independently, allowing multiple InfoSnippets per page.
+  - The Docker bar provides controls for layout, pointer overlay, text alignment, and more. It is hidden on mobile screens and can be toggled open/closed on desktop.
+  - The `ProjectSlider` component is linked to case studies: clicking a card reveals the corresponding InfoSnippet section(s) and automatically scrolls to them for a smooth user experience.
+  - Case study content is sourced from TypeScript files (e.g., `public/assets/case studies/project1/content.ts`) and rendered dynamically. To add a new case study, add a new content file and update the case studies array in `app/page.tsx`.
+  - When a project card is clicked, the page scrolls to the revealed InfoSnippet section.
 
 - **No Scroll on Landing (Large Screens):**
   - The landing page is designed to fit the viewport on large screens, with social icons pinned to the bottom and no vertical scroll.
@@ -127,3 +132,15 @@
 - You do not need to manually run any sync scripts for content or fonts.
 - Just edit your content files and font presets as needed; the system will keep everything in sync in the background.
 - For more details, see `PORTFOLIO_EDIT.md`. 
+
+## Asset Hosting and Usage
+
+- **All visual assets (profile images, project screenshots, etc.) are now hosted on Cloudinary (or a similar external service).**
+- **How to use:**
+  - Reference the full external URL (e.g., https://res.cloudinary.com/...) in your content files (such as `landing-content.ts`).
+  - The sync-content script will use these URLs to keep downstream files in sync.
+  - Local asset files in `public/assets/` are no longer required unless you have a specific reason to keep them.
+  - This approach ensures faster deploys, easier asset management, and avoids large binary files in the repo.
+- **If you add new assets:**
+  - Upload them to your Cloudinary account (or similar service) and use the resulting URL in your content/config files.
+  - Avoid adding large images or binaries directly to the repo. 

@@ -46,7 +46,7 @@ const projects: Project[] = [
   }
 ];
 
-export default function ProjectSlider() {
+export default function ProjectSlider({ onCardClick }: { onCardClick?: (idx: number) => void }) {
   const [currentIndex, setCurrentIndex] = useState(0);
   const touchStartX = useRef<number>(0);
   const touchEndX = useRef<number>(0);
@@ -141,7 +141,10 @@ export default function ProjectSlider() {
                 width: '400px',
                 height: undefined,
               }}
-              onClick={() => !isActive && goToProject(index)}
+              onClick={() => {
+                goToProject(index);
+                if (onCardClick) onCardClick(index);
+              }}
             >
               <div className="w-full h-full rounded-2xl shadow-2xl overflow-hidden border border-white/10 relative group">
                 {/* Project Image */}

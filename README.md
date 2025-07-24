@@ -24,6 +24,16 @@ This project uses [`next/font`](https://nextjs.org/docs/app/building-your-applic
 
 Font imports are managed automatically. To change which fonts are loaded and available in the app, edit the `defaultFonts` and `fontPresets` properties in `public/GlobalSettings.ts`. The watcher will keep `app/fonts.ts` in sync with these settings.
 
+## Asset Hosting
+
+All images and visual assets are now hosted on Cloudinary (or a similar external service). Reference the full external URL in your content files (e.g., `landing-content.ts`). The sync-content script will use these URLs for downstream usage. Local asset files in `public/assets/` are not required unless you need them for offline or fallback purposes.
+
+## Feature Overview
+
+- The `InfoSnippet` component displays project/case study information with a responsive layout and a floating Docker bar for live controls. Each instance is independent and theme-aware.
+- The `ProjectSlider` is linked to case studies: clicking a card reveals the corresponding InfoSnippet section(s) and scrolls to them automatically.
+- Case study content is managed in TypeScript files (e.g., `public/assets/case studies/project1/content.ts`) and rendered dynamically. To add a new case study, add a new content file and update the case studies array in `app/page.tsx`.
+
 ## Learn More
 
 To learn more about Next.js, take a look at the following resources:
