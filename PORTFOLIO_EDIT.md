@@ -116,4 +116,15 @@ content/
 
 ---
 
+## 7. Project Slider Card Content
+
+- **File:** `public/assets/landing/project-slider-cards.ts`
+- **Purpose:** Defines the content for the cards in the ProjectSlider on the landing page.
+- **How to use:**
+  - Edit the exported `projectSliderCards` array to change the title, description, image, tags, or color for each card.
+  - Use full URLs for images (e.g., Cloudinary links) for best deployment performance.
+  - The ProjectSlider component can be updated to import and use this data for dynamic card content.
+
+---
+
 For any questions or to extend the system, refer to this file or ask your developer/maintainer. 
