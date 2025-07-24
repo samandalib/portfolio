@@ -10,6 +10,7 @@ import LayoutIcon from "./icons/LayoutIcon";
 import TextTopIcon from "./icons/TextTopIcon";
 import TextMiddleIcon from "./icons/TextMiddleIcon";
 import TextBottomIcon from "./icons/TextBottomIcon";
+import Tooltip from "./Tooltip";
 
 interface InfoSnippetProps {
   snippet: InfoSnippetType;
@@ -223,54 +224,66 @@ const InfoSnippet: React.FC<InfoSnippetProps> = ({ snippet }) => {
         <div className="hidden md:flex items-center gap-4 px-1 py-1 rounded-3xl shadow-2xl backdrop-blur-xl bg-white/40 dark:bg-black/30 border border-black/10 dark:border-white/10 flex-wrap transition-all duration-300 ease-in-out overflow-hidden w-fit">
           {showDockerControls && (
             <>
-              <button
-                onClick={() => setPointerMode((v) => !v)}
-                className={`w-10 h-10 p-0 rounded-full border text-sm font-bold transition-colors duration-200 flex items-center justify-center text-gray-700 dark:text-gray-200 ${pointerMode ? 'bg-blue-600 text-white border-blue-600' : 'bg-white dark:bg-neutral-800 border-gray-300 dark:border-gray-700 hover:bg-blue-100 dark:hover:bg-neutral-800'}`}
-                aria-label={pointerMode ? 'Disable pointer positioner' : 'Enable pointer positioner'}
-              >
-                <PointerIcon width={20} height={20} />
-              </button>
-              <button
-                onClick={() => setTextAlign(a => a === 'top' ? 'middle' : a === 'middle' ? 'bottom' : 'top')}
-                className={`w-10 h-10 p-0 rounded-full border text-sm font-bold transition-colors duration-200 flex items-center justify-center text-gray-700 dark:text-gray-200 bg-white dark:bg-neutral-800 border-gray-300 dark:border-gray-700 ${stacked ? 'opacity-50 pointer-events-none' : 'hover:bg-gray-200 dark:hover:bg-neutral-800'}`}
-                aria-label="Cycle text vertical alignment"
-                disabled={stacked}
-              >
-                {textAlign === 'top' && <TextTopIcon width={20} height={20} />}
-                {textAlign === 'middle' && <TextMiddleIcon width={20} height={20} />}
-                {textAlign === 'bottom' && <TextBottomIcon width={20} height={20} />}
-              </button>
-              <button
-                onClick={() => setCanvasLeft((v) => !v)}
-                className={`w-10 h-10 p-0 rounded-full border text-sm font-bold transition-colors duration-200 flex items-center justify-center text-gray-700 dark:text-gray-200 ${canvasLeft ? 'bg-green-600 text-white border-green-600' : 'bg-white dark:bg-neutral-800 border-gray-300 dark:border-gray-700 hover:bg-green-100 dark:hover:bg-neutral-800'}`}
-                aria-label={canvasLeft ? 'Canvas on left' : 'Canvas on right'}
-              >
-                {canvasLeft ? <CanvasLeftIcon width={20} height={20} /> : <CanvasRightIcon width={20} height={20} />}
-              </button>
-              <button
-                onClick={() => setStacked((v) => !v)}
-                className={`w-10 h-10 p-0 rounded-full border text-sm font-bold transition-colors duration-200 flex items-center justify-center text-gray-700 dark:text-gray-200 ${stacked ? 'bg-purple-600 text-white border-purple-600' : 'bg-white dark:bg-neutral-800 border-gray-300 dark:border-gray-700 hover:bg-purple-100 dark:hover:bg-neutral-800'}`}
-                aria-label={stacked ? 'Stacked layout' : 'Side-by-side layout'}
-              >
-                {stacked ? <StackedIcon width={20} height={20} /> : <SideBySideIcon width={20} height={20} />}
-              </button>
-              <button
-                onClick={() => setCanvasCols(CANVAS_COL_OPTIONS[(CANVAS_COL_OPTIONS.indexOf(canvasCols) + 1) % CANVAS_COL_OPTIONS.length])}
-                className={`h-10 px-3 rounded-full border text-sm font-bold transition-colors duration-200 flex items-center justify-center text-gray-700 dark:text-gray-200 bg-white dark:bg-neutral-800 border-gray-300 dark:border-gray-700 hover:bg-gray-200 dark:hover:bg-neutral-800`}
-                aria-label="Cycle canvas columns"
-              >
-                <CanvasWidthIcon width={20} height={20} className="mr-2" />
-                <span className="text-gray-700 dark:text-gray-200">{canvasCols}</span>
-              </button>
+              <Tooltip label={pointerMode ? 'Disable pointer positioner' : 'Enable pointer positioner'}>
+                <button
+                  onClick={() => setPointerMode((v) => !v)}
+                  className={`w-10 h-10 p-0 rounded-full border text-sm font-bold transition-colors duration-200 flex items-center justify-center text-gray-700 dark:text-gray-200 ${pointerMode ? 'bg-blue-600 text-white border-blue-600' : 'bg-white dark:bg-neutral-800 border-gray-300 dark:border-gray-700 hover:bg-blue-100 dark:hover:bg-neutral-800'}`}
+                  aria-label={pointerMode ? 'Disable pointer positioner' : 'Enable pointer positioner'}
+                >
+                  <PointerIcon width={20} height={20} />
+                </button>
+              </Tooltip>
+              <Tooltip label="Cycle text vertical alignment">
+                <button
+                  onClick={() => setTextAlign(a => a === 'top' ? 'middle' : a === 'middle' ? 'bottom' : 'top')}
+                  className={`w-10 h-10 p-0 rounded-full border text-sm font-bold transition-colors duration-200 flex items-center justify-center text-gray-700 dark:text-gray-200 bg-white dark:bg-neutral-800 border-gray-300 dark:border-gray-700 ${stacked ? 'opacity-50 pointer-events-none' : 'hover:bg-gray-200 dark:hover:bg-neutral-800'}`}
+                  aria-label="Cycle text vertical alignment"
+                  disabled={stacked}
+                >
+                  {textAlign === 'top' && <TextTopIcon width={20} height={20} />}
+                  {textAlign === 'middle' && <TextMiddleIcon width={20} height={20} />}
+                  {textAlign === 'bottom' && <TextBottomIcon width={20} height={20} />}
+                </button>
+              </Tooltip>
+              <Tooltip label={canvasLeft ? 'Canvas on left' : 'Canvas on right'}>
+                <button
+                  onClick={() => setCanvasLeft((v) => !v)}
+                  className={`w-10 h-10 p-0 rounded-full border text-sm font-bold transition-colors duration-200 flex items-center justify-center text-gray-700 dark:text-gray-200 ${canvasLeft ? 'bg-green-600 text-white border-green-600' : 'bg-white dark:bg-neutral-800 border-gray-300 dark:border-gray-700 hover:bg-green-100 dark:hover:bg-neutral-800'}`}
+                  aria-label={canvasLeft ? 'Canvas on left' : 'Canvas on right'}
+                >
+                  {canvasLeft ? <CanvasLeftIcon width={20} height={20} /> : <CanvasRightIcon width={20} height={20} />}
+                </button>
+              </Tooltip>
+              <Tooltip label={stacked ? 'Stacked layout' : 'Side-by-side layout'}>
+                <button
+                  onClick={() => setStacked((v) => !v)}
+                  className={`w-10 h-10 p-0 rounded-full border text-sm font-bold transition-colors duration-200 flex items-center justify-center text-gray-700 dark:text-gray-200 ${stacked ? 'bg-purple-600 text-white border-purple-600' : 'bg-white dark:bg-neutral-800 border-gray-300 dark:border-gray-700 hover:bg-purple-100 dark:hover:bg-neutral-800'}`}
+                  aria-label={stacked ? 'Stacked layout' : 'Side-by-side layout'}
+                >
+                  {stacked ? <StackedIcon width={20} height={20} /> : <SideBySideIcon width={20} height={20} />}
+                </button>
+              </Tooltip>
+              <Tooltip label="Cycle canvas columns">
+                <button
+                  onClick={() => setCanvasCols(CANVAS_COL_OPTIONS[(CANVAS_COL_OPTIONS.indexOf(canvasCols) + 1) % CANVAS_COL_OPTIONS.length])}
+                  className={`h-10 px-3 rounded-full border text-sm font-bold transition-colors duration-200 flex items-center justify-center text-gray-700 dark:text-gray-200 bg-white dark:bg-neutral-800 border-gray-300 dark:border-gray-700 hover:bg-gray-200 dark:hover:bg-neutral-800`}
+                  aria-label="Cycle canvas columns"
+                >
+                  <CanvasWidthIcon width={20} height={20} className="mr-2" />
+                  <span className="text-gray-700 dark:text-gray-200">{canvasCols}</span>
+                </button>
+              </Tooltip>
             </>
           )}
-          <button
-            onClick={() => setShowDockerControls((v) => !v)}
-            className="w-10 h-10 p-0 rounded-full border text-sm font-bold transition-colors duration-200 flex items-center justify-center text-gray-700 dark:text-gray-200 bg-white dark:bg-neutral-800 border-gray-300 dark:border-gray-700 hover:bg-gray-200 dark:hover:bg-neutral-800"
-            aria-label={showDockerControls ? 'Hide controls' : 'Show controls'}
-          >
-            <LayoutIcon width={20} height={20} />
-          </button>
+          <Tooltip label={showDockerControls ? 'Hide controls' : 'Show controls'}>
+            <button
+              onClick={() => setShowDockerControls((v) => !v)}
+              className="w-10 h-10 p-0 rounded-full border text-sm font-bold transition-colors duration-200 flex items-center justify-center text-gray-700 dark:text-gray-200 bg-white dark:bg-neutral-800 border-gray-300 dark:border-gray-700 hover:bg-gray-200 dark:hover:bg-neutral-800"
+              aria-label={showDockerControls ? 'Hide controls' : 'Show controls'}
+            >
+              <LayoutIcon width={20} height={20} />
+            </button>
+          </Tooltip>
         </div>
       </div>
     </div>

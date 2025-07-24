@@ -1,50 +1,10 @@
 "use client";
 import { useState, useRef } from 'react';
 import Image from 'next/image';
+import { projectSliderCards } from "../public/assets/landing/project-slider-cards";
+import type { ProjectSliderCard } from "../public/assets/landing/project-slider-cards";
 
-interface Project {
-  id: number;
-  title: string;
-  description: string;
-  image: string;
-  tags: string[];
-  color: string;
-}
-
-const projects: Project[] = [
-  {
-    id: 1,
-    title: "E-commerce Platform",
-    description: "A modern e-commerce platform with seamless user experience and intuitive design patterns.",
-    image: "/assets/landing/acc.png",
-    tags: ["UI/UX", "E-commerce", "Mobile"],
-    color: "from-purple-500 to-pink-500"
-  },
-  {
-    id: 2,
-    title: "Healthcare App",
-    description: "Redesigning healthcare accessibility through thoughtful digital experiences and user-centered design.",
-    image: "https://images.pexels.com/photos/4386466/pexels-photo-4386466.jpeg?auto=compress&cs=tinysrgb&w=600",
-    tags: ["Healthcare", "Mobile", "Accessibility"],
-    color: "from-blue-500 to-cyan-500"
-  },
-  {
-    id: 3,
-    title: "Financial Dashboard",
-    description: "Simplifying complex financial data into clear, actionable insights for better decision making.",
-    image: "https://images.pexels.com/photos/590022/pexels-photo-590022.jpeg?auto=compress&cs=tinysrgb&w=600",
-    tags: ["Fintech", "Dashboard", "Data Viz"],
-    color: "from-green-500 to-emerald-500"
-  },
-  {
-    id: 4,
-    title: "Social Platform",
-    description: "Building meaningful connections through innovative social features and community-driven design.",
-    image: "https://images.pexels.com/photos/3184360/pexels-photo-3184360.jpeg?auto=compress&cs=tinysrgb&w=600",
-    tags: ["Social", "Community", "Mobile"],
-    color: "from-orange-500 to-red-500"
-  }
-];
+const projects: ProjectSliderCard[] = projectSliderCards;
 
 export default function ProjectSlider({ onCardClick }: { onCardClick?: (idx: number) => void }) {
   const [currentIndex, setCurrentIndex] = useState(0);
@@ -146,14 +106,15 @@ export default function ProjectSlider({ onCardClick }: { onCardClick?: (idx: num
                 if (onCardClick) onCardClick(index);
               }}
             >
-              <div className="w-full h-full rounded-2xl shadow-2xl overflow-hidden border border-white/10 relative group">
+              <div className="w-full h-full rounded-2xl overflow-hidden border border-white/20 relative group bg-white/30 dark:bg-black/30 backdrop-blur-xl">
                 {/* Project Image */}
-                <div className="relative h-full w-full overflow-hidden">
+                <div className="relative h-full w-full overflow-hidden flex items-stretch justify-stretch">
                   <Image
                     src={project.image}
                     alt={project.title}
-                    fill
-                    className={`object-cover transition-transform duration-700 group-hover:scale-110 ${index === 0 ? 'animate-zoomrotate' : ''}`}
+                    width={400}
+                    height={500}
+                    className="object-cover w-full h-full"
                     style={index === 0 ? { objectPosition: 'left center' } : {}}
                   />
                   
@@ -174,7 +135,8 @@ export default function ProjectSlider({ onCardClick }: { onCardClick?: (idx: num
                       {project.tags.map((tag, tagIndex) => (
                         <span
                           key={tagIndex}
-                          className="font-sans px-3 py-1 font-medium bg-white/20 backdrop-blur-sm text-white rounded-full border border-white/30"
+                          className="font-sans px-3 py-1 font-medium backdrop-blur-sm text-white rounded-full border"
+                          style={{ borderColor: 'var(--accent-color, #16A34A)' }}
                         >
                           {tag}
                         </span>
