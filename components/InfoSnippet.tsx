@@ -23,7 +23,7 @@ function renderVisual(asset: VisualAsset) {
   if (asset.type === "image") {
     return (
       <figure className="mb-4">
-        <img src={asset.src} alt={asset.alt || ""} className="w-full rounded shadow" />
+        <img src={asset.src} alt={asset.alt || ""} className="w-full rounded" />
         {asset.caption && <figcaption className="text-xs text-gray-500 mt-1">{asset.caption}</figcaption>}
       </figure>
     );
