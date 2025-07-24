@@ -63,10 +63,10 @@ const caseStudy: CaseStudyContent = {
     },
     {
       heading: "Solution",
-      subheading: "A clean, modular interface",
-      body: "We introduced a card-based layout...",
+      subheading: "This is a test",
+      body: "We introduced a card-based layout to see how it works",
       visuals: [
-        { type: "image", src: "dashboard_mockup.png", alt: "Dashboard mockup", caption: "New dashboard design" }
+        { type: "image", src: "https://res.cloudinary.com/dehugbvmc/image/upload/v1753379562/placeholder_ios7om.png", alt: "Dashboard mockup", caption: "New dashboard design" }
       ],
       layout: { textColumns: 4, visualColumns: 8 }
     },
