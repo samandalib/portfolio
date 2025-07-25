@@ -44,7 +44,6 @@ body {
   font-size: inherit;
 }
 .font-heading {
-  font-size: unset;
 }
 
 body {
@@ -123,17 +122,19 @@ ol li::marker {
 
 ul.custom-bullets {
   list-style: none;
-  padding-left: 0.5em;
+  padding-left: 0;
+  padding-top: 12px;
 }
 ul.custom-bullets li {
   position: relative;
-  padding-left: 1.2em;
+  padding-left: calc(1em + 8px + 0.2em);
+  margin-bottom: 8px;
 }
 ul.custom-bullets li::before {
   content: '';
   position: absolute;
   left: 0;
-  top: 0.6em;
+  top: 5px;
   width: 1em;
   height: 1em;
   background: none;
@@ -141,7 +142,8 @@ ul.custom-bullets li::before {
   -webkit-mask: url('/assets/InfoSnippetIcons/bullet.svg') no-repeat center / contain;
   background-color: var(--accent-color);
   display: inline-block;
-  vertical-align: middle;
+  vertical-align: top;
+  margin-right: 8px;
 }
 
 /*

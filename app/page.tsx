@@ -103,7 +103,7 @@ export default function Home() {
               {/* Text Content */}
               <div className="flex flex-col items-center lg:items-start text-center lg:text-left">
                 <span className="font-sans font-light max-w-lg text-foreground-light dark:text-foreground-dark leading-relaxed mb-2">{landingContent.intro}</span>
-                <h1 className="text-4xl md:text-6xl font-light mb-4 font-heading text-foreground-light dark:text-foreground-dark">{landingContent.heading}</h1>
+                <h1 className="text-6xl font-light mb-4 font-heading text-foreground-light dark:text-foreground-dark">{landingContent.heading}</h1>
                 <p className="font-sans font-light max-w-lg text-foreground-light dark:text-foreground-dark leading-relaxed">
                   {landingContent.subheading}
                 </p>

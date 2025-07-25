@@ -1,4 +1,4 @@
-import React, { useState, MouseEvent } from "react";
+import React, { useState, MouseEvent, useRef, useEffect } from "react";
 import type { InfoSnippet as InfoSnippetType } from "../public/assets/case studies/project1/content";
 import PointerIcon from "./icons/PointerIcon";
 import CanvasLeftIcon from "./icons/CanvasLeftIcon";
@@ -12,6 +12,7 @@ import TextMiddleIcon from "./icons/TextMiddleIcon";
 import TextBottomIcon from "./icons/TextBottomIcon";
 import Tooltip from "./Tooltip";
 import Lottie from "lottie-react";
+import { motion } from "framer-motion";
 
 // Patch the InfoSnippetType to allow optional textAlign in layout
 type InfoSnippetLayout = {
@@ -137,12 +138,12 @@ const CANVAS_COL_OPTIONS = [4, 6, 8, 9];
 
 // Explicit mappings for Tailwind col-start and col-span classes
 const colStartClass: Record<number, string> = {
-  1: "lg:col-start-1",
-  2: "lg:col-start-2",
-  3: "lg:col-start-3",
-  4: "lg:col-start-4",
-  5: "lg:col-start-5",
-  6: "lg:col-start-6",
+  1: "lg:col-start-1 md:col-start-1",
+  2: "lg:col-start-2 md:col-start-2",
+  3: "lg:col-start-3 md:col-start-3",
+  4: "lg:col-start-4 md:col-start-4",
+  5: "lg:col-start-5 md:col-start-5",
+  6: "lg:col-start-6 md:col-start-6",
   7: "lg:col-start-7",
   8: "lg:col-start-8",
   9: "lg:col-start-9",
@@ -151,12 +152,12 @@ const colStartClass: Record<number, string> = {
   12: "lg:col-start-12",
 };
 const colSpanClass: Record<number, string> = {
-  1: "lg:col-span-1",
-  2: "lg:col-span-2",
-  3: "lg:col-span-3",
-  4: "lg:col-span-4",
-  5: "lg:col-span-5",
-  6: "lg:col-span-6",
+  1: "lg:col-span-1 md:col-span-1",
+  2: "lg:col-span-2 md:col-span-2",
+  3: "lg:col-span-3 md:col-span-3",
+  4: "lg:col-span-4 md:col-span-4",
+  5: "lg:col-span-5 md:col-span-5",
+  6: "lg:col-span-6 md:col-span-6",
   7: "lg:col-span-7",
   8: "lg:col-span-8",
   9: "lg:col-span-9",
@@ -174,6 +175,34 @@ const radiusClassMap: Record<string, string> = {
   'rounded-2xl': 'rounded-2xl',
   'rounded-full': 'rounded-full',
 };
+
+function normalizeBody(body: any) {
+  if (Array.isArray(body) && body.length === 1 && Array.isArray(body[0])) {
+    return body[0];
+  }
+  return body;
+}
+
+function useInViewOnce(threshold = 0.2) {
+  const ref = React.useRef<HTMLUListElement>(null);
+  const [inView, setInView] = React.useState(false);
+  React.useEffect(() => {
+    const node = ref.current;
+    if (!node) return;
+    const observer = new window.IntersectionObserver(
+      ([entry]) => {
+        if (entry.isIntersecting) {
+          setInView(true);
+          observer.disconnect();
+        }
+      },
+      { threshold }
+    );
+    observer.observe(node);
+    return () => observer.disconnect();
+  }, [threshold]);
+  return [ref, inView] as const;
+}
 
 const InfoSnippet: React.FC<InfoSnippetProps> = ({ snippet }) => {
   const layout: InfoSnippetLayout | undefined = snippet.layout as InfoSnippetLayout | undefined;
@@ -224,18 +253,103 @@ const InfoSnippet: React.FC<InfoSnippetProps> = ({ snippet }) => {
   const textGridClass = `${colStartClass[textColStart] || ''} ${colSpanClass[textColSpan] || ''}`;
   const canvasGridClass = `${colStartClass[canvasColStart] || ''} ${colSpanClass[canvasColSpan] || ''}`;
 
+  // Bullet list animation variants
+  const bulletListVariants = {
+    hidden: {},
+    visible: {
+      transition: {
+        delay: 1.5,
+        staggerChildren: 0.12,
+      },
+    },
+  };
+  const bulletItemVariants = {
+    hidden: { opacity: 0, y: 24 },
+    visible: { opacity: 1, y: 0, transition: { duration: 0.5 } },
+  };
+
   let textSection = (
     <div
-      className={`flex flex-col ${justify} h-full ${stacked ? 'col-span-12 w-full' : `col-span-1 md:col-span-${Math.min(textCols,6)} ${textGridClass}`}`}
+      className={`flex flex-col ${justify} h-full ${stacked ? 'col-span-12 w-full' : `col-span-1 md:col-span-${Math.min(textCols,6)} md:w-full ${textGridClass}`}`}
     >
-      {snippet.heading && <h3 className="font-bold mb-1 text-gray-900 dark:text-gray-100" style={{ fontSize: 32, fontFamily: 'var(--font-bodoni)' }}>{snippet.heading}</h3>}
+      {snippet.heading && (
+        <div style={{ position: 'relative', width: '100%' }}>
+          <TypewriterHeading
+            text={snippet.heading}
+            className="font-bold mb-1 text-gray-900 dark:text-gray-100"
+            style={{ fontSize: 32, fontFamily: 'var(--font-bodoni)' }}
+          />
+          {/* Animated accent line */}
+          <AnimatedAccentLine />
+        </div>
+      )}
       {snippet.subheading && <h4 className="font-semibold mb-2 text-gray-600 dark:text-gray-300" style={{ fontSize: 20, fontFamily: 'var(--font-manrope)' }}>{snippet.subheading}</h4>}
+      {(() => { console.log('snippet.body:', snippet.body); return null; })()}
       {Array.isArray(snippet.body) ? (
-        <ul className="custom-bullets mb-2 text-gray-700 dark:text-gray-200" style={{ fontFamily: 'var(--font-manrope)' }}>
-          {snippet.body.map((item, idx) => (
-            <li key={idx}>{item}</li>
-          ))}
-        </ul>
+        (() => {
+          const normalizedBody = normalizeBody(snippet.body);
+          if (Array.isArray(normalizedBody)) {
+            // If every item is a string, render as a single animated <ul>
+            if (normalizedBody.every(item => typeof item === 'string')) {
+              const [ref, inView] = useInViewOnce(0.1);
+              return (
+                <motion.ul
+                  ref={ref}
+                  className="custom-bullets mb-2 text-gray-700 dark:text-gray-200"
+                  style={{ fontFamily: 'var(--font-manrope)' }}
+                  variants={bulletListVariants}
+                  initial="hidden"
+                  animate={inView ? "visible" : "hidden"}
+                >
+                  {normalizedBody.map((bullet: string, idx: number) => (
+                    <motion.li key={idx} variants={bulletItemVariants}>{bullet}</motion.li>
+                  ))}
+                </motion.ul>
+              );
+            }
+            // Otherwise, render mixed content
+            return (
+              <>
+                {normalizedBody.map((item, idx) => {
+                  if (typeof item === 'string') {
+                    return (
+                      <p key={idx} className="mb-2 text-gray-700 dark:text-gray-200" style={{ fontFamily: 'var(--font-manrope)' }}>
+                        {item}
+                      </p>
+                    );
+                  } else if (Array.isArray(item)) {
+                    const [ref, inView] = useInViewOnce(0.1);
+                    return (
+                      <motion.ul
+                        key={idx}
+                        ref={ref}
+                        className="custom-bullets mb-2 text-gray-700 dark:text-gray-200"
+                        style={{ fontFamily: 'var(--font-manrope)' }}
+                        variants={bulletListVariants}
+                        initial="hidden"
+                        animate={inView ? "visible" : "hidden"}
+                      >
+                        {item.map((bullet: string, bidx: number) => (
+                          <motion.li key={bidx} variants={bulletItemVariants}>{bullet}</motion.li>
+                        ))}
+                      </motion.ul>
+                    );
+                  } else {
+                    return null;
+                  }
+                })}
+              </>
+            );
+          } else if (typeof normalizedBody === 'string') {
+            return (
+              <p className="mb-2 text-gray-700 dark:text-gray-200" style={{ fontFamily: 'var(--font-manrope)' }}>
+                {normalizedBody}
+              </p>
+            );
+          } else {
+            return null;
+          }
+        })()
       ) : snippet.body ? (
         <p className="mb-2 text-gray-700 dark:text-gray-200" style={{ fontFamily: 'var(--font-manrope)' }}>
           {snippet.body.split('\n').map((line, idx) => (
@@ -250,7 +364,7 @@ const InfoSnippet: React.FC<InfoSnippetProps> = ({ snippet }) => {
   );
   let canvasSection = (snippet.visuals && snippet.visuals.length > 0) ? (
     <div
-      className={`canvas flex items-center justify-center h-full ${isDev ? 'bg-gray-100' : ''} ${stacked ? 'col-span-12 w-full' : `col-span-1 md:col-span-${Math.min(visualCols,6)} ${canvasGridClass}`}`}
+      className={`canvas flex items-center justify-center h-full ${isDev ? 'bg-gray-100' : ''} ${stacked ? 'col-span-12 w-full' : `col-span-1 md:col-span-${Math.min(visualCols,6)} md:w-full ${canvasGridClass}`}`}
       style={{ transition: 'background 0.2s', position: 'relative' }}
     >
       <div
@@ -410,4 +524,83 @@ const InfoSnippet: React.FC<InfoSnippetProps> = ({ snippet }) => {
   );
 };
 
-export default InfoSnippet; 
+export default InfoSnippet;
+
+function AnimatedAccentLine() {
+  const ref = useRef<HTMLDivElement>(null);
+  const [inView, setInView] = React.useState(false);
+
+  useEffect(() => {
+    const node = ref.current;
+    if (!node) return;
+    const observer = new window.IntersectionObserver(
+      ([entry]) => {
+        if (entry.isIntersecting) {
+          setInView(true);
+          observer.disconnect(); // Only animate once
+        }
+      },
+      { threshold: 0.4 }
+    );
+    observer.observe(node);
+    return () => observer.disconnect();
+  }, []);
+
+  return (
+    <motion.div
+      ref={ref}
+      initial={{ scaleX: 0 }}
+      animate={{ scaleX: inView ? 1 : 0 }}
+      transition={{ duration: 0.7, ease: 'easeOut' }}
+      style={{
+        transformOrigin: 'left',
+        height: 2, // thinner line
+        width: '100%',
+        background: 'var(--accent-color)',
+        borderRadius: 2,
+        marginTop: 4,
+      }}
+    />
+  );
+}
+
+function TypewriterHeading({ text, className, style }: { text: string; className?: string; style?: React.CSSProperties }) {
+  const ref = useRef<HTMLHeadingElement>(null);
+  const [inView, setInView] = useState(false);
+  const [displayed, setDisplayed] = useState('');
+
+  useEffect(() => {
+    const node = ref.current;
+    if (!node) return;
+    const observer = new window.IntersectionObserver(
+      ([entry]) => {
+        if (entry.isIntersecting) {
+          setInView(true);
+          observer.disconnect();
+        }
+      },
+      { threshold: 0.4 }
+    );
+    observer.observe(node);
+    return () => observer.disconnect();
+  }, []);
+
+  useEffect(() => {
+    if (!inView) return;
+    setDisplayed('');
+    let i = 0;
+    const interval = setInterval(() => {
+      setDisplayed((prev) => text.slice(0, i + 1));
+      i++;
+      if (i >= text.length) clearInterval(interval);
+    }, 60);
+    return () => clearInterval(interval);
+  }, [inView, text]);
+
+  return (
+    <h3 ref={ref} className={className} style={style} aria-label={text}>
+      {displayed}
+      <span style={{ opacity: displayed.length < text.length ? 1 : 0 }}>|</span>
+    </h3>
+  );
+} 

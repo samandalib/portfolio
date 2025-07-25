@@ -30,7 +30,7 @@ export interface VisualAsset {
 export interface InfoSnippet {
   heading?: string;
   subheading?: string;
-  body?: string | string[];
+  body?: string | string[] | (string | string[])[];
   visuals?: VisualAsset[];
   layout?: {
     textColumns: number; // e.g., 4
@@ -87,16 +87,18 @@ const caseStudy: CaseStudyContent = {
           }
         
       ],
-      layout: { textColumns: 4, visualColumns: 8, textAlign: 'top' }
+      layout: { textColumns: 6, visualColumns: 6, textAlign: 'top' }
     },
     {
       heading: "Key Features",
       body: [
+      
         "Personalized coaching across cardio, strength, cognition, and emotional health",
         "Smart scorecards (L-Score, inAge, Decline Curve)",
         "Unified dashboard and timeline for tracking behavior",
         "App integrations and AI chat support",
         "Deductible Support Fund (DSF) as a reward mechanism"
+      
       ],
       visuals: [
         // VISUAL: Core screens from Figma { type: "image", src: "personas.png", alt: "User personas", caption: "Key personas and unmet needs" }
@@ -116,7 +118,15 @@ const caseStudy: CaseStudyContent = {
     {
       heading: "Validation & Testing",
       subheading: "Iterative testing from ideas to interface",
-      body: "I conducted multiple rounds of testing:\n• Concept validation via interviews and Notion decks\n• Usability tests of Figma prototype (60-minute sessions)\n• Onboarding flow and scoring UX tested for clarity and retention\n• Post-test surveys to refine language and framing",
+      body: [
+        "I conducted multiple rounds of testing:",
+        [
+          "Concept validation via interviews and Notion decks",
+          "Usability tests of Figma prototype (60-minute sessions)",
+          "Onboarding flow and scoring UX tested for clarity and retention",
+          "Post-test surveys to refine language and framing"
+        ]
+      ],
       visuals: [
                 { type: "image", src: "https://res.cloudinary.com/dehugbvmc/image/upload/v1753405794/265lofi_rmvsz2.png", alt: "low fidelity wireframes" }
 
