@@ -25,6 +25,16 @@ export interface VisualAsset {
   caption?: string;
   embedType?: "youtube" | "vimeo" | "other";
   radius?: string; // Valid values: 'rounded', 'rounded-md', 'rounded-lg', 'rounded-xl', 'rounded-2xl', 'rounded-full'
+  // New optional properties for layout control:
+  maxWidth?: string;   // e.g., "400px" or "80%"
+  maxHeight?: string;  // e.g., "300px" or "50vh"
+  marginLeft?: string; // e.g., "16px"
+  marginRight?: string;
+  marginTop?: string;
+  marginBottom?: string;
+  autoplay?: boolean;
+  loop?: boolean;
+  muted?: boolean;
 }
 
 export interface InfoSnippet {
@@ -36,6 +46,8 @@ export interface InfoSnippet {
     textColumns: number; // e.g., 4
     visualColumns: number; // e.g., 8
     textAlign?: 'top' | 'middle' | 'bottom';
+    canvasLeft?: boolean; // true = visuals left, false = right
+    stacked?: boolean;    // true = stacked, false = row
   };
 }
 
@@ -59,18 +71,41 @@ const caseStudy: CaseStudyContent = {
   infoSnippets: [
     {
       heading: "The Problem",
-      body: "Most wellness apps focus narrowly on fitness or reactive health tracking. Adults in midlife need a proactive, holistic guide to help them preserve long-term independence across physical, cognitive, and emotional domains.",
+      body: "Functional decline is preventable. As the leading cause of lost independence, chronic conditions gradually reduce mobility, strength, cognitive clarity, and energy, complicating daily tasks. Notably, 80% of midlife Americans have one, often due to lifestyle choices.",
       visuals: [
         // VISUAL: Personas slide { type: "image", src: "personas.png", alt: "User personas", caption: "Key personas and unmet needs" }
-        { 
-          type: "video", 
-          src: "https://res.cloudinary.com/dehugbvmc/video/upload/v1753397333/265_dashboard_oyznbi.mp4",
-          // Valid values: 'rounded', 'rounded-md', 'rounded-lg', 'rounded-xl', 'rounded-2xl', 'rounded-full'
-          radius: 'rounded-2xl'
-        }
       ],
-      layout: { textColumns: 6, visualColumns: 6, textAlign: 'middle' }
+      layout: { textColumns: 6, visualColumns: 6, textAlign: 'middle' , stacked: true}
     },
+
+    {
+        heading: "Our Sultion",
+        body: [
+          "An AI-powered wellness app to turn scattered wellness data into insights to build healthy lifestyle routine – to stay functionally independent in old ages.",
+          [
+          "Focuses on holistic wellbeing",
+          "Provides personalized coaching",
+          "Gives freedom of tool and choice ",
+          ]
+          
+        
+        ],
+
+        visuals: [
+          // VISUAL: Personas slide { type: "image", src: "personas.png", alt: "User personas", caption: "Key personas and unmet needs" }
+          { 
+            type: "video", 
+            src: "https://res.cloudinary.com/dehugbvmc/video/upload/v1753397333/265_dashboard_oyznbi.mp4",
+            // Valid values: 'rounded', 'rounded-md', 'rounded-lg', 'rounded-xl', 'rounded-2xl', 'rounded-full'
+            radius: 'rounded-2xl',
+            caption: "A view of the Aging dashboard",
+            autoplay: true,
+            loop: true,
+            muted: true
+          }
+        ],
+        layout: { textColumns: 6, visualColumns: 6, textAlign: 'middle' }
+      },
     {
       heading: "Design Approach",
       subheading: "Designing a behavior orchestration layer, not just another tracker.",
@@ -92,18 +127,36 @@ const caseStudy: CaseStudyContent = {
     {
       heading: "Key Features",
       body: [
-      
         "Personalized coaching across cardio, strength, cognition, and emotional health",
         "Smart scorecards (L-Score, inAge, Decline Curve)",
         "Unified dashboard and timeline for tracking behavior",
         "App integrations and AI chat support",
-        "Deductible Support Fund (DSF) as a reward mechanism"
       
       ],
       visuals: [
+        { 
+          type: "video", 
+          src: "https://res.cloudinary.com/dehugbvmc/video/upload/v1753472987/ScaledUpTour_1_1_jjvzbm.mp4",
+          // Valid values: 'rounded', 'rounded-md', 'rounded-lg', 'rounded-xl', 'rounded-2xl', 'rounded-full'
+          radius: 'rounded-2xl',
+          caption: "App tour video"
+        },
+        { 
+          type: "video", 
+          src: "https://res.cloudinary.com/dehugbvmc/video/upload/v1753473235/chatdemo_bgpqqv.mp4",
+          // Valid values: 'rounded', 'rounded-md', 'rounded-lg', 'rounded-xl', 'rounded-2xl', 'rounded-full'
+          radius: 'rounded-2xl',
+          caption:"AI chat demo"
+        }
         // VISUAL: Core screens from Figma { type: "image", src: "personas.png", alt: "User personas", caption: "Key personas and unmet needs" }
       ],
-      layout: { textColumns: 4, visualColumns: 8, textAlign: 'top' }
+      layout: {
+        textColumns: 4,
+        visualColumns: 8,
+        textAlign: 'middle',
+        canvasLeft: true, // Visuals on the left
+        stacked: false    // Side-by-side (row)
+      }
     },
     {
       heading: "Design Process & Strategy",
@@ -118,15 +171,7 @@ const caseStudy: CaseStudyContent = {
     {
       heading: "Validation & Testing",
       subheading: "Iterative testing from ideas to interface",
-      body: [
-        "I conducted multiple rounds of testing:",
-        [
-          "Concept validation via interviews and Notion decks",
-          "Usability tests of Figma prototype (60-minute sessions)",
-          "Onboarding flow and scoring UX tested for clarity and retention",
-          "Post-test surveys to refine language and framing"
-        ]
-      ],
+      body: "I conducted multiple rounds of testing:\n• Concept validation via interviews and Notion decks\n• Usability tests of Figma prototype (60-minute sessions)\n• Onboarding flow and scoring UX tested for clarity and retention\n• Post-test surveys to refine language and framing",
       visuals: [
                 { type: "image", src: "https://res.cloudinary.com/dehugbvmc/image/upload/v1753405794/265lofi_rmvsz2.png", alt: "low fidelity wireframes" }
 

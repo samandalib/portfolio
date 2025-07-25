@@ -19,6 +19,8 @@ type InfoSnippetLayout = {
   textColumns: number;
   visualColumns: number;
   textAlign?: 'top' | 'middle' | 'bottom';
+  canvasLeft?: boolean;
+  stacked?: boolean;
 };
 
 type InfoSnippetWithLayout = Omit<InfoSnippetType, 'layout'> & { layout?: InfoSnippetLayout };
@@ -38,6 +40,9 @@ type VisualAssetWithRadius = {
   caption?: string;
   embedType?: "youtube" | "vimeo" | "other";
   radius?: string;
+  autoplay?: boolean;
+  loop?: boolean;
+  muted?: boolean;
 };
 
 const LottieVisual: React.FC<{ src: string; caption?: string }> = ({ src, caption }) => {
@@ -107,7 +112,13 @@ function renderVisual(asset: VisualAssetWithRadius | { type: "lottie"; src: stri
   if (asset.type === "video" && !asset.embedType) {
     return (
       <div className="aspect-w-16 aspect-h-9 mb-4">
-        <video controls className={`w-full h-full ${radiusClassMap[asset.radius || 'rounded']}`}>
+        <video
+          controls
+          autoPlay={!!asset.autoplay}
+          loop={!!asset.loop}
+          muted={!!asset.muted}
+          className={`w-full h-full ${radiusClassMap[asset.radius || 'rounded']}`}
+        >
           <source src={asset.src} type="video/mp4" />
           Your browser does not support the video tag.
         </video>
@@ -206,10 +217,12 @@ function useInViewOnce(threshold = 0.2) {
 
 const InfoSnippet: React.FC<InfoSnippetProps> = ({ snippet }) => {
   const layout: InfoSnippetLayout | undefined = snippet.layout as InfoSnippetLayout | undefined;
+  const canvasLeft = typeof layout?.canvasLeft === 'boolean' ? layout.canvasLeft : false;
+  const stacked = typeof layout?.stacked === 'boolean' ? layout.stacked : false;
   // Docker state (per instance)
   const [pointerMode, setPointerMode] = React.useState(false);
-  const [canvasLeft, setCanvasLeft] = React.useState(false);
-  const [stacked, setStacked] = React.useState(false);
+  const [canvasLeftState, setCanvasLeft] = React.useState(canvasLeft);
+  const [stackedState, setStacked] = React.useState(stacked);
   const [showDockerControls, setShowDockerControls] = React.useState(false);
   const [textAlign, setTextAlign] = React.useState<'top' | 'middle' | 'bottom'>(
     layout?.textAlign || 'top'
@@ -238,14 +251,14 @@ const InfoSnippet: React.FC<InfoSnippetProps> = ({ snippet }) => {
 
   // Layout logic
   let justify = 'justify-center';
-  if (!stacked) {
+  if (!stackedState) {
     if (textAlign === 'top') justify = 'justify-start';
     else if (textAlign === 'bottom') justify = 'justify-end';
     else justify = 'justify-center';
   }
   // Calculate grid placement for text and canvas
-  const textColStart = canvasLeft ? visualCols + 1 : 1;
-  const canvasColStart = canvasLeft ? 1 : textCols + 1;
+  const textColStart = canvasLeftState ? visualCols + 1 : 1;
+  const canvasColStart = canvasLeftState ? 1 : textCols + 1;
   const textColSpan = textCols;
   const canvasColSpan = visualCols;
 
@@ -270,7 +283,7 @@ const InfoSnippet: React.FC<InfoSnippetProps> = ({ snippet }) => {
 
   let textSection = (
     <div
-      className={`flex flex-col ${justify} h-full ${stacked ? 'col-span-12 w-full' : `col-span-1 md:col-span-${Math.min(textCols,6)} md:w-full ${textGridClass}`}`}
+      className={`flex flex-col ${justify} h-full ${stackedState ? 'col-span-12 w-full' : `col-span-1 md:col-span-${Math.min(textCols,6)} md:w-full ${textGridClass}`}`}
     >
       {snippet.heading && (
         <div style={{ position: 'relative', width: '100%' }}>
@@ -364,20 +377,32 @@ const InfoSnippet: React.FC<InfoSnippetProps> = ({ snippet }) => {
   );
   let canvasSection = (snippet.visuals && snippet.visuals.length > 0) ? (
     <div
-      className={`canvas flex items-center justify-center h-full ${isDev ? 'bg-gray-100' : ''} ${stacked ? 'col-span-12 w-full' : `col-span-1 md:col-span-${Math.min(visualCols,6)} md:w-full ${canvasGridClass}`}`}
+      className={`canvas flex items-center justify-center h-full ${isDev ? 'bg-gray-100' : ''} ${stackedState ? 'col-span-12 w-full' : `col-span-1 md:col-span-${Math.min(visualCols,6)} md:w-full ${canvasGridClass}`}`}
       style={{ transition: 'background 0.2s', position: 'relative' }}
     >
       <div
-        className="w-full aspect-w-16 aspect-h-9 relative flex items-center justify-center"
+        className="w-full aspect-w-16 aspect-h-9 relative"
         style={{ position: 'relative' }}
         onMouseMove={pointerMode ? handlePointerMove : undefined}
         onMouseLeave={pointerMode ? handlePointerLeave : undefined}
       >
-        {snippet.visuals.map((asset, i) => (
-          <div key={i} className="w-full h-full flex items-center justify-center">
-            {renderVisual(asset)}
-          </div>
-        ))}
+        <div
+          className="h-full w-full"
+          style={{
+            display: 'grid',
+            gridTemplateColumns: `repeat(${Math.min(3, snippet.visuals.length)}, 1fr)`,
+            gridTemplateRows: `repeat(${Math.ceil(snippet.visuals.length / 3)}, auto)`,
+            gap: '16px',
+            width: '100%',
+            height: '100%',
+          }}
+        >
+          {snippet.visuals.map((asset, i) => (
+            <div key={i} className="flex items-center justify-center w-full h-full">
+              {renderVisual(asset)}
+            </div>
+          ))}
+        </div>
         {/* Pointer crosshairs */}
         {pointerMode && pointer && (
           <>
@@ -428,12 +453,12 @@ const InfoSnippet: React.FC<InfoSnippetProps> = ({ snippet }) => {
 
   // Order logic
   let children;
-  if (stacked) {
+  if (stackedState) {
     children = [
       textSection && React.cloneElement(textSection, { key: 'text' }),
       canvasSection && React.cloneElement(canvasSection, { key: 'canvas' })
     ].filter(Boolean);
-  } else if (canvasLeft) {
+  } else if (canvasLeftState) {
     children = [
       canvasSection && React.cloneElement(canvasSection, { key: 'canvas' }),
       textSection && React.cloneElement(textSection, { key: 'text' })
@@ -470,31 +495,31 @@ const InfoSnippet: React.FC<InfoSnippetProps> = ({ snippet }) => {
               <Tooltip label="Cycle text vertical alignment">
                 <button
                   onClick={() => setTextAlign(a => a === 'top' ? 'middle' : a === 'middle' ? 'bottom' : 'top')}
-                  className={`w-10 h-10 p-0 rounded-full border text-sm font-bold transition-colors duration-200 flex items-center justify-center text-gray-700 dark:text-gray-200 bg-white dark:bg-neutral-800 border-gray-300 dark:border-gray-700 ${stacked ? 'opacity-50 pointer-events-none' : 'hover:bg-gray-200 dark:hover:bg-neutral-800'}`}
+                  className={`w-10 h-10 p-0 rounded-full border text-sm font-bold transition-colors duration-200 flex items-center justify-center text-gray-700 dark:text-gray-200 bg-white dark:bg-neutral-800 border-gray-300 dark:border-gray-700 ${stackedState ? 'opacity-50 pointer-events-none' : 'hover:bg-gray-200 dark:hover:bg-neutral-800'}`}
                   aria-label="Cycle text vertical alignment"
-                  disabled={stacked}
+                  disabled={stackedState}
                 >
                   {textAlign === 'top' && <TextTopIcon width={20} height={20} />}
                   {textAlign === 'middle' && <TextMiddleIcon width={20} height={20} />}
                   {textAlign === 'bottom' && <TextBottomIcon width={20} height={20} />}
                 </button>
               </Tooltip>
-              <Tooltip label={canvasLeft ? 'Canvas on left' : 'Canvas on right'}>
+              <Tooltip label={canvasLeftState ? 'Canvas on left' : 'Canvas on right'}>
                 <button
                   onClick={() => setCanvasLeft((v) => !v)}
-                  className={`w-10 h-10 p-0 rounded-full border text-sm font-bold transition-colors duration-200 flex items-center justify-center text-gray-700 dark:text-gray-200 ${canvasLeft ? 'bg-green-600 text-white border-green-600' : 'bg-white dark:bg-neutral-800 border-gray-300 dark:border-gray-700 hover:bg-green-100 dark:hover:bg-neutral-800'}`}
-                  aria-label={canvasLeft ? 'Canvas on left' : 'Canvas on right'}
+                  className={`w-10 h-10 p-0 rounded-full border text-sm font-bold transition-colors duration-200 flex items-center justify-center text-gray-700 dark:text-gray-200 ${canvasLeftState ? 'bg-green-600 text-white border-green-600' : 'bg-white dark:bg-neutral-800 border-gray-300 dark:border-gray-700 hover:bg-green-100 dark:hover:bg-neutral-800'}`}
+                  aria-label={canvasLeftState ? 'Canvas on left' : 'Canvas on right'}
                 >
-                  {canvasLeft ? <CanvasLeftIcon width={20} height={20} /> : <CanvasRightIcon width={20} height={20} />}
+                  {canvasLeftState ? <CanvasLeftIcon width={20} height={20} /> : <CanvasRightIcon width={20} height={20} />}
                 </button>
               </Tooltip>
-              <Tooltip label={stacked ? 'Stacked layout' : 'Side-by-side layout'}>
+              <Tooltip label={stackedState ? 'Stacked layout' : 'Side-by-side layout'}>
                 <button
                   onClick={() => setStacked((v) => !v)}
-                  className={`w-10 h-10 p-0 rounded-full border text-sm font-bold transition-colors duration-200 flex items-center justify-center text-gray-700 dark:text-gray-200 ${stacked ? 'bg-purple-600 text-white border-purple-600' : 'bg-white dark:bg-neutral-800 border-gray-300 dark:border-gray-700 hover:bg-purple-100 dark:hover:bg-neutral-800'}`}
-                  aria-label={stacked ? 'Stacked layout' : 'Side-by-side layout'}
+                  className={`w-10 h-10 p-0 rounded-full border text-sm font-bold transition-colors duration-200 flex items-center justify-center text-gray-700 dark:text-gray-200 ${stackedState ? 'bg-purple-600 text-white border-purple-600' : 'bg-white dark:bg-neutral-800 border-gray-300 dark:border-gray-700 hover:bg-purple-100 dark:hover:bg-neutral-800'}`}
+                  aria-label={stackedState ? 'Stacked layout' : 'Side-by-side layout'}
                 >
-                  {stacked ? <StackedIcon width={20} height={20} /> : <SideBySideIcon width={20} height={20} />}
+                  {stackedState ? <StackedIcon width={20} height={20} /> : <SideBySideIcon width={20} height={20} />}
                 </button>
               </Tooltip>
               <Tooltip label="Cycle canvas columns">

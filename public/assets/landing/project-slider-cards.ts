@@ -14,7 +14,7 @@ export const projectSliderCards: ProjectSliderCard[] = [
     id: 1,
     title: "Road265",
     description: "A mobile app to plan and prevent the decline that comes with aging",
-    image: "https://res.cloudinary.com/dehugbvmc/image/upload/v1753379562/placeholder_ios7om.png",
+    image: "https://res.cloudinary.com/dehugbvmc/image/upload/v1753467220/265chat_vmns8y.png",
     tags: ["UI/UX", "Health & Wellness", "Mobile"],
     color: "from-purple-500 to-pink-500"
   },

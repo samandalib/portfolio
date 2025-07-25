@@ -80,6 +80,15 @@ The `InfoSnippet` component is a flexible, responsive, and theme-aware UI block 
 
 ---
 
+## Layout Defaults
+
+- `layout.canvasLeft` (default: `false`): Visuals appear on the right by default. Set to `true` to place visuals on the left.
+- `layout.stacked` (default: `false`): Visuals and text are side-by-side (row) by default. Set to `true` to stack them vertically.
+
+You can override these per-snippet in your content file as needed.
+
+---
+
 ## Maintenance & Future Use
 
 - **Extensible:**
