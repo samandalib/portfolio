@@ -19,7 +19,7 @@ export interface ProjectDetails {
 }
 
 export interface VisualAsset {
-  type: "image" | "video" | "embed";
+  type: "image" | "video" | "embed" | "lottie";
   src: string; // path to image, video URL, or embed URL
   alt?: string; // for images
   caption?: string;
@@ -30,7 +30,7 @@ export interface VisualAsset {
 export interface InfoSnippet {
   heading?: string;
   subheading?: string;
-  body?: string;
+  body?: string | string[];
   visuals?: VisualAsset[];
   layout?: {
     textColumns: number; // e.g., 4
