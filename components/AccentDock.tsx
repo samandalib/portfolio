@@ -62,24 +62,24 @@ export default function AccentDock() {
 
   return (
     <div className="fixed left-6 top-1/2 -translate-y-1/2 z-50 hidden md:flex flex-col items-center">
-      <div className="flex flex-col items-center gap-5 px-2 py-3 rounded-3xl shadow-2xl backdrop-blur-xl bg-white/40 dark:bg-black/30 border border-black/10 dark:border-white/10">
+      <div className="flex flex-col items-center gap-6 px-3 py-4 modern-border-radius-xl modern-shadow-xl glass-effect">
         {/* Theme Toggle - moved to top */}
-        <div className="mb-4">
+        <div className="mb-2">
           <ThemeToggle size={8} />
         </div>
         {/* Color Swatches */}
         {accentColors.map((color) => (
           <button
             key={color}
-            className={`w-7 h-7 rounded-full transition-all duration-200 flex items-center justify-center ${accent === color ? 'ring-2 ring-accent scale-110' : ''}`}
+            className={`w-8 h-8 rounded-full transition-all duration-300 flex items-center justify-center hover:scale-110 ${accent === color ? 'ring-2 ring-accent scale-110 modern-shadow-md' : 'hover:modern-shadow'}`}
             style={{ background: color }}
             aria-label={`Set accent color to ${color}`}
             onClick={() => setAccent(color)}
           />
         ))}
         {/* Font Size Slider */}
-        <div className="flex flex-col items-center mt-6">
-          <label htmlFor="font-size-slider" className="text-lg mb-2 text-gray-500 dark:text-gray-300">A</label>
+        <div className="flex flex-col items-center mt-8">
+          <label htmlFor="font-size-slider" className="text-lg mb-3 text-gray-500 dark:text-gray-300 font-medium">A</label>
           <input
             ref={sliderRef}
             type="range"
@@ -91,13 +91,13 @@ export default function AccentDock() {
             style={{ writingMode: 'vertical-lr', direction: 'rtl' }}
             aria-label="Font size slider"
           />
-          <span className="text-xs mt-2 text-gray-500 dark:text-gray-300">A</span>
+          <span className="text-xs mt-3 text-gray-500 dark:text-gray-300 font-medium">A</span>
         </div>
         {/* Font Changer Button */}
         <button
           onClick={handleFontChange}
-          className={`w-8 h-8 flex items-center justify-center rounded-full border shadow mt-6 transition-colors duration-300
-            ${dark ? 'bg-black/60 border-gray-600' : 'bg-white/80 border-gray-300'}
+          className={`w-9 h-9 flex items-center justify-center modern-border-radius modern-shadow mt-8 transition-all duration-300 hover:scale-105
+            ${dark ? 'glass-effect border-gray-600' : 'glass-effect border-gray-300'}
           `}
           aria-label={`Switch font to ${fontPresets[(fontIndex + 1) % fontPresets.length].label}`}
         >

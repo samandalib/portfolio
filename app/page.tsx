@@ -66,15 +66,15 @@ export default function Home() {
   // };
 
   return (
-    <main className="main-content flex flex-col min-h-screen px-8 py-12">
-      <section className="w-full max-w-5xl mx-auto mt-16">
-        <div className="grid grid-cols-1 lg:grid-cols-2 gap-12 lg:gap-16 items-center min-h-[calc(100vh-200px)]">
+    <main className="main-content flex flex-col min-h-screen px-8 py-16">
+      <section className="w-full max-w-6xl mx-auto mt-20">
+        <div className="grid grid-cols-1 lg:grid-cols-2 gap-16 lg:gap-20 items-center min-h-[calc(100vh-300px)]">
           {/* Left Column - Text Content */}
           <div className="flex flex-col items-center lg:items-start justify-center">
-            <div className="flex flex-col md:flex-row lg:flex-col items-center lg:items-start gap-8 lg:gap-12">
+            <div className="flex flex-col md:flex-row lg:flex-col items-center lg:items-start gap-10 lg:gap-16">
               {/* Profile Image */}
               <div
-                className="relative flex-shrink-0 flex items-center justify-center"
+                className="relative flex-shrink-0 flex items-center justify-center group"
                 style={{
                   width: circleSize,
                   height: circleSize,
@@ -84,7 +84,7 @@ export default function Home() {
                 {/* Accent color circle */}
                 {landingContent.accentCircle && (
                   <div
-                    className="absolute inset-0 rounded-full"
+                    className="absolute inset-0 rounded-full transition-all duration-500 group-hover:scale-105"
                     style={{ zIndex: 1, background: "var(--accent-color, #16A34A)" }}
                   />
                 )}
@@ -102,9 +102,9 @@ export default function Home() {
               </div>
               {/* Text Content */}
               <div className="flex flex-col items-center lg:items-start text-center lg:text-left">
-                <span className="font-sans font-light max-w-lg text-foreground-light dark:text-foreground-dark leading-relaxed mb-2">{landingContent.intro}</span>
-                <h1 className="text-6xl font-light mb-4 font-heading text-foreground-light dark:text-foreground-dark">{landingContent.heading}</h1>
-                <p className="font-sans font-light max-w-lg text-foreground-light dark:text-foreground-dark leading-relaxed">
+                <span className="font-sans font-medium max-w-lg text-foreground-light/80 dark:text-foreground-dark/80 leading-relaxed mb-3 text-lg tracking-wide">{landingContent.intro}</span>
+                <h1 className="text-7xl font-light mb-6 font-heading gradient-text tracking-tight">{landingContent.heading}</h1>
+                <p className="font-sans font-normal max-w-lg text-foreground-light/90 dark:text-foreground-dark/90 leading-relaxed text-lg">
                   {landingContent.subheading}
                 </p>
               </div>
@@ -128,28 +128,28 @@ export default function Home() {
         </div>
       </section>
       {activeCaseStudyIndex !== null && (
-        <section ref={infoSectionRef} className="w-full max-w-5xl mx-auto mt-16">
+        <section ref={infoSectionRef} className="w-full max-w-6xl mx-auto mt-20 px-4">
           <ProjectDetailsDisplay 
             projectHeading={caseStudies[activeCaseStudyIndex].projectHeading}
             projectSubheading={caseStudies[activeCaseStudyIndex].projectSubheading}
             details={caseStudies[activeCaseStudyIndex].details}
           />
           {caseStudies[activeCaseStudyIndex].infoSnippets.map((snippet: InfoSnippetType, idx: number) => (
-            <div key={idx} className="relative mb-16">
+            <div key={idx} className="relative mb-20">
               <InfoSnippet snippet={snippet} />
             </div>
           ))}
         </section>
       )}
       {/* Social Media Logos Row */}
-      <div className="w-full flex justify-center gap-2 mt-auto mb-8">
+      <div className="w-full flex justify-center gap-4 mt-auto mb-12">
         {landingContent.socialIcons.map((icon: { name: string; url: string; icon: string }) => (
           <a
             key={icon.name}
             href={icon.url}
             target="_blank"
             rel="noopener noreferrer"
-            className="w-8 h-8 flex items-center justify-center text-gray-400 hover:text-gray-600 transition-colors duration-200"
+            className="w-10 h-10 flex items-center justify-center text-gray-400 hover:text-accent transition-all duration-300 hover:scale-110 modern-border-radius glass-effect"
             aria-label={icon.name}
           >
             {icon.icon.endsWith('.svg') ? (

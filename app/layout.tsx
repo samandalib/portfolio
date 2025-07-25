@@ -1,19 +1,8 @@
 import type { Metadata } from "next";
-import { Geist, Geist_Mono } from "next/font/google";
 import { Bodoni_Moda } from 'next/font/google';
 import { Manrope } from 'next/font/google';
 import "./globals.css";
 import AccentDock from '../components/AccentDock';
-
-const geistSans = Geist({
-  variable: "--font-geist-sans",
-  subsets: ["latin"],
-});
-
-const geistMono = Geist_Mono({
-  variable: "--font-geist-mono",
-  subsets: ["latin"],
-});
 
 const bodoni = Bodoni_Moda({
   subsets: ['latin'],
@@ -35,19 +24,25 @@ export const metadata: Metadata = {
 export default function RootLayout({ children }: { children: React.ReactNode }) {
   return (
     <html lang="en" className={`${bodoni.variable} ${manrope.variable}`}> 
-      <body className="font-sans bg-background-light text-foreground-light dark:text-foreground-dark dark:bg-background-dark transition-colors duration-300 flex">
+      <body className="font-sans bg-background-light text-foreground-light dark:text-foreground-dark dark:bg-background-dark transition-all duration-500 ease-out flex">
         {/* Main Content */}
         <div className="flex-1 min-h-screen flex flex-col">
-          <header className="w-full flex justify-between items-center px-8 py-6">
+          <header className="w-full flex justify-between items-center px-8 py-8 backdrop-blur-sm bg-background-light/80 dark:bg-background-dark/80 border-b border-gray-200/50 dark:border-gray-800/50 sticky top-0 z-40">
             {/* Inline SVG for accent color control */}
-            <svg className="h-8 w-auto" viewBox="0 0 23 10" fill="none" xmlns="http://www.w3.org/2000/svg" aria-label="H10B Logo">
+            <svg className="h-8 w-auto transition-transform duration-300 hover:scale-105" viewBox="0 0 23 10" fill="none" xmlns="http://www.w3.org/2000/svg" aria-label="H10B Logo">
               <path d="M17.0181 4.84326C17.0181 5.78902 16.8291 6.58683 16.4513 7.2367C16.0735 7.8838 15.5635 8.37465 14.9215 8.70926C14.2794 9.04111 13.5635 9.20703 12.7737 9.20703C11.9783 9.20703 11.2595 9.03973 10.6175 8.70511C9.97828 8.36774 9.46976 7.8755 9.09192 7.2284C8.71692 6.57854 8.52942 5.78349 8.52942 4.84326C8.52942 3.8975 8.71692 3.10107 9.09192 2.45397C9.46976 1.80411 9.97828 1.31325 10.6175 0.981409C11.2595 0.646798 11.9783 0.479492 12.7737 0.479492C13.5635 0.479492 14.2794 0.646798 14.9215 0.981409C15.5635 1.31325 16.0735 1.80411 16.4513 2.45397C16.8291 3.10107 17.0181 3.8975 17.0181 4.84326ZM14.5806 4.84326C14.5806 4.33443 14.511 3.9058 14.3717 3.55736C14.2354 3.20616 14.0323 2.94068 13.7624 2.76093C13.4953 2.57842 13.1658 2.48716 12.7737 2.48716C12.3817 2.48716 12.0507 2.57842 11.7808 2.76093C11.5138 2.94068 11.3107 3.20616 11.1715 3.55736C11.0351 3.9058 10.9669 4.33443 10.9669 4.84326C10.9669 5.35209 11.0351 5.78211 11.1715 6.13331C11.3107 6.48175 11.5138 6.74723 11.7808 6.92974C12.0507 7.10949 12.3817 7.19937 12.7737 7.19937C13.1658 7.19937 13.4953 7.10949 13.7624 6.92974C14.0323 6.74723 14.2354 6.48175 14.3717 6.13331C14.511 5.78211 14.5806 5.35209 14.5806 4.84326Z" className="accent-fill"/>
               <path d="M2.79834 3.88867H5.52783V5.79785H2.79834V9.20703H0.429199V0.479492H2.79834V3.88867ZM7.11963 0.479492C7.77383 0.47954 8.30415 1.00986 8.3042 1.66406V8.02246C8.30401 8.67654 7.77374 9.20698 7.11963 9.20703C6.46548 9.20703 5.93525 8.67657 5.93506 8.02246V6.06055H5.93604V3.65137H5.93506V1.66406C5.93511 1.00983 6.46539 0.479492 7.11963 0.479492Z" className="accent-fill"/>
               <path d="M18.6879 0.479492C19.3525 0.479492 19.911 0.569132 20.3627 0.748047C20.8172 0.927024 21.1599 1.18013 21.39 1.50684C21.6228 1.83344 21.7396 2.21814 21.7396 2.66113C21.7396 2.98206 21.6687 3.27492 21.5267 3.53906C21.3875 3.80327 21.1907 4.02512 20.9379 4.2041C20.6852 4.38007 20.3899 4.50215 20.0521 4.57031V4.65527C20.427 4.66951 20.7678 4.7653 21.0746 4.94141C21.3814 5.1147 21.6262 5.35434 21.808 5.66113C21.9898 5.9651 22.0804 6.32344 22.0804 6.73535C22.0804 7.21255 21.9554 7.63765 21.7054 8.00977C21.4584 8.38169 21.1059 8.67371 20.6488 8.88672C20.1914 9.09979 19.6456 9.20703 19.0121 9.20703H17.3129V7.31445H18.3812C18.779 7.31445 19.0779 7.2405 19.2767 7.09277C19.4752 6.94227 19.5745 6.72094 19.5746 6.42871C19.5746 6.22417 19.5277 6.05025 19.434 5.9082C19.3403 5.76633 19.2067 5.65879 19.0336 5.58496C18.8631 5.5111 18.6569 5.47363 18.4154 5.47363H17.3129V4.00781H18.2455C18.4527 4.00777 18.6363 3.97546 18.7953 3.91016C18.9541 3.84486 19.0774 3.75087 19.1654 3.62891C19.2563 3.50395 19.3021 3.35175 19.3021 3.17285C19.3021 2.90297 19.2053 2.69673 19.0121 2.55469C18.819 2.40992 18.5749 2.33797 18.2797 2.33789H17.3129V0.479492H18.6879Z" className="accent-fill"/>
             </svg>
             <nav className="flex gap-8 items-center">
-              <a href="#resume" className="text-accent hover:underline">Resume</a>
-              <a href="#about" className="text-accent hover:underline">About Me</a>
+              <a href="#resume" className="text-accent hover:text-accent/80 transition-all duration-300 font-medium relative group">
+                Resume
+                <span className="absolute -bottom-1 left-0 w-0 h-0.5 bg-accent transition-all duration-300 group-hover:w-full"></span>
+              </a>
+              <a href="#about" className="text-accent hover:text-accent/80 transition-all duration-300 font-medium relative group">
+                About Me
+                <span className="absolute -bottom-1 left-0 w-0 h-0.5 bg-accent transition-all duration-300 group-hover:w-full"></span>
+              </a>
             </nav>
           </header>
           {children}

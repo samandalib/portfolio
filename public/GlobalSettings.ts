@@ -13,12 +13,12 @@ export const GlobalSettings = {
   defaultAccentColor: '#16A34A', // green
   themeColors: {
     background: {
-      light: '#f7f7f7',
-      dark: '#1C1C1E',
+      light: '#fafafa',
+      dark: '#0c0c0c',
     },
     foreground: {
-      light: '#222222',
-      dark: '#ffffff',
+      light: '#0f0f0f',
+      dark: '#f5f5f5',
     },
     accent: {
       light: '#16A34A',

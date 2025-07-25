@@ -3,8 +3,8 @@
 @tailwind utilities;
 
 :root {
-  --background: #ffffff;
-  --foreground: #171717;
+  --background: #fafafa;
+  --foreground: #0f0f0f;
   --accent-color: #16A34A;
   --zoomrotate-scale-start: 0.8;
   --zoomrotate-scale-end: 1.08;
@@ -13,19 +13,37 @@
   --zoomrotate-rotatez-start: 0deg;
   --zoomrotate-rotatez-end: 6deg;
   --zoomrotate-duration: 16s;
+  --shadow-sm: 0 1px 2px 0 rgb(0 0 0 / 0.05);
+  --shadow: 0 1px 3px 0 rgb(0 0 0 / 0.1), 0 1px 2px -1px rgb(0 0 0 / 0.1);
+  --shadow-md: 0 4px 6px -1px rgb(0 0 0 / 0.1), 0 2px 4px -2px rgb(0 0 0 / 0.1);
+  --shadow-lg: 0 10px 15px -3px rgb(0 0 0 / 0.1), 0 4px 6px -4px rgb(0 0 0 / 0.1);
+  --shadow-xl: 0 20px 25px -5px rgb(0 0 0 / 0.1), 0 8px 10px -6px rgb(0 0 0 / 0.1);
+  --border-radius: 12px;
+  --border-radius-lg: 16px;
+  --border-radius-xl: 20px;
 }
 
 .dark :root {
-  --background: #0a0a0a;
-  --foreground: #ededed;
+  --background: #0c0c0c;
+  --foreground: #f5f5f5;
   --accent-color: #16A34A;
+  --shadow-sm: 0 1px 2px 0 rgb(255 255 255 / 0.05);
+  --shadow: 0 1px 3px 0 rgb(255 255 255 / 0.1), 0 1px 2px -1px rgb(255 255 255 / 0.1);
+  --shadow-md: 0 4px 6px -1px rgb(255 255 255 / 0.1), 0 2px 4px -2px rgb(255 255 255 / 0.1);
+  --shadow-lg: 0 10px 15px -3px rgb(255 255 255 / 0.1), 0 4px 6px -4px rgb(255 255 255 / 0.1);
+  --shadow-xl: 0 20px 25px -5px rgb(255 255 255 / 0.1), 0 8px 10px -6px rgb(255 255 255 / 0.1);
 }
 
 @media (prefers-color-scheme: dark) {
   :root {
-    --background: #0a0a0a;
-    --foreground: #ededed;
+    --background: #0c0c0c;
+    --foreground: #f5f5f5;
     --accent-color: #16A34A;
+    --shadow-sm: 0 1px 2px 0 rgb(255 255 255 / 0.05);
+    --shadow: 0 1px 3px 0 rgb(255 255 255 / 0.1), 0 1px 2px -1px rgb(255 255 255 / 0.1);
+    --shadow-md: 0 4px 6px -1px rgb(255 255 255 / 0.1), 0 2px 4px -2px rgb(255 255 255 / 0.1);
+    --shadow-lg: 0 10px 15px -3px rgb(255 255 255 / 0.1), 0 4px 6px -4px rgb(255 255 255 / 0.1);
+    --shadow-xl: 0 20px 25px -5px rgb(255 255 255 / 0.1), 0 8px 10px -6px rgb(255 255 255 / 0.1);
   }
 }
 
@@ -49,9 +67,11 @@ body {
 body {
   color: var(--foreground);
   background: var(--background);
-  font-family: Arial, Helvetica, sans-serif;
+  font-family: var(--font-manrope), system-ui, -apple-system, sans-serif;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
+  line-height: 1.6;
+  letter-spacing: -0.01em;
 }
 
 * {
@@ -112,6 +132,42 @@ a {
   }
   .accent-fill {
     fill: var(--accent-color) !important;
+  }
+  .modern-shadow {
+    box-shadow: var(--shadow);
+  }
+  .modern-shadow-md {
+    box-shadow: var(--shadow-md);
+  }
+  .modern-shadow-lg {
+    box-shadow: var(--shadow-lg);
+  }
+  .modern-shadow-xl {
+    box-shadow: var(--shadow-xl);
+  }
+  .modern-border-radius {
+    border-radius: var(--border-radius);
+  }
+  .modern-border-radius-lg {
+    border-radius: var(--border-radius-lg);
+  }
+  .modern-border-radius-xl {
+    border-radius: var(--border-radius-xl);
+  }
+  .glass-effect {
+    background: rgba(255, 255, 255, 0.1);
+    backdrop-filter: blur(20px);
+    border: 1px solid rgba(255, 255, 255, 0.2);
+  }
+  .dark .glass-effect {
+    background: rgba(0, 0, 0, 0.3);
+    border: 1px solid rgba(255, 255, 255, 0.1);
+  }
+  .gradient-text {
+    background: linear-gradient(135deg, var(--accent-color), #059669);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    background-clip: text;
   }
 }
 

@@ -21,7 +21,7 @@ export default function ThemeToggle({ size = 10 }: { size?: number }) {
     <button
       onClick={toggleTheme}
       style={{ width: `${size * 4}px`, height: `${size * 4}px` }}
-      className="flex items-center justify-center rounded-full border-2 border-gray-300 dark:border-gray-600 bg-white/80 dark:bg-black/60 shadow transition-colors duration-300"
+      className="flex items-center justify-center modern-border-radius border-2 border-gray-300 dark:border-gray-600 glass-effect modern-shadow transition-all duration-300 hover:scale-105 hover:modern-shadow-md"
       aria-label="Toggle light/dark mode"
     >
       {dark ? (

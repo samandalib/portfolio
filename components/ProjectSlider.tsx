@@ -47,10 +47,10 @@ export default function ProjectSlider({ onCardClick }: { onCardClick?: (idx: num
   };
 
   return (
-    <div className="w-full max-w-4xl mx-auto relative">
+    <div className="w-full max-w-5xl mx-auto relative">
       {/* Fanned Cards Container */}
       <div 
-        className="relative h-[500px] w-full flex items-center justify-center touch-pan-y select-none" 
+        className="relative h-[550px] w-full flex items-center justify-center touch-pan-y select-none" 
         style={{ perspective: '1200px' }}
         onTouchStart={handleTouchStart}
         onTouchMove={handleTouchMove}
@@ -92,7 +92,7 @@ export default function ProjectSlider({ onCardClick }: { onCardClick?: (idx: num
               key={project.id}
               className={`absolute transition-all duration-700 ease-out cursor-pointer ${
                 !isActive ? 'hover:scale-105' : ''
-              } aspect-[4/5.5]`}
+              } aspect-[4/5.5] group`}
               style={{
                 transform,
                 zIndex,
@@ -106,7 +106,7 @@ export default function ProjectSlider({ onCardClick }: { onCardClick?: (idx: num
                 if (onCardClick) onCardClick(index);
               }}
             >
-              <div className="w-full h-full rounded-2xl overflow-hidden border border-white/20 relative group bg-white/30 dark:bg-black/30 backdrop-blur-xl">
+              <div className="w-full h-full modern-border-radius-lg overflow-hidden border border-white/20 relative glass-effect modern-shadow-lg group-hover:modern-shadow-xl transition-all duration-300">
                 {/* Project Image */}
                 <div className="relative h-full w-full overflow-hidden flex items-stretch justify-stretch">
                   <Image
@@ -122,20 +122,20 @@ export default function ProjectSlider({ onCardClick }: { onCardClick?: (idx: num
                   <div className="absolute inset-0 bg-gradient-to-t from-black/70 via-black/20 to-transparent" />
                   
                   {/* Frosted Glass Text Overlay */}
-                  <div className="absolute bottom-4 left-4 right-4 p-6 bg-white/10 backdrop-blur-lg border border-white/20 rounded-2xl">
-                    <h3 className="text-xl font-bold mb-2 text-white drop-shadow-lg text-left">
+                  <div className="absolute bottom-4 left-4 right-4 p-6 glass-effect modern-border-radius-lg modern-shadow">
+                    <h3 className="text-xl font-bold mb-3 text-white drop-shadow-lg text-left font-heading">
                       {project.title}
                     </h3>
-                    <p className="font-sans text-white/90 mb-4 leading-relaxed line-clamp-2 drop-shadow-md text-left">
+                    <p className="font-sans text-white/90 mb-5 leading-relaxed line-clamp-2 drop-shadow-md text-left">
                       {project.description}
                     </p>
                     
                     {/* Tags */}
-                    <div className="flex flex-wrap gap-2">
+                    <div className="flex flex-wrap gap-3">
                       {project.tags.map((tag, tagIndex) => (
                         <span
                           key={tagIndex}
-                          className="font-sans px-3 py-1 font-medium backdrop-blur-sm text-white rounded-full border"
+                          className="font-sans px-3 py-1.5 font-medium glass-effect text-white modern-border-radius border text-sm"
                           style={{ borderColor: 'var(--accent-color, #16A34A)' }}
                         >
                           {tag}
@@ -151,15 +151,15 @@ export default function ProjectSlider({ onCardClick }: { onCardClick?: (idx: num
       </div>
 
       {/* Minimal Dots Indicator */}
-      <div className="flex justify-center mt-8 space-x-2">
+      <div className="flex justify-center mt-12 space-x-3">
         {projects.map((_, index) => (
           <button
             key={index}
             onClick={() => goToProject(index)}
-            className={`transition-all duration-300 rounded-full ${
+            className={`transition-all duration-300 modern-border-radius ${
               index === currentIndex
-                ? 'w-8 h-2 bg-foreground-light/60 dark:bg-foreground-dark/60'
-                : 'w-2 h-2 bg-foreground-light/30 dark:bg-foreground-dark/30 hover:bg-foreground-light/50 dark:hover:bg-foreground-dark/50'
+                ? 'w-10 h-2.5 bg-accent modern-shadow'
+                : 'w-2.5 h-2.5 bg-foreground-light/30 dark:bg-foreground-dark/30 hover:bg-accent/60 hover:scale-110'
             }`}
             aria-label={`Go to project ${index + 1}`}
           />
