@@ -19,6 +19,14 @@ This document explains how to edit and maintain the content and assets for your 
 
 ---
 
+## Theme Color Sync
+
+- Any changes to theme color values in `public/GlobalSettings.ts` are now automatically synced to CSS variables in `app/globals.css` via the `scripts/sync-theme-colors.js` script, which runs before every build.
+  - This ensures your CSS variables always match your global settings for background, foreground, and accent colors.
+  - No manual update of CSS variables is needed—just edit `GlobalSettings.ts` and rebuild.
+
+---
+
 ## 1. Global Settings
 
 - **File:** `public/GlobalSettings.ts`

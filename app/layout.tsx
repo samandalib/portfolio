@@ -35,7 +35,7 @@ export const metadata: Metadata = {
 export default function RootLayout({ children }: { children: React.ReactNode }) {
   return (
     <html lang="en" className={`${bodoni.variable} ${manrope.variable}`}> 
-      <body className="font-sans bg-background-light text-foreground-light dark:bg-background-dark transition-colors duration-300 flex">
+      <body className="font-sans bg-background-light text-foreground-light dark:text-foreground-dark dark:bg-background-dark transition-colors duration-300 flex">
         {/* Main Content */}
         <div className="flex-1 min-h-screen flex flex-col">
           <header className="w-full flex justify-between items-center px-8 py-6">

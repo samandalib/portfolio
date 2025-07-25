@@ -1,5 +1,6 @@
 // NOTE: Any changes to this file (fonts, colors, presets) are automatically picked up by the watcher and font sync scripts.
 // Font imports and content will be updated in the background and reflected in your app after a refresh or rebuild.
+// THEME COLOR SYNC: Any changes to theme color values here are now automatically synced to CSS variables in app/globals.css via scripts/sync-theme-colors.js, which runs before every build.
 
 export const GlobalSettings = {
   accentColors: [
@@ -13,15 +14,11 @@ export const GlobalSettings = {
   themeColors: {
     background: {
       light: '#f7f7f7',
-      dark: '#262626',
-      cssLight: '#ffffff', // from globals.css :root
-      cssDark: '#0a0a0a',  // from globals.css @media dark
+      dark: '#1C1C1E',
     },
     foreground: {
       light: '#222222',
       dark: '#ffffff',
-      cssLight: '#171717', // from globals.css :root
-      cssDark: '#ededed',  // from globals.css @media dark
     },
     accent: {
       light: '#16A34A',

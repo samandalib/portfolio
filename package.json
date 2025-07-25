@@ -5,10 +5,11 @@
   "scripts": {
     "dev": "concurrently \"node sync-content.js\" \"next dev --turbopack\"",
     "prebuild": "node sync-content.js",
-    "build": "next build",
+    "build": "npm run sync-theme-colors && next build",
     "start": "next start",
     "lint": "next lint",
-    "sync-content": "node sync-content.js"
+    "sync-content": "node sync-content.js",
+    "sync-theme-colors": "node scripts/sync-theme-colors.js"
   },
   "dependencies": {
     "@mdx-js/loader": "^3.1.0",

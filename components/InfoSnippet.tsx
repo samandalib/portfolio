@@ -1,5 +1,5 @@
 import React, { useState, MouseEvent } from "react";
-import type { InfoSnippet as InfoSnippetType, VisualAsset } from "../public/assets/case studies/project1/content";
+import type { InfoSnippet as InfoSnippetType } from "../public/assets/case studies/project1/content";
 import PointerIcon from "./icons/PointerIcon";
 import CanvasLeftIcon from "./icons/CanvasLeftIcon";
 import CanvasRightIcon from "./icons/CanvasRightIcon";
@@ -11,6 +11,16 @@ import TextTopIcon from "./icons/TextTopIcon";
 import TextMiddleIcon from "./icons/TextMiddleIcon";
 import TextBottomIcon from "./icons/TextBottomIcon";
 import Tooltip from "./Tooltip";
+import Lottie from "lottie-react";
+
+// Patch the InfoSnippetType to allow optional textAlign in layout
+type InfoSnippetLayout = {
+  textColumns: number;
+  visualColumns: number;
+  textAlign?: 'top' | 'middle' | 'bottom';
+};
+
+type InfoSnippetWithLayout = Omit<InfoSnippetType, 'layout'> & { layout?: InfoSnippetLayout };
 
 interface InfoSnippetProps {
   snippet: InfoSnippetType;
@@ -20,7 +30,43 @@ interface InfoSnippetProps {
   textAlign?: 'top' | 'middle' | 'bottom';
 }
 
-function renderVisual(asset: VisualAsset) {
+type VisualAssetWithRadius = {
+  type: "image" | "video" | "embed";
+  src: string;
+  alt?: string;
+  caption?: string;
+  embedType?: "youtube" | "vimeo" | "other";
+  radius?: string;
+};
+
+const LottieVisual: React.FC<{ src: string; caption?: string }> = ({ src, caption }) => {
+  const [animationData, setAnimationData] = React.useState<any>(null);
+
+  React.useEffect(() => {
+    fetch(src)
+      .then((res) => res.json())
+      .then(setAnimationData)
+      .catch(() => setAnimationData(null));
+  }, [src]);
+
+  return (
+    <div className="mb-4 w-full h-full flex items-center justify-center">
+      {animationData ? (
+        <Lottie
+          animationData={animationData}
+          loop
+          autoplay
+          style={{ width: "100%", height: "100%" }}
+        />
+      ) : (
+        <div className="w-full h-full flex items-center justify-center text-gray-400">Loading animation...</div>
+      )}
+      {caption && <div className="text-xs text-gray-500 mt-1">{caption}</div>}
+    </div>
+  );
+};
+
+function renderVisual(asset: VisualAssetWithRadius | { type: "lottie"; src: string; alt?: string; caption?: string }) {
   if (asset.type === "image") {
     return (
       <figure className="mb-4">
@@ -57,6 +103,17 @@ function renderVisual(asset: VisualAsset) {
       </div>
     );
   }
+  if (asset.type === "video" && !asset.embedType) {
+    return (
+      <div className="aspect-w-16 aspect-h-9 mb-4">
+        <video controls className={`w-full h-full ${radiusClassMap[asset.radius || 'rounded']}`}>
+          <source src={asset.src} type="video/mp4" />
+          Your browser does not support the video tag.
+        </video>
+        {asset.caption && <div className="text-xs text-gray-500 mt-1">{asset.caption}</div>}
+      </div>
+    );
+  }
   if (asset.type === "embed") {
     return (
       <div className="mb-4">
@@ -70,30 +127,68 @@ function renderVisual(asset: VisualAsset) {
       </div>
     );
   }
+  if (asset.type === "lottie") {
+    return <LottieVisual src={asset.src} caption={asset.caption} />;
+  }
   return null;
 }
 
 const CANVAS_COL_OPTIONS = [4, 6, 8, 9];
 
+// Explicit mappings for Tailwind col-start and col-span classes
+const colStartClass: Record<number, string> = {
+  1: "lg:col-start-1",
+  2: "lg:col-start-2",
+  3: "lg:col-start-3",
+  4: "lg:col-start-4",
+  5: "lg:col-start-5",
+  6: "lg:col-start-6",
+  7: "lg:col-start-7",
+  8: "lg:col-start-8",
+  9: "lg:col-start-9",
+  10: "lg:col-start-10",
+  11: "lg:col-start-11",
+  12: "lg:col-start-12",
+};
 const colSpanClass: Record<number, string> = {
+  1: "lg:col-span-1",
+  2: "lg:col-span-2",
   3: "lg:col-span-3",
   4: "lg:col-span-4",
+  5: "lg:col-span-5",
   6: "lg:col-span-6",
+  7: "lg:col-span-7",
   8: "lg:col-span-8",
   9: "lg:col-span-9",
+  10: "lg:col-span-10",
+  11: "lg:col-span-11",
+  12: "lg:col-span-12",
+};
+
+// Static mapping for allowed Tailwind radius classes
+const radiusClassMap: Record<string, string> = {
+  'rounded': 'rounded',
+  'rounded-md': 'rounded-md',
+  'rounded-lg': 'rounded-lg',
+  'rounded-xl': 'rounded-xl',
+  'rounded-2xl': 'rounded-2xl',
+  'rounded-full': 'rounded-full',
 };
 
 const InfoSnippet: React.FC<InfoSnippetProps> = ({ snippet }) => {
+  const layout: InfoSnippetLayout | undefined = snippet.layout as InfoSnippetLayout | undefined;
   // Docker state (per instance)
   const [pointerMode, setPointerMode] = React.useState(false);
   const [canvasLeft, setCanvasLeft] = React.useState(false);
   const [stacked, setStacked] = React.useState(false);
   const [showDockerControls, setShowDockerControls] = React.useState(false);
-  const [textAlign, setTextAlign] = React.useState<'top' | 'middle' | 'bottom'>('middle');
-  const [canvasCols, setCanvasCols] = useState(8);
+  const [textAlign, setTextAlign] = React.useState<'top' | 'middle' | 'bottom'>(
+    layout?.textAlign || 'top'
+  );
+  const [canvasCols, setCanvasCols] = useState(layout?.visualColumns ?? 8);
 
-  const textCols = snippet.layout?.textColumns || 12;
   const visualCols = canvasCols;
+  const textCols = 12 - visualCols;
   const isDev = typeof process !== 'undefined' && process.env.NODE_ENV === 'development';
 
   // Pointer state
@@ -119,18 +214,43 @@ const InfoSnippet: React.FC<InfoSnippetProps> = ({ snippet }) => {
     else if (textAlign === 'bottom') justify = 'justify-end';
     else justify = 'justify-center';
   }
+  // Calculate grid placement for text and canvas
+  const textColStart = canvasLeft ? visualCols + 1 : 1;
+  const canvasColStart = canvasLeft ? 1 : textCols + 1;
+  const textColSpan = textCols;
+  const canvasColSpan = visualCols;
+
+  // Build Tailwind classes for grid placement
+  const textGridClass = `${colStartClass[textColStart] || ''} ${colSpanClass[textColSpan] || ''}`;
+  const canvasGridClass = `${colStartClass[canvasColStart] || ''} ${colSpanClass[canvasColSpan] || ''}`;
+
   let textSection = (
     <div
-      className={`flex flex-col ${justify} h-full ${stacked ? 'col-span-12 w-full' : `col-span-1 md:col-span-${Math.min(textCols,6)} ${colSpanClass[textCols] || ''}`}`}
+      className={`flex flex-col ${justify} h-full ${stacked ? 'col-span-12 w-full' : `col-span-1 md:col-span-${Math.min(textCols,6)} ${textGridClass}`}`}
     >
       {snippet.heading && <h3 className="font-bold mb-1 text-gray-900 dark:text-gray-100" style={{ fontSize: 32, fontFamily: 'var(--font-bodoni)' }}>{snippet.heading}</h3>}
       {snippet.subheading && <h4 className="font-semibold mb-2 text-gray-600 dark:text-gray-300" style={{ fontSize: 20, fontFamily: 'var(--font-manrope)' }}>{snippet.subheading}</h4>}
-      {snippet.body && <p className="mb-2 text-gray-700 dark:text-gray-200" style={{ fontFamily: 'var(--font-manrope)' }}>{snippet.body}</p>}
+      {Array.isArray(snippet.body) ? (
+        <ul className="custom-bullets mb-2 text-gray-700 dark:text-gray-200" style={{ fontFamily: 'var(--font-manrope)' }}>
+          {snippet.body.map((item, idx) => (
+            <li key={idx}>{item}</li>
+          ))}
+        </ul>
+      ) : snippet.body ? (
+        <p className="mb-2 text-gray-700 dark:text-gray-200" style={{ fontFamily: 'var(--font-manrope)' }}>
+          {snippet.body.split('\n').map((line, idx) => (
+            <React.Fragment key={idx}>
+              {line}
+              <br />
+            </React.Fragment>
+          ))}
+        </p>
+      ) : null}
     </div>
   );
   let canvasSection = (snippet.visuals && snippet.visuals.length > 0) ? (
     <div
-      className={`canvas flex items-center justify-center h-full ${isDev ? 'bg-gray-100' : ''} ${stacked ? 'col-span-12 w-full' : `col-span-1 md:col-span-${Math.min(visualCols,6)} ${colSpanClass[visualCols] || ''}`}`}
+      className={`canvas flex items-center justify-center h-full ${isDev ? 'bg-gray-100' : ''} ${stacked ? 'col-span-12 w-full' : `col-span-1 md:col-span-${Math.min(visualCols,6)} ${canvasGridClass}`}`}
       style={{ transition: 'background 0.2s', position: 'relative' }}
     >
       <div

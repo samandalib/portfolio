@@ -15,10 +15,17 @@
   --zoomrotate-duration: 16s;
 }
 
+.dark :root {
+  --background: #0a0a0a;
+  --foreground: #ededed;
+  --accent-color: #16A34A;
+}
+
 @media (prefers-color-scheme: dark) {
   :root {
     --background: #0a0a0a;
     --foreground: #ededed;
+    --accent-color: #16A34A;
   }
 }
 
@@ -107,6 +114,34 @@ a {
   .accent-fill {
     fill: var(--accent-color) !important;
   }
+}
+
+ul li::marker,
+ol li::marker {
+  color: var(--accent-color);
+}
+
+ul.custom-bullets {
+  list-style: none;
+  padding-left: 0.5em;
+}
+ul.custom-bullets li {
+  position: relative;
+  padding-left: 1.2em;
+}
+ul.custom-bullets li::before {
+  content: '';
+  position: absolute;
+  left: 0;
+  top: 0.6em;
+  width: 1em;
+  height: 1em;
+  background: none;
+  mask: url('/assets/InfoSnippetIcons/bullet.svg') no-repeat center / contain;
+  -webkit-mask: url('/assets/InfoSnippetIcons/bullet.svg') no-repeat center / contain;
+  background-color: var(--accent-color);
+  display: inline-block;
+  vertical-align: middle;
 }
 
 /*
