@@ -21,13 +21,13 @@ const ProjectDetailsDisplay: React.FC<ProjectDetailsDisplayProps> = ({
   details, 
   skills 
 }) => (
-  <div className="mb-12">
+  <div className="mb-20 bg-gradient-to-br from-gray-50/50 to-white/30 dark:from-gray-900/30 dark:to-gray-800/20 backdrop-blur-sm rounded-3xl p-8 lg:p-12 border border-gray-200/30 dark:border-gray-700/30 modern-shadow-lg">
     {/* Domain Label with Accent Line */}
     {domain && (
-      <div className="flex items-center gap-3 mb-4">
-        <div className="w-1 h-6 bg-accent rounded-full"></div>
+      <div className="flex items-center gap-4 mb-6">
+        <div className="w-1.5 h-8 bg-accent rounded-full modern-shadow-sm"></div>
         <span 
-          className="text-sm font-semibold text-accent uppercase tracking-wider"
+          className="text-sm font-bold text-accent uppercase tracking-[0.15em] opacity-90"
           style={{ fontFamily: 'var(--font-manrope)' }}
         >
           {domain}
@@ -37,7 +37,7 @@ const ProjectDetailsDisplay: React.FC<ProjectDetailsDisplayProps> = ({
 
     {/* Main Project Heading */}
     <h1 
-      className="text-4xl md:text-5xl font-bold mb-4 text-gray-900 dark:text-gray-100 leading-tight" 
+      className="text-4xl md:text-6xl lg:text-7xl font-bold mb-6 text-gray-900 dark:text-gray-100 leading-[0.9] tracking-tight" 
       style={{ fontFamily: 'var(--font-bodoni)' }}
     >
       {projectHeading}
@@ -46,7 +46,7 @@ const ProjectDetailsDisplay: React.FC<ProjectDetailsDisplayProps> = ({
     {/* Project Subheading */}
     {projectSubheading && (
       <p 
-        className="text-xl text-gray-700 dark:text-gray-300 mb-8 leading-relaxed"
+        className="text-xl md:text-2xl text-gray-600 dark:text-gray-300 mb-12 leading-relaxed max-w-4xl"
         style={{ fontFamily: 'var(--font-manrope)' }}
       >
         {projectSubheading}
@@ -54,12 +54,12 @@ const ProjectDetailsDisplay: React.FC<ProjectDetailsDisplayProps> = ({
     )}
 
     {/* Project Details Pills */}
-    <div className="flex flex-wrap gap-3 mb-8">
+    <div className="flex flex-wrap gap-3 mb-10">
       <span 
-        className="rounded-full px-4 py-2 font-medium border font-sans"
+        className="rounded-full px-5 py-2.5 font-semibold border-2 font-sans text-sm transition-all duration-300 hover:scale-105 modern-shadow-sm"
         style={{ 
           borderColor: 'var(--accent-color, #16A34A)',
-          backgroundColor: 'color-mix(in srgb, var(--accent-color, #16A34A) 10%, transparent)',
+          backgroundColor: 'color-mix(in srgb, var(--accent-color, #16A34A) 8%, transparent)',
           color: 'var(--accent-color, #16A34A)'
         }}
         title="Year"
@@ -68,10 +68,10 @@ const ProjectDetailsDisplay: React.FC<ProjectDetailsDisplayProps> = ({
       </span>
       
       <span 
-        className="rounded-full px-4 py-2 font-medium border font-sans"
+        className="rounded-full px-5 py-2.5 font-semibold border-2 font-sans text-sm transition-all duration-300 hover:scale-105 modern-shadow-sm"
         style={{ 
           borderColor: 'var(--accent-color, #16A34A)',
-          backgroundColor: 'color-mix(in srgb, var(--accent-color, #16A34A) 10%, transparent)',
+          backgroundColor: 'color-mix(in srgb, var(--accent-color, #16A34A) 8%, transparent)',
           color: 'var(--accent-color, #16A34A)'
         }}
         title="Company"
@@ -80,10 +80,10 @@ const ProjectDetailsDisplay: React.FC<ProjectDetailsDisplayProps> = ({
       </span>
       
       <span 
-        className="rounded-full px-4 py-2 font-medium border font-sans"
+        className="rounded-full px-5 py-2.5 font-semibold border-2 font-sans text-sm transition-all duration-300 hover:scale-105 modern-shadow-sm"
         style={{ 
           borderColor: 'var(--accent-color, #16A34A)',
-          backgroundColor: 'color-mix(in srgb, var(--accent-color, #16A34A) 10%, transparent)',
+          backgroundColor: 'color-mix(in srgb, var(--accent-color, #16A34A) 8%, transparent)',
           color: 'var(--accent-color, #16A34A)'
         }}
         title="Role"
@@ -93,10 +93,10 @@ const ProjectDetailsDisplay: React.FC<ProjectDetailsDisplayProps> = ({
       
       {details.team && (
         <span 
-          className="rounded-full px-4 py-2 font-medium border font-sans"
+          className="rounded-full px-5 py-2.5 font-semibold border-2 font-sans text-sm transition-all duration-300 hover:scale-105 modern-shadow-sm"
           style={{ 
             borderColor: 'var(--accent-color, #16A34A)',
-            backgroundColor: 'color-mix(in srgb, var(--accent-color, #16A34A) 10%, transparent)',
+            backgroundColor: 'color-mix(in srgb, var(--accent-color, #16A34A) 8%, transparent)',
             color: 'var(--accent-color, #16A34A)'
           }}
           title="Team"
@@ -107,10 +107,10 @@ const ProjectDetailsDisplay: React.FC<ProjectDetailsDisplayProps> = ({
       
       {details.notes && (
         <span 
-          className="rounded-full px-4 py-2 font-medium border font-sans"
+          className="rounded-full px-5 py-2.5 font-semibold border-2 font-sans text-sm transition-all duration-300 hover:scale-105 modern-shadow-sm"
           style={{ 
             borderColor: 'var(--accent-color, #16A34A)',
-            backgroundColor: 'color-mix(in srgb, var(--accent-color, #16A34A) 10%, transparent)',
+            backgroundColor: 'color-mix(in srgb, var(--accent-color, #16A34A) 8%, transparent)',
             color: 'var(--accent-color, #16A34A)'
           }}
           title="Scope"
@@ -122,16 +122,15 @@ const ProjectDetailsDisplay: React.FC<ProjectDetailsDisplayProps> = ({
 
     {/* Skills Section */}
     {skills && skills.length > 0 && (
-      <div className="mt-8">
-        <div className="flex flex-wrap gap-2">
+      <div className="mt-10 pt-8 border-t border-gray-200/50 dark:border-gray-700/50">
+        <h3 className="text-sm font-bold text-gray-500 dark:text-gray-400 uppercase tracking-wider mb-4 font-sans">Skills & Technologies</h3>
+        <div className="flex flex-wrap gap-3">
           {skills.map((skill, index) => (
             <span 
               key={index}
-              className="rounded-full px-3 py-1.5 font-medium border font-sans"
+              className="rounded-full px-4 py-2 font-medium border font-sans text-sm bg-gray-50/80 dark:bg-gray-800/50 border-gray-200 dark:border-gray-600 text-gray-700 dark:text-gray-300 transition-all duration-300 hover:bg-gray-100 dark:hover:bg-gray-700 hover:scale-105 modern-shadow-sm"
               style={{ 
-                borderColor: 'var(--accent-color, #16A34A)',
-                backgroundColor: 'color-mix(in srgb, var(--accent-color, #16A34A) 10%, transparent)',
-                color: 'var(--accent-color, #16A34A)'
+                fontFamily: 'var(--font-manrope)'
               }}
             >
               {skill}

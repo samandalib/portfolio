@@ -128,7 +128,7 @@ export default function Home() {
         </div>
       </section>
       {activeCaseStudyIndex !== null && (
-        <section ref={infoSectionRef} className="w-full max-w-6xl mx-auto mt-20 px-4">
+        <section ref={infoSectionRef} className="w-full max-w-7xl mx-auto mt-32 px-6 lg:px-8">
           <ProjectDetailsDisplay 
             projectHeading={caseStudies[activeCaseStudyIndex].projectHeading}
             projectSubheading={caseStudies[activeCaseStudyIndex].projectSubheading}
@@ -137,7 +137,7 @@ export default function Home() {
             skills={caseStudies[activeCaseStudyIndex].skills}
           />
           {caseStudies[activeCaseStudyIndex].infoSnippets.map((snippet: InfoSnippetType, idx: number) => (
-            <div key={idx} className="relative mb-20">
+            <div key={idx} className="relative mb-32 last:mb-20">
               <InfoSnippet snippet={snippet} />
             </div>
           ))}
