@@ -54,7 +54,9 @@ export interface InfoSnippet {
 export interface CaseStudyContent {
   projectHeading: string;
   projectSubheading?: string;
+  domain?: string;
   details: ProjectDetails;
+  skills?: string[];
   infoSnippets: InfoSnippet[];
 }
 
@@ -62,12 +64,23 @@ export interface CaseStudyContent {
 const caseStudy: CaseStudyContent = {
   projectHeading: "Designing Road265: Your AI Companion for Independent Aging",
   projectSubheading: "Empowering proactive adults to stay strong, sharp, and independent through personalized self-care coaching.",
+  domain: "WELLNESS PLATFORM",
   details: {
     year: 2025,
     company: "Road265 (Personal Venture)",
     role: "Product Designer & Co-Founder",
-    notes: "Led product strategy, UX/UI design, research, branding, and MVP delivery."
+    notes: "Strategy • UX/UI • Research • Branding • MVP"
   },
+  skills: [
+    "Product Strategy",
+    "UX Research", 
+    "UX/UI Design",
+    "Branding",
+    "Prototyping",
+    "Design Systems",
+    "Motion Design",
+    "AI Design"
+  ],
   infoSnippets: [
     {
       heading: "The Problem",
@@ -79,7 +92,7 @@ const caseStudy: CaseStudyContent = {
     },
 
     {
-        heading: "Our Sultion",
+        heading: "The Solution",
         body: [
           "An AI-powered wellness app to turn scattered wellness data into insights to build healthy lifestyle routine – to stay functionally independent in old ages.",
           [
@@ -118,6 +131,7 @@ const caseStudy: CaseStudyContent = {
             type: "lottie",
             src: "https://res.cloudinary.com/dehugbvmc/raw/upload/v1753404820/AppConnections_Crop_f4t0ux.json",
             alt: "App connections animation",
+            loop: false,
             //caption: "Animated connections using Lottie"
           }
         
@@ -171,7 +185,17 @@ const caseStudy: CaseStudyContent = {
     {
       heading: "Validation & Testing",
       subheading: "Iterative testing from ideas to interface",
-      body: "I conducted multiple rounds of testing:\n• Concept validation via interviews and Notion decks\n• Usability tests of Figma prototype (60-minute sessions)\n• Onboarding flow and scoring UX tested for clarity and retention\n• Post-test surveys to refine language and framing",
+      body: [
+        "I conducted multiple rounds of testing:",
+        [
+        "Concept validation via interviews and Notion decks",
+        "Usability tests of Figma prototype (60-minute sessions)",
+        "Onboarding flow and scoring UX tested for clarity and retention",
+        "Post-test surveys to refine language and framing",
+        ]
+      
+      ],
+
       visuals: [
                 { type: "image", src: "https://res.cloudinary.com/dehugbvmc/image/upload/v1753405794/265lofi_rmvsz2.png", alt: "low fidelity wireframes" }
 

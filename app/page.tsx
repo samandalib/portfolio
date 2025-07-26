@@ -132,7 +132,9 @@ export default function Home() {
           <ProjectDetailsDisplay 
             projectHeading={caseStudies[activeCaseStudyIndex].projectHeading}
             projectSubheading={caseStudies[activeCaseStudyIndex].projectSubheading}
+            domain={caseStudies[activeCaseStudyIndex].domain}
             details={caseStudies[activeCaseStudyIndex].details}
+            skills={caseStudies[activeCaseStudyIndex].skills}
           />
           {caseStudies[activeCaseStudyIndex].infoSnippets.map((snippet: InfoSnippetType, idx: number) => (
             <div key={idx} className="relative mb-20">

@@ -45,8 +45,10 @@ type VisualAssetWithRadius = {
   muted?: boolean;
 };
 
-const LottieVisual: React.FC<{ src: string; caption?: string }> = ({ src, caption }) => {
+const LottieVisual: React.FC<{ src: string; caption?: string; loop?: boolean }> = ({ src, caption, loop = true }) => {
   const [animationData, setAnimationData] = React.useState<any>(null);
+  const [ref, inView] = useInViewOnce<HTMLDivElement>(0.3);
+  const lottieRef = React.useRef<any>(null);
 
   React.useEffect(() => {
     fetch(src)
@@ -55,13 +57,25 @@ const LottieVisual: React.FC<{ src: string; caption?: string }> = ({ src, captio
       .catch(() => setAnimationData(null));
   }, [src]);
 
+  // Control animation playback based on inView state
+  React.useEffect(() => {
+    if (lottieRef.current && animationData) {
+      if (inView) {
+        lottieRef.current.play();
+      } else {
+        lottieRef.current.pause();
+      }
+    }
+  }, [inView, animationData]);
+
   return (
-    <div className="mb-4 w-full h-full flex items-center justify-center">
+    <div ref={ref} className="mb-4 w-full h-full flex items-center justify-center">
       {animationData ? (
         <Lottie
+          lottieRef={lottieRef}
           animationData={animationData}
-          loop
-          autoplay
+          loop={loop}
+          autoplay={false}
           style={{ width: "100%", height: "100%" }}
         />
       ) : (
@@ -72,11 +86,11 @@ const LottieVisual: React.FC<{ src: string; caption?: string }> = ({ src, captio
   );
 };
 
-function renderVisual(asset: VisualAssetWithRadius | { type: "lottie"; src: string; alt?: string; caption?: string }) {
+function renderVisual(asset: VisualAssetWithRadius | { type: "lottie"; src: string; alt?: string; caption?: string; loop?: boolean }) {
   if (asset.type === "image") {
     return (
       <figure className="mb-4">
-        <img src={asset.src} alt={asset.alt || ""} className="w-full rounded" />
+        <img src={asset.src} alt={asset.alt || ""} className={`w-full ${radiusClassMap[asset.radius || 'modern-border-radius']}`} />
         {asset.caption && <figcaption className="text-xs text-gray-500 mt-1">{asset.caption}</figcaption>}
       </figure>
     );
@@ -89,7 +103,7 @@ function renderVisual(asset: VisualAssetWithRadius | { type: "lottie"; src: stri
           title={asset.caption || asset.alt || "YouTube video"}
           allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
           allowFullScreen
-          className="w-full h-full rounded shadow"
+          className={`w-full h-full ${radiusClassMap[asset.radius || 'modern-border-radius']} modern-shadow`}
         />
         {asset.caption && <div className="text-xs text-gray-500 mt-1">{asset.caption}</div>}
       </div>
@@ -103,7 +117,7 @@ function renderVisual(asset: VisualAssetWithRadius | { type: "lottie"; src: stri
           title={asset.caption || asset.alt || "Vimeo video"}
           allow="autoplay; fullscreen; picture-in-picture"
           allowFullScreen
-          className="w-full h-full rounded shadow"
+          className={`w-full h-full ${radiusClassMap[asset.radius || 'modern-border-radius']} modern-shadow`}
         />
         {asset.caption && <div className="text-xs text-gray-500 mt-1">{asset.caption}</div>}
       </div>
@@ -117,7 +131,7 @@ function renderVisual(asset: VisualAssetWithRadius | { type: "lottie"; src: stri
           autoPlay={!!asset.autoplay}
           loop={!!asset.loop}
           muted={!!asset.muted}
-          className={`w-full h-full ${radiusClassMap[asset.radius || 'rounded']}`}
+          className={`w-full h-full ${radiusClassMap[asset.radius || 'modern-border-radius']}`}
         >
           <source src={asset.src} type="video/mp4" />
           Your browser does not support the video tag.
@@ -132,7 +146,7 @@ function renderVisual(asset: VisualAssetWithRadius | { type: "lottie"; src: stri
         <iframe
           src={asset.src}
           title={asset.caption || asset.alt || "Embedded content"}
-          className="w-full h-64 rounded shadow"
+          className={`w-full h-64 ${radiusClassMap[asset.radius || 'modern-border-radius']} modern-shadow`}
           allowFullScreen
         />
         {asset.caption && <div className="text-xs text-gray-500 mt-1">{asset.caption}</div>}
@@ -140,7 +154,7 @@ function renderVisual(asset: VisualAssetWithRadius | { type: "lottie"; src: stri
     );
   }
   if (asset.type === "lottie") {
-    return <LottieVisual src={asset.src} caption={asset.caption} />;
+    return <LottieVisual src={asset.src} caption={asset.caption} loop={asset.loop} />;
   }
   return null;
 }
@@ -179,11 +193,11 @@ const colSpanClass: Record<number, string> = {
 
 // Static mapping for allowed Tailwind radius classes
 const radiusClassMap: Record<string, string> = {
-  'rounded': 'rounded',
-  'rounded-md': 'rounded-md',
-  'rounded-lg': 'rounded-lg',
-  'rounded-xl': 'rounded-xl',
-  'rounded-2xl': 'rounded-2xl',
+  'rounded': 'modern-border-radius',
+  'rounded-md': 'modern-border-radius',
+  'rounded-lg': 'modern-border-radius-lg',
+  'rounded-xl': 'modern-border-radius-lg',
+  'rounded-2xl': 'modern-border-radius-xl',
   'rounded-full': 'rounded-full',
 };
 
@@ -194,8 +208,8 @@ function normalizeBody(body: any) {
   return body;
 }
 
-function useInViewOnce(threshold = 0.2) {
-  const ref = React.useRef<HTMLUListElement>(null);
+function useInViewOnce<T extends HTMLElement = HTMLElement>(threshold = 0.2) {
+  const ref = React.useRef<T>(null);
   const [inView, setInView] = React.useState(false);
   React.useEffect(() => {
     const node = ref.current;
@@ -215,6 +229,41 @@ function useInViewOnce(threshold = 0.2) {
   return [ref, inView] as const;
 }
 
+// Separate component to handle animated bullet lists with hooks
+const AnimatedBulletList: React.FC<{ items: string[] }> = ({ items }) => {
+  const [ref, inView] = useInViewOnce<HTMLUListElement>(0.1);
+  
+  // Bullet list animation variants
+  const bulletListVariants = {
+    hidden: {},
+    visible: {
+      transition: {
+        delay: 1.5,
+        staggerChildren: 0.12,
+      },
+    },
+  };
+  
+  const bulletItemVariants = {
+    hidden: { opacity: 0, y: 24 },
+    visible: { opacity: 1, y: 0, transition: { duration: 0.5 } },
+  };
+
+  return (
+    <motion.ul
+      ref={ref}
+      className="custom-bullets mb-2 text-gray-700 dark:text-gray-200 font-sans"
+      variants={bulletListVariants}
+      initial="hidden"
+      animate={inView ? "visible" : "hidden"}
+    >
+      {items.map((bullet: string, idx: number) => (
+        <motion.li key={idx} variants={bulletItemVariants}>{bullet}</motion.li>
+      ))}
+    </motion.ul>
+  );
+};
+
 const InfoSnippet: React.FC<InfoSnippetProps> = ({ snippet }) => {
   const layout: InfoSnippetLayout | undefined = snippet.layout as InfoSnippetLayout | undefined;
   const canvasLeft = typeof layout?.canvasLeft === 'boolean' ? layout.canvasLeft : false;
@@ -228,6 +277,9 @@ const InfoSnippet: React.FC<InfoSnippetProps> = ({ snippet }) => {
     layout?.textAlign || 'top'
   );
   const [canvasCols, setCanvasCols] = useState(layout?.visualColumns ?? 8);
+  
+  // Viewport detection for fade-in animation
+  const [ref, inView] = useInViewOnce<HTMLDivElement>(0.15);
 
   const visualCols = canvasCols;
   const textCols = 12 - visualCols;
@@ -266,21 +318,6 @@ const InfoSnippet: React.FC<InfoSnippetProps> = ({ snippet }) => {
   const textGridClass = `${colStartClass[textColStart] || ''} ${colSpanClass[textColSpan] || ''}`;
   const canvasGridClass = `${colStartClass[canvasColStart] || ''} ${colSpanClass[canvasColSpan] || ''}`;
 
-  // Bullet list animation variants
-  const bulletListVariants = {
-    hidden: {},
-    visible: {
-      transition: {
-        delay: 1.5,
-        staggerChildren: 0.12,
-      },
-    },
-  };
-  const bulletItemVariants = {
-    hidden: { opacity: 0, y: 24 },
-    visible: { opacity: 1, y: 0, transition: { duration: 0.5 } },
-  };
-
   let textSection = (
     <div
       className={`flex flex-col ${justify} h-full ${stackedState ? 'col-span-12 w-full' : `col-span-1 md:col-span-${Math.min(textCols,6)} md:w-full ${textGridClass}`}`}
@@ -289,14 +326,14 @@ const InfoSnippet: React.FC<InfoSnippetProps> = ({ snippet }) => {
         <div style={{ position: 'relative', width: '100%' }}>
           <TypewriterHeading
             text={snippet.heading}
-            className="font-bold mb-1 text-gray-900 dark:text-gray-100"
-            style={{ fontSize: 32, fontFamily: 'var(--font-bodoni)' }}
+            className="font-bold mb-1 text-gray-900 dark:text-gray-100 font-heading"
+            style={{ fontSize: 32 }}
           />
           {/* Animated accent line */}
           <AnimatedAccentLine />
         </div>
       )}
-      {snippet.subheading && <h4 className="font-semibold mb-2 text-gray-600 dark:text-gray-300" style={{ fontSize: 20, fontFamily: 'var(--font-manrope)' }}>{snippet.subheading}</h4>}
+      {snippet.subheading && <h4 className="font-normal mb-2 text-gray-600 dark:text-gray-300 font-sans" style={{ fontSize: 20 }}>{snippet.subheading}</h4>}
       {(() => { console.log('snippet.body:', snippet.body); return null; })()}
       {Array.isArray(snippet.body) ? (
         (() => {
@@ -304,20 +341,8 @@ const InfoSnippet: React.FC<InfoSnippetProps> = ({ snippet }) => {
           if (Array.isArray(normalizedBody)) {
             // If every item is a string, render as a single animated <ul>
             if (normalizedBody.every(item => typeof item === 'string')) {
-              const [ref, inView] = useInViewOnce(0.1);
               return (
-                <motion.ul
-                  ref={ref}
-                  className="custom-bullets mb-2 text-gray-700 dark:text-gray-200"
-                  style={{ fontFamily: 'var(--font-manrope)' }}
-                  variants={bulletListVariants}
-                  initial="hidden"
-                  animate={inView ? "visible" : "hidden"}
-                >
-                  {normalizedBody.map((bullet: string, idx: number) => (
-                    <motion.li key={idx} variants={bulletItemVariants}>{bullet}</motion.li>
-                  ))}
-                </motion.ul>
+                <AnimatedBulletList items={normalizedBody} />
               );
             }
             // Otherwise, render mixed content
@@ -326,26 +351,13 @@ const InfoSnippet: React.FC<InfoSnippetProps> = ({ snippet }) => {
                 {normalizedBody.map((item, idx) => {
                   if (typeof item === 'string') {
                     return (
-                      <p key={idx} className="mb-2 text-gray-700 dark:text-gray-200" style={{ fontFamily: 'var(--font-manrope)' }}>
+                      <p key={idx} className="mb-2 text-gray-700 dark:text-gray-200 font-sans">
                         {item}
                       </p>
                     );
                   } else if (Array.isArray(item)) {
-                    const [ref, inView] = useInViewOnce(0.1);
                     return (
-                      <motion.ul
-                        key={idx}
-                        ref={ref}
-                        className="custom-bullets mb-2 text-gray-700 dark:text-gray-200"
-                        style={{ fontFamily: 'var(--font-manrope)' }}
-                        variants={bulletListVariants}
-                        initial="hidden"
-                        animate={inView ? "visible" : "hidden"}
-                      >
-                        {item.map((bullet: string, bidx: number) => (
-                          <motion.li key={bidx} variants={bulletItemVariants}>{bullet}</motion.li>
-                        ))}
-                      </motion.ul>
+                      <AnimatedBulletList key={idx} items={item} />
                     );
                   } else {
                     return null;
@@ -355,7 +367,7 @@ const InfoSnippet: React.FC<InfoSnippetProps> = ({ snippet }) => {
             );
           } else if (typeof normalizedBody === 'string') {
             return (
-              <p className="mb-2 text-gray-700 dark:text-gray-200" style={{ fontFamily: 'var(--font-manrope)' }}>
+              <p className="mb-2 text-gray-700 dark:text-gray-200 font-sans">
                 {normalizedBody}
               </p>
             );
@@ -364,7 +376,7 @@ const InfoSnippet: React.FC<InfoSnippetProps> = ({ snippet }) => {
           }
         })()
       ) : snippet.body ? (
-        <p className="mb-2 text-gray-700 dark:text-gray-200" style={{ fontFamily: 'var(--font-manrope)' }}>
+        <p className="mb-2 text-gray-700 dark:text-gray-200 font-sans">
           {snippet.body.split('\n').map((line, idx) => (
             <React.Fragment key={idx}>
               {line}
@@ -377,7 +389,7 @@ const InfoSnippet: React.FC<InfoSnippetProps> = ({ snippet }) => {
   );
   let canvasSection = (snippet.visuals && snippet.visuals.length > 0) ? (
     <div
-      className={`canvas flex items-center justify-center h-full ${isDev ? 'bg-gray-100' : ''} ${stackedState ? 'col-span-12 w-full' : `col-span-1 md:col-span-${Math.min(visualCols,6)} md:w-full ${canvasGridClass}`}`}
+      className={`canvas flex items-center justify-center h-full ${isDev ? 'bg-gray-100/50' : ''} modern-border-radius-lg ${stackedState ? 'col-span-12 w-full' : `col-span-1 md:col-span-${Math.min(visualCols,6)} md:w-full ${canvasGridClass}`}`}
       style={{ transition: 'background 0.2s', position: 'relative' }}
     >
       <div
@@ -471,7 +483,17 @@ const InfoSnippet: React.FC<InfoSnippetProps> = ({ snippet }) => {
   }
 
   return (
-    <div className="w-full">
+    <motion.div
+      ref={ref}
+      initial={{ opacity: 0, y: 40 }}
+      animate={inView ? { opacity: 1, y: 0 } : { opacity: 0, y: 40 }}
+      transition={{ 
+        duration: 0.8, 
+        ease: [0.25, 0.46, 0.45, 0.94],
+        delay: 0.2
+      }}
+      className="w-full"
+    >
       <div
         className="grid grid-cols-1 md:grid-cols-6 lg:grid-cols-12 gap-6 my-8 items-start w-full"
         style={{ height: '100%' }}
@@ -480,13 +502,13 @@ const InfoSnippet: React.FC<InfoSnippetProps> = ({ snippet }) => {
       </div>
       {/* Docker bar absolutely positioned bottom-right of InfoSnippet */}
       <div className="absolute bottom-4 right-4 z-50">
-        <div className="hidden md:flex items-center gap-4 px-1 py-1 rounded-3xl shadow-2xl backdrop-blur-xl bg-white/40 dark:bg-black/30 border border-black/10 dark:border-white/10 flex-wrap transition-all duration-300 ease-in-out overflow-hidden w-fit">
+        <div className="hidden md:flex items-center gap-4 px-3 py-2 modern-border-radius-xl modern-shadow-xl glass-effect flex-wrap transition-all duration-300 ease-in-out overflow-hidden w-fit">
           {showDockerControls && (
             <>
               <Tooltip label={pointerMode ? 'Disable pointer positioner' : 'Enable pointer positioner'}>
                 <button
                   onClick={() => setPointerMode((v) => !v)}
-                  className={`w-10 h-10 p-0 rounded-full border text-sm font-bold transition-colors duration-200 flex items-center justify-center text-gray-700 dark:text-gray-200 ${pointerMode ? 'bg-blue-600 text-white border-blue-600' : 'bg-white dark:bg-neutral-800 border-gray-300 dark:border-gray-700 hover:bg-blue-100 dark:hover:bg-neutral-800'}`}
+                  className={`w-10 h-10 p-0 modern-border-radius border text-sm font-bold transition-all duration-300 flex items-center justify-center text-gray-700 dark:text-gray-200 ${pointerMode ? 'bg-accent text-white border-accent modern-shadow-md' : 'glass-effect border-gray-300 dark:border-gray-600 hover:scale-105 hover:modern-shadow'}`}
                   aria-label={pointerMode ? 'Disable pointer positioner' : 'Enable pointer positioner'}
                 >
                   <PointerIcon width={20} height={20} />
@@ -495,7 +517,7 @@ const InfoSnippet: React.FC<InfoSnippetProps> = ({ snippet }) => {
               <Tooltip label="Cycle text vertical alignment">
                 <button
                   onClick={() => setTextAlign(a => a === 'top' ? 'middle' : a === 'middle' ? 'bottom' : 'top')}
-                  className={`w-10 h-10 p-0 rounded-full border text-sm font-bold transition-colors duration-200 flex items-center justify-center text-gray-700 dark:text-gray-200 bg-white dark:bg-neutral-800 border-gray-300 dark:border-gray-700 ${stackedState ? 'opacity-50 pointer-events-none' : 'hover:bg-gray-200 dark:hover:bg-neutral-800'}`}
+                  className={`w-10 h-10 p-0 modern-border-radius border text-sm font-bold transition-all duration-300 flex items-center justify-center text-gray-700 dark:text-gray-200 glass-effect border-gray-300 dark:border-gray-600 ${stackedState ? 'opacity-50 pointer-events-none' : 'hover:scale-105 hover:modern-shadow'}`}
                   aria-label="Cycle text vertical alignment"
                   disabled={stackedState}
                 >
@@ -507,7 +529,7 @@ const InfoSnippet: React.FC<InfoSnippetProps> = ({ snippet }) => {
               <Tooltip label={canvasLeftState ? 'Canvas on left' : 'Canvas on right'}>
                 <button
                   onClick={() => setCanvasLeft((v) => !v)}
-                  className={`w-10 h-10 p-0 rounded-full border text-sm font-bold transition-colors duration-200 flex items-center justify-center text-gray-700 dark:text-gray-200 ${canvasLeftState ? 'bg-green-600 text-white border-green-600' : 'bg-white dark:bg-neutral-800 border-gray-300 dark:border-gray-700 hover:bg-green-100 dark:hover:bg-neutral-800'}`}
+                  className={`w-10 h-10 p-0 modern-border-radius border text-sm font-bold transition-all duration-300 flex items-center justify-center text-gray-700 dark:text-gray-200 ${canvasLeftState ? 'bg-accent text-white border-accent modern-shadow-md' : 'glass-effect border-gray-300 dark:border-gray-600 hover:scale-105 hover:modern-shadow'}`}
                   aria-label={canvasLeftState ? 'Canvas on left' : 'Canvas on right'}
                 >
                   {canvasLeftState ? <CanvasLeftIcon width={20} height={20} /> : <CanvasRightIcon width={20} height={20} />}
@@ -516,7 +538,7 @@ const InfoSnippet: React.FC<InfoSnippetProps> = ({ snippet }) => {
               <Tooltip label={stackedState ? 'Stacked layout' : 'Side-by-side layout'}>
                 <button
                   onClick={() => setStacked((v) => !v)}
-                  className={`w-10 h-10 p-0 rounded-full border text-sm font-bold transition-colors duration-200 flex items-center justify-center text-gray-700 dark:text-gray-200 ${stackedState ? 'bg-purple-600 text-white border-purple-600' : 'bg-white dark:bg-neutral-800 border-gray-300 dark:border-gray-700 hover:bg-purple-100 dark:hover:bg-neutral-800'}`}
+                  className={`w-10 h-10 p-0 modern-border-radius border text-sm font-bold transition-all duration-300 flex items-center justify-center text-gray-700 dark:text-gray-200 ${stackedState ? 'bg-accent text-white border-accent modern-shadow-md' : 'glass-effect border-gray-300 dark:border-gray-600 hover:scale-105 hover:modern-shadow'}`}
                   aria-label={stackedState ? 'Stacked layout' : 'Side-by-side layout'}
                 >
                   {stackedState ? <StackedIcon width={20} height={20} /> : <SideBySideIcon width={20} height={20} />}
@@ -525,7 +547,7 @@ const InfoSnippet: React.FC<InfoSnippetProps> = ({ snippet }) => {
               <Tooltip label="Cycle canvas columns">
                 <button
                   onClick={() => setCanvasCols(CANVAS_COL_OPTIONS[(CANVAS_COL_OPTIONS.indexOf(canvasCols) + 1) % CANVAS_COL_OPTIONS.length])}
-                  className={`h-10 px-3 rounded-full border text-sm font-bold transition-colors duration-200 flex items-center justify-center text-gray-700 dark:text-gray-200 bg-white dark:bg-neutral-800 border-gray-300 dark:border-gray-700 hover:bg-gray-200 dark:hover:bg-neutral-800`}
+                  className={`h-10 px-3 modern-border-radius border text-sm font-bold transition-all duration-300 flex items-center justify-center text-gray-700 dark:text-gray-200 glass-effect border-gray-300 dark:border-gray-600 hover:scale-105 hover:modern-shadow`}
                   aria-label="Cycle canvas columns"
                 >
                   <CanvasWidthIcon width={20} height={20} className="mr-2" />
@@ -537,7 +559,7 @@ const InfoSnippet: React.FC<InfoSnippetProps> = ({ snippet }) => {
           <Tooltip label={showDockerControls ? 'Hide controls' : 'Show controls'}>
             <button
               onClick={() => setShowDockerControls((v) => !v)}
-              className="w-10 h-10 p-0 rounded-full border text-sm font-bold transition-colors duration-200 flex items-center justify-center text-gray-700 dark:text-gray-200 bg-white dark:bg-neutral-800 border-gray-300 dark:border-gray-700 hover:bg-gray-200 dark:hover:bg-neutral-800"
+              className="w-10 h-10 p-0 modern-border-radius border text-sm font-bold transition-all duration-300 flex items-center justify-center text-gray-700 dark:text-gray-200 glass-effect border-gray-300 dark:border-gray-600 hover:scale-105 hover:modern-shadow"
               aria-label={showDockerControls ? 'Hide controls' : 'Show controls'}
             >
               <LayoutIcon width={20} height={20} />
@@ -545,7 +567,7 @@ const InfoSnippet: React.FC<InfoSnippetProps> = ({ snippet }) => {
           </Tooltip>
         </div>
       </div>
-    </div>
+    </motion.div>
   );
 };
 
@@ -577,14 +599,8 @@ function AnimatedAccentLine() {
       initial={{ scaleX: 0 }}
       animate={{ scaleX: inView ? 1 : 0 }}
       transition={{ duration: 0.7, ease: 'easeOut' }}
-      style={{
-        transformOrigin: 'left',
-        height: 2, // thinner line
-        width: '100%',
-        background: 'var(--accent-color)',
-        borderRadius: 2,
-        marginTop: 4,
-      }}
+      className="w-full h-0.5 bg-accent modern-border-radius mt-2 mb-4"
+      style={{ transformOrigin: 'left' }}
     />
   );
 }

@@ -61,6 +61,22 @@ This document lists all custom and notable animations and transitions used in th
 - **Key Details:**
   - Uses `lottie-react` for playback
   - Animation data loaded from external JSON
+  - Viewport-triggered playback (starts when 30% visible)
+  - Configurable loop property from content.ts
+
+---
+
+## 6. InfoSnippet Container Fade-In Animation
+- **Description:** Each InfoSnippet container fades in and slides up when it comes into view, creating a progressive reveal effect as users scroll.
+- **Where Used:** All InfoSnippet components
+- **Code File:** `components/InfoSnippet.tsx` (main InfoSnippet component)
+- **Key Details:**
+  - Triggered by IntersectionObserver when 15% of container enters viewport
+  - Initial state: `opacity: 0, y: 40` (invisible and 40px below)
+  - Final state: `opacity: 1, y: 0` (fully visible and in position)
+  - Duration: 0.8s with custom cubic-bezier easing `[0.25, 0.46, 0.45, 0.94]`
+  - Delay: 0.2s before animation starts
+  - One-time trigger (animates only once per component)
 
 ---
 
