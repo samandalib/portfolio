@@ -71,15 +71,13 @@ function renderVisual({
       // DISABLED: Aspect ratio wrapper - using simple iframe
       return (
         <div className="mb-4">
-          <iframe
-            src={asset.src}
-            title={asset.caption || asset.alt || "Jumpshare embed"}
-            className={`w-full h-96 ${radiusClassMap[asset.radius || 'modern-border-radius']} modern-shadow`}
-            frameBorder="0"
-            webkitallowfullscreen="true"
-            mozallowfullscreen="true"
-            allowFullScreen
-          />
+                      <iframe
+              src={asset.src}
+              title={asset.caption || asset.alt || "Jumpshare embed"}
+              className={`w-full h-96 ${radiusClassMap[asset.radius || 'modern-border-radius']} modern-shadow`}
+              frameBorder="0"
+              allowFullScreen
+            />
           {asset.caption && <div className="text-xs text-gray-500 mt-1">{asset.caption}</div>}
         </div>
       );
