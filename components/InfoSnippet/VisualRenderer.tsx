@@ -66,6 +66,26 @@ function renderVisual({
   }
   
   if (asset.type === "embed") {
+    // Special handling for Jumpshare embeds
+    if (asset.src.includes("jumpshare.com")) {
+      // DISABLED: Aspect ratio wrapper - using simple iframe
+      return (
+        <div className="mb-4">
+          <iframe
+            src={asset.src}
+            title={asset.caption || asset.alt || "Jumpshare embed"}
+            className={`w-full h-96 ${radiusClassMap[asset.radius || 'modern-border-radius']} modern-shadow`}
+            frameBorder="0"
+            webkitallowfullscreen="true"
+            mozallowfullscreen="true"
+            allowFullScreen
+          />
+          {asset.caption && <div className="text-xs text-gray-500 mt-1">{asset.caption}</div>}
+        </div>
+      );
+    }
+    
+    // Default embed handling
     return (
       <div className="mb-4">
         <iframe
@@ -97,6 +117,10 @@ function renderVisual({
     if (ComponentName === "DesignSystemSpecs") {
       const DesignSystemSpecs = require("../DesignSystemSpecs").default;
       return <DesignSystemSpecs {...asset.componentProps} />;
+    }
+    if (ComponentName === "ResearchSynthesis") {
+      const ResearchSynthesis = require("../ResearchSynthesis").default;
+      return <ResearchSynthesis {...asset.componentProps} />;
     }
     return <div className="text-gray-500">Component {asset.componentName} not found</div>;
   }

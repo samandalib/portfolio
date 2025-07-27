@@ -1,7 +1,7 @@
 import type { ProjectSliderCard } from "../../public/assets/landing/project-slider-cards";
 
 export interface ProjectSliderProps {
-  onCardClick?: (idx: number) => void;
+  // onCardClick prop removed - ProjectSlider now only navigates to dedicated pages
 }
 
 export interface ProjectCardProps {

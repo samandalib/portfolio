@@ -38,6 +38,51 @@
 - **Navigation**: Project cards in the `ProjectSlider` now navigate to dedicated case study pages instead of revealing sections on the landing page
 - **Layout Consistency**: Case study pages maintain the same structure as the landing page (AccentDock, ProjectDetailsDisplay, InfoSnippets) for consistent user experience
 
+## Content Separation Pattern
+
+### Overview
+Complex components support content separation through dedicated content files to improve maintainability and reusability.
+
+### ResearchSynthesis Component
+- **Content File**: `public/assets/case studies/[project]/ResearchContent.ts`
+- **Purpose**: Separates research data from component layout
+- **Benefits**: 
+  - Single responsibility principle
+  - Content reusability across projects
+  - Easier content management and updates
+  - Independent testing of content and layout
+
+### Implementation Pattern
+```typescript
+// 1. Create content file
+// public/assets/case studies/project1/ResearchContent.ts
+import { ResearchSynthesisProps } from '../../../../components/ResearchSynthesis/ResearchSynthesis';
+
+export const researchContent: ResearchSynthesisProps = {
+  title: "Research Title",
+  subtitle: "Research Subtitle",
+  // ... other props
+};
+
+// 2. Import in main content file
+// public/assets/case studies/project1/content.ts
+import { researchContent } from './ResearchContent';
+
+// 3. Use in component
+{
+  type: "component",
+  componentName: "ResearchSynthesis",
+  componentProps: researchContent
+}
+```
+
+### Future Components
+This pattern can be extended to other complex components that benefit from content separation:
+- Design system specifications
+- Process flows
+- Data visualizations
+- Interactive prototypes
+
 ## Global Font Usage
 
 - **Only two fonts are used sitewide:**

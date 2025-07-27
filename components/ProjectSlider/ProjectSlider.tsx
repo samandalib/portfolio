@@ -11,7 +11,7 @@ import type { ProjectSliderProps } from './types';
 
 const projects = projectSliderCards.sort((a, b) => a.id - b.id);
 
-const ProjectSlider: React.FC<ProjectSliderProps> = ({ onCardClick }) => {
+const ProjectSlider: React.FC<ProjectSliderProps> = () => {
   const { currentIndex, nextProject, prevProject, goToProject } = useProjectNavigation(projects.length, 1);
   const { handleTouchStart, handleTouchMove, handleTouchEnd } = useTouchGestures(nextProject, prevProject);
   const router = useRouter();
@@ -29,7 +29,6 @@ const ProjectSlider: React.FC<ProjectSliderProps> = ({ onCardClick }) => {
           currentIndex={currentIndex}
           onCardClick={(index) => {
             goToProject(index);
-            if (onCardClick) onCardClick(projects[index].caseStudyIndex);
             // Navigate to the project page using the slug
             const slug = projects[index].slug;
             if (slug) router.push(`/case-study/${slug}`);

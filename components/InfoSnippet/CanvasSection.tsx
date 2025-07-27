@@ -22,8 +22,6 @@ const CanvasSection: React.FC<InfoSnippetCanvasSectionProps> = ({
   const isDev = typeof process !== 'undefined' && process.env.NODE_ENV === 'development';
   const canvasRef = useRef<HTMLDivElement>(null);
 
-  if (!snippet.visuals || snippet.visuals.length === 0) return null;
-
   // Use passive event listeners to avoid scroll interference
   useEffect(() => {
     const canvasElement = canvasRef.current;
@@ -50,6 +48,9 @@ const CanvasSection: React.FC<InfoSnippetCanvasSectionProps> = ({
       canvasElement.removeEventListener('mouseleave', handleMouseLeave);
     };
   }, [pointerMode, onPointerMove, onPointerLeave]);
+
+  // Check for visuals after all hooks
+  if (!snippet.visuals || snippet.visuals.length === 0) return null;
 
   return (
     <div

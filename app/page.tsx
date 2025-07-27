@@ -3,16 +3,7 @@ import Image from "next/image";
 import ProjectSlider from "../components/ProjectSlider";
 // @ts-ignore: If type declaration is missing, ignore for now
 import { landingContent } from "../content/landing/landing-content";
-import InfoSnippet from "../components/InfoSnippet";
-import type { InfoSnippet as InfoSnippetType } from "../public/assets/case studies/project1/content";
-import React, { useState, useRef } from "react";
-import ProjectDetailsDisplay from "../components/ProjectDetailsDisplay";
-
-// Import additional case studies here as needed
-const caseStudies = [
-  require("../public/assets/case studies/project1/content").default,
-  // Add more case studies here
-];
+import React from "react";
 
 export default function Home() {
   // Ensure the accent circle is always a perfect circle
@@ -20,9 +11,6 @@ export default function Home() {
     landingContent.profileImage.width,
     landingContent.profileImage.height
   );
-
-  const [activeCaseStudyIndex, setActiveCaseStudyIndex] = useState<number | null>(null);
-  const infoSectionRef = useRef<HTMLDivElement | null>(null);
 
   return (
     <main className="main-content flex flex-col min-h-screen px-8 py-16">
@@ -72,36 +60,11 @@ export default function Home() {
           {/* Right Column - Project Slider */}
           <div className="flex items-center justify-center">
             {landingContent.projectSlider && (
-              <ProjectSlider
-                onCardClick={(idx: number) => {
-                  setActiveCaseStudyIndex((prev) => (prev === idx ? null : idx));
-                  setTimeout(() => {
-                    if (infoSectionRef.current && idx !== null) {
-                      infoSectionRef.current.scrollIntoView({ behavior: 'smooth', block: 'start' });
-                    }
-                  }, 0);
-                }}
-              />
+              <ProjectSlider />
             )}
           </div>
         </div>
       </section>
-      {activeCaseStudyIndex !== null && (
-        <section ref={infoSectionRef} className="w-full max-w-7xl mx-auto mt-32 px-6 lg:px-8">
-          <ProjectDetailsDisplay 
-            projectHeading={caseStudies[activeCaseStudyIndex].projectHeading}
-            projectSubheading={caseStudies[activeCaseStudyIndex].projectSubheading}
-            domain={caseStudies[activeCaseStudyIndex].domain}
-            details={caseStudies[activeCaseStudyIndex].details}
-            skills={caseStudies[activeCaseStudyIndex].skills}
-          />
-          {caseStudies[activeCaseStudyIndex].infoSnippets.map((snippet: InfoSnippetType, idx: number) => (
-            <div key={idx} className="relative mb-32 last:mb-20">
-              <InfoSnippet snippet={snippet} />
-            </div>
-          ))}
-        </section>
-      )}
     </main>
   );
 }
