@@ -37,7 +37,7 @@ export const landingContent = {
     */
     {
       name: "Medium",
-      icon: "social/medium.svg",
+      icon: "social/Medium.svg",
       url: "https://medium.com/@hesam-andalib"
     }
   ],
