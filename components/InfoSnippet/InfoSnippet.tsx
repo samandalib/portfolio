@@ -235,27 +235,27 @@ const InfoSnippet: React.FC<InfoSnippetProps> = ({ snippet }) => {
       className="w-full relative"
     >
       <div
-        className="grid grid-cols-1 md:grid-cols-6 lg:grid-cols-12 gap-6 my-8 items-start w-full"
+        className="grid grid-cols-1 md:grid-cols-6 lg:grid-cols-12 gap-6 my-8 items-start w-full relative"
         style={{ height: '100%' }}
       >
         {children}
+        
+        <DockerControls
+          snippet={snippet}
+          showDockerControls={showDockerControls}
+          pointerMode={pointerMode}
+          textAlign={textAlign}
+          canvasLeftState={canvasLeftState}
+          stackedState={stackedState}
+          canvasCols={canvasCols}
+          onToggleDockerControls={() => setShowDockerControls((v: boolean) => !v)}
+          onTogglePointerMode={() => setPointerMode((v: boolean) => !v)}
+          onCycleTextAlign={() => setTextAlign((a: string) => a === 'top' ? 'middle' : a === 'middle' ? 'bottom' : 'top')}
+          onToggleCanvasLeft={() => setCanvasLeft((v: boolean) => !v)}
+          onToggleStacked={() => setStacked((v: boolean) => !v)}
+          onCycleCanvasCols={() => setCanvasCols(CANVAS_COL_OPTIONS[(CANVAS_COL_OPTIONS.indexOf(canvasCols) + 1) % CANVAS_COL_OPTIONS.length])}
+        />
       </div>
-      
-      <DockerControls
-        snippet={snippet}
-        showDockerControls={showDockerControls}
-        pointerMode={pointerMode}
-        textAlign={textAlign}
-        canvasLeftState={canvasLeftState}
-        stackedState={stackedState}
-        canvasCols={canvasCols}
-        onToggleDockerControls={() => setShowDockerControls((v: boolean) => !v)}
-        onTogglePointerMode={() => setPointerMode((v: boolean) => !v)}
-        onCycleTextAlign={() => setTextAlign((a: string) => a === 'top' ? 'middle' : a === 'middle' ? 'bottom' : 'top')}
-        onToggleCanvasLeft={() => setCanvasLeft((v: boolean) => !v)}
-        onToggleStacked={() => setStacked((v: boolean) => !v)}
-        onCycleCanvasCols={() => setCanvasCols(CANVAS_COL_OPTIONS[(CANVAS_COL_OPTIONS.indexOf(canvasCols) + 1) % CANVAS_COL_OPTIONS.length])}
-      />
     </motion.div>
   );
 };
