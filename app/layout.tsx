@@ -45,7 +45,7 @@ export default function RootLayout({ children }: { children: React.ReactNode }) 
                   href={icon.url}
                   target="_blank"
                   rel="noopener noreferrer"
-                  className="w-10 h-10 flex items-center justify-center text-gray-400 hover:text-accent transition-all duration-300 hover:scale-110 modern-border-radius glass-effect social-icon-container"
+                  className="w-10 h-10 flex items-center justify-center text-gray-400 hover:text-accent transition-all duration-300 hover:scale-110 modern-border-radius social-icon-container"
                   aria-label={icon.name}
                 >
                   {icon.icon.endsWith('.svg') ? (
