@@ -1,3 +1,5 @@
+"use client";
+
 import React, { MouseEvent } from "react";
 import { motion } from "framer-motion";
 import { useInViewOnce, useInfoSnippetState } from './hooks';
@@ -35,7 +37,7 @@ const InfoSnippet: React.FC<InfoSnippetProps> = ({ snippet }) => {
     isPlaying,
     setIsPlaying,
   } = useInfoSnippetState(layout);
-  
+
   // Viewport detection for fade-in animation
   const [ref, inView] = useInViewOnce<HTMLDivElement>(0.15);
 
@@ -230,7 +232,7 @@ const InfoSnippet: React.FC<InfoSnippetProps> = ({ snippet }) => {
         ease: [0.25, 0.46, 0.45, 0.94],
         delay: 0.2
       }}
-      className="w-full"
+      className="w-full relative"
     >
       <div
         className="grid grid-cols-1 md:grid-cols-6 lg:grid-cols-12 gap-6 my-8 items-start w-full"

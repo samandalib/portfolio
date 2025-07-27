@@ -1,3 +1,5 @@
+"use client";
+
 import React, { useState, ReactNode, useRef, useEffect } from "react";
 import { createPortal } from "react-dom";
 

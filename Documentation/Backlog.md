@@ -1,5 +1,35 @@
 # Backlog
 
+## ✅ COMPLETED: Case Study Routing Implementation
+
+### Problem
+- Case studies were previously displayed as sections on the landing page, limiting SEO and user experience
+- No dedicated URLs for individual case studies
+- Landing page became cluttered with case study content
+
+### Solution Implemented
+- **Dynamic Routes**: Created `/case-study/[slug]` dynamic routing structure
+- **Client Components**: Case study pages use `"use client"` directive for proper event handling
+- **Content Loading**: Content loads from TypeScript files with proper Promise handling using `React.use()`
+- **Navigation**: ProjectSlider cards now navigate to dedicated pages instead of revealing sections
+- **Layout Consistency**: Case study pages maintain same structure as landing page (AccentDock, ProjectDetailsDisplay, InfoSnippets)
+- **Scroll Lock Fix**: Resolved scroll lock issue by matching landing page CSS structure and removing problematic `pointer-events-auto` class
+
+### Files Modified
+- `app/case-study/[slug]/page.tsx` (new file)
+- `components/ProjectSlider/ProjectSlider.tsx` (navigation logic)
+- `public/assets/landing/project-slider-cards.ts` (added slug property)
+- Various component files with `"use client"` directives
+
+### Result
+- ✅ Individual case study URLs (e.g., `/case-study/project1`)
+- ✅ Better SEO with dedicated pages
+- ✅ Improved user experience with proper navigation
+- ✅ Consistent layout and functionality across pages
+- ✅ No scroll lock issues
+
+---
+
 ## Issue: InfoSnippet Body Array Flattening (Mixed Content)
 
 ### Problem

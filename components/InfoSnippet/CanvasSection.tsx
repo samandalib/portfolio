@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useRef, useEffect } from 'react';
 import renderVisual from './VisualRenderer';
 import type { InfoSnippetCanvasSectionProps } from './types';
 
@@ -20,8 +20,36 @@ const CanvasSection: React.FC<InfoSnippetCanvasSectionProps> = ({
   onAnimationStateChange,
 }) => {
   const isDev = typeof process !== 'undefined' && process.env.NODE_ENV === 'development';
+  const canvasRef = useRef<HTMLDivElement>(null);
 
   if (!snippet.visuals || snippet.visuals.length === 0) return null;
+
+  // Use passive event listeners to avoid scroll interference
+  useEffect(() => {
+    const canvasElement = canvasRef.current;
+    if (!canvasElement || !pointerMode) return;
+
+    const handleMouseMove = (e: MouseEvent) => {
+      if (onPointerMove) {
+        onPointerMove(e as any);
+      }
+    };
+
+    const handleMouseLeave = () => {
+      if (onPointerLeave) {
+        onPointerLeave();
+      }
+    };
+
+    // Add passive event listeners
+    canvasElement.addEventListener('mousemove', handleMouseMove, { passive: true });
+    canvasElement.addEventListener('mouseleave', handleMouseLeave, { passive: true });
+
+    return () => {
+      canvasElement.removeEventListener('mousemove', handleMouseMove);
+      canvasElement.removeEventListener('mouseleave', handleMouseLeave);
+    };
+  }, [pointerMode, onPointerMove, onPointerLeave]);
 
   return (
     <div
@@ -29,10 +57,9 @@ const CanvasSection: React.FC<InfoSnippetCanvasSectionProps> = ({
       style={{ transition: 'background 0.2s', position: 'relative' }}
     >
       <div
+        ref={canvasRef}
         className="w-full aspect-w-16 aspect-h-9 relative"
         style={{ position: 'relative' }}
-        onMouseMove={pointerMode ? onPointerMove : undefined}
-        onMouseLeave={pointerMode ? onPointerLeave : undefined}
       >
         <div
           className="h-full w-full"
@@ -69,6 +96,7 @@ const CanvasSection: React.FC<InfoSnippetCanvasSectionProps> = ({
                 height: '100%',
                 background: 'rgba(0,0,0,0.3)',
                 zIndex: 10,
+                pointerEvents: 'none', // Ensure crosshairs don't interfere with events
               }}
             />
             {/* Horizontal line */}
@@ -81,6 +109,7 @@ const CanvasSection: React.FC<InfoSnippetCanvasSectionProps> = ({
                 width: '100%',
                 background: 'rgba(0,0,0,0.3)',
                 zIndex: 10,
+                pointerEvents: 'none', // Ensure crosshairs don't interfere with events
               }}
             />
             {/* Pointer marker and coordinates */}

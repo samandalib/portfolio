@@ -8,7 +8,7 @@
     - `work/` (case studies grid)
     - `about/` (bio, experience, links)
     - `contact/` (email/social links)
-    - `case-study/` (individual case study pages)
+    - `case-study/[slug]/` (dynamic routing for individual case study pages)
 - **components/**
   - For reusable UI components (currently empty)
 - **content/**
@@ -29,6 +29,14 @@
 
 ## Next.js App Directory
 - Using the new app directory structure (Next.js 13+)
+
+## Case Study Routing
+
+- **Dynamic Routes**: Individual case studies are now served via dynamic routes at `/case-study/[slug]`
+- **Client Components**: Case study pages are Client Components (`"use client"`) to ensure proper event handling and state management
+- **Content Loading**: Case studies load content from TypeScript files in `public/assets/case studies/[project]/content.ts`
+- **Navigation**: Project cards in the `ProjectSlider` now navigate to dedicated case study pages instead of revealing sections on the landing page
+- **Layout Consistency**: Case study pages maintain the same structure as the landing page (AccentDock, ProjectDetailsDisplay, InfoSnippets) for consistent user experience
 
 ## Global Font Usage
 

@@ -8,6 +8,7 @@ export interface ProjectSliderCard {
   tags: string[];
   color: string;
   caseStudyIndex: number; // Index of the case study to show when clicked
+  slug: string; // Add this line
 }
 
 export const projectSliderCards: ProjectSliderCard[] = [
@@ -18,7 +19,8 @@ export const projectSliderCards: ProjectSliderCard[] = [
     image: "https://res.cloudinary.com/dehugbvmc/image/upload/v1753549363/3-devicesweb_kumypv.png",
     tags: ["UI/UX", "Health & Wellness", "Mobile"],
     color: "from-purple-500 to-pink-500",
-    caseStudyIndex: 0 // Shows the first case study (Road265)
+    caseStudyIndex: 0, // Shows the first case study (Road265)
+    slug: 'project1',
   },
   {
     id: 3,
@@ -27,7 +29,8 @@ export const projectSliderCards: ProjectSliderCard[] = [
     image: "https://res.cloudinary.com/dehugbvmc/image/upload/v1753547999/AccSlider_sq_web_ucxz4r.png",
     tags: ["Healthcare", "Mobile", "Accessibility"],
     color: "from-blue-500 to-cyan-500",
-    caseStudyIndex: 1 // Shows the second case study (when you add it)
+    caseStudyIndex: 1, // Shows the second case study (when you add it)
+    slug: 'project2',
   },
   {
     id: 1,
@@ -36,7 +39,8 @@ export const projectSliderCards: ProjectSliderCard[] = [
     image: "https://res.cloudinary.com/dehugbvmc/image/upload/v1753550454/vo2max4web_te6hai.png",
     tags: ["Fintech", "Dashboard", "Data Viz"],
     color: "from-green-500 to-emerald-500",
-    caseStudyIndex: 2 // Shows the third case study (when you add it)
+    caseStudyIndex: 2, // Shows the third case study (when you add it)
+    slug: 'project3',
   },
   {
     id: 4,
@@ -45,6 +49,7 @@ export const projectSliderCards: ProjectSliderCard[] = [
     image: "https://res.cloudinary.com/dehugbvmc/image/upload/v1753545980/VR_xdnx4d.png",
     tags: ["Social", "Community", "Mobile"],
     color: "from-orange-500 to-red-500",
-    caseStudyIndex: 3 // Shows the fourth case study (when you add it)
+    caseStudyIndex: 3, // Shows the fourth case study (when you add it)
+    slug: 'project4',
   }
 ]; 

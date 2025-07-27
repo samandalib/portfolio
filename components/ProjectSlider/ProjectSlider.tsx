@@ -1,6 +1,7 @@
 "use client";
 
 import React from 'react';
+import { useRouter } from 'next/navigation';
 import { projectSliderCards } from "../../public/assets/landing/project-slider-cards";
 import { useProjectNavigation } from './hooks/useProjectNavigation';
 import { useTouchGestures } from './hooks/useTouchGestures';
@@ -13,6 +14,7 @@ const projects = projectSliderCards.sort((a, b) => a.id - b.id);
 const ProjectSlider: React.FC<ProjectSliderProps> = ({ onCardClick }) => {
   const { currentIndex, nextProject, prevProject, goToProject } = useProjectNavigation(projects.length, 1);
   const { handleTouchStart, handleTouchMove, handleTouchEnd } = useTouchGestures(nextProject, prevProject);
+  const router = useRouter();
 
   return (
     <div className="w-full max-w-5xl mx-auto relative">
@@ -28,6 +30,9 @@ const ProjectSlider: React.FC<ProjectSliderProps> = ({ onCardClick }) => {
           onCardClick={(index) => {
             goToProject(index);
             if (onCardClick) onCardClick(projects[index].caseStudyIndex);
+            // Navigate to the project page using the slug
+            const slug = projects[index].slug;
+            if (slug) router.push(`/case-study/${slug}`);
           }}
         />
       </div>
