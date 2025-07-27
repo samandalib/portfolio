@@ -6,9 +6,9 @@ export const GlobalSettings = {
   accentColors: [
     '#16A34A', // green
     '#F59E42', // orange
-    //'#3B82F6', // blue
+    '#3B82F6', // blue
     '#E11D48', // pink/red
-    //'#A21CAF', // purple
+    '#A21CAF', // purple
   ],
   defaultAccentColor: '#16A34A', // green
   themeColors: {

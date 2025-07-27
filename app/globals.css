@@ -209,3 +209,43 @@ To override for a specific card, set the variables inline or in a custom class.
 
 To apply the accent color to SVGs or non-text elements, use the 'accent-fill' class.
 */
+
+/* Social Icons Hover Effects */
+.social-icon {
+  filter: invert(0.8) brightness(0.5) saturate(0) !important;
+  transition: filter 0.3s ease !important;
+  opacity: 0.5 !important;
+}
+
+.social-icon:hover {
+  filter: invert(0.4) brightness(0.3) saturate(0) !important;
+  opacity: 0.9 !important;
+}
+
+/* Target the SVG elements directly */
+.social-icon svg {
+  filter: invert(0.8) brightness(0.5) saturate(0) !important;
+  transition: filter 0.3s ease !important;
+  opacity: 0.5 !important;
+}
+
+.social-icon:hover svg {
+  filter: invert(0.4) brightness(0.3) saturate(0) !important;
+  opacity: 0.9 !important;
+}
+
+/* Container hover effects */
+.social-icon-container:hover .social-icon {
+  filter: invert(0.4) brightness(0.3) saturate(0) !important;
+  opacity: 0.9 !important;
+}
+
+/* Direct SVG path color override */
+.social-icon path {
+  fill: #9ca3af !important; /* gray-400 */
+  transition: fill 0.3s ease !important;
+}
+
+.social-icon-container:hover .social-icon path {
+  fill: #374151 !important; /* gray-700 */
+}

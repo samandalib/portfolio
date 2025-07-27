@@ -1,41 +1,12 @@
 "use client";
 import Image from "next/image";
-import styles from "./page.module.css";
 import ProjectSlider from "../components/ProjectSlider";
 // @ts-ignore: If type declaration is missing, ignore for now
 import { landingContent } from "../content/landing/landing-content";
 import InfoSnippet from "../components/InfoSnippet";
-import type { InfoSnippet as InfoSnippetType, CaseStudyContent } from "../public/assets/case studies/project1/content";
-import caseStudy from "../public/assets/case studies/project1/content";
+import type { InfoSnippet as InfoSnippetType } from "../public/assets/case studies/project1/content";
 import React, { useState, useRef } from "react";
-import CanvasLeftIcon from "../components/icons/CanvasLeftIcon";
-import CanvasRightIcon from "../components/icons/CanvasRightIcon";
-import StackedIcon from "../components/icons/StackedIcon";
-import SideBySideIcon from "../components/icons/SideBySideIcon";
-import PointerIcon from "../components/icons/PointerIcon";
-import CanvasWidthIcon from "../components/icons/CanvasWidthIcon";
-import LayoutIcon from "../components/icons/LayoutIcon";
-import TextTopIcon from "../components/icons/TextTopIcon";
-import TextMiddleIcon from "../components/icons/TextMiddleIcon";
-import TextBottomIcon from "../components/icons/TextBottomIcon";
 import ProjectDetailsDisplay from "../components/ProjectDetailsDisplay";
-
-const CANVAS_COL_OPTIONS = [4, 6, 8, 9];
-
-const baseSnippet: InfoSnippetType = {
-  heading: "Canvas Visual Example",
-  subheading: "This is a placeholder visual asset.",
-  body: "The canvas area below shows a fixed 16:9 ratio with a placeholder image. In development, the canvas background is light gray.",
-  visuals: [
-    {
-      type: "image",
-      src: "https://res.cloudinary.com/dehugbvmc/image/upload/v1753379562/placeholder_ios7om.png",
-      alt: "Canvas placeholder",
-      caption: "Cloudinary-hosted placeholder image"
-    }
-  ],
-  layout: { textColumns: 4, visualColumns: 8 }
-};
 
 // Import additional case studies here as needed
 const caseStudies = [
@@ -50,20 +21,8 @@ export default function Home() {
     landingContent.profileImage.height
   );
 
-  // Docker state for canvas columns
-  const [canvasCols, setCanvasCols] = useState(8);
-  const [pointerMode, setPointerMode] = useState(false);
-  const [canvasLeft, setCanvasLeft] = useState(false);
-  const [stacked, setStacked] = useState(false);
-  const [showDockerControls, setShowDockerControls] = useState(false);
-  const [textAlign, setTextAlign] = useState<'top' | 'middle' | 'bottom'>('middle');
-  const textCols = 12 - canvasCols;
   const [activeCaseStudyIndex, setActiveCaseStudyIndex] = useState<number | null>(null);
   const infoSectionRef = useRef<HTMLDivElement | null>(null);
-  // const snippet: InfoSnippetType = {
-  //   ...baseSnippet,
-  //   layout: { textColumns: textCols, visualColumns: canvasCols }
-  // };
 
   return (
     <main className="main-content flex flex-col min-h-screen px-8 py-16">
@@ -128,7 +87,7 @@ export default function Home() {
         </div>
       </section>
       {activeCaseStudyIndex !== null && (
-        <section ref={infoSectionRef} className="w-full max-w-6xl mx-auto mt-20 px-4">
+        <section ref={infoSectionRef} className="w-full max-w-7xl mx-auto mt-32 px-6 lg:px-8">
           <ProjectDetailsDisplay 
             projectHeading={caseStudies[activeCaseStudyIndex].projectHeading}
             projectSubheading={caseStudies[activeCaseStudyIndex].projectSubheading}
@@ -137,32 +96,12 @@ export default function Home() {
             skills={caseStudies[activeCaseStudyIndex].skills}
           />
           {caseStudies[activeCaseStudyIndex].infoSnippets.map((snippet: InfoSnippetType, idx: number) => (
-            <div key={idx} className="relative mb-20">
+            <div key={idx} className="relative mb-32 last:mb-20">
               <InfoSnippet snippet={snippet} />
             </div>
           ))}
         </section>
       )}
-      {/* Social Media Logos Row */}
-      <div className="w-full flex justify-center gap-4 mt-auto mb-12">
-        {landingContent.socialIcons.map((icon: { name: string; url: string; icon: string }) => (
-          <a
-            key={icon.name}
-            href={icon.url}
-            target="_blank"
-            rel="noopener noreferrer"
-            className="w-10 h-10 flex items-center justify-center text-gray-400 hover:text-accent transition-all duration-300 hover:scale-110 modern-border-radius glass-effect"
-            aria-label={icon.name}
-          >
-            {icon.icon.endsWith('.svg') ? (
-              <img src={`/assets/landing/${icon.icon}`} alt={icon.name} className="w-7 h-7" />
-            ) : (
-              // For inline SVG or fallback, just render the name for now
-              icon.name
-            )}
-          </a>
-        ))}
-      </div>
     </main>
   );
 }

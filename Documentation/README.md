@@ -34,6 +34,89 @@ All images and visual assets are now hosted on Cloudinary (or a similar external
 - The `ProjectSlider` is linked to case studies: clicking a card reveals the corresponding InfoSnippet section(s) and scrolls to them automatically.
 - Case study content is managed in TypeScript files (e.g., `public/assets/case studies/project1/content.ts`) and rendered dynamically. To add a new case study, add a new content file and update the case studies array in `app/page.tsx`.
 
+## Lottie Animation System
+
+### Overview
+The project includes a sophisticated Lottie animation system with automatic playback control and user interaction capabilities.
+
+### Features
+- **Automatic Playback**: Lottie animations play once when their canvas comes into view
+- **Auto-Pause**: Animations automatically pause after completing their first playthrough
+- **Play/Pause Control**: Interactive button allows users to manually control animation playback
+- **Synchronized Control**: All Lottie animations on a canvas are controlled together
+- **State Synchronization**: Button state updates in real-time to reflect actual animation status
+
+### Implementation
+- **Component**: `LottieVisual` in `components/InfoSnippet.tsx`
+- **Dependencies**: `lottie-react` package
+- **Icons**: Custom play/pause SVG icons in `public/assets/InfoSnippetIcons/`
+- **State Management**: Real-time state tracking with event-driven updates
+
+### Usage in Content
+```typescript
+// In content.ts files
+{
+  type: "lottie",
+  src: "https://res.cloudinary.com/.../animation.json",
+  loop: false, // Set to false for one-time playback
+  caption: "Optional caption"
+}
+```
+
+### Button Behavior
+- **Initial State**: Shows play icon (▶️) - animations paused
+- **Auto-Play**: When scrolled into view, shows pause icon (⏸️)
+- **Auto-Pause**: After completion, returns to play icon (▶️)
+- **Manual Control**: Click to toggle between play/pause states
+- **Restart**: When paused, clicking plays from the beginning
+
+## DesignSystemSpecs Component
+
+### Overview
+A comprehensive design system specification component that displays colors, typography, and dimensions in an organized tabbed interface.
+
+### Features
+- **Color Palette**: Full color swatches with tooltips showing hex codes
+- **Surface Colors**: Light and dark mode surface and on-surface color displays
+- **Typography**: Font examples with proper font family rendering
+- **Dimensions**: Visual representation of spacing and corner radius values
+- **Tabbed Interface**: Organized content with smooth transitions
+- **Dark Mode Support**: Consistent styling across light and dark themes
+
+### Implementation
+- **Component**: `DesignSystemSpecs` in `components/DesignSystemSpecs.tsx`
+- **Fonts**: Integrates with project's font system (Bricolage Grotesque, Manrope)
+- **Styling**: Uses project's design tokens and utility classes
+- **Responsive**: Adapts to different screen sizes
+
+### Usage in Content
+```typescript
+// In content.ts files
+{
+  type: "component",
+  src: "design-system-specs",
+  componentName: "DesignSystemSpecs"
+}
+```
+
+## ProjectDetailsDisplay Component
+
+### Overview
+Enhanced project details display with domain labels, skill pills, and improved visual hierarchy.
+
+### Features
+- **Domain Label**: Vertical accent line with domain text
+- **Project Details**: Pill-shaped tags with tooltips for keys
+- **Skills Section**: Organized skill pills with consistent styling
+- **Accent Color Integration**: Uses project's accent color system
+- **Responsive Design**: Adapts to different screen sizes
+
+### Styling
+- **Pills**: Accent-colored borders with semi-transparent fills
+- **Typography**: Uses project's font system
+- **Spacing**: Consistent with design system
+- **Dark Mode**: Full dark mode support
+
 ## Learn More
 
 To learn more about Next.js, take a look at the following resources:

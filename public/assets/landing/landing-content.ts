@@ -20,23 +20,25 @@ export const landingContent = {
   socialIcons: [
     {
       name: "LinkedIn",
-      icon: "inline-svg",
-      url: "https://www.linkedin.com/in/your-linkedin/"
+      icon: "social/linkedin.svg",
+      url: "https://www.linkedin.com/in/hesamandalib/"
     },
     {
       name: "GitHub",
-      icon: "inline-svg",
-      url: "https://github.com/your-github/"
+      icon: "social/github.svg",
+      url: "https://github.com/samandalib/"
     },
+    /*
     {
       name: "Behance",
       icon: "social/icons8-behance.svg",
       url: "https://www.behance.net/your-behance/"
     },
+    */
     {
       name: "Medium",
-      icon: "inline-svg",
-      url: "https://medium.com/@your-medium/"
+      icon: "social/medium.svg",
+      url: "https://medium.com/@hesam-andalib"
     }
   ],
   projectSlider: true

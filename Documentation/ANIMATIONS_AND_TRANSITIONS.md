@@ -54,13 +54,18 @@ This document lists all custom and notable animations and transitions used in th
 
 ---
 
-## 5. Lottie Animations
-- **Description:** Lottie JSON animations are used for certain visuals in InfoSnippets.
+## 5. Lottie Animation System
+- **Description:** Sophisticated Lottie animation system with automatic playback control and user interaction capabilities.
 - **Where Used:** InfoSnippet visuals (if type is 'lottie')
 - **Code File:** `components/InfoSnippet.tsx` (LottieVisual component)
 - **Key Details:**
   - Uses `lottie-react` for playback
   - Animation data loaded from external JSON
+  - Automatic play/pause based on viewport visibility
+  - Interactive play/pause button with custom icons
+  - Real-time state synchronization
+  - Synchronized control of multiple animations
+  - Custom play/pause SVG icons from `public/assets/InfoSnippetIcons/`
 
 ---
 

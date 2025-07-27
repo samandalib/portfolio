@@ -5,7 +5,7 @@ INSTRUCTIONS FOR CASE STUDY CONTENT TEMPLATE
 - All fields marked with a ? are optional; you can leave them out if not needed.
 - 'projectHeading' and 'details' are required for every project.
 - 'infoSnippets' is an array: each snippet can have text, visuals, and a custom layout (columns for text/visuals, total 12).
-- For visuals, use type 'image' for local images, 'video' for YouTube/Vimeo links, or 'embed' for other web/app embeds.
+- For visuals, use type 'image' for local images, 'video' for YouTube/Vimeo links, 'embed' for other web/app embeds, or 'component' for custom React components.
 - You can add or remove snippets as needed for your project.
 - Example usage is provided below the interfaces.
 */
@@ -19,7 +19,7 @@ export interface ProjectDetails {
 }
 
 export interface VisualAsset {
-  type: "image" | "video" | "embed" | "lottie";
+  type: "image" | "video" | "embed" | "lottie" | "component";
   src: string; // path to image, video URL, or embed URL
   alt?: string; // for images
   caption?: string;
@@ -35,6 +35,9 @@ export interface VisualAsset {
   autoplay?: boolean;
   loop?: boolean;
   muted?: boolean;
+  // Component-specific properties:
+  componentName?: string; // e.g., "DesignSystemSpecs"
+  componentProps?: any;   // Props to pass to the component
 }
 
 export interface InfoSnippet {
@@ -209,6 +212,117 @@ const caseStudy: CaseStudyContent = {
       visuals: [
         // VISUAL: Style guide
         // VISUAL: Optional animation showcase
+      ],
+      layout: { textColumns: 4, visualColumns: 8, textAlign: 'top', stacked: true }
+    },
+    {
+      heading: "Design System Specifications",
+      subheading: "Complete design system documentation",
+      body: "Our comprehensive design system includes color palettes, typography scales, icon libraries, and spacing guidelines to ensure consistency across all touchpoints.",
+      visuals: [
+        {
+          type: "component",
+          src: "design-system-specs", // Required but not used for components
+          componentName: "DesignSystemSpecs"
+          // Uses all default data including the full color palette
+        }
+      ],
+      layout: { textColumns: 4, visualColumns: 8, textAlign: 'top' }
+    },
+    {
+      //heading: "Design Approach",
+      //subheading: "Designing a behavior orchestration layer, not just another tracker.",
+      body: "I created a lot of lottie animations for the waiting and loading states of the app using Adobe After Effects.",
+
+      visuals: [
+        // VISUAL: Concept framework slide { type: "image", src: "personas.png", alt: "User personas", caption: "Key personas and unmet needs" }
+        
+          // Existing visuals...
+          /*{
+            type: "lottie",
+            src: "https://res.cloudinary.com/dehugbvmc/raw/upload/v1753563435/MainMovingShapes_lyggao.json",
+            //alt: "App connections animation",
+            loop: true,
+            //caption: "Animated connections using Lottie"
+          },*/
+          {
+            type: "lottie",
+            src: "https://res.cloudinary.com/dehugbvmc/raw/upload/v1753563433/JumpSplash_jptkm9.json",
+            //alt: "App connections animation",
+            loop: true,
+            //caption: "Animated connections using Lottie"
+          },
+          {
+            type: "lottie",
+            src: "https://res.cloudinary.com/dehugbvmc/raw/upload/v1753563432/Appear3Direction_rizzys.json",
+            //alt: "App connections animation",
+            loop: true,
+            //caption: "Animated connections using Lottie"
+          },
+          {
+            type: "lottie",
+            src: "https://res.cloudinary.com/dehugbvmc/raw/upload/v1753563419/ShapesFillup_gxpque.json",
+            //alt: "App connections animation",
+            loop: true,
+            //caption: "Animated connections using Lottie"
+          },
+          {
+            type: "lottie",
+            src: "https://res.cloudinary.com/dehugbvmc/raw/upload/v1753563409/Transformers_w5vzog.json",
+            //alt: "App connections animation",
+            loop: true,
+            //caption: "Animated connections using Lottie"
+          },
+          {
+            type: "lottie",
+            src: "https://res.cloudinary.com/dehugbvmc/raw/upload/v1753563419/RotationlShapes_msetpw.json",
+            //alt: "App connections animation",
+            loop: true,
+            //caption: "Animated connections using Lottie"
+          },
+          {
+            type: "lottie",
+            src: "https://res.cloudinary.com/dehugbvmc/raw/upload/v1753563410/subtleOvershootAppearance_fpurhr.json",
+            //alt: "App connections animation",
+            loop: true,
+            //caption: "Animated connections using Lottie"
+          },
+        
+      ],
+      layout: { textColumns: 4, visualColumns: 8, textAlign: 'top' }
+    },
+    {
+      body: "Also some animations for the onboarding flow.",
+      visuals: [
+        {
+          type: "lottie",
+          src: "https://res.cloudinary.com/dehugbvmc/raw/upload/v1753576325/Onboarding_1_osfpjk.json",
+          loop: false,
+          maxWidth: "45%",
+          maxHeight: "200px"
+        },
+        {
+          type: "lottie",
+          src: "https://res.cloudinary.com/dehugbvmc/raw/upload/v1753577276/Onboarding_2_anykxe.json",
+          loop: false,
+          maxWidth: "45%",
+          maxHeight: "200px"
+        },
+        /*{
+          type: "lottie",
+          src: "https://res.cloudinary.com/dehugbvmc/raw/upload/v1753577419/Onboarding_3_t7ge4x.json",
+          loop: false,
+          maxWidth: "45%",
+          maxHeight: "200px"
+        },*/
+        {
+          type: "lottie",
+          src: "https://res.cloudinary.com/dehugbvmc/raw/upload/v1753576785/Onboarding_4_b9x8ee.json",
+          loop: false,
+          maxWidth: "45%",
+          maxHeight: "200px"
+        },
+      
       ],
       layout: { textColumns: 4, visualColumns: 8, textAlign: 'top' }
     }
