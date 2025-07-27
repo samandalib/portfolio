@@ -1,4 +1,37 @@
-import { ResearchSynthesisProps } from '../../../../components/ResearchSynthesis/ResearchSynthesis';
+// Define the interface inline to avoid import path issues
+interface ResearchSynthesisProps {
+  title?: string;
+  subtitle?: string;
+  findings?: {
+    id: string;
+    title: string;
+    description: string;
+    category?: 'insight' | 'pain-point' | 'opportunity' | 'constraint' | 'trend';
+    impact?: 'high' | 'medium' | 'low';
+    evidence?: string;
+    tags?: string[];
+  }[];
+  methods?: {
+    name: string;
+    description: string;
+    participants?: number;
+    duration?: string;
+    keyOutcomes?: string[];
+  }[];
+  recommendations?: string[];
+  processSteps?: string[];
+  testimonials?: {
+    quote: string;
+    author: string;
+    age: number;
+  }[];
+  stats?: {
+    interviews?: number;
+    duration?: string;
+  };
+  keyTakeaway?: string;
+  participantsImageUrl?: string;
+}
 
 export const researchContent: ResearchSynthesisProps = {
   title: "From casual conversations to structured interviews",
