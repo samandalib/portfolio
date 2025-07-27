@@ -247,11 +247,11 @@ const InfoSnippet: React.FC<InfoSnippetProps> = ({ snippet }) => {
         canvasLeftState={canvasLeftState}
         stackedState={stackedState}
         canvasCols={canvasCols}
-        onToggleDockerControls={() => setShowDockerControls(v => !v)}
-        onTogglePointerMode={() => setPointerMode(v => !v)}
-        onCycleTextAlign={() => setTextAlign(a => a === 'top' ? 'middle' : a === 'middle' ? 'bottom' : 'top')}
-        onToggleCanvasLeft={() => setCanvasLeft(v => !v)}
-        onToggleStacked={() => setStacked(v => !v)}
+        onToggleDockerControls={() => setShowDockerControls((v: boolean) => !v)}
+        onTogglePointerMode={() => setPointerMode((v: boolean) => !v)}
+        onCycleTextAlign={() => setTextAlign((a: string) => a === 'top' ? 'middle' : a === 'middle' ? 'bottom' : 'top')}
+        onToggleCanvasLeft={() => setCanvasLeft((v: boolean) => !v)}
+        onToggleStacked={() => setStacked((v: boolean) => !v)}
         onCycleCanvasCols={() => setCanvasCols(CANVAS_COL_OPTIONS[(CANVAS_COL_OPTIONS.indexOf(canvasCols) + 1) % CANVAS_COL_OPTIONS.length])}
       />
     </motion.div>
