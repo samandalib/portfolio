@@ -1,4 +1,4 @@
-import type { ReactComponentType } from 'react';
+import type { ComponentType } from 'react';
 
 export interface AccentDockProps {}
 
@@ -21,5 +21,5 @@ export interface FontToggleProps {
 }
 
 export interface FontIconMap {
-  [key: string]: ReactComponentType<any>;
+  [key: string]: ComponentType<any>;
 } 
