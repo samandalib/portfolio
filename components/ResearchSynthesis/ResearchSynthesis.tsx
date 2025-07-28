@@ -348,7 +348,7 @@ const ResearchSynthesis: React.FC<ResearchSynthesisProps> = ({
         initial={{ opacity: 0, y: 20 }}
         animate={{ opacity: 1, y: 0 }}
         transition={{ duration: 0.6 }}
-        className="bg-white dark:bg-gray-900 rounded-2xl shadow-xl border border-gray-200 dark:border-gray-700 p-8 relative w-full"
+        className="bg-white dark:bg-gray-900 rounded-2xl shadow-xl border border-gray-200 dark:border-gray-700 p-4 sm:p-8 relative w-full"
       >
         {/* Header */}
         <div className="mb-8">

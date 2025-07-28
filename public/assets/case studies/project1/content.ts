@@ -114,14 +114,10 @@ const caseStudy: CaseStudyContent = {
         visuals: [
           // VISUAL: Personas slide { type: "image", src: "personas.png", alt: "User personas", caption: "Key personas and unmet needs" }
           { 
-            type: "video", 
-            src: "https://res.cloudinary.com/dehugbvmc/video/upload/v1753397333/265_dashboard_oyznbi.mp4",
-            // Valid values: 'rounded', 'rounded-md', 'rounded-lg', 'rounded-xl', 'rounded-2xl', 'rounded-full'
-            radius: 'rounded-2xl',
-            caption: "A view of the Aging dashboard",
-            autoplay: true,
-            loop: true,
-            muted: true
+            type: "embed", 
+            src: "https://jumpshare.com/embed/fMhCy0IgN3hNbtNKl0VK",
+            embedType: "other",
+            caption: "A view of the Aging dashboard"
           }
         ],
         layout: { textColumns: 6, visualColumns: 6, textAlign: 'middle' }

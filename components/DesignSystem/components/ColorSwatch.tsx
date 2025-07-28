@@ -14,7 +14,7 @@ const ColorSwatch: React.FC<ColorSwatchProps> = ({ color, showLetter = true }) =
       onClick={() => copyToClipboard(color.hex)}
     >
       <div
-        className="w-16 h-16 rounded-lg border-2 border-gray-200 dark:border-gray-700 shadow-md relative overflow-hidden"
+        className="w-10 h-10 md:w-16 md:h-16 rounded-lg border-2 border-gray-200 dark:border-gray-700 shadow-md relative overflow-hidden"
         style={{ backgroundColor: color.hex }}
       >
         {showLetter && (

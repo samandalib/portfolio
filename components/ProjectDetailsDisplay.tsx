@@ -23,7 +23,7 @@ const ProjectDetailsDisplay: React.FC<ProjectDetailsDisplayProps> = ({
   details, 
   skills 
 }) => (
-  <div className="mb-20 bg-gradient-to-br from-gray-50/50 to-white/30 dark:from-gray-900/30 dark:to-gray-800/20 backdrop-blur-sm rounded-3xl p-8 lg:p-12 border border-gray-200/30 dark:border-gray-700/30 modern-shadow-lg">
+  <div className="mb-20 bg-gradient-to-br from-gray-50/50 to-white/30 dark:from-gray-900/30 dark:to-gray-800/20 backdrop-blur-sm rounded-3xl p-4 lg:p-8 border border-gray-200/30 dark:border-gray-700/30 modern-shadow-lg">
     {/* Domain Label with Logo and Accent Line */}
     {domain && (
       <div className="flex items-center gap-4 mb-6">

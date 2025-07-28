@@ -63,14 +63,13 @@ const CanvasSection: React.FC<InfoSnippetCanvasSectionProps> = ({
         style={{ position: 'relative' }}
       >
         <div
-          className="h-full w-full"
+          className={`h-full w-full grid gap-2 sm:gap-3 md:gap-4 ${
+            snippet.visuals.length === 1 ? 'grid-cols-1' :
+            snippet.visuals.length === 2 ? 'grid-cols-1 sm:grid-cols-2' :
+            'grid-cols-1 sm:grid-cols-2 md:grid-cols-3'
+          }`}
           style={{
-            display: 'grid',
-            gridTemplateColumns: `repeat(${Math.min(3, snippet.visuals.length)}, 1fr)`,
-            gridTemplateRows: `repeat(${Math.ceil(snippet.visuals.length / 3)}, auto)`,
-            gap: '16px',
-            width: '100%',
-            height: '100%',
+            gridTemplateRows: `repeat(${snippet.visuals.length}, auto)`,
           }}
         >
           {snippet.visuals.map((asset, i) => (

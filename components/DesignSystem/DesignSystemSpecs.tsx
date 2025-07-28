@@ -36,16 +36,16 @@ const DesignSystemSpecs: React.FC<DesignSystemSpecsProps> = ({
       <motion.div
         initial={{ opacity: 0, y: 20 }}
         animate={{ opacity: 1, y: 0 }}
-        className="bg-white dark:bg-gray-900 rounded-2xl shadow-xl border border-gray-200 dark:border-gray-700 p-8 relative w-full"
+        className="bg-white dark:bg-gray-900 rounded-2xl shadow-xl border border-gray-200 dark:border-gray-700 p-4 sm:p-8 relative w-full"
       >
         {/* Tab Navigation */}
         <div className="flex justify-center mb-8">
-          <div className="flex space-x-1 p-1 bg-gray-100 dark:bg-gray-800 rounded-lg">
+          <div className="flex space-x-1 p-1 bg-gray-100 dark:bg-gray-800 rounded-lg overflow-x-auto max-w-full">
             {tabs.map((tab) => (
               <button
                 key={tab.id}
                 onClick={() => setActiveTab(tab.id)}
-                className={`px-6 py-3 rounded-md font-medium transition-all duration-300 flex items-center justify-center ${
+                className={`px-3 py-2 sm:px-6 sm:py-3 rounded-md font-medium transition-all duration-300 flex items-center justify-center text-sm sm:text-base whitespace-nowrap ${
                   activeTab === tab.id
                     ? 'bg-accent text-white shadow-md'
                     : 'text-gray-600 dark:text-gray-400 hover:text-gray-900 dark:hover:text-gray-100'
@@ -84,7 +84,7 @@ const DesignSystemSpecs: React.FC<DesignSystemSpecsProps> = ({
                   >
                     Full Color Palette
                   </h3>
-                  <div className="grid grid-cols-6 gap-3">
+                  <div className="grid grid-cols-5 sm:grid-cols-4 md:grid-cols-6 gap-1 sm:gap-2 md:gap-3">
                     {Object.values(colors).flat().map((color, index) => (
                       <ColorSwatch key={`${color.hex}-${index}`} color={color} showLetter={false} />
                     ))}
@@ -107,7 +107,7 @@ const DesignSystemSpecs: React.FC<DesignSystemSpecsProps> = ({
                       >
                         Surfaces (Containers, Buttons, etc.)
                       </h4>
-                      <div className="grid grid-cols-7 gap-2">
+                      <div className="grid grid-cols-5 gap-1 sm:grid-cols-5 sm:gap-2 md:grid-cols-7 md:gap-3">
                         {colors.grays?.slice(4, 7).concat(colors.grays?.slice(2, 3) || []).concat(colors.greens?.slice(2, 3) || []).concat(colors.grays?.slice(4, 6) || []).map((color, index) => (
                           <ColorSwatch key={`light-surfaces-${color.hex}-${index}`} color={color} showLetter={false} />
                         ))}
@@ -120,7 +120,7 @@ const DesignSystemSpecs: React.FC<DesignSystemSpecsProps> = ({
                       >
                         On Surface (Fonts, shapes, icons)
                       </h4>
-                      <div className="grid grid-cols-7 gap-2">
+                      <div className="grid grid-cols-5 gap-1 sm:grid-cols-5 sm:gap-2 md:grid-cols-7 md:gap-3">
                         {colors.grays?.slice(0, 3).concat(colors.grays?.slice(5, 6) || []).concat(colors.grays?.slice(0, 1) || []).concat(colors.greens?.slice(2, 3) || []).concat(colors.grays?.slice(1, 2) || []).map((color, index) => (
                           <ColorSwatch key={`light-onsurface-${color.hex}-${index}`} color={color} showLetter={false} />
                         ))}
@@ -145,7 +145,7 @@ const DesignSystemSpecs: React.FC<DesignSystemSpecsProps> = ({
                       >
                         Surfaces (Containers, Buttons, etc.)
                       </h4>
-                      <div className="grid grid-cols-7 gap-2">
+                      <div className="grid grid-cols-5 gap-1 sm:grid-cols-5 sm:gap-2 md:grid-cols-7 md:gap-3">
                         {colors.grays?.slice(0, 3).concat(colors.grays?.slice(5, 6) || []).concat(colors.greens?.slice(3, 4) || []).concat(colors.grays?.slice(0, 2) || []).map((color, index) => (
                           <ColorSwatch key={`dark-surfaces-${color.hex}-${index}`} color={color} showLetter={false} />
                         ))}
@@ -158,7 +158,7 @@ const DesignSystemSpecs: React.FC<DesignSystemSpecsProps> = ({
                       >
                         On Surface (Fonts, shapes, icons)
                       </h4>
-                      <div className="grid grid-cols-7 gap-2">
+                      <div className="grid grid-cols-5 gap-1 sm:grid-cols-5 sm:gap-2 md:grid-cols-7 md:gap-3">
                         {colors.grays?.slice(5, 8).concat(colors.grays?.slice(0, 2) || []).concat(colors.greens?.slice(3, 4) || []).concat(colors.grays?.slice(1, 2) || []).map((color, index) => (
                           <ColorSwatch key={`dark-onsurface-${color.hex}-${index}`} color={color} showLetter={false} />
                         ))}
