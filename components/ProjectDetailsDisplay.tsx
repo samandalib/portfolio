@@ -4,6 +4,7 @@ interface ProjectDetailsDisplayProps {
   projectHeading: string;
   projectSubheading?: string;
   domain?: string; // New field for domain label (e.g., "HEALTHCARE AI PLATFORM")
+  projectLogo?: string; // New field for project logo URL
   details: {
     year: number;
     company: string;
@@ -18,13 +19,23 @@ const ProjectDetailsDisplay: React.FC<ProjectDetailsDisplayProps> = ({
   projectHeading, 
   projectSubheading, 
   domain,
+  projectLogo,
   details, 
   skills 
 }) => (
   <div className="mb-20 bg-gradient-to-br from-gray-50/50 to-white/30 dark:from-gray-900/30 dark:to-gray-800/20 backdrop-blur-sm rounded-3xl p-8 lg:p-12 border border-gray-200/30 dark:border-gray-700/30 modern-shadow-lg">
-    {/* Domain Label with Accent Line */}
+    {/* Domain Label with Logo and Accent Line */}
     {domain && (
       <div className="flex items-center gap-4 mb-6">
+        {projectLogo && (
+          <img 
+            src={projectLogo}
+            alt={`${projectHeading} logo`}
+            className={`w-8 h-8 lg:w-10 lg:h-10 object-contain opacity-80 hover:opacity-100 transition-opacity duration-300 ${
+              projectLogo.endsWith('.svg') ? 'svg-logo' : ''
+            }`}
+          />
+        )}
         <div className="w-1.5 h-8 bg-accent rounded-full modern-shadow-sm"></div>
         <span 
           className="text-sm font-bold text-accent uppercase tracking-[0.15em] opacity-90"

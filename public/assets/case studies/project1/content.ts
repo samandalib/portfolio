@@ -60,6 +60,7 @@ export interface CaseStudyContent {
   projectHeading: string;
   projectSubheading?: string;
   domain?: string;
+  projectLogo?: string; // URL to project logo image
   details: ProjectDetails;
   skills?: string[];
   infoSnippets: InfoSnippet[];
@@ -67,14 +68,15 @@ export interface CaseStudyContent {
 
 // Example usage:
 const caseStudy: CaseStudyContent = {
-  projectHeading: "Designing Road265: Your AI Companion for Independent Aging",
+  projectHeading: "Road265: AI Companion for Independent Aging",
   projectSubheading: "Empowering proactive adults to stay strong, sharp, and independent through personalized self-care coaching.",
   domain: "WELLNESS PLATFORM",
+  projectLogo: "https://res.cloudinary.com/dehugbvmc/image/upload/v1753668690/265logo_ue7nig.svg", // Optional: Add your project logo URL here (SVG format recommended)
   details: {
     year: 2025,
     company: "Road265 (Personal Venture)",
     role: "Product Designer & Co-Founder",
-    notes: "Strategy • UX/UI • Research • Branding • MVP"
+    notes: "Engineering co-founder:Amir Mostafavi"
   },
   skills: [
     "Product Strategy",
@@ -287,42 +289,42 @@ const caseStudy: CaseStudyContent = {
             type: "lottie",
             src: "https://res.cloudinary.com/dehugbvmc/raw/upload/v1753563433/JumpSplash_jptkm9.json",
             //alt: "App connections animation",
-            loop: false,
+            loop: true,
             //caption: "Animated connections using Lottie"
           },
           {
             type: "lottie",
             src: "https://res.cloudinary.com/dehugbvmc/raw/upload/v1753563432/Appear3Direction_rizzys.json",
             //alt: "App connections animation",
-            loop: false,
+            loop: true,
             //caption: "Animated connections using Lottie"
           },
           {
             type: "lottie",
             src: "https://res.cloudinary.com/dehugbvmc/raw/upload/v1753563419/ShapesFillup_gxpque.json",
             //alt: "App connections animation",
-            loop: false,
+            loop: true,
             //caption: "Animated connections using Lottie"
           },
           {
             type: "lottie",
             src: "https://res.cloudinary.com/dehugbvmc/raw/upload/v1753563409/Transformers_w5vzog.json",
             //alt: "App connections animation",
-            loop: false,
+            loop: true,
             //caption: "Animated connections using Lottie"
           },
           {
             type: "lottie",
             src: "https://res.cloudinary.com/dehugbvmc/raw/upload/v1753563419/RotationlShapes_msetpw.json",
             //alt: "App connections animation",
-            loop: false,
+            loop: true,
             //caption: "Animated connections using Lottie"
           },
           {
             type: "lottie",
             src: "https://res.cloudinary.com/dehugbvmc/raw/upload/v1753563410/subtleOvershootAppearance_fpurhr.json",
             //alt: "App connections animation",
-            loop: false,
+            loop: true,
             //caption: "Animated connections using Lottie"
           },
         
@@ -366,11 +368,11 @@ const caseStudy: CaseStudyContent = {
         
         {
             type: "embed",
-            src: "https://jumpshare.com/embed/owJJLJ1XHOnHlYtgFkwg",
+            src: "https://jumpshare.com/embed/1eB4DaG5D1dvDtMbwhRX",
             caption: "Incorporating animations to the onboarding flow.",
             radius: 'rounded-2xl',
-            maxWidth: "400px",
-            maxHeight: "711px" // 9:16 ratio (400 * 16/9 = 711.11)
+            maxWidth: "800px",
+            maxHeight: "450px" // 16:9 ratio (800 * 9/16 = 450)
         },
         
       

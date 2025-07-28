@@ -27,7 +27,7 @@ const ProjectPage = ({ params }: ProjectPageProps) => {
     notFound();
   }
 
-  const { projectHeading, projectSubheading, details, infoSnippets, domain, skills } = content;
+  const { projectHeading, projectSubheading, details, infoSnippets, domain, skills, projectLogo } = content;
 
   return (
     <main className="main-content flex flex-col min-h-screen px-8 py-16">
@@ -39,6 +39,7 @@ const ProjectPage = ({ params }: ProjectPageProps) => {
               projectHeading={projectHeading}
               projectSubheading={projectSubheading}
               domain={domain}
+              projectLogo={projectLogo}
               details={details}
               skills={skills}
             />

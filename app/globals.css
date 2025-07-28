@@ -249,3 +249,21 @@ To apply the accent color to SVGs or non-text elements, use the 'accent-fill' cl
 .social-icon-container:hover .social-icon path {
   fill: #374151 !important; /* gray-700 */
 }
+
+/* Project Logo SVG Styling */
+.svg-logo {
+  filter: brightness(0) saturate(100%) invert(6%) sepia(0%) saturate(0%) hue-rotate(0deg) brightness(100%) contrast(100%);
+}
+
+.svg-logo:hover {
+  filter: brightness(0) saturate(100%) invert(0%) sepia(0%) saturate(0%) hue-rotate(0deg) brightness(0%) contrast(100%);
+}
+
+/* Dark theme logo styling */
+.dark .svg-logo {
+  filter: brightness(0) saturate(100%) invert(100%) sepia(0%) saturate(0%) hue-rotate(0deg) brightness(100%) contrast(100%);
+}
+
+.dark .svg-logo:hover {
+  filter: brightness(0) saturate(100%) invert(90%) sepia(0%) saturate(0%) hue-rotate(0deg) brightness(100%) contrast(100%);
+}
