@@ -120,6 +120,10 @@ function renderVisual({
       const ResearchSynthesis = require("../ResearchSynthesis").default;
       return <ResearchSynthesis {...asset.componentProps} />;
     }
+    if (ComponentName === "SingleProjectSlider") {
+      const SingleProjectSlider = require("../ProjectSlider/SingleProjectSlider").default;
+      return <SingleProjectSlider {...asset.componentProps} />;
+    }
     return <div className="text-gray-500">Component {asset.componentName} not found</div>;
   }
   

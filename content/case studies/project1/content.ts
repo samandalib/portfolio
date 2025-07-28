@@ -13,10 +13,10 @@ INSTRUCTIONS FOR CASE STUDY CONTENT TEMPLATE
 import { researchContent } from './ResearchContent';
 
 export interface ProjectDetails {
-  year: number;
-  company: string;
+  year?: number;
+  company?: string;
   team?: string;
-  role: string;
+  role?: string;
   notes?: string;
 }
 
@@ -57,13 +57,13 @@ export interface InfoSnippet {
 }
 
 export interface CaseStudyContent {
-  projectHeading: string;
+  projectHeading?: string;
   projectSubheading?: string;
   domain?: string;
   projectLogo?: string; // URL to project logo image
-  details: ProjectDetails;
+  details?: ProjectDetails;
   skills?: string[];
-  infoSnippets: InfoSnippet[];
+  infoSnippets?: InfoSnippet[];
 }
 
 // Example usage:

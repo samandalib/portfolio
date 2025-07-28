@@ -18,10 +18,10 @@ INSTRUCTIONS FOR CASE STUDY CONTENT TEMPLATE
 */
 
 export interface ProjectDetails {
-  year?: number;
-  company?: string;
+  year: number;
+  company: string;
   team?: string;
-  role?: string;
+  role: string;
   notes?: string;
 }
 
@@ -62,25 +62,28 @@ export interface InfoSnippet {
 }
 
 export interface CaseStudyContent {
-  projectHeading?: string;
+  projectHeading: string;
   projectSubheading?: string;
   domain?: string;
   projectLogo?: string; // URL to project logo image
-  details?: ProjectDetails;
+  details: ProjectDetails;
   skills?: string[];
-  infoSnippets?: InfoSnippet[];
+  infoSnippets: InfoSnippet[];
 }
 
 // Example usage:
 const caseStudy: CaseStudyContent = {
+  /*
   projectHeading: "Your Project Title",
   projectSubheading: "A brief description of your project and its impact.",
-  domain: "DOMAIN LABEL", // e.g., "HEALTHCARE AI PLATFORM", "FINANCIAL APP", etc.
-  projectLogo: "https://your-logo-url.svg", // Optional: Add your project logo URL here (SVG format recommended)
+  domain: "DOMAIN LABEL",
+  projectLogo: "https://your-logo-url.svg",
+  details: {},
+  
   details: {
     year: 2024,
     company: "Company Name",
-    team: "Team Name", // Optional
+    team: "Team Name",
     role: "Your Role",
     notes: "Additional notes or collaborators"
   },
@@ -92,48 +95,19 @@ const caseStudy: CaseStudyContent = {
     "Skill 5",
     "Skill 6"
   ],
+  */
   infoSnippets: [
     {
-      heading: "The problem",
-      body: "Describe the problem your project solves...",
+      heading: "Thanks for checking!",
+      body: "I'm currently migrating this case study from an older OTB platform and enjoying building it here using Cursor, better and faster. I'm literally working on it right now. If you check back in a week, you'll find a rich story with visuals, context, and process.\n\nIn the meantime, feel free to explore my case studies that are already live. It gives a solid glimpse into the breadth and depth of my work. The rest of the upcoming case studies focus on different domains, so stay tuned!",
       visuals: [
-        // Add visuals here if needed
-        // { type: "image", src: "problem-image.png", alt: "Problem visualization", caption: "Problem description" }
+        {
+          type: "component",
+          src: "single-project-slider", // Required but not used for components
+          componentName: "SingleProjectSlider"
+        }
       ],
-      layout: { textColumns: 6, visualColumns: 6, textAlign: 'middle', stacked: true }
-    },
-    {
-      heading: "The solution",
-      body: [
-        "Main solution description...",
-        [
-        "Key feature 1",
-        "Key feature 2",
-        "Key feature 3",
-        ]
-      ],
-      visuals: [
-        // { type: "embed", src: "https://your-embed-url", embedType: "other", caption: "Solution demo" }
-      ],
-      layout: { textColumns: 6, visualColumns: 6, textAlign: 'middle' }
-    },
-    {
-      heading: "Design process",
-      subheading: "How you approached the design",
-      body: "Describe your design process, methodology, and key decisions...",
-      visuals: [
-        // { type: "image", src: "process-image.png", alt: "Design process", caption: "Process visualization" }
-      ],
-      layout: { textColumns: 6, visualColumns: 6, textAlign: 'top' }
-    },
-    {
-      heading: "Final outcome",
-      subheading: "Results and impact",
-      body: "Describe the final outcome, results, and impact of your work...",
-      visuals: [
-        // { type: "video", src: "https://your-video-url.mp4", caption: "Final demo" }
-      ],
-      layout: { textColumns: 4, visualColumns: 8, textAlign: 'top', stacked: true }
+      layout: { textColumns: 4, visualColumns: 8, textAlign: 'middle' }
     }
   ]
 };

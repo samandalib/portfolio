@@ -6,10 +6,10 @@ interface ProjectDetailsDisplayProps {
   domain?: string; // New field for domain label (e.g., "HEALTHCARE AI PLATFORM")
   projectLogo?: string; // New field for project logo URL
   details: {
-    year: number;
-    company: string;
+    year?: number;
+    company?: string;
     team?: string;
-    role: string;
+    role?: string;
     notes?: string;
   };
   skills?: string[]; // New field for skills list
@@ -66,41 +66,47 @@ const ProjectDetailsDisplay: React.FC<ProjectDetailsDisplayProps> = ({
 
     {/* Project Details Pills */}
     <div className="flex flex-wrap gap-3 mb-10">
-      <span 
-        className="rounded-full px-5 py-2.5 font-semibold border-2 font-sans text-sm transition-all duration-300 hover:scale-105 modern-shadow-sm"
-        style={{ 
-          borderColor: 'var(--accent-color, #16A34A)',
-          backgroundColor: 'color-mix(in srgb, var(--accent-color, #16A34A) 8%, transparent)',
-          color: 'var(--accent-color, #16A34A)'
-        }}
-        title="Year"
-      >
-        {details.year}
-      </span>
+      {details.year && (
+        <span 
+          className="rounded-full px-5 py-2.5 font-semibold border-2 font-sans text-sm transition-all duration-300 hover:scale-105 modern-shadow-sm"
+          style={{ 
+            borderColor: 'var(--accent-color, #16A34A)',
+            backgroundColor: 'color-mix(in srgb, var(--accent-color, #16A34A) 8%, transparent)',
+            color: 'var(--accent-color, #16A34A)'
+          }}
+          title="Year"
+        >
+          {details.year}
+        </span>
+      )}
       
-      <span 
-        className="rounded-full px-5 py-2.5 font-semibold border-2 font-sans text-sm transition-all duration-300 hover:scale-105 modern-shadow-sm"
-        style={{ 
-          borderColor: 'var(--accent-color, #16A34A)',
-          backgroundColor: 'color-mix(in srgb, var(--accent-color, #16A34A) 8%, transparent)',
-          color: 'var(--accent-color, #16A34A)'
-        }}
-        title="Company"
-      >
-        {details.company}
-      </span>
+      {details.company && (
+        <span 
+          className="rounded-full px-5 py-2.5 font-semibold border-2 font-sans text-sm transition-all duration-300 hover:scale-105 modern-shadow-sm"
+          style={{ 
+            borderColor: 'var(--accent-color, #16A34A)',
+            backgroundColor: 'color-mix(in srgb, var(--accent-color, #16A34A) 8%, transparent)',
+            color: 'var(--accent-color, #16A34A)'
+          }}
+          title="Company"
+        >
+          {details.company}
+        </span>
+      )}
       
-      <span 
-        className="rounded-full px-5 py-2.5 font-semibold border-2 font-sans text-sm transition-all duration-300 hover:scale-105 modern-shadow-sm"
-        style={{ 
-          borderColor: 'var(--accent-color, #16A34A)',
-          backgroundColor: 'color-mix(in srgb, var(--accent-color, #16A34A) 8%, transparent)',
-          color: 'var(--accent-color, #16A34A)'
-        }}
-        title="Role"
-      >
-        {details.role}
-      </span>
+      {details.role && (
+        <span 
+          className="rounded-full px-5 py-2.5 font-semibold border-2 font-sans text-sm transition-all duration-300 hover:scale-105 modern-shadow-sm"
+          style={{ 
+            borderColor: 'var(--accent-color, #16A34A)',
+            backgroundColor: 'color-mix(in srgb, var(--accent-color, #16A34A) 8%, transparent)',
+            color: 'var(--accent-color, #16A34A)'
+          }}
+          title="Role"
+        >
+          {details.role}
+        </span>
+      )}
       
       {details.team && (
         <span 

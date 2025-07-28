@@ -4,16 +4,8 @@ import React from 'react';
 import AccentDock from '@/components/AccentDock';
 import ProjectDetailsDisplay from '@/components/ProjectDetailsDisplay';
 import InfoSnippet from '@/components/InfoSnippet';
-import project1Content from '../../../public/assets/case studies/project1/content';
-// Import additional projects here as you add them
-// import project2Content from '../../../public/assets/case studies/project2/content';
+import { getProjectContent } from '../../../utils/contentSwitcher';
 import { notFound } from 'next/navigation';
-
-// Map slugs to content files
-const projectContentMap: Record<string, any> = {
-  project1: project1Content,
-  // project2: project2Content,
-};
 
 interface ProjectPageProps {
   params: Promise<{ slug: string }>;
@@ -21,20 +13,20 @@ interface ProjectPageProps {
 
 const ProjectPage = ({ params }: ProjectPageProps) => {
   const { slug } = React.use(params);
-  const content = projectContentMap[slug];
+  const content = getProjectContent(slug || '');
 
   if (!content) {
     notFound();
   }
 
-  const { projectHeading, projectSubheading, details, infoSnippets, domain, skills, projectLogo } = content;
+  const { projectHeading, projectSubheading, details, infoSnippets, domain, skills, projectLogo } = content || {};
 
   return (
     <main className="main-content flex flex-col min-h-screen px-8 py-16">
       <section className="w-full max-w-6xl mx-auto">
         <div className="w-full px-4 mb-8">
           <AccentDock />
-          {details && (
+          {details && projectHeading && (
             <ProjectDetailsDisplay
               projectHeading={projectHeading}
               projectSubheading={projectSubheading}
