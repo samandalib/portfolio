@@ -73,29 +73,12 @@ export interface CaseStudyContent {
 
 // Example usage:
 const caseStudy: CaseStudyContent = {
-  /*
-  projectHeading: "Your Project Title",
-  projectSubheading: "A brief description of your project and its impact.",
-  domain: "DOMAIN LABEL",
-  projectLogo: "https://your-logo-url.svg",
-  details: {},
-  
+  projectHeading: "Project Coming Soon",
   details: {
     year: 2024,
-    company: "Company Name",
-    team: "Team Name",
-    role: "Your Role",
-    notes: "Additional notes or collaborators"
+    company: "Coming Soon",
+    role: "Designer"
   },
-  skills: [
-    "Skill 1",
-    "Skill 2", 
-    "Skill 3",
-    "Skill 4",
-    "Skill 5",
-    "Skill 6"
-  ],
-  */
   infoSnippets: [
     {
       heading: "Thanks for checking!",

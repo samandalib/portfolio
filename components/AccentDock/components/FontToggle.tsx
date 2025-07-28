@@ -13,7 +13,7 @@ const FontToggle: React.FC<FontToggleProps> = ({
   return (
     <button
       onClick={onFontChange}
-      className={`w-9 h-9 flex items-center justify-center modern-border-radius modern-shadow mt-8 transition-all duration-300 hover:scale-105
+      className={`w-9 h-9 flex items-center justify-center modern-border-radius modern-shadow mt-4 transition-all duration-300 hover:scale-105
         ${isDark ? 'glass-effect border-gray-600' : 'glass-effect border-gray-300'}
       `}
       aria-label={`Switch font to ${fontPresets[(fontIndex + 1) % fontPresets.length].label}`}

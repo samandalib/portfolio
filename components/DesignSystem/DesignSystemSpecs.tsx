@@ -2,7 +2,7 @@
 
 import React, { useState } from "react";
 import { motion, AnimatePresence } from "framer-motion";
-import { bodoni_moda, manrope, bricolage_grotesque } from "../../app/fonts";
+import { bodoni_moda, manrope } from "../../app/fonts";
 import ColorSwatch from "./components/ColorSwatch";
 import TypographySpec from "./components/TypographySpec";
 import IconSpec from "./components/IconSpec";
@@ -188,7 +188,7 @@ const DesignSystemSpecs: React.FC<DesignSystemSpecsProps> = ({
                     <div 
                       className="text-gray-900 dark:text-gray-100"
                       style={{ 
-                        fontFamily: spec.font === 'Bricolage Grotesque' ? bricolage_grotesque.style.fontFamily : manrope.style.fontFamily,
+                        fontFamily: spec.font === 'Bricolage Grotesque' ? manrope.style.fontFamily : manrope.style.fontFamily,
                         fontSize: spec.size.split('/')[0] + 'px',
                         lineHeight: spec.size.split('/')[1] + 'px',
                         fontWeight: spec.weight === 'ExtraBold' ? '800' : spec.weight === 'Bold' ? '700' : '400'

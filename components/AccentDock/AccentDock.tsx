@@ -37,9 +37,9 @@ const AccentDock: React.FC<AccentDockProps> = () => {
 
   return (
     <div className="fixed left-6 top-1/2 -translate-y-1/2 z-50 hidden md:flex flex-col items-center">
-      <div className="flex flex-col items-center gap-6 px-3 py-4 modern-border-radius-xl modern-shadow-xl glass-effect">
+      <div className="flex flex-col items-center gap-3 px-3 py-4 modern-border-radius-xl modern-shadow-xl glass-effect">
         {/* Theme Toggle - moved to top */}
-        <div className="mb-2">
+        <div className="mb-1">
           <ThemeToggle size={8} />
         </div>
         
