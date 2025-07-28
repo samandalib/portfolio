@@ -31,8 +31,8 @@ const ProjectPage = ({ params }: ProjectPageProps) => {
 
   return (
     <main className="main-content flex flex-col min-h-screen px-8 py-16">
-      <section className="w-full max-w-6xl mx-auto mt-20">
-        <div className="w-full max-w-5xl px-4 mt-12 mb-8">
+      <section className="w-full max-w-6xl mx-auto">
+        <div className="w-full max-w-5xl px-4 mb-8">
           <AccentDock />
           {details && (
             <ProjectDetailsDisplay
