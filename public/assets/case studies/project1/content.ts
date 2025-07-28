@@ -76,7 +76,7 @@ const caseStudy: CaseStudyContent = {
     year: 2025,
     company: "Road265 (Personal Venture)",
     role: "Product Designer & Co-Founder",
-    notes: "Engineering co-founder:Amir Mostafavi"
+    notes: "Engineering co-founder: Amir Mostafavi"
   },
   skills: [
     "Product Strategy",
@@ -101,14 +101,12 @@ const caseStudy: CaseStudyContent = {
     {
         heading: "The solution",
         body: [
-          "An AI-powered wellness app to turn scattered wellness data into insights to build healthy lifestyle routine – to stay functionally independent in old ages.",
+          "An AI-powered wellness app to turn scattered wellness data into insights to build healthy lifestyle routines – to stay functionally independent in old age.",
           [
           "Focuses on holistic wellbeing",
           "Provides personalized coaching",
-          "Gives freedom of tool and choice ",
+          "Gives freedom of tools and choice",
           ]
-          
-        
         ],
 
         visuals: [
@@ -143,7 +141,7 @@ const caseStudy: CaseStudyContent = {
     },
     {
       heading: "Demo videos for the app",
-      subheading: "I created these demo videos to showcase the app to the end users, investors and developers.",
+      subheading: "I created these demo videos to showcase the app to end users, investors, and developers.",
       body: [
         "Personalized coaching across cardio, strength, cognition, and emotional health",
         "Smart scorecards (L-Score, inAge, Decline Curve)",
@@ -164,7 +162,7 @@ const caseStudy: CaseStudyContent = {
           src: "https://res.cloudinary.com/dehugbvmc/video/upload/v1753473235/chatdemo_bgpqqv.mp4",
           // Valid values: 'rounded', 'rounded-md', 'rounded-lg', 'rounded-xl', 'rounded-2xl', 'rounded-full'
           radius: 'rounded-2xl',
-          caption:"AI chat demo"
+          caption: "AI chat demo"
         }
         // VISUAL: Core screens from Figma { type: "image", src: "personas.png", alt: "User personas", caption: "Key personas and unmet needs" }
       ],
@@ -181,7 +179,7 @@ const caseStudy: CaseStudyContent = {
       subheading: "From low-fidelity mapping to interactive prototypes",
       body: "Started with user journeys and whiteboard flows, evolved into detailed wireframes and prototypes in Figma. Validated with target users in 1:1 sessions, iterating on tone, navigation, and dashboard UX.",
       visuals: [
-        { type: "image", src: "https://res.cloudinary.com/dehugbvmc/image/upload/v1753405794/265lofi_rmvsz2.png", alt: "low fidelity wireframes" }
+        { type: "image", src: "https://res.cloudinary.com/dehugbvmc/image/upload/v1753405794/265lofi_rmvsz2.png", alt: "Low fidelity wireframes" }
         // VISUAL: High-fi prototype overview
       ],
       layout: { textColumns: 6, visualColumns: 6, textAlign: 'top' }
@@ -213,8 +211,8 @@ const caseStudy: CaseStudyContent = {
     },
     {
       heading: "Design for production",
-      subheading: "Preparing the Hi-fidelity prototype for final round of user testing and production handoff",
-      body: "I design the hi-fidelity user testing with all the colors, fonts, and visual elements before making the design ready for production and development handoff.",
+      subheading: "Preparing the high-fidelity prototype for final round of user testing and production handoff",
+      body: "I designed the high-fidelity user testing with all the colors, fonts, and visual elements before making the design ready for production and development handoff.",
      visuals: [
       {
         type: "embed",
@@ -233,7 +231,7 @@ const caseStudy: CaseStudyContent = {
       {
           type: "embed",
           src: "https://jumpshare.com/embed/htwJm58nicCfUJSmM479",
-          caption: "Walkthrough of the various parts of the app, including the dashboard, the AI chat, and the scoring system, etc.",
+          caption: "Walkthrough of the various parts of the app, including the dashboard, AI chat, and scoring system.",
           radius: 'rounded-2xl'
         },
 
@@ -244,7 +242,7 @@ const caseStudy: CaseStudyContent = {
     {
       heading: "Design system & branding",
       subheading: "Making longevity feel modern, friendly, and strong",
-      body: "Created the brand identity, logo, and typography system. Designed the website landing page to focus on clarity, motivation, and sign-ups. Used After Effects for subtle animations in product stories. Designed IG/TikTok content to build early traction.",
+      body: "Created the brand identity, logo, and typography system. Designed the website landing page to focus on clarity, motivation, and sign-ups. Used After Effects for subtle animations in product stories. Designed Instagram/TikTok content to build early traction.",
       visuals: [
         // VISUAL: Style guide
         // VISUAL: Optional animation showcase
@@ -268,7 +266,7 @@ const caseStudy: CaseStudyContent = {
     {
       //heading: "Design Approach",
       subheading: "Branding & presentation assets",
-      body: "I created a lot of lottie animations for the waiting and loading states of the app using Adobe After Effects.",
+      body: "I created many Lottie animations for the waiting and loading states of the app using Adobe After Effects.",
 
       visuals: [
         // VISUAL: Concept framework slide { type: "image", src: "personas.png", alt: "User personas", caption: "Key personas and unmet needs" }
@@ -328,8 +326,8 @@ const caseStudy: CaseStudyContent = {
       layout: { textColumns: 6, visualColumns: 6, textAlign: 'top' }
     },
     {
-      subheading: "Set the tone for the app wtih the onboarding visuals",
-      body: "I created some fund animations for the onboarding flow related to healthy and happy moments of life.",
+      subheading: "Set the tone for the app with the onboarding visuals",
+      body: "I created some fun animations for the onboarding flow related to healthy and happy moments of life.",
       
       visuals: [
         /*
@@ -376,7 +374,7 @@ const caseStudy: CaseStudyContent = {
       layout: { textColumns: 6, visualColumns: 6, textAlign: 'top' }
     },
     {
-      body: "I created more animations for social media posts and the app website to cross the point on the emotional aspect of aging. I used ElevnLabs AI voice generator for voiceovers.",
+      body: "I created more animations for social media posts and the app website to convey the emotional aspect of aging. I used ElevenLabs AI voice generator for voiceovers.",
       visuals: [
         {
           type: "lottie",
@@ -388,6 +386,11 @@ const caseStudy: CaseStudyContent = {
         },
       ],
       layout: { textColumns: 3, visualColumns: 9, textAlign: 'top' }
+    },
+    {
+      heading: "What is next?",
+      body: "Since starting this passion project, I learned a lot about entrepreneurship, various tools to kick off a business, and many new design skills. Right now it is time to go to market and see how it would work in the real world. I'm humbled by the fact that it takes so much work to get a product to a stage where people start to care about it, and I'm going to carry the lessons of this initiative to any next steps in my career and professional path. I'm proud of the work I did.",
+      layout: { textColumns: 6, visualColumns: 6, textAlign: 'top', stacked: true }
     }
   ]
 };

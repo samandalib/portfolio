@@ -32,7 +32,7 @@ const ProjectPage = ({ params }: ProjectPageProps) => {
   return (
     <main className="main-content flex flex-col min-h-screen px-8 py-16">
       <section className="w-full max-w-6xl mx-auto">
-        <div className="w-full max-w-5xl px-4 mb-8">
+        <div className="w-full px-4 mb-8">
           <AccentDock />
           {details && (
             <ProjectDetailsDisplay
@@ -46,7 +46,7 @@ const ProjectPage = ({ params }: ProjectPageProps) => {
           )}
         </div>
         {/* Main project content (InfoSnippets) */}
-        <div className="w-full max-w-5xl px-4">
+        <div className="w-full px-4">
           {infoSnippets && infoSnippets.map((snippet: any, idx: number) => (
             <div key={idx} className="relative mb-32 last:mb-20">
               <InfoSnippet snippet={snippet} />
