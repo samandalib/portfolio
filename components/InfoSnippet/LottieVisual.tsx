@@ -13,7 +13,7 @@ const LottieVisual: React.FC<LottieVisualProps> = ({
   const { ref, animationData, lottieRef } = useLottieAnimation(src, loop, onRef, onStateChange);
 
   return (
-    <div ref={ref} className="mb-4 w-full h-full flex items-center justify-center">
+    <div ref={ref} className="mb-4 w-full h-full flex flex-col items-center justify-center">
       {animationData ? (
         <Lottie
           lottieRef={lottieRef}

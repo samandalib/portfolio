@@ -374,6 +374,20 @@ const caseStudy: CaseStudyContent = {
       
       ],
       layout: { textColumns: 6, visualColumns: 6, textAlign: 'top' }
+    },
+    {
+      body: "I created more animations for social media posts and the app website to cross the point on the emotional aspect of aging. I used ElevnLabs AI voice generator for voiceovers.",
+      visuals: [
+        {
+          type: "lottie",
+          caption: "This is an animation about precious moments of life that we can keep enjoying if we take healthy lifestyle choices.",
+          src: "https://res.cloudinary.com/dehugbvmc/raw/upload/v1753720819/StoryLottie_qk9hpj.json",
+          radius: 'rounded-2xl',
+          autoplay: true,
+          loop: true
+        },
+      ],
+      layout: { textColumns: 3, visualColumns: 9, textAlign: 'top' }
     }
   ]
 };
