@@ -381,7 +381,7 @@ const caseStudy: CaseStudyContent = {
         {
           type: "lottie",
           caption: "This is an animation about precious moments of life that we can keep enjoying if we take healthy lifestyle choices.",
-          src: "https://res.cloudinary.com/dehugbvmc/raw/upload/v1753720819/StoryLottie_qk9hpj.json",
+          src: "https://res.cloudinary.com/dehugbvmc/raw/upload/v1753722394/StoryLottiegray_vrdfny.json",
           radius: 'rounded-2xl',
           autoplay: true,
           loop: true
