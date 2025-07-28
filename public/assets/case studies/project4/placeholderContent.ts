@@ -62,13 +62,13 @@ export interface InfoSnippet {
 }
 
 export interface CaseStudyContent {
-  projectHeading: string;
+  projectHeading?: string;
   projectSubheading?: string;
   domain?: string;
   projectLogo?: string; // URL to project logo image
-  details: ProjectDetails;
+  details?: ProjectDetails;
   skills?: string[];
-  infoSnippets: InfoSnippet[];
+  infoSnippets?: InfoSnippet[];
 }
 
 // Example usage:
