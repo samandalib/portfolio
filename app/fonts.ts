@@ -7,6 +7,6 @@ import { Playwrite_AU_NSW } from 'next/font/google';
 
 export const bodoni_moda = Bodoni_Moda({ subsets: ['latin'], weight: ['400'], variable: '--font-bodoni_moda', display: 'swap' });
 export const manrope = Manrope({ subsets: ['latin'], weight: ['400'], variable: '--font-manrope', display: 'swap' });
-export const ibm_plex_mono = IBM_Plex_Mono({ weight: ['400'], variable: '--font-ibm_plex_mono', display: 'swap' });
-export const rock_salt = Rock_Salt({ weight: ['400'], variable: '--font-rock_salt', display: 'swap' });
-export const playwrite_au_nsw = Playwrite_AU_NSW({ weight: ['400'], variable: '--font-playwrite_au_nsw', display: 'swap' });
+export const ibm_plex_mono = IBM_Plex_Mono({ subsets: ['latin'], weight: ['400'], variable: '--font-ibm_plex_mono', display: 'swap' });
+export const rock_salt = Rock_Salt({ subsets: ['latin'], weight: ['400'], variable: '--font-rock_salt', display: 'swap' });
+export const playwrite_au_nsw = Playwrite_AU_NSW({ subsets: ['latin'], weight: ['400'], variable: '--font-playwrite_au_nsw', display: 'swap' });
