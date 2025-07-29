@@ -17,6 +17,8 @@ const FontToggle: React.FC<FontToggleProps> = ({
   isDark 
 }) => {
   const [isExpanded, setIsExpanded] = useState(false);
+  
+
 
   const toggleExpanded = () => {
     setIsExpanded(!isExpanded);

@@ -26,8 +26,8 @@ const AccentDock: React.FC<AccentDockProps> = () => {
   useFontSync(fontIndex, fontPresets);
   useAccentColor(accent);
 
-  const handleFontChange = () => {
-    setFontIndex((prev) => (prev + 1) % fontPresets.length);
+  const handleFontChange = (index: number) => {
+    setFontIndex(index);
   };
 
   // Set CSS variable for font size on client after mount
