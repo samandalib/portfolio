@@ -71,107 +71,43 @@ export interface CaseStudyContent {
   infoSnippets?: InfoSnippet[];
 }
 
+// Example usage:
 const caseStudy: CaseStudyContent = {
-  projectHeading: "AT&T Retail POS Redesign",
-  projectSubheading: "Improving efficiency and flexibility for a $47B retail operation by reimagining the Salesforce-powered POS experience.",
-  domain: "RETAIL SALES PLATFORM",
+  /*
+  projectHeading: "Your Project Title",
+  projectSubheading: "A brief description of your project and its impact.",
+  domain: "DOMAIN LABEL",
+  projectLogo: "https://your-logo-url.svg",
+  details: {},
+  
   details: {
-    year: 2023,
-    company: "AT&T",
-    role: "Lead Designer for Retail POS",
-    notes: "Collaborated with research, prototyping, and Salesforce development teams"
+    year: 2024,
+    company: "Company Name",
+    team: "Team Name",
+    role: "Your Role",
+    notes: "Additional notes or collaborators"
   },
   skills: [
-    "UX Design",
-    "Prototyping",
-    "Design Systems",
-    "Interaction Design",
-    "Enterprise UX",
-    "Salesforce Lightning"
+    "Skill 1",
+    "Skill 2", 
+    "Skill 3",
+    "Skill 4",
+    "Skill 5",
+    "Skill 6"
   ],
+  */
   infoSnippets: [
     {
-      heading: "The problem",
-      body: [
-        "AT&T’s legacy POS system was difficult to learn, rigid, and error-prone. It required retail reps to bounce between multiple systems to complete a sale, leading to inefficiencies and poor customer experiences.",
-        "Despite a major investment in Salesforce, the out-of-the-box experience wasn’t enough. The new system needed a thoughtful redesign from the ground up to support real-world sales conversations."
+      heading: "Thanks for checking!",
+      body: "I'm currently migrating this case study from an older OTB platform and enjoying building it here using Cursor, better and faster. I'm literally working on it right now. If you check back in a week, you'll find a rich story with visuals, context, and process.\n\nIn the meantime, feel free to explore my case studies that are already live. It gives a solid glimpse into the breadth and depth of my work. The rest of the upcoming case studies focus on different domains, so stay tuned!",
+      visuals: [
+        {
+          type: "component",
+          src: "single-project-slider", // Required but not used for components
+          componentName: "SingleProjectSlider"
+        }
       ],
-      visuals: [],
-      layout: { textColumns: 6, visualColumns: 6, stacked: false }
-    },
-    {
-      heading: "The opportunity",
-      body: [
-        "$28B corporate retail operation across 1,509 stores and 19,000 employees.",
-        "$19B authorized retail network across 3,823 stores.",
-        "A new design could improve training, reduce errors, and increase upsells by supporting more natural, guided interactions."
-      ],
-      visuals: [],
-      layout: { textColumns: 6, visualColumns: 6, stacked: false }
-    },
-    {
-      heading: "Design process",
-      subheading: "Grounded in real-world observation",
-      body: [
-        "We conducted store visits and interviews to uncover reps’ day-to-day struggles.",
-        "Synthesized findings into design principles: Flexible, Intuitive, Transparent, and Clear.",
-        "Tested early concepts through prototypes and evolved them through feedback."
-      ],
-      visuals: [],
-      layout: { textColumns: 6, visualColumns: 6, textAlign: "top", stacked: false }
-    },
-    {
-      heading: "Phase 1: Single-line upgrades",
-      body: [
-        "Mapped out upgrade journey for individual customers.",
-        "Designed a POS cart experience that guided reps while remaining flexible.",
-        [
-          "One-step-at-a-time flow with context-sensitive intelligence",
-          "Guided add-on recommendations to boost attach rates",
-          "Clear, editable sections that match conversation flow"
-        ]
-      ],
-      visuals: [],
-      layout: { textColumns: 6, visualColumns: 6, stacked: false }
-    },
-    {
-      heading: "Phase 2: Multi-line challenges",
-      subheading: "Scaling the experience for family plans",
-      body: [
-        "With multi-line accounts, complexity multiplies. Each line may have unique upgrade paths, trade-ins, and offers.",
-        "We tested concepts in low fidelity before building a high-fidelity prototype using Salesforce Lightning components."
-      ],
-      visuals: [],
-      layout: { textColumns: 6, visualColumns: 6, stacked: false }
-    },
-    {
-      heading: "Key wins & pain points",
-      body: [
-        "Top wins:",
-        [
-          "Reduced clicks with everything on one page",
-          "Support for both linear and non-linear workflows",
-          "Ability to edit without rebuilding"
-        ],
-        "Top losses:",
-        [
-          "Difficult to see how decisions affect other lines",
-          "Unclear account-level summaries",
-          "Lack of visibility into current plan status"
-        ]
-      ],
-      visuals: [],
-      layout: { textColumns: 6, visualColumns: 6, stacked: false }
-    },
-    {
-      heading: "Measuring success",
-      body: [
-        "To evaluate success, I created a novel interaction analysis method to compare our design against the legacy system.",
-        "This method helped quantify efficiency, accuracy, and clarity improvements.",
-        "I later published this method as an article on Medium to share insights with the broader design community."
-      ],
-      visuals: [],
-      layout: { textColumns: 6, visualColumns: 6, stacked: false }
+      layout: { textColumns: 4, visualColumns: 8, textAlign: 'middle' }
     }
   ]
 };

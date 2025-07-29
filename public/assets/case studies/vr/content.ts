@@ -73,43 +73,106 @@ export interface CaseStudyContent {
 
 // Example usage:
 const caseStudy: CaseStudyContent = {
-  /*
-  projectHeading: "Your Project Title",
-  projectSubheading: "A brief description of your project and its impact.",
-  domain: "DOMAIN LABEL",
-  projectLogo: "https://your-logo-url.svg",
-  details: {},
-  
+  projectHeading: "VR Interior Design Tool",
+  projectSubheading: "A prototyping tool to help interior designers evaluate and iterate their work in immersive 3D.",
+  domain: "IMMERSIVE DESIGN TOOLS",
   details: {
-    year: 2024,
-    company: "Company Name",
-    team: "Team Name",
-    role: "Your Role",
-    notes: "Additional notes or collaborators"
+    year: 2022,
+    company: "Independent Project",
+    role: "Product Designer & Developer",
+    notes: "End-to-end design and prototyping using Unity and XR Interaction Toolkit"
   },
   skills: [
-    "Skill 1",
-    "Skill 2", 
-    "Skill 3",
-    "Skill 4",
-    "Skill 5",
-    "Skill 6"
+    "VR UX Design",
+    "Unity",
+    "Interaction Design",
+    "Rapid Prototyping",
+    "User Testing",
+    "C# Development"
   ],
-  */
   infoSnippets: [
     {
-      heading: "Thanks for checking!",
-      body: "I'm currently migrating this case study from an older OTB platform and enjoying building it here using Cursor, better and faster. I'm literally working on it right now. If you check back in a week, you'll find a rich story with visuals, context, and process.\n\nIn the meantime, feel free to explore my case studies that are already live. It gives a solid glimpse into the breadth and depth of my work. The rest of the upcoming case studies focus on different domains, so stay tuned!",
-      visuals: [
-        {
-          type: "component",
-          src: "single-project-slider", // Required but not used for components
-          componentName: "SingleProjectSlider"
-        }
+      heading: "The problem",
+      body: [
+        "Interior designers often rely on imagination or 3D renderings to evaluate spatial qualities, but these tools fall short.",
+        "Design decisions made without fully understanding space can lead to costly mistakes in materials and labor."
       ],
-      layout: { textColumns: 4, visualColumns: 8, textAlign: 'middle' }
+      visuals: [],
+      layout: { textColumns: 6, visualColumns: 6, stacked: false }
+    },
+    {
+      heading: "Design goal",
+      body: "Build a VR tool that empowers designers to experience and iterate on their designs in real scale and space.",
+      visuals: [],
+      layout: { textColumns: 6, visualColumns: 6, stacked: false }
+    },
+    {
+      heading: "Overview",
+      body: [
+        "The tool allows interior designers to explore and edit their designs in a fully interactive VR environment.",
+        "Users can manipulate objects, test lighting, and iterate quickly using natural interactions."
+      ],
+      visuals: [],
+      layout: { textColumns: 6, visualColumns: 6, stacked: false }
+    },
+    {
+      heading: "Approach",
+      body: [
+        "Interviewed 5 interior designers to define essential interactions.",
+        "Built low-fi and hi-fi prototypes in Unity to test object manipulation, lighting, and spatial layout.",
+        "Tested each iteration with target users and refined based on feedback."
+      ],
+      visuals: [],
+      layout: { textColumns: 6, visualColumns: 6, stacked: false }
+    },
+    {
+      heading: "Prototyping",
+      body: [
+        "Divided the experience into 4 phases: 2D interface design, 3D object interaction, spatial behavior, and debugging.",
+        "Created a minimum viable Unity prototype with the following capabilities:",
+        [
+          "Move, rotate, duplicate, and remove objects",
+          "Adjust lighting and change time of day",
+          "Toggle hand-held menus and HUD interfaces"
+        ]
+      ],
+      visuals: [],
+      layout: { textColumns: 6, visualColumns: 6, stacked: false }
+    },
+    {
+      heading: "Feedback and iteration",
+      body: [
+        "Shared the first version with VR experts from YouTube and Microsoft.",
+        "Improved UI by moving menus to hand-held positions and making interactions less modal.",
+        "Second iteration featured grid snapping, custom rotation presets, and a simplified interaction model."
+      ],
+      visuals: [],
+      layout: { textColumns: 6, visualColumns: 6, stacked: false }
+    },
+    {
+      heading: "Interaction walkthrough",
+      body: [
+        "Each interaction was recorded in-context and reviewed with users:",
+        [
+          "Move, rotate, and duplicate objects",
+          "Turn lights on/off and change ambient lighting",
+          "Use hand-held menu for tool switching"
+        ]
+      ],
+      visuals: [],
+      layout: { textColumns: 6, visualColumns: 6, stacked: false }
+    },
+    {
+      heading: "Reflection",
+      body: [
+        "Learned how to prototype immersive experiences and navigate the constraints of VR development.",
+        "Improved documentation helped me maintain momentum between long gaps in development.",
+        "Developed an efficient way to support testing, feedback loops, and iteration in Unity."
+      ],
+      visuals: [],
+      layout: { textColumns: 6, visualColumns: 6, stacked: false }
     }
   ]
 };
 
-export default caseStudy; 
+export default caseStudy;

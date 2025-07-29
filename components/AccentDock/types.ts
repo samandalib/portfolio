@@ -16,7 +16,7 @@ export interface FontSizeSliderProps {
 export interface FontToggleProps {
   fontIndex: number;
   fontPresets: any[];
-  onFontChange: () => void;
+  onFontChange: (index: number) => void;
   isDark: boolean;
 }
 
