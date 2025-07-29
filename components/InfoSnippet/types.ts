@@ -29,6 +29,8 @@ export type VisualAssetWithRadius = {
   autoplay?: boolean;
   loop?: boolean;
   muted?: boolean;
+  poster?: string;     // URL to poster image (shows before video plays)
+  startTime?: number;  // Time in seconds to start the video at (e.g., 5.5 for 5.5 seconds)
   componentName?: string;
   componentProps?: any;
 };
