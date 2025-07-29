@@ -96,6 +96,20 @@ fontNames.forEach(font => {
   );
   // Build options object with only valid properties
   let options = [];
+  
+  // Always include subsets for all fonts
+  if (font === 'Bodoni Moda' || font === 'Manrope') {
+    options.push(`subsets: ['latin']`);
+  } else if (font === 'IBM Plex Mono') {
+    options.push(`subsets: ['latin']`);
+  } else if (font === 'Dancing Script') {
+    options.push(`subsets: ['latin']`);
+  } else if (font === 'Caveat') {
+    options.push(`subsets: ['latin']`);
+  } else {
+    options.push(`subsets: ['latin']`);
+  }
+  
   if (fontWeights[font] && fontWeights[font][0] !== undefined) {
     options.push(`weight: [${fontWeights[font].map(w => `'${w}'`).join(', ')}]`);
   }
@@ -111,10 +125,7 @@ fontNames.forEach(font => {
   options.push(`variable: '${cssVarName}'`);
   // Only include display if present (default to 'swap')
   options.push(`display: 'swap'`);
-  // Only include subsets for Bodoni Moda and Manrope (or other known fonts that support it)
-  if (["Bodoni Moda", "Manrope"].includes(font)) {
-    options.unshift(`subsets: ['latin']`);
-  }
+  
   exportLines.push(
     `export const ${varName.toLowerCase()} = ${varName}({ ${options.join(', ')} });`
   );
