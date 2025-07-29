@@ -54,7 +54,7 @@ const CanvasSection: React.FC<InfoSnippetCanvasSectionProps> = ({
 
   return (
     <div
-      className={`canvas flex items-center justify-center h-full ${isDev ? 'bg-gray-100/50' : ''} modern-border-radius-lg ${stackedState ? 'col-span-12 w-full' : `col-span-1 md:col-span-${Math.min(visualCols,6)} md:w-full ${canvasGridClass}`}`}
+      className={`canvas flex items-center justify-center h-full modern-border-radius-lg ${stackedState ? 'col-span-12 w-full' : `col-span-1 md:col-span-${Math.min(visualCols,6)} md:w-full ${canvasGridClass}`}`}
       style={{ transition: 'background 0.2s', position: 'relative' }}
     >
       <div

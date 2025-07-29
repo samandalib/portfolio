@@ -48,7 +48,7 @@ export default function Home() {
                 />
               </div>
               {/* Text Content */}
-              <div className="flex flex-col items-center lg:items-start text-center lg:text-left lg:max-w-[400px]">
+              <div className="flex flex-col items-center lg:items-start text-center lg:text-left lg:max-w-[500px]">
                 <span className="font-sans font-medium max-w-lg text-foreground-light/80 dark:text-foreground-dark/80 leading-relaxed mb-3 text-lg tracking-wide">{landingContent.intro}</span>
                 <h1 className="text-7xl font-light mb-6 font-heading gradient-text tracking-tight">{landingContent.heading}</h1>
                 <p 

@@ -31,6 +31,7 @@ export type VisualAssetWithRadius = {
   muted?: boolean;
   poster?: string;     // URL to poster image (shows before video plays)
   startTime?: number;  // Time in seconds to start the video at (e.g., 5.5 for 5.5 seconds)
+  aspectRatio?: string; // e.g. '16/9', '4/3', '1/1'
   componentName?: string;
   componentProps?: any;
 };

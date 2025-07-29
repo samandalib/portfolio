@@ -43,6 +43,7 @@ export interface VisualAsset {
   // Component-specific properties:
   componentName?: string; // e.g., "DesignSystemSpecs"
   componentProps?: any;   // Props to pass to the component
+  aspectRatio?: string;   // e.g. "16/9", "4/3", "1/1"
 }
 
 export interface InfoSnippet {
@@ -134,7 +135,8 @@ const caseStudy: CaseStudyContent = {
             type: "embed", 
             src: "https://jumpshare.com/embed/fMhCy0IgN3hNbtNKl0VK",
             embedType: "other",
-            caption: "A view of the Aging dashboard"
+            caption: "A view of the Aging dashboard",
+            radius: 'rounded-2xl',
           }
         ],
         layout: { textColumns: 6, visualColumns: 6, textAlign: 'middle' }
@@ -204,7 +206,7 @@ const caseStudy: CaseStudyContent = {
     {
       //heading: "Validation & testing",
       //subheading: "Iterative testing from ideas to interface",
-      body: [
+      /*body: [
         "I conducted multiple rounds of testing:",
         [
         "Concept validation via interviews and Notion decks",
@@ -213,7 +215,7 @@ const caseStudy: CaseStudyContent = {
         "Post-test surveys to refine language and framing",
         ]
       
-      ],
+      ],*/
 
       visuals: [
         {
@@ -224,7 +226,7 @@ const caseStudy: CaseStudyContent = {
         }
 
       ],
-      layout: { textColumns: 4, visualColumns: 8, textAlign: 'top', stacked: false }
+      layout: { textColumns: 4, visualColumns: 8, textAlign: 'top', stacked: true }
     },
     {
       heading: "Design for production",
@@ -278,7 +280,7 @@ const caseStudy: CaseStudyContent = {
           // Uses all default data including the full color palette
         }
       ],
-      layout: { textColumns: 6, visualColumns: 6, textAlign: 'top' }
+      layout: { textColumns: 4, visualColumns: 8, textAlign: 'top' }
     },
     {
       //heading: "Design Approach",
@@ -340,7 +342,7 @@ const caseStudy: CaseStudyContent = {
           },
         
       ],
-      layout: { textColumns: 6, visualColumns: 6, textAlign: 'top' }
+      layout: { textColumns: 4, visualColumns: 8, textAlign: 'top' }
     },
     {
       subheading: "Set the tone for the app with the onboarding visuals",
