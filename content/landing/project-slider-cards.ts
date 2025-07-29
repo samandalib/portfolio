@@ -20,7 +20,7 @@ export const projectSliderCards: ProjectSliderCard[] = [
     tags: ["AI", "UI/UX", "Health & Wellness", "Mobile app"],
     color: "from-purple-500 to-pink-500",
     caseStudyIndex: 0, // Shows the first case study (Road265)
-    slug: 'project1',
+    slug: 'Road265',
   },
   {
     id: 3,
@@ -30,7 +30,7 @@ export const projectSliderCards: ProjectSliderCard[] = [
     tags: ["Healthcare", "Mobile", "Accessibility"],
     color: "from-blue-500 to-cyan-500",
     caseStudyIndex: 1, // Shows the second case study (when you add it)
-    slug: 'project2',
+    slug: 'attpos',
   },
   {
     id: 1,
@@ -40,7 +40,7 @@ export const projectSliderCards: ProjectSliderCard[] = [
     tags: ["Fintech", "Dashboard", "Data Viz"],
     color: "from-green-500 to-emerald-500",
     caseStudyIndex: 2, // Shows the third case study (when you add it)
-    slug: 'project3',
+    slug: 'vo2max',
   },
   {
     id: 4,
@@ -50,6 +50,6 @@ export const projectSliderCards: ProjectSliderCard[] = [
     tags: ["Social", "Community", "Mobile"],
     color: "from-orange-500 to-red-500",
     caseStudyIndex: 3, // Shows the fourth case study (when you add it)
-    slug: 'project4',
+    slug: 'vr',
   }
 ]; 

@@ -9,8 +9,8 @@ import type { ProjectSliderProps } from './types';
 const SingleProjectSlider: React.FC<ProjectSliderProps> = () => {
   const router = useRouter();
   
-  // Filter to show only project1
-  const singleProject = projectSliderCards.filter(project => project.slug === 'project1');
+  // Filter to show only Road265
+const singleProject = projectSliderCards.filter(project => project.slug === 'Road265');
 
   return (
     <div className="w-full max-w-5xl mx-auto relative">

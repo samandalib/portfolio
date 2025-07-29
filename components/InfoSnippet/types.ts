@@ -1,4 +1,4 @@
-import type { InfoSnippet as InfoSnippetType } from "../../public/assets/case studies/project1/content";
+import type { InfoSnippet as InfoSnippetType } from "../../public/assets/case studies/Road265/content";
 
 // Patch the InfoSnippetType to allow optional textAlign in layout
 export type InfoSnippetLayout = {

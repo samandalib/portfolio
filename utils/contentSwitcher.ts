@@ -1,33 +1,33 @@
 // Content switcher utility for development vs production
-import project1Content from '../public/assets/case studies/project1/content';
+import road265Content from '../public/assets/case studies/Road265/content';
 
 // Import placeholder content
-import project2Placeholder from '../public/assets/case studies/project2/placeholderContent';
-import project3Placeholder from '../public/assets/case studies/project3/placeholderContent';
-import project4Placeholder from '../public/assets/case studies/project4/placeholderContent';
+import attposPlaceholder from '../public/assets/case studies/attpos/placeholderContent';
+import vo2maxPlaceholder from '../public/assets/case studies/vo2max/placeholderContent';
+import vrPlaceholder from '../public/assets/case studies/vr/placeholderContent';
 
 // Import main content (will be created when ready)
-import project2Content from '../public/assets/case studies/project2/content';
-import project3Content from '../public/assets/case studies/project3/content';
-import project4Content from '../public/assets/case studies/project4/content';
+import attposContent from '../public/assets/case studies/attpos/content';
+import vo2maxContent from '../public/assets/case studies/vo2max/content';
+import vrContent from '../public/assets/case studies/vr/content';
 
 const isDev = process.env.NODE_ENV === 'development';
 
 export const getProjectContent = (projectSlug: string) => {
   switch (projectSlug) {
-    case 'project1':
-      return project1Content;
+    case 'Road265':
+      return road265Content;
     
-    case 'project2':
+    case 'attpos':
       // In dev mode, you can uncomment the main content import above
-      // and switch this to use project2Content instead
-      return project2Content;
+      // and switch this to use attposContent instead
+      return attposContent;
     
-    case 'project3':
-      return project3Content;
+    case 'vo2max':
+      return vo2maxContent;
     
-    case 'project4':
-      return project4Content;
+    case 'vr':
+      return vrContent;
     
     default:
       return null;
@@ -36,5 +36,5 @@ export const getProjectContent = (projectSlug: string) => {
 
 // Helper to check if we're using placeholder content
 export const isUsingPlaceholder = (projectSlug: string) => {
-  return ['project2', 'project3', 'project4'].includes(projectSlug);
+  return ['attpos', 'vo2max', 'vr'].includes(projectSlug);
 }; 
