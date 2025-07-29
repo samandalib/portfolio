@@ -15,9 +15,9 @@ export const projectSliderCards: ProjectSliderCard[] = [
   {
     id: 2,
     title: "Road265",
-    description: "A mobile app to plan and prevent the decline that comes with aging",
+    description: "AI-powered coaching app for healthy aging",
     image: "https://res.cloudinary.com/dehugbvmc/image/upload/v1753549363/3-devicesweb_kumypv.png",
-    tags: ["UI/UX", "Health & Wellness", "Mobile"],
+    tags: ["AI", "UI/UX", "Health & Wellness", "Mobile app"],
     color: "from-purple-500 to-pink-500",
     caseStudyIndex: 0, // Shows the first case study (Road265)
     slug: 'project1',

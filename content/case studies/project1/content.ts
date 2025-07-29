@@ -1,0 +1,415 @@
+/*
+INSTRUCTIONS FOR CASE STUDY CONTENT TEMPLATE
+
+- Fill out this file for each project under /public/assets/case studies/{project}/.
+- All fields marked with a ? are optional; you can leave them out if not needed.
+- 'projectHeading' and 'details' are required for every project.
+- 'infoSnippets' is an array: each snippet can have text, visuals, and a custom layout (columns for text/visuals, total 12).
+- For visuals, use type 'image' for local images, 'video' for YouTube/Vimeo links, 'embed' for other web/app embeds, or 'component' for custom React components.
+- You can add or remove snippets as needed for your project.
+- Example usage is provided below the interfaces.
+*/
+
+import { researchContent } from './ResearchContent';
+
+export interface ProjectDetails {
+  year?: number;
+  company?: string;
+  team?: string;
+  role?: string;
+  notes?: string;
+}
+
+export interface VisualAsset {
+  type: "image" | "video" | "embed" | "lottie" | "component";
+  src: string; // path to image, video URL, or embed URL
+  alt?: string; // for images
+  caption?: string;
+  embedType?: "youtube" | "vimeo" | "other";
+  radius?: string; // Valid values: 'rounded', 'rounded-md', 'rounded-lg', 'rounded-xl', 'rounded-2xl', 'rounded-full'
+  // New optional properties for layout control:
+  maxWidth?: string;   // e.g., "400px" or "80%"
+  maxHeight?: string;  // e.g., "300px" or "50vh"
+  marginLeft?: string; // e.g., "16px"
+  marginRight?: string;
+  marginTop?: string;
+  marginBottom?: string;
+  autoplay?: boolean;
+  loop?: boolean;
+  muted?: boolean;
+  // Video-specific properties for poster and timing:
+  poster?: string;     // URL to poster image (shows before video plays)
+  startTime?: number;  // Time in seconds to start the video at (e.g., 5.5 for 5.5 seconds)
+  // Component-specific properties:
+  componentName?: string; // e.g., "DesignSystemSpecs"
+  componentProps?: any;   // Props to pass to the component
+}
+
+export interface InfoSnippet {
+  heading?: string;
+  subheading?: string;
+  body?: string | string[] | (string | string[])[];
+  visuals?: VisualAsset[];
+  layout?: {
+    textColumns: number; // e.g., 4
+    visualColumns: number; // e.g., 8
+    textAlign?: 'top' | 'middle' | 'bottom';
+    canvasLeft?: boolean; // true = visuals left, false = right
+    stacked?: boolean;    // true = stacked, false = row
+  };
+}
+
+export interface CaseStudyContent {
+  projectHeading?: string;
+  projectSubheading?: string;
+  domain?: string;
+  projectLogo?: string; // URL to project logo image
+  details?: ProjectDetails;
+  skills?: string[];
+  infoSnippets?: InfoSnippet[];
+}
+
+// Example usage:
+const caseStudy: CaseStudyContent = {
+  projectHeading: "Road265: AI Companion for Independent Aging",
+  projectSubheading: "Empowering proactive adults to stay strong, sharp, and independent through personalized self-care coaching.",
+  domain: "WELLNESS PLATFORM",
+  projectLogo: "https://res.cloudinary.com/dehugbvmc/image/upload/v1753668690/265logo_ue7nig.svg", // Optional: Add your project logo URL here (SVG format recommended)
+  details: {
+    year: 2025,
+    company: "Road265 (Personal Venture)",
+    role: "Product Designer & Co-Founder",
+    notes: "Engineering co-founder: Amir Mostafavi"
+  },
+  skills: [
+    "Product Strategy",
+    "UX Research", 
+    "UX/UI Design",
+    "Branding",
+    "Prototyping",
+    "Design Systems",
+    "Motion Design",
+    "AI Design"
+  ],
+  infoSnippets: [
+    {
+      heading: "The north star vision",
+      body: "A true AI companion for aging would look like. The we started moving toward that direction. We knew we need a foundation first to get there.",
+      visuals: [
+        {
+          type: "video",
+          src: "https://res.cloudinary.com/dehugbvmc/video/upload/v1753751816/AIDemoVideo_kybsby.mp4",
+          caption: "AI Companion Demo - The North Star Vision",
+          autoplay: false,
+          loop: false,
+          muted: false,
+          radius: 'rounded-2xl'
+        }
+      ],
+      layout: { textColumns: 4, visualColumns: 8, textAlign: 'top'}
+    },
+    {
+      heading: "About the problem",
+      body: "Functional decline is preventable. As the leading cause of lost independence, chronic conditions gradually reduce mobility, strength, cognitive clarity, and energy, complicating daily tasks. Notably, 80% of midlife Americans have one, often due to lifestyle choices.",
+      visuals: [
+        // VISUAL: Personas slide { type: "image", src: "personas.png", alt: "User personas", caption: "Key personas and unmet needs" }
+      ],
+      layout: { textColumns: 6, visualColumns: 6, textAlign: 'middle', stacked: true}
+    },
+
+    {
+        heading: "The solution",
+        body: [
+          "An AI-powered wellness app to turn scattered wellness data into insights to build healthy lifestyle routinesto stay functionally independent in old age.\n Through research, we introduced concepts like 'L-Score', 'inAge', and 'Decline Curve' to visualize progress and shift mindset from reactive health to proactive self-care.",
+          [
+          "Focuses on holistic wellbeing",
+          "Provides personalized coaching",
+          "Gives freedom of tools and choice",
+          ]
+        ],
+
+        visuals: [
+          // VISUAL: Personas slide { type: "image", src: "personas.png", alt: "User personas", caption: "Key personas and unmet needs" }
+          { 
+            type: "embed", 
+            src: "https://jumpshare.com/embed/fMhCy0IgN3hNbtNKl0VK",
+            embedType: "other",
+            caption: "A view of the Aging dashboard"
+          }
+        ],
+        layout: { textColumns: 6, visualColumns: 6, textAlign: 'middle' }
+      },
+    {
+      heading: "Unique strategic differentiator",
+      subheading: "Designing a behavior orchestration layer, not just another tracker.",
+      body: "We reframed the product as a long-term independence coach, not a fitness app. So instead of trying to replace existing apps, we focused on creating a new layer to connect to the apps and devices that people already use.",
+      visuals: [
+        // VISUAL: Concept framework slide { type: "image", src: "personas.png", alt: "User personas", caption: "Key personas and unmet needs" }
+        
+          // Existing visuals...
+          {
+            type: "lottie",
+            src: "https://res.cloudinary.com/dehugbvmc/raw/upload/v1753404820/AppConnections_Crop_f4t0ux.json",
+            alt: "App connections animation",
+            loop: false,
+            //caption: "Animated connections using Lottie"
+          }
+        
+      ],
+      layout: { textColumns: 6, visualColumns: 6, textAlign: 'top' }
+    },
+    {
+      heading: "Tour of the features",
+      subheading: "I created these demo videos to showcase the app to end users, investors, and developers.",
+      body: [
+        "Personalized coaching across cardio, strength, cognition, and emotional health",
+        "Progress tracking and scorecards (L-Score, inAge, Decline Curve)",
+        "Unified dashboard focuse on aging metrics",
+        "App integrations and AI chat support",
+        "AI-powered wellness planning",
+      
+      ],
+      visuals: [
+        { 
+          type: "video", 
+          src: "https://res.cloudinary.com/dehugbvmc/video/upload/v1753472987/ScaledUpTour_1_1_jjvzbm.mp4",
+          // Valid values: 'rounded', 'rounded-md', 'rounded-lg', 'rounded-xl', 'rounded-2xl', 'rounded-full'
+          radius: 'rounded-2xl',
+          caption: "App tour video",
+          // Option 1: Set a specific time (in seconds) to display as the poster/thumbnail
+          startTime: 4, // This will show the video at 3.5 seconds when it loads
+          // Option 2: Use a custom poster image (generated from the video at 3.5 seconds)
+          //poster: "https://res.cloudinary.com/dehugbvmc/image/upload/so_3.5/v1753472987/ScaledUpTour_1_1_jjvzbm.jpg"
+        },
+        // VISUAL: Core screens from Figma { type: "image", src: "personas.png", alt: "User personas", caption: "Key personas and unmet needs" }
+      ],
+      layout: {
+        textColumns: 8,
+        visualColumns: 4,
+        textAlign: 'top',
+        canvasLeft: false, // Visuals on the left
+        stacked: false    // Side-by-side (row)
+      }
+    },
+    {
+      heading: "Design & user testing",
+      subheading: "From low-fidelity mapping to interactive prototypes",
+      body: "Started with user journeys and whiteboard flows, evolved into detailed wireframes and prototypes in Figma. Validated with target users in 1:1 sessions, iterating on tone, navigation, and dashboard UX.",
+      visuals: [
+        { type: "image", src: "https://res.cloudinary.com/dehugbvmc/image/upload/v1753405794/265lofi_rmvsz2.png", alt: "Low fidelity wireframes" }
+        // VISUAL: High-fi prototype overview
+      ],
+      layout: { textColumns: 4, visualColumns: 8, textAlign: 'top' }
+    },
+    {
+      //heading: "Validation & testing",
+      //subheading: "Iterative testing from ideas to interface",
+      body: [
+        "I conducted multiple rounds of testing:",
+        [
+        "Concept validation via interviews and Notion decks",
+        "Usability tests of Figma prototype (60-minute sessions)",
+        "Onboarding flow and scoring UX tested for clarity and retention",
+        "Post-test surveys to refine language and framing",
+        ]
+      
+      ],
+
+      visuals: [
+        {
+          type: "component",
+          src: "research-synthesis", // Required but not used for components
+          componentName: "ResearchSynthesis",
+          componentProps: researchContent
+        }
+
+      ],
+      layout: { textColumns: 4, visualColumns: 8, textAlign: 'top', stacked: false }
+    },
+    {
+      heading: "Design for production",
+      subheading: "Preparing the high-fidelity prototype for final round of user testing and production handoff",
+      body: "I designed the high-fidelity user testing with all the colors, fonts, and visual elements before making the design ready for production and development handoff.",
+     visuals: [
+      {
+        type: "embed",
+        src: "https://jumpshare.com/embed/FDuliqoPNStIEuAZens3",
+        caption: "Setting goal for wellness planning and seeing immediate impact of planning decisions on aging trajectory.",
+        radius: 'rounded-2xl',
+        maxWidth: "800px",
+        maxHeight: "450px" // 16:9 ratio (800 * 9/16 = 450)
+      },
+      {
+        type: "embed",
+        src: "https://jumpshare.com/embed/wH6KdL9ykq72VpCR53bu",
+        caption: "Planning a comprehensive wellness routine for healthy aging.",
+        radius: 'rounded-2xl'
+      },
+      {
+          type: "embed",
+          src: "https://jumpshare.com/embed/htwJm58nicCfUJSmM479",
+          caption: "Walkthrough of the various parts of the app, including the dashboard, AI chat, and scoring system.",
+          radius: 'rounded-2xl'
+        },
+
+      ],
+      layout: { textColumns: 4, visualColumns: 8, textAlign: 'top', stacked: true }
+    },
+
+    {
+      heading: "Design system & branding",
+      subheading: "Making longevity feel modern, friendly, and strong",
+      body: "Created the brand identity, logo, and typography system. Designed the website landing page to focus on clarity, motivation, and sign-ups. Used After Effects for subtle animations in product stories. Designed Instagram/TikTok content to build early traction.",
+      visuals: [
+        // VISUAL: Style guide
+        // VISUAL: Optional animation showcase
+      ],
+      layout: { textColumns: 4, visualColumns: 8, textAlign: 'top', stacked: true }
+    },
+    {
+      //heading: "Design System Specifications",
+      subheading: "Design system handoff to the development team",
+      body: "Our comprehensive design system includes color palettes, typography scales, icon libraries, and spacing guidelines to ensure consistency across all touchpoints.",
+      visuals: [
+        {
+          type: "component",
+          src: "design-system-specs", // Required but not used for components
+          componentName: "DesignSystemSpecs"
+          // Uses all default data including the full color palette
+        }
+      ],
+      layout: { textColumns: 6, visualColumns: 6, textAlign: 'top' }
+    },
+    {
+      //heading: "Design Approach",
+      subheading: "Branding & presentation assets",
+      body: "I created many Lottie animations for the waiting and loading states of the app using Adobe After Effects.",
+
+      visuals: [
+        // VISUAL: Concept framework slide { type: "image", src: "personas.png", alt: "User personas", caption: "Key personas and unmet needs" }
+        
+          // Existing visuals...
+          /*{
+            type: "lottie",
+            src: "https://res.cloudinary.com/dehugbvmc/raw/upload/v1753563435/MainMovingShapes_lyggao.json",
+            //alt: "App connections animation",
+            loop: true,
+            //caption: "Animated connections using Lottie"
+          },*/
+          {
+            type: "lottie",
+            src: "https://res.cloudinary.com/dehugbvmc/raw/upload/v1753563433/JumpSplash_jptkm9.json",
+            //alt: "App connections animation",
+            loop: true,
+            //caption: "Animated connections using Lottie"
+          },
+          {
+            type: "lottie",
+            src: "https://res.cloudinary.com/dehugbvmc/raw/upload/v1753563432/Appear3Direction_rizzys.json",
+            //alt: "App connections animation",
+            loop: true,
+            //caption: "Animated connections using Lottie"
+          },
+          {
+            type: "lottie",
+            src: "https://res.cloudinary.com/dehugbvmc/raw/upload/v1753563419/ShapesFillup_gxpque.json",
+            //alt: "App connections animation",
+            loop: true,
+            //caption: "Animated connections using Lottie"
+          },
+          {
+            type: "lottie",
+            src: "https://res.cloudinary.com/dehugbvmc/raw/upload/v1753563409/Transformers_w5vzog.json",
+            //alt: "App connections animation",
+            loop: true,
+            //caption: "Animated connections using Lottie"
+          },
+          {
+            type: "lottie",
+            src: "https://res.cloudinary.com/dehugbvmc/raw/upload/v1753563419/RotationlShapes_msetpw.json",
+            //alt: "App connections animation",
+            loop: true,
+            //caption: "Animated connections using Lottie"
+          },
+          {
+            type: "lottie",
+            src: "https://res.cloudinary.com/dehugbvmc/raw/upload/v1753563410/subtleOvershootAppearance_fpurhr.json",
+            //alt: "App connections animation",
+            loop: true,
+            //caption: "Animated connections using Lottie"
+          },
+        
+      ],
+      layout: { textColumns: 6, visualColumns: 6, textAlign: 'top' }
+    },
+    {
+      subheading: "Set the tone for the app with the onboarding visuals",
+      body: "I created some fun animations for the onboarding flow related to healthy and happy moments of life.",
+      
+      visuals: [
+        /*
+        {
+          type: "lottie",
+          src: "https://res.cloudinary.com/dehugbvmc/raw/upload/v1753576325/Onboarding_1_osfpjk.json",
+          loop: false,
+          maxWidth: "45%",
+          maxHeight: "200px"
+        },
+        {
+          type: "lottie",
+          src: "https://res.cloudinary.com/dehugbvmc/raw/upload/v1753577276/Onboarding_2_anykxe.json",
+          loop: false,
+          maxWidth: "45%",
+          maxHeight: "200px"
+        },
+        {
+          type: "lottie",
+          src: "https://res.cloudinary.com/dehugbvmc/raw/upload/v1753577419/Onboarding_3_t7ge4x.json",
+          loop: false,
+          maxWidth: "45%",
+          maxHeight: "200px"
+        },
+        {
+          type: "lottie",
+          src: "https://res.cloudinary.com/dehugbvmc/raw/upload/v1753576785/Onboarding_4_b9x8ee.json",
+          loop: false,
+          maxWidth: "45%",
+          maxHeight: "200px"
+        },*/
+        
+        {
+            type: "embed",
+            src: "https://jumpshare.com/embed/1eB4DaG5D1dvDtMbwhRX",
+            caption: "Incorporating animations to the onboarding flow.",
+            radius: 'rounded-2xl',
+            maxWidth: "800px",
+            maxHeight: "450px" // 16:9 ratio (800 * 9/16 = 450)
+        },
+        
+      
+      ],
+      layout: { textColumns: 6, visualColumns: 6, textAlign: 'top' }
+    },
+    {
+      body: "I created more animations for social media posts and the app website to convey the emotional aspect of aging. I used ElevenLabs AI voice generator for voiceovers.",
+      visuals: [
+        {
+          type: "lottie",
+          caption: "This is an animation about precious moments of life that we can keep enjoying if we take healthy lifestyle choices.",
+          src: "https://res.cloudinary.com/dehugbvmc/raw/upload/v1753722394/StoryLottiegray_vrdfny.json",
+          radius: 'rounded-2xl',
+          autoplay: true,
+          loop: false
+        },
+      ],
+      layout: { textColumns: 3, visualColumns: 9, textAlign: 'top' }
+    },
+    {
+      heading: "What is next?",
+      body: "Since starting this passion project, I learned a lot about entrepreneurship, various tools to kick off a business, and many new design skills. Right now it is time to go to market and see how it would work in the real world. I'm humbled by the fact that it takes so much work to get a product to a stage where people start to care about it, and I'm going to carry the lessons of this initiative to any next steps in my career and professional path. I'm proud of the work I did.",
+      layout: { textColumns: 6, visualColumns: 6, textAlign: 'top', stacked: true }
+    }
+  ]
+};
+
+export default caseStudy;

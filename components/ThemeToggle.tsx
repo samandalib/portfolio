@@ -1,21 +1,57 @@
 "use client";
 import { useEffect, useState } from "react";
+import { GlobalSettings } from "../content/public/GlobalSettings";
 
 export default function ThemeToggle({ size = 10 }: { size?: number }) {
   const [mounted, setMounted] = useState(false);
-  const [dark, setDark] = useState(false);
+  const [dark, setDark] = useState(true); // Start with true to match server (dark mode)
 
   useEffect(() => {
     setMounted(true);
-    setDark(document.documentElement.classList.contains("dark"));
+    
+    // Check if theme is already set in localStorage
+    const savedTheme = localStorage.getItem('theme');
+    
+    if (savedTheme) {
+      // Use saved theme preference
+      const isDark = savedTheme === 'dark';
+      setDark(isDark);
+      if (isDark) {
+        document.documentElement.classList.add('dark');
+      } else {
+        document.documentElement.classList.remove('dark');
+      }
+    } else {
+      // Use default theme from GlobalSettings
+      const defaultTheme = GlobalSettings.defaultTheme;
+      const isDark = defaultTheme === 'dark';
+      setDark(isDark);
+      if (isDark) {
+        document.documentElement.classList.add('dark');
+      } else {
+        document.documentElement.classList.remove('dark');
+      }
+      // Save the default theme to localStorage
+      localStorage.setItem('theme', defaultTheme);
+    }
   }, []);
 
   const toggleTheme = () => {
     const isDark = document.documentElement.classList.toggle("dark");
     setDark(isDark);
+    // Save theme preference to localStorage
+    localStorage.setItem('theme', isDark ? 'dark' : 'light');
   };
 
-  if (!mounted) return null;
+  // Don't render until mounted to prevent hydration mismatch
+  if (!mounted) {
+    return (
+      <div
+        style={{ width: `${size * 4}px`, height: `${size * 4}px` }}
+        className="flex items-center justify-center modern-border-radius border-2 border-gray-300 glass-effect modern-shadow"
+      />
+    );
+  }
 
   return (
     <button

@@ -57,7 +57,14 @@ if (defaultFontsMatch) {
       const fontName = getPrimaryFont(match[1]);
       if (fontName && !['serif', 'sans-serif', 'monospace', 'cursive', 'fantasy'].includes(fontName.toLowerCase())) {
         fontNames.add(fontName);
-        fontWeights[fontName] = ['400']; // Default weight for defaultFonts
+        // Set appropriate weights for default fonts
+        if (fontName === 'Bodoni Moda') {
+          fontWeights[fontName] = ['400', '700'];
+        } else if (fontName === 'Manrope') {
+          fontWeights[fontName] = ['400', '500', '700'];
+        } else {
+          fontWeights[fontName] = ['400'];
+        }
       }
     }
   });
@@ -92,8 +99,16 @@ fontNames.forEach(font => {
   if (fontWeights[font] && fontWeights[font][0] !== undefined) {
     options.push(`weight: [${fontWeights[font].map(w => `'${w}'`).join(', ')}]`);
   }
-  // Always include variable for CSS var
-  options.push(`variable: '--font-${varName.toLowerCase()}'`);
+  // Generate the correct variable name based on the font
+  let cssVarName;
+  if (font === 'Bodoni Moda') {
+    cssVarName = '--font-bodoni';
+  } else if (font === 'Manrope') {
+    cssVarName = '--font-manrope';
+  } else {
+    cssVarName = `--font-${varName.toLowerCase()}`;
+  }
+  options.push(`variable: '${cssVarName}'`);
   // Only include display if present (default to 'swap')
   options.push(`display: 'swap'`);
   // Only include subsets for Bodoni Moda and Manrope (or other known fonts that support it)

@@ -37,6 +37,9 @@ export interface VisualAsset {
   autoplay?: boolean;
   loop?: boolean;
   muted?: boolean;
+  // Video-specific properties for poster and timing:
+  poster?: string;     // URL to poster image (shows before video plays)
+  startTime?: number;  // Time in seconds to start the video at (e.g., 5.5 for 5.5 seconds)
   // Component-specific properties:
   componentName?: string; // e.g., "DesignSystemSpecs"
   componentProps?: any;   // Props to pass to the component
@@ -90,18 +93,34 @@ const caseStudy: CaseStudyContent = {
   ],
   infoSnippets: [
     {
-      heading: "The problem",
+      heading: "The north star vision",
+      body: "A true AI companion for aging would look like. The we started moving toward that direction. We knew we need a foundation first to get there.",
+      visuals: [
+        {
+          type: "video",
+          src: "https://res.cloudinary.com/dehugbvmc/video/upload/v1753751816/AIDemoVideo_kybsby.mp4",
+          caption: "AI Companion Demo - The North Star Vision",
+          autoplay: false,
+          loop: false,
+          muted: false,
+          radius: 'rounded-2xl'
+        }
+      ],
+      layout: { textColumns: 4, visualColumns: 8, textAlign: 'top'}
+    },
+    {
+      heading: "About the problem",
       body: "Functional decline is preventable. As the leading cause of lost independence, chronic conditions gradually reduce mobility, strength, cognitive clarity, and energy, complicating daily tasks. Notably, 80% of midlife Americans have one, often due to lifestyle choices.",
       visuals: [
         // VISUAL: Personas slide { type: "image", src: "personas.png", alt: "User personas", caption: "Key personas and unmet needs" }
       ],
-      layout: { textColumns: 6, visualColumns: 6, textAlign: 'middle' , stacked: true}
+      layout: { textColumns: 6, visualColumns: 6, textAlign: 'middle', stacked: true}
     },
 
     {
         heading: "The solution",
         body: [
-          "An AI-powered wellness app to turn scattered wellness data into insights to build healthy lifestyle routines – to stay functionally independent in old age.",
+          "An AI-powered wellness app to turn scattered wellness data into insights to build healthy lifestyle routinesto stay functionally independent in old age.\n Through research, we introduced concepts like 'L-Score', 'inAge', and 'Decline Curve' to visualize progress and shift mindset from reactive health to proactive self-care.",
           [
           "Focuses on holistic wellbeing",
           "Provides personalized coaching",
@@ -123,7 +142,7 @@ const caseStudy: CaseStudyContent = {
     {
       heading: "Unique strategic differentiator",
       subheading: "Designing a behavior orchestration layer, not just another tracker.",
-      body: "We reframed the product as a long-term independence coach, not a fitness app. Through research, we introduced concepts like 'L-Score', 'inAge', and 'Decline Curve' to visualize progress and shift mindset from reactive health to proactive self-care.",
+      body: "We reframed the product as a long-term independence coach, not a fitness app. So instead of trying to replace existing apps, we focused on creating a new layer to connect to the apps and devices that people already use.",
       visuals: [
         // VISUAL: Concept framework slide { type: "image", src: "personas.png", alt: "User personas", caption: "Key personas and unmet needs" }
         
@@ -140,13 +159,14 @@ const caseStudy: CaseStudyContent = {
       layout: { textColumns: 6, visualColumns: 6, textAlign: 'top' }
     },
     {
-      heading: "Demo videos for the app",
+      heading: "Tour of the features",
       subheading: "I created these demo videos to showcase the app to end users, investors, and developers.",
       body: [
         "Personalized coaching across cardio, strength, cognition, and emotional health",
-        "Smart scorecards (L-Score, inAge, Decline Curve)",
-        "Unified dashboard and timeline for tracking behavior",
+        "Progress tracking and scorecards (L-Score, inAge, Decline Curve)",
+        "Unified dashboard focuse on aging metrics",
         "App integrations and AI chat support",
+        "AI-powered wellness planning",
       
       ],
       visuals: [
@@ -155,38 +175,35 @@ const caseStudy: CaseStudyContent = {
           src: "https://res.cloudinary.com/dehugbvmc/video/upload/v1753472987/ScaledUpTour_1_1_jjvzbm.mp4",
           // Valid values: 'rounded', 'rounded-md', 'rounded-lg', 'rounded-xl', 'rounded-2xl', 'rounded-full'
           radius: 'rounded-2xl',
-          caption: "App tour video"
+          caption: "App tour video",
+          // Option 1: Set a specific time (in seconds) to display as the poster/thumbnail
+          startTime: 4, // This will show the video at 3.5 seconds when it loads
+          // Option 2: Use a custom poster image (generated from the video at 3.5 seconds)
+          //poster: "https://res.cloudinary.com/dehugbvmc/image/upload/so_3.5/v1753472987/ScaledUpTour_1_1_jjvzbm.jpg"
         },
-        { 
-          type: "video", 
-          src: "https://res.cloudinary.com/dehugbvmc/video/upload/v1753473235/chatdemo_bgpqqv.mp4",
-          // Valid values: 'rounded', 'rounded-md', 'rounded-lg', 'rounded-xl', 'rounded-2xl', 'rounded-full'
-          radius: 'rounded-2xl',
-          caption: "AI chat demo"
-        }
         // VISUAL: Core screens from Figma { type: "image", src: "personas.png", alt: "User personas", caption: "Key personas and unmet needs" }
       ],
       layout: {
-        textColumns: 6,
-        visualColumns: 6,
+        textColumns: 8,
+        visualColumns: 4,
         textAlign: 'top',
         canvasLeft: false, // Visuals on the left
         stacked: false    // Side-by-side (row)
       }
     },
     {
-      heading: "Design process & strategy",
+      heading: "Design & user testing",
       subheading: "From low-fidelity mapping to interactive prototypes",
       body: "Started with user journeys and whiteboard flows, evolved into detailed wireframes and prototypes in Figma. Validated with target users in 1:1 sessions, iterating on tone, navigation, and dashboard UX.",
       visuals: [
         { type: "image", src: "https://res.cloudinary.com/dehugbvmc/image/upload/v1753405794/265lofi_rmvsz2.png", alt: "Low fidelity wireframes" }
         // VISUAL: High-fi prototype overview
       ],
-      layout: { textColumns: 6, visualColumns: 6, textAlign: 'top' }
+      layout: { textColumns: 4, visualColumns: 8, textAlign: 'top' }
     },
     {
-      heading: "Validation & testing",
-      subheading: "Iterative testing from ideas to interface",
+      //heading: "Validation & testing",
+      //subheading: "Iterative testing from ideas to interface",
       body: [
         "I conducted multiple rounds of testing:",
         [
@@ -207,7 +224,7 @@ const caseStudy: CaseStudyContent = {
         }
 
       ],
-      layout: { textColumns: 6, visualColumns: 6, textAlign: 'top', stacked: true }
+      layout: { textColumns: 4, visualColumns: 8, textAlign: 'top', stacked: false }
     },
     {
       heading: "Design for production",
@@ -382,7 +399,7 @@ const caseStudy: CaseStudyContent = {
           src: "https://res.cloudinary.com/dehugbvmc/raw/upload/v1753722394/StoryLottiegray_vrdfny.json",
           radius: 'rounded-2xl',
           autoplay: true,
-          loop: true
+          loop: false
         },
       ],
       layout: { textColumns: 3, visualColumns: 9, textAlign: 'top' }

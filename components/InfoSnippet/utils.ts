@@ -63,3 +63,16 @@ export function getHorizontalOffset(offset: number) {
     return Math.min(offset * 120, 200);
   }
 } 
+
+// Utility function to generate Cloudinary poster images from video URLs
+export function generateCloudinaryPoster(videoUrl: string, timeInSeconds: number = 0): string {
+  // Check if it's a Cloudinary video URL
+  if (videoUrl.includes('cloudinary.com') && videoUrl.includes('/video/')) {
+    // Convert video URL to image URL with specific time
+    return videoUrl
+      .replace('/video/', '/image/')
+      .replace('/upload/', `/upload/so_${timeInSeconds},`)
+      .replace(/\.(mp4|webm|mov)$/, '.jpg');
+  }
+  return videoUrl;
+} 

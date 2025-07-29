@@ -13,8 +13,9 @@ const FontSizeSlider: React.FC<FontSizeSliderProps> = ({
       <input
         ref={sliderRef}
         type="range"
-        min={12}
-        max={18}
+        min={14}
+        max={24}
+        step={2}
         value={fontSize}
         onChange={e => onFontSizeChange(Number(e.target.value))}
         className="font-slider"

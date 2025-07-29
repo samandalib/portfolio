@@ -55,7 +55,14 @@ function renderVisual({
           autoPlay={!!asset.autoplay}
           loop={!!asset.loop}
           muted={!!asset.muted}
+          poster={asset.poster}
           className={`w-full h-full ${radiusClassMap[asset.radius || 'modern-border-radius']}`}
+          onLoadedMetadata={(e) => {
+            // Set the video to start at a specific time if startTime is provided
+            if (asset.startTime && e.currentTarget.duration >= asset.startTime) {
+              e.currentTarget.currentTime = asset.startTime;
+            }
+          }}
         >
           <source src={asset.src} type="video/mp4" />
           Your browser does not support the video tag.

@@ -2,11 +2,11 @@
 import { Bodoni_Moda } from 'next/font/google';
 import { Manrope } from 'next/font/google';
 import { IBM_Plex_Mono } from 'next/font/google';
-import { Rock_Salt } from 'next/font/google';
-import { Playwrite_AU_NSW } from 'next/font/google';
+import { Dancing_Script } from 'next/font/google';
+import { Caveat } from 'next/font/google';
 
-export const bodoni_moda = Bodoni_Moda({ subsets: ['latin'], weight: ['400'], variable: '--font-bodoni_moda', display: 'swap' });
-export const manrope = Manrope({ subsets: ['latin'], weight: ['400'], variable: '--font-manrope', display: 'swap' });
-export const ibm_plex_mono = IBM_Plex_Mono({ subsets: ['latin'], weight: ['400'], variable: '--font-ibm_plex_mono', display: 'swap' });
-export const rock_salt = Rock_Salt({ subsets: ['latin'], weight: ['400'], variable: '--font-rock_salt', display: 'swap' });
-export const playwrite_au_nsw = Playwrite_AU_NSW({ weight: ['400'], variable: '--font-playwrite_au_nsw', display: 'swap' });
+export const bodoni_moda = Bodoni_Moda({ subsets: ['latin'], weight: ['400', '700'], variable: '--font-bodoni', display: 'swap' });
+export const manrope = Manrope({ subsets: ['latin'], weight: ['400', '500', '700'], variable: '--font-manrope', display: 'swap' });
+export const ibm_plex_mono = IBM_Plex_Mono({ weight: ['400'], variable: '--font-ibm_plex_mono', display: 'swap' });
+export const dancing_script = Dancing_Script({ weight: ['400'], variable: '--font-dancing_script', display: 'swap' });
+export const caveat = Caveat({ weight: ['400'], variable: '--font-caveat', display: 'swap' });

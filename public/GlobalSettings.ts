@@ -26,7 +26,7 @@ export const GlobalSettings = {
       dark: '#16A34A',
     },
   },
-  defaultTheme: 'light', // or 'dark'
+  defaultTheme: 'dark', // or 'light'
   fonts: {
     heading: 'Bodoni Moda', // via --font-bodoni
     body: 'Manrope',   // via --font-manrope
@@ -44,14 +44,14 @@ export const GlobalSettings = {
     body: 'Manrope'
   },
   fontSize: {
-    body: 'var(--body-font-size, 15px)'
+    body: 'var(--body-font-size, 16px)'
   },
   fontPresets: [
     // Optionally add 'weight' (or headingWeight/bodyWeight) to control Google Fonts import weights
     { label: "Serif", heading: "Bodoni Moda, Roboto Serif", body: "Bodoni Moda, Roboto Serif", icon: "serif.svg", weight: 400 },
     { label: "Sans", heading: "Manrope, Roboto", body: "Manrope, Roboto", icon: "sans.svg", weight: 400 },
     { label: "Retro", heading: "IBM Plex Mono", body: "IBM Plex Mono", icon: "retro.svg", weight: 400 },
-    { label: "Handwriting", heading: "Rock Salt, cursive", body: "Playwrite AU NSW, cursive", icon: "handwriting.svg", weight: 400 },
+    { label: "Handwriting", heading: "Dancing Script, cursive", body: "Caveat, cursive", icon: "handwriting.svg", weight: 400 },
     { label: "Combo", heading: "Bodoni Moda, Roboto Serif", body: "Manrope, Roboto", icon: "combo.svg", weight: 400 }
   ]
 }; 

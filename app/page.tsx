@@ -14,7 +14,7 @@ export default function Home() {
 
   return (
     <main className="main-content flex flex-col min-h-screen px-8 py-16">
-      <section className="w-full max-w-6xl mx-auto mt-20">
+      <section className="w-full max-w-6xl mx-auto">
         <div className="grid grid-cols-1 lg:grid-cols-2 gap-16 lg:gap-20 items-center min-h-[calc(100vh-300px)]">
           {/* Left Column - Text Content */}
           <div className="flex flex-col items-center lg:items-start justify-center">
@@ -48,12 +48,13 @@ export default function Home() {
                 />
               </div>
               {/* Text Content */}
-              <div className="flex flex-col items-center lg:items-start text-center lg:text-left">
+              <div className="flex flex-col items-center lg:items-start text-center lg:text-left lg:max-w-[400px]">
                 <span className="font-sans font-medium max-w-lg text-foreground-light/80 dark:text-foreground-dark/80 leading-relaxed mb-3 text-lg tracking-wide">{landingContent.intro}</span>
                 <h1 className="text-7xl font-light mb-6 font-heading gradient-text tracking-tight">{landingContent.heading}</h1>
-                <p className="font-sans font-normal max-w-lg text-foreground-light/90 dark:text-foreground-dark/90 leading-relaxed text-lg">
-                  {landingContent.subheading}
-                </p>
+                <p 
+                  className="font-sans font-normal max-w-lg text-foreground-light/90 dark:text-foreground-dark/90 leading-relaxed text-lg"
+                  dangerouslySetInnerHTML={{ __html: landingContent.subheading }}
+                />
               </div>
             </div>
           </div>

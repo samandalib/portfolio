@@ -19,7 +19,7 @@ const defaultFontIndex = fontPresets.findIndex(preset => preset.label === "Combo
 
 const AccentDock: React.FC<AccentDockProps> = () => {
   const [accent, setAccent] = useState(defaultAccent);
-  const [fontSize, setFontSize] = useState(15); // default to middle value
+  const [fontSize, setFontSize] = useState(18); // default to middle value of new range (14-24)
   const [fontIndex, setFontIndex] = useState(defaultFontIndex !== -1 ? defaultFontIndex : 0);
   
   const { dark } = useThemeSync();

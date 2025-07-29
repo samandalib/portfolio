@@ -1,22 +1,9 @@
 import type { Metadata } from "next";
-import { Bodoni_Moda } from 'next/font/google';
-import { Manrope } from 'next/font/google';
 import Link from 'next/link';
 import "./globals.css";
 import AccentDock from '../components/AccentDock';
 import { landingContent } from '../public/assets/landing/landing-content';
-
-const bodoni = Bodoni_Moda({
-  subsets: ['latin'],
-  weight: ['400', '700'], // Regular and Bold
-  variable: '--font-bodoni',
-});
-
-const manrope = Manrope({
-  subsets: ['latin'],
-  weight: ['400', '500', '700'], // Regular, Medium, Bold
-  variable: '--font-manrope',
-});
+import { bodoni_moda, manrope } from './fonts';
 
 export const metadata: Metadata = {
   title: "Hesam Andalib Portfolio",
@@ -28,7 +15,7 @@ export const metadata: Metadata = {
 
 export default function RootLayout({ children }: { children: React.ReactNode }) {
   return (
-    <html lang="en" className={`${bodoni.variable} ${manrope.variable}`}> 
+    <html lang="en" className={`${bodoni_moda.variable} ${manrope.variable} dark`}> 
       <body className="font-sans bg-background-light text-foreground-light dark:text-foreground-dark dark:bg-background-dark transition-all duration-500 ease-out flex">
         {/* Main Content */}
         <div className="flex-1 min-h-screen flex flex-col">
