@@ -13,16 +13,21 @@ const projects = projectSliderCards.sort((a, b) => a.id - b.id);
 
 const ProjectSlider: React.FC<ProjectSliderProps> = () => {
   const { currentIndex, nextProject, prevProject, goToProject } = useProjectNavigation(projects.length, 1);
-  const { handleTouchStart, handleTouchMove, handleTouchEnd } = useTouchGestures(nextProject, prevProject);
+  const { handleTouchStart, handleTouchMove, handleTouchEnd, handleMouseDown, handleMouseMove, handleMouseUp, containerRef } = useTouchGestures(nextProject, prevProject);
   const router = useRouter();
 
   return (
     <div className="w-full max-w-5xl mx-auto relative">
       {/* Fanned Cards Container */}
       <div
+        ref={containerRef}
         onTouchStart={handleTouchStart}
         onTouchMove={handleTouchMove}
         onTouchEnd={handleTouchEnd}
+        onMouseDown={handleMouseDown}
+        onMouseMove={handleMouseMove}
+        onMouseUp={handleMouseUp}
+        onMouseLeave={handleMouseUp}
       >
         <CardFan
           projects={projects}

@@ -5,11 +5,11 @@ import type { CardFanProps } from '../types';
 const CardFan: React.FC<CardFanProps> = ({ projects, currentIndex, onCardClick }) => {
   return (
     <div 
-      className="relative w-full flex items-center justify-center touch-pan-y select-none" 
+      className="relative w-full flex items-center justify-center select-none" 
       style={{ 
         perspective: '1200px',
-        width: '50vh',
-        height: '50vh',
+        width: 'min(50vh, 500px)',
+        height: 'min(50vh, 500px)',
         margin: '0 auto'
       }}
     >

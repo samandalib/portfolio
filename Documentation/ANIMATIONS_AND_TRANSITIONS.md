@@ -69,4 +69,40 @@ This document lists all custom and notable animations and transitions used in th
 
 ---
 
+## 6. ProjectSlider Trackpad Gesture System
+- **Description:** Advanced gesture detection system for ProjectSlider navigation using trackpad, touch, and mouse interactions.
+- **Where Used:** ProjectSlider component on landing page
+- **Code File:** `components/ProjectSlider/hooks/useTouchGestures.ts`
+- **Key Details:**
+  - **Trackpad Support:** Horizontal scroll gestures with native wheel events
+  - **Touch Support:** Swipe gestures for mobile/tablet devices
+  - **Mouse Support:** Click and drag functionality for desktop
+  - **Sensitivity Settings:**
+    - Trackpad threshold: 200px accumulated deltaX
+    - Touch threshold: 50px swipe distance
+    - Mouse drag threshold: 50px drag distance
+  - **Throttling:** 100ms throttle for trackpad events to prevent rapid firing
+  - **Event Handling:** Uses `addEventListener` with `passive: false` to allow `preventDefault()`
+  - **Accumulation:** Tracks accumulated scroll delta for smoother gesture detection
+  - **Reset Logic:** Accumulated delta resets after each navigation action
+
+---
+
+## 7. InfoTile Border Trim Path Animation
+- **Description:** Animated border with trim path effect that draws itself around InfoTile components using the accent color.
+- **Where Used:** InfoTile components in case studies
+- **Code Files:** `components/InfoTile/InfoTile.tsx`, `app/globals.css`
+- **Key Details:**
+  - SVG trim path animation with `stroke-dasharray` and `stroke-dashoffset`
+  - Duration: 20s total animation cycle
+  - Pause duration: 50% (10 seconds pause before drawing)
+  - Drawing time: 50% (10 seconds to complete border drawing)
+  - Timing function: `ease-in-out`
+  - Repeat: `infinite`
+  - Color: Uses CSS variable `var(--accent-color)`
+  - Thickness: 1px stroke width
+  - Border radius: 16px to match card corners
+
+---
+
 > Update this file whenever a new animation or transition is added to the project, or when an existing one is changed. 

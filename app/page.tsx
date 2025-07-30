@@ -17,7 +17,7 @@ export default function Home() {
       <section className="w-full max-w-6xl mx-auto">
         <div className="grid grid-cols-1 lg:grid-cols-2 gap-16 lg:gap-20 items-center min-h-[calc(100vh-300px)]">
           {/* Left Column - Text Content */}
-          <div className="flex flex-col items-center lg:items-start justify-center">
+          <div className="flex flex-col items-center lg:items-start justify-center lg:pr-16">
             <div className="flex flex-col md:flex-row lg:flex-col items-center lg:items-start gap-10 lg:gap-16">
               {/* Profile Image */}
               <div
@@ -59,7 +59,7 @@ export default function Home() {
             </div>
           </div>
           {/* Right Column - Project Slider */}
-          <div className="flex items-center justify-center">
+          <div className="flex items-center justify-center w-full max-w-lg lg:max-w-xl mx-auto">
             {landingContent.projectSlider && (
               <ProjectSlider />
             )}
