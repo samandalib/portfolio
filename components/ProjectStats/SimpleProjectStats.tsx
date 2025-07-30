@@ -81,7 +81,7 @@ const SimpleProjectStats: React.FC<ProjectStatsProps> = ({
     }
   };
 
-  const renderCorporateLayout = () => {
+  const renderComboStatsLayout = () => {
     // Split stats into corporate and authorized network
     const corporateStats = stats.filter(stat => stat.color === 'blue');
     const authorizedStats = stats.filter(stat => stat.color === 'purple');
@@ -249,8 +249,8 @@ const SimpleProjectStats: React.FC<ProjectStatsProps> = ({
 
   const renderLayout = () => {
     switch (layout) {
-      case 'corporate':
-        return renderCorporateLayout();
+      case 'ComboStats':
+        return renderComboStatsLayout();
       case 'grid':
       default:
         return renderGridLayout();

@@ -17,7 +17,7 @@ export interface ProjectStatsProps {
   title?: string;
   subtitle?: string;
   stats: StatCardProps[];
-  layout?: 'grid' | 'cards' | 'combined';
+  layout?: 'grid' | 'cards' | 'combined' | 'ComboStats';
   showHeader?: boolean;
   className?: string;
 }
