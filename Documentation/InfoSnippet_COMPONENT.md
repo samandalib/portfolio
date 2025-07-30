@@ -90,10 +90,11 @@ components/InfoSnippet/
    - Includes heading, subheading, and body text
    - Manages text animations and layout
 
-3. **CanvasSection.tsx** (~120 lines)
+3. **CanvasSection.tsx** (~150 lines)
    - Handles all visual content rendering
    - Manages pointer interactions and Lottie animations
-   - Controls visual asset grid layout
+   - Controls visual asset grid layout with customizable columns and rows
+   - Supports custom grid configurations via `gridCols` and `gridRows` props
 
 4. **DockerControls.tsx** (~80 lines)
    - Handles all interactive controls
@@ -176,6 +177,57 @@ import InfoSnippet from '../components/InfoSnippet';
 - `textAlign`: 'top' | 'middle' | 'bottom' (vertical alignment of text column).
 
 **Note:** The import path remains the same for backward compatibility.
+
+---
+
+## Grid Configuration for Multiple Visuals
+
+The InfoSnippet component now supports custom grid layouts for multiple visuals through the `gridCols` and `gridRows` props.
+
+### Usage
+
+**Content-based Configuration:**
+```tsx
+// In content.ts files
+{
+  heading: "Design Process",
+  visuals: [/* multiple visual assets */],
+  layout: {
+    textColumns: 6,
+    visualColumns: 6,
+    gridCols: 2,  // 2 columns for the visual grid
+    gridRows: 2   // 2 rows for the visual grid
+  }
+}
+```
+
+**Prop-based Configuration:**
+```tsx
+<InfoSnippet 
+  snippet={snippet} 
+  gridCols={2} 
+  gridRows={2} 
+/>
+```
+
+### Grid Behavior
+
+- **Custom Columns**: `gridCols` sets the number of columns (1-12 supported)
+- **Custom Rows**: `gridRows` sets the number of rows with equal height (`1fr`)
+- **Fallback**: Uses default responsive grid when not specified
+- **Responsive**: Maintains existing responsive behavior
+
+### Supported Grid Sizes
+
+- **Columns**: 1-12 (maps to `grid-cols-1` through `grid-cols-12`)
+- **Rows**: Any positive integer (creates equal-height rows)
+
+### Example Use Cases
+
+- **2x2 Grid**: Perfect for 4 InfoTile components
+- **3x1 Grid**: Good for 3 related visuals in a row
+- **1x4 Grid**: Stacked layout for 4 visuals
+- **4x2 Grid**: 8 visuals in a 4-column, 2-row layout
 
 ---
 

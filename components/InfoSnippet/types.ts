@@ -17,6 +17,8 @@ export interface InfoSnippetProps {
   canvasLeft?: boolean;
   stacked?: boolean;
   textAlign?: 'top' | 'middle' | 'bottom';
+  gridCols?: number; // Custom number of columns for the grid
+  gridRows?: number; // Custom number of rows for the grid
 }
 
 export type VisualAssetWithRadius = {
@@ -84,6 +86,8 @@ export interface InfoSnippetCanvasSectionProps {
   onTogglePlayPause: () => void;
   onLottieRef: (ref: React.RefObject<any>) => void;
   onAnimationStateChange: (isPlaying: boolean) => void;
+  gridCols?: number; // Custom number of columns for the grid
+  gridRows?: number; // Custom number of rows for the grid
 }
 
 export interface InfoSnippetDockerProps {

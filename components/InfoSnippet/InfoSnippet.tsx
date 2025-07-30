@@ -9,9 +9,11 @@ import CanvasSection from './CanvasSection';
 import DockerControls from './DockerControls';
 import type { InfoSnippetProps } from './types';
 
-const InfoSnippet: React.FC<InfoSnippetProps> = ({ snippet }) => {
+const InfoSnippet: React.FC<InfoSnippetProps> = ({ snippet, gridCols, gridRows }) => {
   const layout = snippet.layout as any;
   const canvasLeft = typeof layout?.canvasLeft === 'boolean' ? layout.canvasLeft : false;
+  const layoutGridCols = layout?.gridCols;
+  const layoutGridRows = layout?.gridRows;
   const stacked = typeof layout?.stacked === 'boolean' ? layout.stacked : false;
   
   // Use custom hook for state management
@@ -146,6 +148,8 @@ const InfoSnippet: React.FC<InfoSnippetProps> = ({ snippet }) => {
           });
         }}
         onAnimationStateChange={handleAnimationStateChange}
+        gridCols={gridCols || layoutGridCols}
+        gridRows={gridRows || layoutGridRows}
       />
     ].filter(Boolean);
   } else if (canvasLeftState) {
@@ -174,6 +178,8 @@ const InfoSnippet: React.FC<InfoSnippetProps> = ({ snippet }) => {
           });
         }}
         onAnimationStateChange={handleAnimationStateChange}
+        gridCols={gridCols || layoutGridCols}
+        gridRows={gridRows || layoutGridRows}
       />,
       <TextSection 
         key="text"
@@ -218,6 +224,8 @@ const InfoSnippet: React.FC<InfoSnippetProps> = ({ snippet }) => {
           });
         }}
         onAnimationStateChange={handleAnimationStateChange}
+        gridCols={gridCols || layoutGridCols}
+        gridRows={gridRows || layoutGridRows}
       />
     ].filter(Boolean);
   }

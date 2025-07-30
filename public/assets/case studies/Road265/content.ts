@@ -57,6 +57,8 @@ export interface InfoSnippet {
     textAlign?: 'top' | 'middle' | 'bottom';
     canvasLeft?: boolean; // true = visuals left, false = right
     stacked?: boolean;    // true = stacked, false = row
+    gridCols?: number;    // Custom number of columns for visual grid
+    gridRows?: number;    // Custom number of rows for visual grid
   };
 }
 

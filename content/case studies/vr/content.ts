@@ -58,6 +58,8 @@ export interface InfoSnippet {
     textAlign?: 'top' | 'middle' | 'bottom';
     canvasLeft?: boolean; // true = visuals left, false = right
     stacked?: boolean;    // true = stacked, false = row
+    gridCols?: number;    // Custom number of columns for visual grid
+    gridRows?: number;    // Custom number of rows for visual grid
   };
 }
 
@@ -83,12 +85,12 @@ const caseStudy: CaseStudyContent = {
     notes: "End-to-end design and prototyping using Unity and XR Interaction Toolkit"
   },
   skills: [
-    "VR UX Design",
+    "XR Design",
     "Unity",
     "Interaction Design",
     "Rapid Prototyping",
     "User Testing",
-    "C# Development"
+    "C# Programming"
   ],
   infoSnippets: [
     {
@@ -103,7 +105,7 @@ const caseStudy: CaseStudyContent = {
           radius: "rounded-2xl"
         }
       ],
-      layout: { textColumns: 6, visualColumns: 6, stacked: false }
+      layout: { textColumns: 3, visualColumns: 9, stacked: false }
     },
     {
       heading: "Design goal",

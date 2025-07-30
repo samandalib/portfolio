@@ -6,6 +6,7 @@
   --background: #fafafa;
   --foreground: #0f0f0f;
   --accent-color: #16A34A;
+  --accent-filter: brightness(0) saturate(100%) invert(var(--accent-invert, 48%)) sepia(var(--accent-sepia, 79%)) saturate(var(--accent-saturate, 2476%)) hue-rotate(var(--accent-hue, 86deg)) brightness(var(--accent-brightness, 118%)) contrast(var(--accent-contrast, 119%));
   --zoomrotate-scale-start: 0.8;
   --zoomrotate-scale-end: 1.08;
   --zoomrotate-rotate-start: 0deg;
@@ -27,6 +28,7 @@
   --background: #0c0c0c;
   --foreground: #f5f5f5;
   --accent-color: #16A34A;
+  --accent-filter: brightness(0) saturate(100%) invert(var(--accent-invert, 48%)) sepia(var(--accent-sepia, 79%)) saturate(var(--accent-saturate, 2476%)) hue-rotate(var(--accent-hue, 86deg)) brightness(var(--accent-brightness, 118%)) contrast(var(--accent-contrast, 119%));
   --shadow-sm: 0 1px 2px 0 rgb(255 255 255 / 0.05);
   --shadow: 0 1px 3px 0 rgb(255 255 255 / 0.1), 0 1px 2px -1px rgb(255 255 255 / 0.1);
   --shadow-md: 0 4px 6px -1px rgb(255 255 255 / 0.1), 0 2px 4px -2px rgb(255 255 255 / 0.1);
@@ -39,6 +41,7 @@
     --background: #0c0c0c;
     --foreground: #f5f5f5;
     --accent-color: #16A34A;
+    --accent-filter: brightness(0) saturate(100%) invert(var(--accent-invert, 48%)) sepia(var(--accent-sepia, 79%)) saturate(var(--accent-saturate, 2476%)) hue-rotate(var(--accent-hue, 86deg)) brightness(var(--accent-brightness, 118%)) contrast(var(--accent-contrast, 119%));
     --shadow-sm: 0 1px 2px 0 rgb(255 255 255 / 0.05);
     --shadow: 0 1px 3px 0 rgb(255 255 255 / 0.1), 0 1px 2px -1px rgb(255 255 255 / 0.1);
     --shadow-md: 0 4px 6px -1px rgb(255 255 255 / 0.1), 0 2px 4px -2px rgb(255 255 255 / 0.1);
@@ -129,6 +132,22 @@ a {
     stroke-dasharray: 400;
     stroke-dashoffset: 400;
     animation: trim-path 1.2s cubic-bezier(0.4,0,0.2,1) forwards;
+  }
+  
+  @keyframes info-tile-border {
+    0% {
+      stroke-dashoffset: 1144;
+    }
+    50% {
+      stroke-dashoffset: 1144;
+    }
+    100% {
+      stroke-dashoffset: 0;
+    }
+  }
+  
+  .animate-info-tile-border {
+    animation: info-tile-border 20s ease-in-out infinite;
   }
   .accent-fill {
     fill: var(--accent-color) !important;

@@ -18,9 +18,30 @@ const CanvasSection: React.FC<InfoSnippetCanvasSectionProps> = ({
   onTogglePlayPause,
   onLottieRef,
   onAnimationStateChange,
+  gridCols,
+  gridRows,
 }) => {
   const isDev = typeof process !== 'undefined' && process.env.NODE_ENV === 'development';
   const canvasRef = useRef<HTMLDivElement>(null);
+
+  // Function to get grid columns class based on number
+  const getGridColsClass = (cols: number) => {
+    switch (cols) {
+      case 1: return 'grid-cols-1';
+      case 2: return 'grid-cols-2';
+      case 3: return 'grid-cols-3';
+      case 4: return 'grid-cols-4';
+      case 5: return 'grid-cols-5';
+      case 6: return 'grid-cols-6';
+      case 7: return 'grid-cols-7';
+      case 8: return 'grid-cols-8';
+      case 9: return 'grid-cols-9';
+      case 10: return 'grid-cols-10';
+      case 11: return 'grid-cols-11';
+      case 12: return 'grid-cols-12';
+      default: return 'grid-cols-1';
+    }
+  };
 
   // Use passive event listeners to avoid scroll interference
   useEffect(() => {
@@ -64,12 +85,13 @@ const CanvasSection: React.FC<InfoSnippetCanvasSectionProps> = ({
       >
         <div
           className={`h-full w-full grid gap-2 sm:gap-3 md:gap-4 ${
+            gridCols ? getGridColsClass(gridCols) :
             snippet.visuals.length === 1 ? 'grid-cols-1' :
             snippet.visuals.length === 2 ? 'grid-cols-1 sm:grid-cols-2' :
             'grid-cols-1 sm:grid-cols-2 md:grid-cols-3'
           }`}
           style={{
-            gridTemplateRows: `repeat(${snippet.visuals.length}, auto)`,
+            gridTemplateRows: gridRows ? `repeat(${gridRows}, 1fr)` : `repeat(${snippet.visuals.length}, auto)`,
           }}
         >
           {snippet.visuals.map((asset, i) => (

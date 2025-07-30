@@ -80,4 +80,22 @@ This document lists all custom and notable animations and transitions used in th
 
 ---
 
+## 7. InfoTile Border Trim Path Animation
+- **Description:** A subtle animated border draws itself around InfoTile components using a trim path effect with the accent color.
+- **Where Used:** InfoTile components (used as visuals in InfoSnippets)
+- **Code Files:** `components/InfoTile/InfoTile.tsx`, `app/globals.css`
+- **Key Details:**
+  - Uses SVG stroke-dasharray and stroke-dashoffset for trim path effect
+  - Color: CSS variable `--accent-color` (dynamically updates with accent color changes)
+  - Duration: 20s total cycle (very slow and elegant)
+  - Pause: 50% of cycle (10s pause before drawing starts)
+  - Drawing: 50% of cycle (10s to complete border drawing)
+  - Timing: ease-in-out for smooth acceleration/deceleration
+  - Repeat: infinite loop
+  - Border thickness: 1px for subtlety
+  - Border radius: matches card corners (16px)
+  - Position: absolute overlay that doesn't affect layout
+
+---
+
 > Update this file whenever a new animation or transition is added to the project, or when an existing one is changed. 

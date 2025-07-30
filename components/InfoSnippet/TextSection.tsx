@@ -27,7 +27,7 @@ const TextSection: React.FC<InfoSnippetTextSectionProps> = ({
           <AnimatedAccentLine />
         </div>
       )}
-      {snippet.subheading && <h4 className="font-normal mb-2 text-gray-600 dark:text-gray-300 font-sans" style={{ fontSize: 20 }}>{snippet.subheading}</h4>}
+      {snippet.subheading && <h4 className="font-normal mb-2 text-gray-600 dark:text-gray-300 font-sans" style={{ fontSize: 24 }}>{snippet.subheading}</h4>}
       {(() => { console.log('snippet.body:', snippet.body); return null; })()}
       {Array.isArray(snippet.body) ? (
         (() => {

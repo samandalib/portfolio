@@ -2,6 +2,11 @@ import React from 'react';
 import LottieVisual from './LottieVisual';
 import { radiusClassMap } from './utils';
 import type { VisualRendererProps } from './types';
+import DesignSystemSpecs from '../DesignSystemSpecs';
+import ResearchSynthesis from '../ResearchSynthesis';
+import SingleProjectSlider from '../ProjectSlider/SingleProjectSlider';
+import SimpleProjectStats from '../ProjectStats/SimpleProjectStats';
+import InfoTile from '../InfoTile/InfoTile';
 
 function renderVisual({ 
   asset, 
@@ -117,19 +122,22 @@ function renderVisual({
   }
   
   if (asset.type === "component") {
-    // Dynamic component rendering
+    // Component rendering
     const ComponentName = asset.componentName;
     if (ComponentName === "DesignSystemSpecs") {
-      const DesignSystemSpecs = require("../DesignSystemSpecs").default;
       return <DesignSystemSpecs {...asset.componentProps} />;
     }
     if (ComponentName === "ResearchSynthesis") {
-      const ResearchSynthesis = require("../ResearchSynthesis").default;
       return <ResearchSynthesis {...asset.componentProps} />;
     }
     if (ComponentName === "SingleProjectSlider") {
-      const SingleProjectSlider = require("../ProjectSlider/SingleProjectSlider").default;
       return <SingleProjectSlider {...asset.componentProps} />;
+    }
+    if (ComponentName === "ProjectStats") {
+      return <SimpleProjectStats {...asset.componentProps} />;
+    }
+    if (ComponentName === "InfoTile") {
+      return <InfoTile {...asset.componentProps} />;
     }
     return <div className="text-gray-500">Component {asset.componentName} not found</div>;
   }

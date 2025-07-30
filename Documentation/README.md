@@ -72,6 +72,85 @@ The project includes a sophisticated Lottie animation system with automatic play
 - **Manual Control**: Click to toggle between play/pause states
 - **Restart**: When paused, clicking plays from the beginning
 
+## InfoTile Component
+
+### Overview
+A simple, reusable card component that displays an icon, heading, and body text. Designed to be used as a visual in InfoSnippet components and other parts of the application.
+
+### Features
+- **Flexible Icon Support**: Accepts React components, string identifiers, or URL-based SVGs
+- **Customizable Styling**: Multiple color schemes, sizes, and effects
+- **Consistent Design**: Matches the styling patterns of ProjectStats component
+- **Dark Mode Support**: Fully compatible with the application's dark mode
+- **Responsive Design**: Adapts to different screen sizes
+- **All Props Optional**: Can be used with just an icon, just text, or any combination
+
+### Implementation
+- **Component**: `InfoTile` in `components/InfoTile/InfoTile.tsx`
+- **Fixed Dimensions**: 320px width × 260px height (1.23:1 aspect ratio)
+- **Styling**: Uses project's design tokens and utility classes
+- **Integration**: Works with VisualRenderer for InfoSnippet components
+
+### Usage in Content
+```typescript
+// In content.ts files
+{
+  type: "component",
+  src: "info-tile",
+  componentName: "InfoTile",
+  componentProps: {
+    icon: "chart",
+    heading: "Revenue Growth",
+    body: "Increased revenue by 25% through improved UX design.",
+    color: "blue"
+  }
+}
+```
+
+## Grid Configuration System
+
+### Overview
+The InfoSnippet component now supports custom grid layouts for multiple visuals through configurable columns and rows.
+
+### Features
+- **Custom Grid Layouts**: Specify exact number of columns and rows
+- **Content-based Configuration**: Set grid layout in content files
+- **Prop-based Configuration**: Override grid layout via component props
+- **Responsive Design**: Maintains existing responsive behavior
+- **Backward Compatible**: Existing content works without changes
+
+### Implementation
+- **CanvasSection**: Enhanced with `gridCols` and `gridRows` props
+- **Tailwind Integration**: Uses explicit grid classes for reliable CSS generation
+- **Content Interface**: Updated InfoSnippet interface in all content files
+- **Fallback System**: Uses default responsive grid when not specified
+
+### Usage Examples
+```typescript
+// Content-based configuration
+{
+  heading: "Design Process",
+  visuals: [/* multiple visual assets */],
+  layout: {
+    textColumns: 6,
+    visualColumns: 6,
+    gridCols: 2,  // 2 columns
+    gridRows: 2   // 2 rows
+  }
+}
+
+// Prop-based configuration
+<InfoSnippet 
+  snippet={snippet} 
+  gridCols={2} 
+  gridRows={2} 
+/>
+```
+
+### Supported Grid Sizes
+- **Columns**: 1-12 (maps to `grid-cols-1` through `grid-cols-12`)
+- **Rows**: Any positive integer (creates equal-height rows)
+
 ## DesignSystemSpecs Component
 
 ### Overview
