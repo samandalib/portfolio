@@ -95,6 +95,7 @@ components/InfoSnippet/
    - Manages pointer interactions and Lottie animations
    - Controls visual asset grid layout with customizable columns and rows
    - Supports custom grid configurations via `gridCols` and `gridRows` props
+   - Implements explicit Tailwind class mapping for JIT compilation compatibility
 
 4. **DockerControls.tsx** (~80 lines)
    - Handles all interactive controls
@@ -265,8 +266,26 @@ The component uses several custom hooks for better state management:
 
 - `layout.canvasLeft` (default: `false`): Visuals appear on the right by default. Set to `true` to place visuals on the left.
 - `layout.stacked` (default: `false`): Visuals and text are side-by-side (row) by default. Set to `true` to stack them vertically.
+- `layout.gridCols` (optional): Custom number of columns for visual grid (1-12 supported)
+- `layout.gridRows` (optional): Custom number of rows for visual grid (equal height rows)
 
 You can override these per-snippet in your content file as needed.
+
+## Recent Updates
+
+### Grid Configuration System
+- **Added**: Custom grid layout support with `gridCols` and `gridRows` properties
+- **Implementation**: Explicit Tailwind class mapping for JIT compilation compatibility
+- **Usage**: Perfect for arranging multiple InfoTile components or other visuals in specific grid patterns
+
+### Subheading Font Size
+- **Updated**: Subheading font size increased from 20px to 24px for better visual hierarchy
+- **Location**: `components/InfoSnippet/TextSection.tsx`
+
+### Component Integration
+- **Added**: InfoTile component integration for reusable card-based visuals
+- **Added**: ProjectStats component integration for statistics displays
+- **Registration**: Both components properly registered in `VisualRenderer.tsx`
 
 ---
 

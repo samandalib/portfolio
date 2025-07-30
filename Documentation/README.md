@@ -35,6 +35,7 @@ All images and visual assets are now hosted on Cloudinary (or a similar external
 - Case study content is managed in TypeScript files (e.g., `public/assets/case studies/project1/content.ts`) and rendered dynamically on dedicated pages.
 - **Case Study Pages**: Individual case studies are now served via dynamic routes with consistent layout structure (AccentDock, ProjectDetailsDisplay, InfoSnippets).
 - **Navigation**: Project cards navigate to dedicated pages instead of revealing sections on the landing page, providing better SEO and user experience.
+- **Grid Configuration**: InfoSnippet supports custom grid layouts with `gridCols` and `gridRows` properties for precise visual arrangement.
 
 ## Lottie Animation System
 
@@ -84,12 +85,14 @@ A simple, reusable card component that displays an icon, heading, and body text.
 - **Dark Mode Support**: Fully compatible with the application's dark mode
 - **Responsive Design**: Adapts to different screen sizes
 - **All Props Optional**: Can be used with just an icon, just text, or any combination
+- **Animated Border**: Optional animated border with accent color trim path animation
 
 ### Implementation
 - **Component**: `InfoTile` in `components/InfoTile/InfoTile.tsx`
 - **Fixed Dimensions**: 320px width × 260px height (1.23:1 aspect ratio)
 - **Styling**: Uses project's design tokens and utility classes
 - **Integration**: Works with VisualRenderer for InfoSnippet components
+- **Border Animation**: 20-second cycle with 10-second pause and 10-second drawing animation
 
 ### Usage in Content
 ```typescript
@@ -98,6 +101,60 @@ A simple, reusable card component that displays an icon, heading, and body text.
   type: "component",
   src: "info-tile",
   componentName: "InfoTile",
+  componentProps: {
+    icon: "chart",
+    heading: "Interaction Analysis",
+    body: "Novel method to compare design efficiency against legacy systems",
+    color: "blue"
+  }
+}
+```
+
+## ProjectStats Component
+
+### Overview
+A statistics display component that shows key metrics and data points. Designed for displaying business statistics, project metrics, and performance indicators.
+
+### Features
+- **Multiple Layouts**: Grid, Cards, Combined, and ComboStats layouts
+- **Animated Numbers**: Optional animated counting effect for numerical values
+- **Color Coding**: Support for different color schemes (blue, purple, green, orange, indigo, accent)
+- **Responsive Design**: Adapts to different screen sizes
+- **Dark Mode Support**: Fully compatible with the application's dark mode
+
+### Implementation
+- **Component**: `SimpleProjectStats` in `components/ProjectStats/SimpleProjectStats.tsx`
+- **Layouts**: 
+  - `grid`: Standard grid layout for multiple stats
+  - `cards`: Card-based layout
+  - `combined`: Combined layout for mixed content
+  - `ComboStats`: Specialized business layout with corporate operations and authorized network sections
+- **Animation**: Built-in `AnimatedNumber` component for counting animations
+
+### Usage in Content
+```typescript
+// In content.ts files
+{
+  type: "component",
+  src: "project-stats",
+  componentName: "ProjectStats",
+  componentProps: {
+    title: "Market Leadership",
+    subtitle: "Powering retail excellence through strategic operations",
+    stats: [
+      {
+        value: 28,
+        label: "Billion Revenue",
+        color: "blue",
+        prefix: "$",
+        suffix: "B",
+        animateValue: true
+      }
+    ],
+    layout: "ComboStats"
+  }
+}
+```
   componentProps: {
     icon: "chart",
     heading: "Revenue Growth",
