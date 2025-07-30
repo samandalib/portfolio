@@ -115,7 +115,7 @@ const caseStudy: CaseStudyContent = {
             radius: "rounded-2xl"
           }
       ],
-      layout: { textColumns: 3, visualColumns: 9, stacked: false }
+      layout: { textColumns: 4, visualColumns: 8, stacked: false }
     },
     {
       heading: "The opportunity",
@@ -262,7 +262,7 @@ const caseStudy: CaseStudyContent = {
 
     {
 
-      subheading: "Phase 1: Single-line upgrades",
+      heading: "Phase 1: Single-line upgrades",
       body: [
         "Designed the experience that guided reps while remaining flexible for scenarios where the customer is upgrading a single line.",
         [
@@ -379,7 +379,7 @@ const caseStudy: CaseStudyContent = {
       layout: { textColumns: 6, visualColumns: 6, stacked: true }
     },
     {
-      subheading: "Phase 2: Multi-line challenges",
+      heading: "Phase 2: Multi-line challenges",
       body: 
         "With multi-line accounts, complexity multiplies. Each line may have unique upgrade paths, trade-ins, and offers. Store reps need to be able to navigate the experience with assurance that they are making the right changes either on the accout level or line level. </br></br>I introduced a left panel so that reps can easily navigate the account and have a clear view of the changes to each line.",
       visuals: [

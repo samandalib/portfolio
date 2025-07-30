@@ -8,6 +8,7 @@ const ProjectCard: React.FC<ProjectCardProps> = ({
   index, 
   currentIndex, 
   isActive, 
+  justBroughtToFront,
   onCardClick 
 }) => {
   const offset = index - currentIndex;
@@ -25,6 +26,10 @@ const ProjectCard: React.FC<ProjectCardProps> = ({
         transformStyle: 'preserve-3d',
         width: '100%',
         height: '100%',
+        ...(isActive && justBroughtToFront && {
+          boxShadow: `0 0 0 2px var(--accent-color, #16A34A)`,
+          borderRadius: 'var(--border-radius-lg, 16px)',
+        }),
       }}
       onClick={() => onCardClick(index)}
     >

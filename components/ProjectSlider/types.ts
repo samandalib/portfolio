@@ -9,12 +9,14 @@ export interface ProjectCardProps {
   index: number;
   currentIndex: number;
   isActive: boolean;
+  justBroughtToFront: boolean;
   onCardClick: (index: number) => void;
 }
 
 export interface CardFanProps {
   projects: ProjectSliderCard[];
   currentIndex: number;
+  justBroughtToFront: number | null;
   onCardClick: (index: number) => void;
 }
 

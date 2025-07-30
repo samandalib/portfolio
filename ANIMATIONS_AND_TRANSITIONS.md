@@ -98,4 +98,28 @@ This document lists all custom and notable animations and transitions used in th
 
 ---
 
+## 8. ProjectSlider Navigation System
+- **Description:** Comprehensive navigation system for the ProjectSlider component that supports multiple input methods with intelligent interaction patterns.
+- **Where Used:** ProjectSlider component on the landing page
+- **Code Files:** `components/ProjectSlider/hooks/useTouchGestures.ts`, `components/ProjectSlider/ProjectSlider.tsx`, `components/ProjectSlider/components/ProjectCard.tsx`
+- **Key Details:**
+  - **Trackpad Support**: Horizontal scroll gestures with accumulated delta detection
+  - **Touch Support**: Swipe gestures for mobile/tablet devices
+  - **Mouse Support**: Click and drag functionality for desktop users
+  - **Keyboard Support**: Arrow key navigation (Left/Right arrows)
+  - **Sensitivity Settings**: 
+    - Trackpad: 200px accumulated deltaX threshold
+    - Touch/Mouse: 50px swipe/drag threshold
+    - 100ms throttle for wheel events
+  - **Event Handling**: Uses `passive: false` for wheel events to allow `preventDefault()`
+  - **Accumulation Logic**: Sums small scroll movements for more intentional gesture detection
+  - **Reset Logic**: Accumulated delta resets after navigation to prevent rapid-fire triggers
+  - **Interaction Patterns**:
+    - Background Cards: 2-step interaction (click to bring to front, click again to open)
+    - Front-facing Cards: 1-step interaction (click immediately to open)
+    - Visual Feedback: Accent ring appears on front cards that were just brought to front
+    - State Management: Resets interaction state when using other navigation methods
+
+---
+
 > Update this file whenever a new animation or transition is added to the project, or when an existing one is changed. 

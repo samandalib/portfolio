@@ -88,6 +88,31 @@ export function useTouchGestures(onNext: () => void, onPrev: () => void) {
     };
   }, [onNext, onPrev]);
 
+  // Add keyboard event listener for arrow keys
+  useEffect(() => {
+    const handleKeyDown = (e: KeyboardEvent) => {
+      // Only handle arrow keys
+      if (e.key === 'ArrowLeft' || e.key === 'ArrowRight') {
+        e.preventDefault(); // Prevent page scrolling
+        
+        if (e.key === 'ArrowLeft') {
+          console.log('Left arrow key pressed - Previous project');
+          onPrev();
+        } else if (e.key === 'ArrowRight') {
+          console.log('Right arrow key pressed - Next project');
+          onNext();
+        }
+      }
+    };
+
+    // Add global keyboard event listener
+    document.addEventListener('keydown', handleKeyDown);
+
+    return () => {
+      document.removeEventListener('keydown', handleKeyDown);
+    };
+  }, [onNext, onPrev]);
+
   const handleMouseDown = (e: React.MouseEvent) => {
     isDragging.current = true;
     mouseStartX.current = e.clientX;

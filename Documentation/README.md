@@ -155,6 +155,37 @@ A statistics display component that shows key metrics and data points. Designed 
   }
 }
 ```
+
+## ProjectSlider Navigation System
+
+### Overview
+The ProjectSlider component features a comprehensive navigation system that supports multiple input methods with intelligent interaction patterns.
+
+### Features
+- **Multi-Input Support**: Trackpad gestures, touch swipes, mouse drag, and keyboard navigation
+- **Intelligent Interaction**: Two-step interaction for background cards, one-step for front cards
+- **Visual Feedback**: Accent ring indicates when a card is ready to be opened
+- **Accessibility**: Full keyboard navigation support with arrow keys
+- **Sensitivity Control**: Configurable thresholds for different input methods
+
+### Navigation Methods
+- **Trackpad**: Horizontal scroll with 200px accumulated delta threshold
+- **Touch**: Swipe gestures with 50px threshold for mobile/tablet devices
+- **Mouse**: Click and drag with 50px threshold for desktop users
+- **Keyboard**: Left/Right arrow keys for accessibility
+- **Click**: Background cards → bring to front, front cards → open project
+
+### Interaction Patterns
+- **Background Cards**: First click brings to front, second click opens project
+- **Front-facing Cards**: Single click opens project immediately
+- **Visual Feedback**: Accent ring appears on front cards that were just brought to front
+- **State Management**: Resets interaction state when using other navigation methods
+
+### Implementation
+- **Gesture System**: Enhanced `useTouchGestures` hook with keyboard support
+- **Interaction Logic**: Smart click handling in ProjectSlider component
+- **Visual Feedback**: Accent ring styling with dynamic accent color integration
+- **Event Handling**: Proper `passive: false` configuration for wheel events
   componentProps: {
     icon: "chart",
     heading: "Revenue Growth",
