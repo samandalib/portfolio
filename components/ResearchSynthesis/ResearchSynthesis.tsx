@@ -22,7 +22,7 @@ export interface ResearchMethod {
 export interface Testimonial {
   quote: string;
   author: string;
-  age: number;
+  age?: number;
 }
 
 export interface ResearchSynthesisProps {
@@ -227,9 +227,11 @@ const ResearchSynthesis: React.FC<ResearchSynthesisProps> = ({
                     <span className="font-medium text-foreground-light dark:text-foreground-dark">
                       {testimonial.author}
                     </span>
-                    <span className="text-gray-500 dark:text-gray-400 ml-2">
-                      {testimonial.age} years old
-                    </span>
+                    {testimonial.age && (
+                      <span className="text-gray-500 dark:text-gray-400 ml-2">
+                        {testimonial.age} years old
+                      </span>
+                    )}
                   </div>
                 </div>
               </div>

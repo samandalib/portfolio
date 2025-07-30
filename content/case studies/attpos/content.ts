@@ -335,45 +335,187 @@ const caseStudy: CaseStudyContent = {
       layout: { textColumns: 4, visualColumns: 8, stacked: true }
     },
     {
-      subheading: "Phase 2: Multi-line challenges",
-      body: [
-        "With multi-line accounts, complexity multiplies. Each line may have unique upgrade paths, trade-ins, and offers.",
-        "We tested concepts in low fidelity before building a high-fidelity prototype using Salesforce Lightning components."
+
+      visuals: [
+        {
+          type: "component",
+          src: "research-synthesis",
+          componentName: "ResearchSynthesis",
+          componentProps: {
+            title: "UXR with store reps",
+            subtitle: "Key insights from observations and interviews",
+            processSteps: [
+              "Click-through prototype on an iPad",
+              "Role played the scenario as if it were a real customer",
+              "Reps were asked to review the content and give impressions before role playing",
+              "Collected final impressions and ratings."
+            ],
+            stats: {
+              interviews: 12,
+              duration: "45min"
+            },
+            testimonials: [
+              {
+                quote: "Learning OPUS right now, it’s intimidating because there are so many tabs, it’s easy to get lost. You have to toggle back and forth to find tools for flow. This is super easy to walk through. I would love to have this more than learning OPUS. This is very easy.",
+                author: "New hire store rep",
+              
+              },
+              {
+                quote: "[I like] How clear and simple it is to use. It's very informative. It doesn’t let you forget anything. It tells you what you need to read verbatim. This is what the customer needs to know.",
+                author: "Tenured store rep",
+                
+              },
+              {
+                quote: "You can see everything together, what they’re currently paying for, what’s available. You don’t have to look at the bill or hit features.",
+                author: "Tenured store rep",
+                
+              },
+            ],
+            keyTakeaway: "The new design provides a faster, more transparent, guided, and informative experience.",
+            participantsImageUrl: "https://res.cloudinary.com/dehugbvmc/image/upload/v1753903602/StoreTest_wja3wj.png"
+          }
+        }
       ],
-      visuals: [],
-      layout: { textColumns: 6, visualColumns: 6, stacked: false }
+      layout: { textColumns: 6, visualColumns: 6, stacked: true }
     },
     {
-      heading: "Key wins & pain points",
-      body: [
-        "Top wins:",
-        [
-          "Reduced clicks with everything on one page",
-          "Support for both linear and non-linear workflows",
-          "Ability to edit without rebuilding"
-        ],
-        "Top losses:",
-        [
-          "Difficult to see how decisions affect other lines",
-          "Unclear account-level summaries",
-          "Lack of visibility into current plan status"
-        ]
+      subheading: "Phase 2: Multi-line challenges",
+      body: 
+        "With multi-line accounts, complexity multiplies. Each line may have unique upgrade paths, trade-ins, and offers. Store reps need to be able to navigate the experience with assurance that they are making the right changes either on the accout level or line level. </br></br>I introduced a left panel so that reps can easily navigate the account and have a clear view of the changes to each line.",
+      visuals: [
+        {
+          type: "embed",
+          src: "https://jumpshare.com/embed/BWQ04sQkErEihcfXBbXS",
+          alt: "Making changes to a line.",
+          caption: "Start to build an order for a multi-line account.",
+          radius: "rounded-lg"
+        }, 
+        {
+          type: "embed",
+          src: "https://jumpshare.com/embed/qfC3LQ9Z8JmY1iC9Atll",
+          alt: "Integrating online inventory with in-store experience.",
+          caption: "Integrating online inventory with in-store purchaseexperience.",
+          radius: "rounded-lg"
+        }, 
+        {
+          type: "embed",
+          src: "https://jumpshare.com/embed/owTUrD3NpHbxrSYbvXPQ",
+          alt: "Reviweing multi-line changes.",
+          caption: "Reviewing multi-line changes.",
+          radius: "rounded-lg"
+        },
+
       ],
-      visuals: [],
-      layout: { textColumns: 6, visualColumns: 6, stacked: false }
+      layout: { textColumns: 6, visualColumns: 6, stacked: true, gridCols: 3, gridRows: 1 }
+    },
+    {
+      subheading: "Under-the hood",
+      body: 
+        "Creating a well-crafted prototype for handoff requires making a lot of precise components. I created a component library to help with this process.",
+      visuals: [
+        {
+          type: "image",
+          src: "https://res.cloudinary.com/dehugbvmc/image/upload/v1753910372/Library_Atoms_Molecules_fpmkzl.png",
+          alt: "component library snapshot",
+          caption: "Snapshot of components for prototyping.",
+          radius: "rounded-2xl"
+        }
+      ],
+      layout: { textColumns: 6, visualColumns: 6, stacked: true }
     },
     {
       heading: "Measuring success",
-      body: [
-        "To evaluate success, I created a novel interaction analysis method to compare our design against the legacy system.",
-        "This method helped quantify efficiency, accuracy, and clarity improvements.",
-        "I later published this method as an article on Medium to share insights with the broader design community."
-      ],
+      subheading: "How did I assure the business partners that the new design works better than the legacy system, and not just aesthetically better?",
+      body: 
+        "There are very few methods that can show how redesigning an E2E flow can be impactful.I created a novel interaction analysis method to compare our design against the legacy system. This method helped business partners to see the full picture of the impact of the redesign.",
       visuals: [
-
+        {
+          type: "component",
+          src: "info-tile",
+          componentName: "InfoTile",
+          componentProps: {
+            icon: "/assets/landing/social/Medium.svg",
+            heading: "Interaction Footprint",
+            body: "Read my article on the Interaction Footprint method.",
+            href: "https://medium.com/ux-planet/interaction-footprint-a-new-tool-for-measuring-design-cbfad164c4ca",
+            external: true
+          }
+        }
       ],
-      layout: { textColumns: 6, visualColumns: 6, stacked: false }
-    }
+      layout: { textColumns:8, visualColumns: 4, stacked: false , canvasLeft: true}
+    },
+    {
+      visuals: [
+        {
+          type: "image",
+          src: "https://res.cloudinary.com/dehugbvmc/image/upload/v1753912033/IXN_vxy9tx.svg",
+          alt: "Interaction Footprint",
+          caption: "Interaction Footprint",
+        }
+      ],
+      layout: { textColumns: 6, visualColumns: 6, stacked: true }
+    },
+    {
+      visuals: [
+        {
+          type: "component",
+          src: "project-stats",
+          componentName: "ProjectStats",
+          componentProps: {
+            stats: [
+              {
+                label: "Fewer steps to take",
+                value: "↓19",
+                description: "Steps to complete a task correlate with the time taken. Fewer steps can prevent errors.",
+                color: "purple"
+              },
+              {
+                label: "Fewer pages to navigate",
+                value: "↓15",
+                description: "Each page needs new info to load, so the number of pages and steps can be significant.",
+                color: "purple"
+              },
+              {
+                label: "Fewer Transitions",
+                value: "↓15",
+                description: "A page transition happens when the user moves to another page and waits for it to load.",
+                color: "purple"
+              }
+            ],
+            
+          }
+        },
+        {
+          type: "component",
+          src: "project-stats",
+          componentName: "ProjectStats",
+          componentProps: {
+            stats: [
+              {
+                label: "Unnatural transitions",
+                value: "↓2",
+                description: "Transitions result from hard-to-find interaction points on the next page, often unexpected.",
+                color: "purple"
+              },
+              {
+                label: "Below benchmark",
+                value: "↓11",
+                description: "Points above the benchmark line are accessible to most users. Those below may be hard to interact with.",
+                color: "purple"
+              },
+              {
+                label: "Difficult interactions",
+                value: "↓12",
+                description: "These interactions have a degree of difficulty higher than 5 on scale of 1 to 10.",
+                color: "purple"
+              }
+            ],
+            
+          }
+        }
+      ],
+      layout: { textColumns: 6, visualColumns: 6, stacked: true, gridCols: 1, gridRows: 2 }
+    }   
   ]
 };
 

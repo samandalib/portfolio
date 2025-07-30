@@ -13,7 +13,9 @@ const InfoTile: React.FC<InfoTileProps> = ({
   bodySize = 'md',
   showBorder = true,
   showShadow = true,
-  hoverEffect = true
+  hoverEffect = true,
+  href,
+  external = false
 }) => {
 
   const getColorClasses = (color: string) => {
@@ -77,9 +79,9 @@ const InfoTile: React.FC<InfoTileProps> = ({
     if (!icon) return null;
 
     if (typeof icon === 'string') {
-      // Check if it's a URL (starts with http or https)
-      if (icon.startsWith('http://') || icon.startsWith('https://')) {
-        // URL-based icon - render as image with theme-aware filter
+      // Check if it's a URL (starts with http or https) or a local file path (starts with /)
+      if (icon.startsWith('http://') || icon.startsWith('https://') || icon.startsWith('/')) {
+        // URL-based or local file icon - render as image with theme-aware filter
         return (
           <div className={`${getIconSizeClasses(iconSize)} flex items-center justify-center`}>
             <img 
@@ -113,7 +115,7 @@ const InfoTile: React.FC<InfoTileProps> = ({
   const shadowClasses = showShadow ? "shadow-lg" : "";
   const hoverClasses = hoverEffect ? "hover:shadow-xl transition-all duration-500 transform hover:-translate-y-1" : "";
 
-  return (
+  const tileContent = (
     <div className={`${baseClasses} ${borderClasses} ${shadowClasses} ${hoverClasses} ${className}`}>
       {/* Animated border overlay */}
       <div className="absolute inset-0 rounded-2xl pointer-events-none">
@@ -158,6 +160,22 @@ const InfoTile: React.FC<InfoTileProps> = ({
       </div>
     </div>
   );
+
+  // If href is provided, wrap the tile in a link
+  if (href) {
+    return (
+      <a 
+        href={href}
+        target={external ? "_blank" : "_self"}
+        rel={external ? "noopener noreferrer" : ""}
+        className="block no-underline"
+      >
+        {tileContent}
+      </a>
+    );
+  }
+
+  return tileContent;
 };
 
 export default InfoTile; 

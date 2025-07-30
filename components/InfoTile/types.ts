@@ -10,4 +10,6 @@ export interface InfoTileProps {
   showBorder?: boolean;
   showShadow?: boolean;
   hoverEffect?: boolean;
+  href?: string;
+  external?: boolean;
 } 

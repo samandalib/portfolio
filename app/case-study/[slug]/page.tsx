@@ -40,7 +40,7 @@ const ProjectPage = ({ params }: ProjectPageProps) => {
         {/* Main project content (InfoSnippets) */}
         <div className="w-full px-4">
           {infoSnippets && infoSnippets.map((snippet: any, idx: number) => (
-            <div key={idx} className="relative mb-32 last:mb-20">
+            <div key={idx} className="relative mb-16 last:mb-10">
               <InfoSnippet snippet={snippet} />
             </div>
           ))}
