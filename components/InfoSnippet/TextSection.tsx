@@ -61,23 +61,20 @@ const TextSection: React.FC<InfoSnippetTextSectionProps> = ({
             );
           } else if (typeof normalizedBody === 'string') {
             return (
-              <p className="mb-2 text-gray-700 dark:text-gray-200 font-sans">
-                {normalizedBody}
-              </p>
+              <p 
+                className="mb-2 text-gray-700 dark:text-gray-200 font-sans"
+                dangerouslySetInnerHTML={{ __html: normalizedBody }}
+              />
             );
           } else {
             return null;
           }
         })()
       ) : snippet.body ? (
-        <p className="mb-2 text-gray-700 dark:text-gray-200 font-sans">
-          {snippet.body.split('\n').map((line, idx) => (
-            <React.Fragment key={idx}>
-              {line}
-              <br />
-            </React.Fragment>
-          ))}
-        </p>
+        <p 
+          className="mb-2 text-gray-700 dark:text-gray-200 font-sans"
+          dangerouslySetInnerHTML={{ __html: snippet.body }}
+        />
       ) : null}
     </div>
   );

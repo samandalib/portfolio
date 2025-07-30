@@ -92,12 +92,17 @@ const caseStudy: CaseStudyContent = {
   ],
   infoSnippets: [
     {
-      heading: "The problem",
-      body: [
-        "Interior designers often rely on imagination or 3D renderings to evaluate spatial qualities, but these tools fall short.",
-        "Design decisions made without fully understanding space can lead to costly mistakes in materials and labor."
+      heading: "The Context",
+      body: 
+        "Interior designers often rely on imagination or 3D renderings to evaluate spatial qualities, but these tools fall short.</br></br>Design decisions made without fully understanding space can lead to costly mistakes in materials and labor.",
+      visuals: [
+        {
+          type: "video",
+          src: "https://res.cloudinary.com/dehugbvmc/video/upload/v1753840042/VR_y3zfoh.mp4", // Not used for components
+          alt: "The final app in action",
+          radius: "rounded-2xl"
+        }
       ],
-      visuals: [],
       layout: { textColumns: 6, visualColumns: 6, stacked: false }
     },
     {

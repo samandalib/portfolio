@@ -92,11 +92,27 @@ const caseStudy: CaseStudyContent = {
   infoSnippets: [
     {
       heading: "The problem",
-      body: [
-        "AT&T's legacy POS system was difficult to learn, rigid, and error-prone. It required retail reps to bounce between multiple systems to complete a sale, leading to inefficiencies and poor customer experiences.",
-        "Despite a major investment in Salesforce, the out-of-the-box experience wasn't enough. The new system needed a thoughtful redesign from the ground up to support real-world sales conversations."
+      body: 
+        "AT&T's legacy POS system was difficult to learn, rigid, and error-prone. It required retail reps to bounce between multiple systems to complete a sale, leading to inefficiencies and poor customer experiences. </br></br>Despite a major investment in Salesforce, the out-of-the-box experience wasn't enough. The new system needed a thoughtful redesign from the ground up to support real-world sales conversations."
+      ,
+      visuals: [
+        {
+
+          type: "image",
+          src: "https://res.cloudinary.com/dehugbvmc/image/upload/v1753831635/OPUS_ubnow8.png", // Not used for components
+        
+            alt: "Before and after comparison of POS interface",
+            caption: "The existing POS system interface.",
+            radius: "rounded-2xl"
+          },
+          {
+            type: "image",
+            src: "https://res.cloudinary.com/dehugbvmc/image/upload/v1753831634/ACC-After_je5kvl.png", // Not used for components
+            alt: "Before and after comparison of POS interface",
+            caption: "The new POS system design.",
+            radius: "rounded-2xl"
+          }
       ],
-      visuals: [],
       layout: { textColumns: 6, visualColumns: 6, stacked: false }
     },
     {
@@ -170,7 +186,9 @@ const caseStudy: CaseStudyContent = {
         "This method helped quantify efficiency, accuracy, and clarity improvements.",
         "I later published this method as an article on Medium to share insights with the broader design community."
       ],
-      visuals: [],
+      visuals: [
+
+      ],
       layout: { textColumns: 6, visualColumns: 6, stacked: false }
     }
   ]
