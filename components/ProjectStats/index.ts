@@ -1,2 +1,2 @@
-export { default } from './ProjectStats';
+export { default } from './SimpleProjectStats';
 export * from './types'; 
