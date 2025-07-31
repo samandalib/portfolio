@@ -44,7 +44,7 @@ export interface VisualAsset {
   muted?: boolean;
   // Component-specific properties:
   componentName?: string; // e.g., "DesignSystemSpecs"
-  componentProps?: any;   // Props to pass to the component
+  componentProps?: any;   // Props to pass to the component (InfoTile, ProjectStats, etc.)
 }
 
 export interface InfoSnippet {
@@ -435,8 +435,8 @@ const caseStudy: CaseStudyContent = {
           componentName: "InfoTile",
           componentProps: {
             icon: "/assets/landing/social/Medium.svg",
-            heading: "Interaction Footprint",
-            body: "Read my article on the Interaction Footprint method.",
+            heading: "Read my article",
+            body: "Click to read the full article on the Interaction Footprint method.",
             href: "https://medium.com/ux-planet/interaction-footprint-a-new-tool-for-measuring-design-cbfad164c4ca",
             external: true
           }

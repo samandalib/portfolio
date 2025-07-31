@@ -15,7 +15,9 @@ const InfoTile: React.FC<InfoTileProps> = ({
   showShadow = true,
   hoverEffect = true,
   href,
-  external = false
+  external = false,
+  disableIconFilter = false,
+  italicBody = false
 }) => {
 
   const getColorClasses = (color: string) => {
@@ -81,13 +83,14 @@ const InfoTile: React.FC<InfoTileProps> = ({
     if (typeof icon === 'string') {
       // Check if it's a URL (starts with http or https) or a local file path (starts with /)
       if (icon.startsWith('http://') || icon.startsWith('https://') || icon.startsWith('/')) {
-        // URL-based or local file icon - render as image with theme-aware filter
+        // URL-based or local file icon - render as image with optional theme-aware filter
+        const filterClasses = disableIconFilter ? '' : 'dark:invert dark:brightness-0 dark:contrast-200';
         return (
           <div className={`${getIconSizeClasses(iconSize)} flex items-center justify-center`}>
             <img 
               src={icon} 
               alt="Icon" 
-              className="w-full h-full object-contain dark:invert dark:brightness-0 dark:contrast-200"
+              className={`w-full h-full object-contain ${filterClasses}`}
             />
           </div>
         );
@@ -110,27 +113,33 @@ const InfoTile: React.FC<InfoTileProps> = ({
     );
   };
 
-  const baseClasses = "bg-white dark:bg-gray-900 rounded-2xl p-6 w-80 h-65 relative overflow-hidden";
+  const baseClasses = "bg-white dark:bg-gray-900 rounded-2xl p-6 w-80 h-65 relative";
   const borderClasses = showBorder ? "border border-gray-200/50 dark:border-gray-700/50" : "";
   const shadowClasses = showShadow ? "shadow-lg" : "";
   const hoverClasses = hoverEffect ? "hover:shadow-xl transition-all duration-500 transform hover:-translate-y-1" : "";
 
+  // Calculate the perimeter for the animated border
+  const width = 320 - 1; // w-80 = 320px, minus 1px for stroke
+  const height = 260 - 1; // h-65 = 260px, minus 1px for stroke
+  const radius = 16;
+  const perimeter = 2 * (width + height) - 4 * radius + 2 * Math.PI * radius;
+
   const tileContent = (
     <div className={`${baseClasses} ${borderClasses} ${shadowClasses} ${hoverClasses} ${className}`}>
       {/* Animated border overlay */}
-      <div className="absolute inset-0 rounded-2xl pointer-events-none">
-        <svg className="w-full h-full" viewBox="0 0 320 260" preserveAspectRatio="none">
+      <div className="absolute inset-0 pointer-events-none overflow-visible">
+        <svg className="w-full h-full" preserveAspectRatio="none">
           <rect
-            x="2"
-            y="2"
-            width="316"
-            height="256"
+            x="0.5"
+            y="0.5"
+            width="calc(100% - 1px)"
+            height="calc(100% - 1px)"
             rx="16"
             fill="none"
             stroke="var(--accent-color)"
             strokeWidth="1"
-            strokeDasharray="1144"
-            strokeDashoffset="1144"
+            strokeDasharray={perimeter}
+            strokeDashoffset={perimeter}
             className="animate-info-tile-border"
           />
         </svg>
@@ -151,7 +160,7 @@ const InfoTile: React.FC<InfoTileProps> = ({
               </h3>
             )}
             {body && (
-              <p className={`text-sans text-gray-600 dark:text-gray-400 ${getBodySizeClasses(bodySize)}`}>
+              <p className={`text-sans text-gray-600 dark:text-gray-400 ${getBodySizeClasses(bodySize)} ${italicBody ? 'italic' : ''}`}>
                 {body}
               </p>
             )}

@@ -12,4 +12,6 @@ export interface InfoTileProps {
   hoverEffect?: boolean;
   href?: string;
   external?: boolean;
+  disableIconFilter?: boolean;
+  italicBody?: boolean;
 } 

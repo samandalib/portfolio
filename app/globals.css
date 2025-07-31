@@ -138,9 +138,6 @@ a {
     0% {
       stroke-dashoffset: 1144;
     }
-    50% {
-      stroke-dashoffset: 1144;
-    }
     100% {
       stroke-dashoffset: 0;
     }
