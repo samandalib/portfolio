@@ -19,6 +19,7 @@ const singleProject = projectSliderCards.filter(project => project.slug === 'Roa
         <CardFan
           projects={singleProject}
           currentIndex={0}
+          justBroughtToFront={null}
           onCardClick={(index) => {
             // Navigate to the project page using the slug
             const slug = singleProject[index].slug;
