@@ -113,7 +113,7 @@ const caseStudy: CaseStudyContent = {
         "Build a VR tool that empowers designers to experience and iterate on their designs in real scale and space.",
         [
         "The tool should allow interior designers to explore and edit their designs in a fully interactive VR environment.",
-        "Designgners should be able manipulate objects in the space, setg lighting, and iterate quickly using natural interactions."
+        "Designers should be able to manipulate objects in the space, set lighting, and iterate quickly using natural interactions."
         ]
       ],
       visuals: [],
@@ -285,7 +285,7 @@ const caseStudy: CaseStudyContent = {
             type: "video",
             src: "https://res.cloudinary.com/dehugbvmc/video/upload/v1753922302/Change_Daylight_ros49k.mp4",
             alt: "Grid feature",
-            caption: "Spatial grid snapping for precise placement.",
+            caption: "Changing the time of day for lighting purposes.",
             radius: "rounded-xl",
             muted: true,
             autoplay: true,
@@ -295,7 +295,7 @@ const caseStudy: CaseStudyContent = {
             type: "video",
             src: "https://res.cloudinary.com/dehugbvmc/video/upload/v1753922301/Swap_Hands_nki1tk.mp4",
             alt: "Grid feature",
-            caption: "Spatial grid snapping for precise placement.",
+            caption: "Swaping dominant hand for menu interaction.",
             radius: "rounded-xl",
             muted: true,  
             autoplay: true,
@@ -305,7 +305,7 @@ const caseStudy: CaseStudyContent = {
             type: "video",
             src: "https://res.cloudinary.com/dehugbvmc/video/upload/v1753922304/duplicate_object_isc5at.mp4",
             alt: "Grid feature",
-            caption: "Spatial grid snapping for precise placement.",
+            caption: "Duplicating an object.",
             radius: "rounded-xl",
             muted: true,
             autoplay: true,
@@ -315,7 +315,7 @@ const caseStudy: CaseStudyContent = {
             type: "video",
             src: "https://res.cloudinary.com/dehugbvmc/video/upload/v1753922305/Rotate_azgelh.mp4",
             alt: "Grid feature",
-            caption: "Spatial grid snapping for precise placement.",
+            caption: "Rotating an object on allowable axes.",
             radius: "rounded-xl",
             muted: true,  
             autoplay: true,
@@ -325,7 +325,7 @@ const caseStudy: CaseStudyContent = {
             type: "video",
             src: "https://res.cloudinary.com/dehugbvmc/video/upload/v1753922304/Remove_Object_tpwo66.mp4",
             alt: "Grid feature",
-            caption: "Spatial grid snapping for precise placement.",
+            caption: "Removing and object from the space.",
             radius: "rounded-xl",
             muted: true,  
             autoplay: true,
@@ -339,7 +339,7 @@ const caseStudy: CaseStudyContent = {
     {
       heading: "In Retrospect",
       body: [
-        "This project definitely pushed me out of my comfort zone. I learned a lot about planning, arhitecture of an app and programming that I wouldn't have learned otherwise and to be honest, I did't think I would be able to solve many of the challenges that I faced with. Aside from that, I wrote about my findings and shared with the community and had some conversations that were very valuable.",
+        "This project definitely pushed me out of my comfort zone. I learned a lot about planning, architecture of an app and programming that I wouldn't have learned otherwise and to be honest, I didn't think I would be able to solve many of the challenges that I faced. Aside from that, I wrote about my findings and shared with the community and had some conversations that were very valuable.",
         [
           "Improved documentation helped me maintain momentum between long gaps in development.",
           "Developed an efficient way to support testing, feedback loops, and iteration in Unity.",

@@ -97,7 +97,7 @@ const caseStudy: CaseStudyContent = {
   infoSnippets: [
     {
       heading: "The north star vision",
-      body: "A true AI companion for aging would look like. The we started moving toward that direction. We knew we need a foundation first to get there.",
+      body: "A true AI companion for aging would look like. Then we started moving toward that direction. We knew we needed a foundation first to get there.",
       visuals: [
         {
           type: "video",
@@ -123,7 +123,7 @@ const caseStudy: CaseStudyContent = {
     {
         heading: "The solution",
         body: [
-          "An AI-powered wellness app to turn scattered wellness data into insights to build healthy lifestyle routinesto stay functionally independent in old age.\n Through research, we introduced concepts like 'L-Score', 'inAge', and 'Decline Curve' to visualize progress and shift mindset from reactive health to proactive self-care.",
+          "An AI-powered wellness app to turn scattered wellness data into insights to build healthy lifestyle routines to stay functionally independent in old age.\n Through research, we introduced concepts like 'L-Score', 'inAge', and 'Decline Curve' to visualize progress and shift mindset from reactive health to proactive self-care.",
           [
           "Focuses on holistic wellbeing",
           "Provides personalized coaching",
@@ -168,7 +168,7 @@ const caseStudy: CaseStudyContent = {
       body: [
         "Personalized coaching across cardio, strength, cognition, and emotional health",
         "Progress tracking and scorecards (L-Score, inAge, Decline Curve)",
-        "Unified dashboard focuse on aging metrics",
+        "Unified dashboard focused on aging metrics",
         "App integrations and AI chat support",
         "AI-powered wellness planning",
       

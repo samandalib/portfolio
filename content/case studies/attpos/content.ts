@@ -282,22 +282,22 @@ const caseStudy: CaseStudyContent = {
         {
           type: "image",
           src: "https://res.cloudinary.com/dehugbvmc/image/upload/v1753893317/lofi2_iwtcut.png",
-          alt: "lofi explorations for layout: showing a selection card on top of the page for each line.",
+          alt: "Lo-fi explorations for layout: showing a selection card on top of the page for each line.",
           caption: "Layout 2: Showing a selection card on top of the page for each line.",
           radius: "rounded-lg"
         },
         {
           type: "image",
           src: "https://res.cloudinary.com/dehugbvmc/image/upload/v1753893317/lofi3_rzyihy.png",
-          alt: "lofi explorations for layout: showing selections in a table format on top of the page.",
+          alt: "Lo-fi explorations for layout: showing selections in a table format on top of the page.",
           caption: "Layout 3: Showing selections in a table format on top of the page.",
           radius: "rounded-lg"
         },
         {
           type: "image",
           src: "https://res.cloudinary.com/dehugbvmc/image/upload/v1753893317/lofi4_tegz0n.png",
-          alt: "lofi explorations for layout: using modal to select a service and assign it to one of more lines.",
-          caption: "Layout 4: Using modal to select a service and assign it to one of more lines.",
+          alt: "Lo-fi explorations for layout: using modal to select a service and assign it to one or more lines.",
+          caption: "Layout 4: Using modal to select a service and assign it to one or more lines.",
           radius: "rounded-lg"
         },
 
@@ -307,7 +307,7 @@ const caseStudy: CaseStudyContent = {
     {
       subheading: "Testing prototype for phase 1",
       body:
-        "After making high level decisions for the layout, I created high-fidelity components and created a prototype to test with store reps.",
+        "After making high-level decisions for the layout, I created high-fidelity components and created a prototype to test with store reps.",
       visuals: [
         {
           type: "embed",
@@ -381,7 +381,7 @@ const caseStudy: CaseStudyContent = {
     {
       heading: "Phase 2: Multi-line challenges",
       body: 
-        "With multi-line accounts, complexity multiplies. Each line may have unique upgrade paths, trade-ins, and offers. Store reps need to be able to navigate the experience with assurance that they are making the right changes either on the accout level or line level. </br></br>I introduced a left panel so that reps can easily navigate the account and have a clear view of the changes to each line.",
+        "With multi-line accounts, complexity multiplies. Each line may have unique upgrade paths, trade-ins, and offers. Store reps need to be able to navigate the experience with assurance that they are making the right changes either on the account level or line level. </br></br>I introduced a left panel so that reps can easily navigate the account and have a clear view of the changes to each line.",
       visuals: [
         {
           type: "embed",
@@ -394,13 +394,13 @@ const caseStudy: CaseStudyContent = {
           type: "embed",
           src: "https://jumpshare.com/embed/qfC3LQ9Z8JmY1iC9Atll",
           alt: "Integrating online inventory with in-store experience.",
-          caption: "Integrating online inventory with in-store purchaseexperience.",
+          caption: "Integrating online inventory with in-store purchase experience.",
           radius: "rounded-lg"
         }, 
         {
           type: "embed",
           src: "https://jumpshare.com/embed/owTUrD3NpHbxrSYbvXPQ",
-          alt: "Reviweing multi-line changes.",
+          alt: "Reviewing multi-line changes.",
           caption: "Reviewing multi-line changes.",
           radius: "rounded-lg"
         },
@@ -409,7 +409,7 @@ const caseStudy: CaseStudyContent = {
       layout: { textColumns: 6, visualColumns: 6, stacked: true, gridCols: 3, gridRows: 1 }
     },
     {
-      subheading: "Under-the hood",
+      subheading: "Under the hood",
       body: 
         "Creating a well-crafted prototype for handoff requires making a lot of precise components. I created a component library to help with this process.",
       visuals: [
@@ -427,7 +427,7 @@ const caseStudy: CaseStudyContent = {
       heading: "Measuring success",
       subheading: "How did I assure the business partners that the new design works better than the legacy system, and not just aesthetically better?",
       body: 
-        "There are very few methods that can show how redesigning an E2E flow can be impactful.I created a novel interaction analysis method to compare our design against the legacy system. This method helped business partners to see the full picture of the impact of the redesign.",
+        "There are very few methods that can show how redesigning an E2E flow can be impactful. I created a novel interaction analysis method to compare our design against the legacy system. This method helped business partners to see the full picture of the impact of the redesign.",
       visuals: [
         {
           type: "component",
