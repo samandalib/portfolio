@@ -23,7 +23,7 @@ export const projectSliderCards: ProjectSliderCard[] = [
     slug: 'Road265',
   },
   {
-    id: 3,
+    id: 1,
     title: "AT&T Retail POS App",
     description: "Redesigning AT&T POS app for reatail store representives.",
     image: "https://res.cloudinary.com/dehugbvmc/image/upload/v1753547999/AccSlider_sq_web_ucxz4r.png",
@@ -33,7 +33,7 @@ export const projectSliderCards: ProjectSliderCard[] = [
     slug: 'attpos',
   },
   {
-    id: 1,
+    id: 4,
     title: "VO2Max Training App",
     description: "Simplifying complex financial data into clear, actionable insights for better decision making.",
     image: "https://res.cloudinary.com/dehugbvmc/image/upload/v1753550454/vo2max4web_te6hai.png",
@@ -43,7 +43,7 @@ export const projectSliderCards: ProjectSliderCard[] = [
     slug: 'vo2max',
   },
   {
-    id: 4,
+    id: 3,
     title: "XR app for Interior Design",
     description: "Building meaningful connections through innovative social features and community-driven design.",
     image: "https://res.cloudinary.com/dehugbvmc/image/upload/v1753545980/VR_xdnx4d.png",
