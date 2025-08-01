@@ -4,27 +4,93 @@ import React from 'react';
 import { useRouter } from 'next/navigation';
 import { projectSliderCards } from "../../public/assets/landing/project-slider-cards";
 import CardFan from './components/CardFan';
-import type { ProjectSliderProps } from './types';
+import type { ProjectSliderCard } from "../../public/assets/landing/project-slider-cards";
+import type { SingleProjectSliderProps } from './types';
 
-const SingleProjectSlider: React.FC<ProjectSliderProps> = () => {
+/**
+ * SingleProjectSlider Component
+ * 
+ * A specialized version of ProjectSlider that displays only one project card.
+ * Supports custom images, text content, and direct href links.
+ * 
+ * @example
+ * // Basic usage with default Road265 project
+ * <SingleProjectSlider />
+ * 
+ * @example
+ * // With custom image and direct link
+ * <SingleProjectSlider 
+ *   href="https://myproject.com" 
+ *   customImage="https://example.com/custom-image.png" 
+ * />
+ * 
+ * @example
+ * // Fully custom card with editable text
+ * <SingleProjectSlider 
+ *   href="https://myproject.com"
+ *   customImage="https://example.com/custom-image.png"
+ *   customTitle="My Custom Project"
+ *   customDescription="This is my custom project description"
+ *   customTags={["Custom", "Project", "Tags"]}
+ *   customColor="from-blue-500 to-purple-500"
+ *   alwaysShowContent={true}
+ * />
+ */
+const SingleProjectSlider: React.FC<SingleProjectSliderProps> = ({ 
+  href, 
+  customImage, 
+  projectSlug = 'Road265',
+  customTitle,
+  customDescription,
+  customTags,
+  customColor,
+  alwaysShowContent = false,
+  hideTags = false
+}) => {
   const router = useRouter();
   
-  // Filter to show only Road265
-const singleProject = projectSliderCards.filter(project => project.slug === 'Road265');
+  // Filter to show the specified project or default to Road265
+  let singleProject = projectSliderCards.filter(project => project.slug === projectSlug);
+  
+  // If no project found, use the first one as fallback
+  if (singleProject.length === 0) {
+    singleProject = [projectSliderCards[0]];
+  }
+  
+  // Create a fully customized project card
+  const modifiedProject: ProjectSliderCard = {
+    ...singleProject[0],
+    // Override with custom content if provided
+    title: customTitle || singleProject[0].title,
+    description: customDescription || singleProject[0].description,
+    image: customImage || singleProject[0].image,
+    tags: customTags || singleProject[0].tags,
+    color: customColor || singleProject[0].color
+  };
+
+  // Auto-hide tags if no custom tags provided and hideTags is not explicitly set
+  const shouldHideTags = hideTags || (!customTags && hideTags !== false);
 
   return (
     <div className="w-full max-w-5xl mx-auto relative">
       {/* Single Card Container */}
       <div>
         <CardFan
-          projects={singleProject}
+          projects={[modifiedProject]}
           currentIndex={0}
           justBroughtToFront={null}
           onCardClick={(index) => {
-            // Navigate to the project page using the slug
-            const slug = singleProject[index].slug;
-            if (slug) router.push(`/case-study/${slug}`);
+            if (href) {
+              // Use direct href if provided
+              window.open(href, '_blank');
+            } else {
+              // Fallback to slug-based navigation
+              const slug = modifiedProject.slug;
+              if (slug) router.push(`/case-study/${slug}`);
+            }
           }}
+          alwaysShowContent={alwaysShowContent}
+          hideTags={shouldHideTags}
         />
       </div>
     </div>

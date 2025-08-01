@@ -216,7 +216,22 @@ The InfoSnippet component now supports custom grid layouts for multiple visuals 
 - **Custom Columns**: `gridCols` sets the number of columns (1-12 supported)
 - **Custom Rows**: `gridRows` sets the number of rows with equal height (`1fr`)
 - **Fallback**: Uses default responsive grid when not specified
-- **Responsive**: Maintains existing responsive behavior
+- **Mobile-First**: Always enforces single column on small screens regardless of custom settings
+- **Responsive**: Custom grids applied on all larger screen sizes (sm, md, lg, xl)
+
+### Responsive Grid Behavior
+
+#### **When Custom Grid is Set** (e.g., `gridCols: 2`)
+- **Mobile (< 640px)**: `grid-cols-1` (1 column - enforced)
+- **Small screens (≥ 640px)**: `sm:grid-cols-2` (custom grid)
+- **Medium screens (≥ 768px)**: `md:grid-cols-2` (custom grid)
+- **Large screens (≥ 1024px)**: `lg:grid-cols-2` (custom grid)
+- **Extra large screens (≥ 1280px)**: `xl:grid-cols-2` (custom grid)
+
+#### **When No Custom Grid is Set**
+- **1 visual**: `grid-cols-1` (1 column on all screens)
+- **2 visuals**: `grid-cols-1 sm:grid-cols-2` (1 column mobile, 2 columns tablet+)
+- **3+ visuals**: `grid-cols-1 sm:grid-cols-2 md:grid-cols-3` (1 column mobile, 2 columns tablet, 3 columns desktop)
 
 ### Supported Grid Sizes
 
@@ -273,10 +288,21 @@ You can override these per-snippet in your content file as needed.
 
 ## Recent Updates
 
-### Grid Configuration System
+### Grid Configuration System (Latest Update)
 - **Added**: Custom grid layout support with `gridCols` and `gridRows` properties
 - **Implementation**: Explicit Tailwind class mapping for JIT compilation compatibility
+- **Mobile-First**: Always enforces single column on small screens regardless of custom grid settings
+- **Responsive**: Custom grids properly applied on all larger screen sizes (sm, md, lg, xl)
 - **Usage**: Perfect for arranging multiple InfoTile components or other visuals in specific grid patterns
+
+### SingleProjectSlider Component Integration (Latest Update)
+- **Added**: Enhanced SingleProjectSlider component with full customization capabilities
+- **Custom Content**: Support for custom title, description, tags, and image
+- **Direct Links**: Use `href` prop for external links instead of slug-based navigation
+- **Always Visible Content**: `alwaysShowContent` prop to show card content without hover
+- **Tag Control**: `hideTags` prop to completely hide tags when not needed
+- **Flexible Styling**: Custom color gradients and project base selection
+- **Usage**: Perfect for showcasing live products with custom branding and direct links
 
 ### Subheading Font Size
 - **Updated**: Subheading font size increased from 20px to 24px for better visual hierarchy

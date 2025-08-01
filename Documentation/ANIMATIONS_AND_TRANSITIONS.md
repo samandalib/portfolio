@@ -105,4 +105,22 @@ This document lists all custom and notable animations and transitions used in th
 
 ---
 
+## 8. InfoSnippet Canvas Responsive Grid System
+- **Description:** Dynamic responsive grid system for InfoSnippet canvas that adapts to content and screen size with mobile-first approach.
+- **Where Used:** InfoSnippet visual canvas for multiple assets
+- **Code File:** `components/InfoSnippet/CanvasSection.tsx`
+- **Key Details:**
+  - **Mobile-First**: Always enforces single column on small screens regardless of custom grid settings
+  - **Custom Grid Support**: Respects `gridCols` and `gridRows` props on larger screens
+  - **Responsive Breakpoints**: 
+    - Mobile (< 640px): `grid-cols-1` (enforced)
+    - Small screens (≥ 640px): Custom grid applied
+    - Medium screens (≥ 768px): Custom grid applied
+    - Large screens (≥ 1024px): Custom grid applied
+    - Extra large screens (≥ 1280px): Custom grid applied
+  - **Dynamic Gaps**: `gap-2` on mobile, `gap-3` on small screens, `gap-4` on medium+
+  - **Fallback Behavior**: Smart grid adaptation when no custom grid is specified
+
+---
+
 > Update this file whenever a new animation or transition is added to the project, or when an existing one is changed. 

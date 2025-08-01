@@ -85,7 +85,7 @@ const CanvasSection: React.FC<InfoSnippetCanvasSectionProps> = ({
       >
         <div
           className={`h-full w-full grid gap-2 sm:gap-3 md:gap-4 ${
-            gridCols ? getGridColsClass(gridCols) :
+            gridCols ? `grid-cols-1 sm:${getGridColsClass(gridCols)} md:${getGridColsClass(gridCols)} lg:${getGridColsClass(gridCols)} xl:${getGridColsClass(gridCols)}` :
             snippet.visuals.length === 1 ? 'grid-cols-1' :
             snippet.visuals.length === 2 ? 'grid-cols-1 sm:grid-cols-2' :
             'grid-cols-1 sm:grid-cols-2 md:grid-cols-3'

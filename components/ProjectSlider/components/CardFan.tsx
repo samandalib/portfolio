@@ -2,7 +2,14 @@ import React from 'react';
 import ProjectCard from './ProjectCard';
 import type { CardFanProps } from '../types';
 
-const CardFan: React.FC<CardFanProps> = ({ projects, currentIndex, justBroughtToFront, onCardClick }) => {
+const CardFan: React.FC<CardFanProps> = ({ 
+  projects, 
+  currentIndex, 
+  justBroughtToFront, 
+  onCardClick,
+  alwaysShowContent = false,
+  hideTags = false
+}) => {
   return (
     <div 
       className="relative w-full flex items-center justify-center select-none" 
@@ -22,6 +29,8 @@ const CardFan: React.FC<CardFanProps> = ({ projects, currentIndex, justBroughtTo
           isActive={index === currentIndex}
           justBroughtToFront={justBroughtToFront === index}
           onCardClick={onCardClick}
+          alwaysShowContent={alwaysShowContent}
+          hideTags={hideTags}
         />
       ))}
     </div>

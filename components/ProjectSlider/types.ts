@@ -4,6 +4,19 @@ export interface ProjectSliderProps {
   // onCardClick prop removed - ProjectSlider now only navigates to dedicated pages
 }
 
+export interface SingleProjectSliderProps {
+  href?: string; // Direct link instead of slug
+  customImage?: string; // Custom image URL
+  projectSlug?: string; // Fallback to slug-based navigation
+  // Custom text content props
+  customTitle?: string; // Custom title for the card
+  customDescription?: string; // Custom description for the card
+  customTags?: string[]; // Custom tags for the card
+  customColor?: string; // Custom color gradient for the card
+  alwaysShowContent?: boolean; // Always show card content instead of on hover
+  hideTags?: boolean; // Hide tags completely (when no custom tags provided)
+}
+
 export interface ProjectCardProps {
   project: ProjectSliderCard;
   index: number;
@@ -11,6 +24,8 @@ export interface ProjectCardProps {
   isActive: boolean;
   justBroughtToFront: boolean;
   onCardClick: (index: number) => void;
+  alwaysShowContent?: boolean; // Always show card content instead of on hover
+  hideTags?: boolean; // Hide tags completely
 }
 
 export interface CardFanProps {
@@ -18,6 +33,8 @@ export interface CardFanProps {
   currentIndex: number;
   justBroughtToFront: number | null;
   onCardClick: (index: number) => void;
+  alwaysShowContent?: boolean; // Always show card content instead of on hover
+  hideTags?: boolean; // Hide tags completely
 }
 
 export interface NavigationDotsProps {

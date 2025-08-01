@@ -98,16 +98,26 @@ const caseStudy: CaseStudyContent = {
   */
   infoSnippets: [
     {
-      heading: "Thanks for checking!",
-      body: "I'm currently migrating this case study from an older OTB platform and enjoying building it here using Cursor, better and faster. I'm literally working on it right now. If you check back in a week, you'll find a rich story with visuals, context, and process.\n\nIn the meantime, feel free to explore my case studies that are already live. It gives a solid glimpse into the breadth and depth of my work. The rest of the upcoming case studies focus on different domains, so stay tuned!",
+      heading: "VO2Max Training App Is Live!",
+      body: "An AI-powered fitness application currently in beta production. The app optimizes cardiorespiratory fitness through personalized training algorithms and real-time performance tracking. I'm working on the complete design and development story to showcase the full process.",
       visuals: [
         {
           type: "component",
           src: "single-project-slider", // Required but not used for components
-          componentName: "SingleProjectSlider"
+          componentName: "SingleProjectSlider",
+          componentProps: {
+            href: "https://www.vo2max.app/", // Direct link to the project
+            customImage: "https://res.cloudinary.com/dehugbvmc/image/upload/v1753550454/vo2max4web_te6hai.png", // Custom image for the card
+            customTitle: "Click to see the product in production", // Custom title
+            customDescription: "AI-powered app for optimizing cardiorespiratory fitness", // Custom description
+            //customTags: ["AI", "Fitness", "Training", "Mobile App", "Performance"], // Custom tags
+            //customColor: "from-green-500 to-emerald-500", // Custom color gradient
+            alwaysShowContent: true, // Always show card content instead of on hover
+            hideTags: true // Hide tags completely since no custom tags are provided
+          }
         }
       ],
-      layout: { textColumns: 4, visualColumns: 8, textAlign: 'middle' }
+      layout: { textColumns: 8, visualColumns: 4, textAlign: 'middle' }
     }
   ]
 };

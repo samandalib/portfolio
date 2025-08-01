@@ -9,7 +9,9 @@ const ProjectCard: React.FC<ProjectCardProps> = ({
   currentIndex, 
   isActive, 
   justBroughtToFront,
-  onCardClick 
+  onCardClick,
+  alwaysShowContent = false,
+  hideTags = false
 }) => {
   const offset = index - currentIndex;
   const { transform, opacity, zIndex } = calculateCardTransform(offset, isActive);
@@ -47,10 +49,16 @@ const ProjectCard: React.FC<ProjectCardProps> = ({
           />
           
           {/* Gradient Overlay */}
-          <div className="absolute inset-0 bg-gradient-to-t from-black/70 via-black/20 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-300" />
+          <div className={`absolute inset-0 bg-gradient-to-t from-black/70 via-black/20 to-transparent transition-opacity duration-300 ${
+            alwaysShowContent ? 'opacity-100' : 'opacity-0 group-hover:opacity-100'
+          }`} />
           
           {/* Frosted Glass Text Overlay */}
-          <div className="absolute bottom-4 left-4 right-4 p-6 glass-effect modern-border-radius-lg modern-shadow opacity-0 group-hover:opacity-100 transform translate-y-4 group-hover:translate-y-0 transition-all duration-300">
+          <div className={`absolute bottom-4 left-4 right-4 p-6 glass-effect modern-border-radius-lg modern-shadow transition-all duration-300 ${
+            alwaysShowContent 
+              ? 'opacity-100 translate-y-0' 
+              : 'opacity-0 group-hover:opacity-100 transform translate-y-4 group-hover:translate-y-0'
+          }`}>
             <h3 className="text-xl font-bold mb-3 text-white drop-shadow-lg text-left font-heading">
               {project.title}
             </h3>
@@ -58,18 +66,20 @@ const ProjectCard: React.FC<ProjectCardProps> = ({
               {project.description}
             </p>
             
-            {/* Tags */}
-            <div className="flex flex-wrap gap-3">
-              {project.tags.map((tag, tagIndex) => (
-                <span
-                  key={tagIndex}
-                  className="font-sans px-3 py-1.5 font-medium glass-effect text-white modern-border-radius border text-sm"
-                  style={{ borderColor: 'var(--accent-color, #16A34A)' }}
-                >
-                  {tag}
-                </span>
-              ))}
-            </div>
+            {/* Tags - Only show if not hidden */}
+            {!hideTags && (
+              <div className="flex flex-wrap gap-3">
+                {project.tags.map((tag, tagIndex) => (
+                  <span
+                    key={tagIndex}
+                    className="font-sans px-3 py-1.5 font-medium glass-effect text-white modern-border-radius border text-sm"
+                    style={{ borderColor: 'var(--accent-color, #16A34A)' }}
+                  >
+                    {tag}
+                  </span>
+                ))}
+              </div>
+            )}
           </div>
         </div>
       </div>

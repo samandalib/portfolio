@@ -186,12 +186,65 @@ The ProjectSlider component features a comprehensive navigation system that supp
 - **Interaction Logic**: Smart click handling in ProjectSlider component
 - **Visual Feedback**: Accent ring styling with dynamic accent color integration
 - **Event Handling**: Proper `passive: false` configuration for wheel events
+
+## SingleProjectSlider Component
+
+### Overview
+A specialized version of ProjectSlider that displays only one project card with full customization capabilities. Perfect for showcasing live products with custom branding and direct links.
+
+### Features
+- **Custom Content**: Override title, description, tags, and image
+- **Direct Links**: Use external URLs instead of slug-based navigation
+- **Always Visible Content**: Show card content without hover interaction
+- **Tag Control**: Hide tags completely when not needed
+- **Flexible Styling**: Custom color gradients and project base selection
+- **Responsive Design**: Maintains all responsive behaviors of the main ProjectSlider
+
+### Usage Examples
+```typescript
+// Basic usage with custom content
+{
+  type: "component",
+  src: "single-project-slider",
+  componentName: "SingleProjectSlider",
   componentProps: {
-    icon: "chart",
-    heading: "Revenue Growth",
-    body: "Increased revenue by 25% through improved UX design.",
-    color: "blue"
+    href: "https://myproject.com",
+    customTitle: "My Custom Project",
+    customDescription: "Project description",
+    customImage: "https://example.com/image.png",
+    alwaysShowContent: true,
+    hideTags: true
   }
+}
+
+// With custom tags and styling
+{
+  type: "component",
+  src: "single-project-slider",
+  componentName: "SingleProjectSlider",
+  componentProps: {
+    href: "https://myproject.com",
+    customTitle: "Live Product",
+    customDescription: "Check out our live application",
+    customTags: ["Live", "Production", "Demo"],
+    customColor: "from-blue-500 to-purple-500",
+    alwaysShowContent: true
+  }
+}
+```
+
+### Props Interface
+```typescript
+interface SingleProjectSliderProps {
+  href?: string;              // Direct link instead of slug
+  customImage?: string;       // Custom image URL
+  projectSlug?: string;       // Base project to use (defaults to Road265)
+  customTitle?: string;       // Custom title for the card
+  customDescription?: string; // Custom description for the card
+  customTags?: string[];      // Custom tags for the card
+  customColor?: string;       // Custom color gradient for the card
+  alwaysShowContent?: boolean; // Always show card content instead of on hover
+  hideTags?: boolean;         // Hide tags completely (when no custom tags provided)
 }
 ```
 
@@ -204,7 +257,8 @@ The InfoSnippet component now supports custom grid layouts for multiple visuals 
 - **Custom Grid Layouts**: Specify exact number of columns and rows
 - **Content-based Configuration**: Set grid layout in content files
 - **Prop-based Configuration**: Override grid layout via component props
-- **Responsive Design**: Maintains existing responsive behavior
+- **Mobile-First**: Always enforces single column on small screens regardless of custom settings
+- **Responsive Design**: Custom grids applied on all larger screen sizes (sm, md, lg, xl)
 - **Backward Compatible**: Existing content works without changes
 
 ### Implementation
@@ -238,6 +292,20 @@ The InfoSnippet component now supports custom grid layouts for multiple visuals 
 ### Supported Grid Sizes
 - **Columns**: 1-12 (maps to `grid-cols-1` through `grid-cols-12`)
 - **Rows**: Any positive integer (creates equal-height rows)
+
+### Responsive Grid Behavior
+
+#### **When Custom Grid is Set** (e.g., `gridCols: 2`)
+- **Mobile (< 640px)**: `grid-cols-1` (1 column - enforced)
+- **Small screens (≥ 640px)**: `sm:grid-cols-2` (custom grid)
+- **Medium screens (≥ 768px)**: `md:grid-cols-2` (custom grid)
+- **Large screens (≥ 1024px)**: `lg:grid-cols-2` (custom grid)
+- **Extra large screens (≥ 1280px)**: `xl:grid-cols-2` (custom grid)
+
+#### **When No Custom Grid is Set**
+- **1 visual**: `grid-cols-1` (1 column on all screens)
+- **2 visuals**: `grid-cols-1 sm:grid-cols-2` (1 column mobile, 2 columns tablet+)
+- **3+ visuals**: `grid-cols-1 sm:grid-cols-2 md:grid-cols-3` (1 column mobile, 2 columns tablet, 3 columns desktop)
 
 ## DesignSystemSpecs Component
 
