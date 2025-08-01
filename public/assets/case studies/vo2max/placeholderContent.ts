@@ -117,7 +117,7 @@ const caseStudy: CaseStudyContent = {
           }
         }
       ],
-      layout: { textColumns: 8, visualColumns: 4, textAlign: 'middle' }
+      layout: { textColumns: 6, visualColumns: 6, textAlign: 'middle' }
     }
   ]
 };
