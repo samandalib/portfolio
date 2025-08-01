@@ -14,8 +14,15 @@ import type { SingleProjectSliderProps } from './types';
  * Supports custom images, text content, and direct href links.
  * 
  * @example
- * // Basic usage with default Road265 project
- * <SingleProjectSlider />
+ * // Basic usage with custom image (uses Road265 as fallback)
+ * <SingleProjectSlider customImage="https://example.com/custom-image.png" />
+ * 
+ * @example
+ * // With specific project slug and custom image
+ * <SingleProjectSlider 
+ *   projectSlug="Road265"
+ *   customImage="https://example.com/custom-image.png" 
+ * />
  * 
  * @example
  * // With custom image and direct link
@@ -52,9 +59,19 @@ const SingleProjectSlider: React.FC<SingleProjectSliderProps> = ({
   // Filter to show the specified project or default to Road265
   let singleProject = projectSliderCards.filter(project => project.slug === projectSlug);
   
-  // If no project found, use the first one as fallback
+  // If no project found, use Road265 as fallback
   if (singleProject.length === 0) {
-    singleProject = [projectSliderCards[0]];
+    const fallbackProject = projectSliderCards.filter(project => project.slug === 'Road265');
+    if (fallbackProject.length === 0) {
+      return (
+        <div className="w-full max-w-5xl mx-auto relative">
+          <div className="flex items-center justify-center p-8 text-gray-500">
+            <p>No projects found. Please check project configuration.</p>
+          </div>
+        </div>
+      );
+    }
+    singleProject = fallbackProject;
   }
   
   // Create a fully customized project card
@@ -62,8 +79,8 @@ const SingleProjectSlider: React.FC<SingleProjectSliderProps> = ({
     ...singleProject[0],
     // Override with custom content if provided
     title: customTitle || singleProject[0].title,
-    description: customDescription || singleProject[0].description,
-    image: customImage || singleProject[0].image,
+    description: customDescription || '', // Use empty string if no custom description provided
+    image: customImage,
     tags: customTags || singleProject[0].tags,
     color: customColor || singleProject[0].color
   };

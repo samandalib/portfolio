@@ -99,7 +99,7 @@ const caseStudy: CaseStudyContent = {
   infoSnippets: [
     {
       heading: "VO2Max Training App Is Live!",
-      body: "An AI-powered fitness application currently in beta production. The app optimizes cardiorespiratory fitness through personalized training algorithms and real-time performance tracking. I'm working on the complete design and development story to showcase the full process.",
+      body: "The AI-powered fitness application currently in beta production. The app optimizes cardiorespiratory fitness through personalized training algorithms and performance tracking. I'm working on the complete design and development story to showcase the full process.<br><br> In the meantime, you can explore the app in production.",
       visuals: [
         {
           type: "component",
@@ -108,8 +108,8 @@ const caseStudy: CaseStudyContent = {
           componentProps: {
             href: "https://www.vo2max.app/", // Direct link to the project
             customImage: "https://res.cloudinary.com/dehugbvmc/image/upload/v1753550454/vo2max4web_te6hai.png", // Custom image for the card
-            customTitle: "Click to see the product in production", // Custom title
-            customDescription: "AI-powered app for optimizing cardiorespiratory fitness", // Custom description
+            customTitle: "Explore The Web App", // Custom title
+            customDescription: "Click here to view the app in production", // Custom description
             //customTags: ["AI", "Fitness", "Training", "Mobile App", "Performance"], // Custom tags
             //customColor: "from-green-500 to-emerald-500", // Custom color gradient
             alwaysShowContent: true, // Always show card content instead of on hover

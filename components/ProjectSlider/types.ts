@@ -6,8 +6,8 @@ export interface ProjectSliderProps {
 
 export interface SingleProjectSliderProps {
   href?: string; // Direct link instead of slug
-  customImage?: string; // Custom image URL
-  projectSlug?: string; // Fallback to slug-based navigation
+  customImage: string; // Required custom image URL
+  projectSlug?: string; // Optional project slug - will use Road265 as fallback
   // Custom text content props
   customTitle?: string; // Custom title for the card
   customDescription?: string; // Custom description for the card
