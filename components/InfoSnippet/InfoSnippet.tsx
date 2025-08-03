@@ -243,7 +243,7 @@ const InfoSnippet: React.FC<InfoSnippetProps> = ({ snippet, gridCols, gridRows }
       className="w-full relative"
     >
       <div
-        className="grid grid-cols-1 md:grid-cols-6 lg:grid-cols-12 gap-6 my-4 items-start w-full relative"
+        className="grid grid-cols-1 md:grid-cols-6 lg:grid-cols-12 gap-6 mt-8 mb-24 items-start w-full relative"
         style={{ height: '100%' }}
       >
         {children}

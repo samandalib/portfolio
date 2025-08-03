@@ -20,14 +20,14 @@ const TextSection: React.FC<InfoSnippetTextSectionProps> = ({
         <div style={{ position: 'relative', width: '100%' }}>
           <TypewriterHeading
             text={snippet.heading}
-            className="font-bold mb-1 text-gray-900 dark:text-gray-100 font-heading"
-            style={{ fontSize: 32 }}
+            className="font-bold mb-1 text-gray-900 dark:text-gray-100"
+            style={{ fontSize: 32, fontFamily: 'var(--font-bodoni)' }}
           />
           {/* Animated accent line */}
           <AnimatedAccentLine />
         </div>
       )}
-      {snippet.subheading && <h4 className="font-normal mb-2 text-gray-600 dark:text-gray-300 font-sans" style={{ fontSize: 24 }}>{snippet.subheading}</h4>}
+      {snippet.subheading && <h4 className="font-normal mb-2 text-gray-600 dark:text-gray-300" style={{ fontSize: 24, fontFamily: 'var(--font-manrope)' }}>{snippet.subheading}</h4>}
       {(() => { console.log('snippet.body:', snippet.body); return null; })()}
       {Array.isArray(snippet.body) ? (
         (() => {
@@ -45,7 +45,7 @@ const TextSection: React.FC<InfoSnippetTextSectionProps> = ({
                 {normalizedBody.map((item, idx) => {
                   if (typeof item === 'string') {
                     return (
-                      <p key={idx} className="mb-2 text-gray-700 dark:text-gray-200 font-sans">
+                      <p key={idx} className="mb-2 text-gray-700 dark:text-gray-200" style={{ fontFamily: 'var(--font-manrope)' }}>
                         {item}
                       </p>
                     );
@@ -62,7 +62,8 @@ const TextSection: React.FC<InfoSnippetTextSectionProps> = ({
           } else if (typeof normalizedBody === 'string') {
             return (
               <p 
-                className="mb-2 text-gray-700 dark:text-gray-200 font-sans"
+                className="mb-2 text-gray-700 dark:text-gray-200"
+                style={{ fontFamily: 'var(--font-manrope)' }}
                 dangerouslySetInnerHTML={{ __html: normalizedBody }}
               />
             );
@@ -72,7 +73,8 @@ const TextSection: React.FC<InfoSnippetTextSectionProps> = ({
         })()
       ) : snippet.body ? (
         <p 
-          className="mb-2 text-gray-700 dark:text-gray-200 font-sans"
+          className="mb-2 text-gray-700 dark:text-gray-200"
+          style={{ fontFamily: 'var(--font-manrope)' }}
           dangerouslySetInnerHTML={{ __html: snippet.body }}
         />
       ) : null}

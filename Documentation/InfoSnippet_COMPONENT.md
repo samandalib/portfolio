@@ -37,6 +37,18 @@ components/InfoSnippet/
 - **Better Caching**: Smaller components cache more efficiently
 - **Custom Hooks**: Reusable hooks for better state management
 
+### Font System Integration
+
+The InfoSnippet component now fully integrates with the global font system:
+
+- **CSS Variables**: Uses `var(--font-bodoni)` and `var(--font-manrope)` instead of hardcoded Tailwind classes
+- **Dynamic Updates**: Font changes in AccentDock immediately update all InfoSnippet text
+- **Consistent Typography**: Ensures uniform font usage across all content
+- **Components Updated**:
+  - `TextSection.tsx`: All text elements use dynamic fonts
+  - `AnimatedBulletList.tsx`: Bullet lists use dynamic fonts
+  - `TypewriterHeading.tsx`: Headings use dynamic fonts
+
 ---
 
 ## Design & Features
@@ -55,7 +67,10 @@ components/InfoSnippet/
 - **Text Area:**
   - Heading, subheading, and body fields.
   - Vertical alignment (top, middle, bottom) is user-controllable (except when stacked).
-  - Heading font and size are set by global settings; subheading/body use the global body font.
+  - **Dynamic Font System**: All text elements use the global font system from AccentDock:
+    - Headings use `var(--font-bodoni)` (heading font)
+    - Subheadings and body text use `var(--font-manrope)` (body font)
+    - Font changes in AccentDock update all InfoSnippet text dynamically
 
 - **Theming:**
   - Fully adapts to dark/light mode for all text, icons, and borders.
@@ -89,6 +104,7 @@ components/InfoSnippet/
    - Handles all text content rendering
    - Includes heading, subheading, and body text
    - Manages text animations and layout
+   - **Dynamic Font Integration**: Uses CSS variables for font families to sync with AccentDock
 
 3. **CanvasSection.tsx** (~150 lines)
    - Handles all visual content rendering
@@ -98,6 +114,8 @@ components/InfoSnippet/
    - Implements explicit Tailwind class mapping for JIT compilation compatibility
 
 4. **DockerControls.tsx** (~80 lines)
+   - Floating control panel for live layout adjustments
+   - Positioned at bottom-right of InfoSnippet with sufficient margin to prevent overlap
    - Handles all interactive controls
    - Manages layout toggles and settings
    - Isolated from main rendering logic

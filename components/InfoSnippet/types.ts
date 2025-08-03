@@ -26,6 +26,7 @@ export type VisualAssetWithRadius = {
   src: string;
   alt?: string;
   caption?: string;
+  href?: string; // URL for clickable captions or images
   embedType?: "youtube" | "vimeo" | "other";
   radius?: string;
   autoplay?: boolean;

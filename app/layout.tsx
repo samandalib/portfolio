@@ -2,6 +2,7 @@ import type { Metadata } from "next";
 import Link from 'next/link';
 import "./globals.css";
 import AccentDock from '../components/AccentDock';
+import Tooltip from '../components/Tooltip';
 import { landingContent } from '../public/assets/landing/landing-content';
 import { bodoni_moda, manrope } from './fonts';
 
@@ -28,28 +29,40 @@ export default function RootLayout({ children }: { children: React.ReactNode }) 
                 <path d="M18.6879 0.479492C19.3525 0.479492 19.911 0.569132 20.3627 0.748047C20.8172 0.927024 21.1599 1.18013 21.39 1.50684C21.6228 1.83344 21.7396 2.21814 21.7396 2.66113C21.7396 2.98206 21.6687 3.27492 21.5267 3.53906C21.3875 3.80327 21.1907 4.02512 20.9379 4.2041C20.6852 4.38007 20.3899 4.50215 20.0521 4.57031V4.65527C20.427 4.66951 20.7678 4.7653 21.0746 4.94141C21.3814 5.1147 21.6262 5.35434 21.808 5.66113C21.9898 5.9651 22.0804 6.32344 22.0804 6.73535C22.0804 7.21255 21.9554 7.63765 21.7054 8.00977C21.4584 8.38169 21.1059 8.67371 20.6488 8.88672C20.1914 9.09979 19.6456 9.20703 19.0121 9.20703H17.3129V7.31445H18.3812C18.779 7.31445 19.0779 7.2405 19.2767 7.09277C19.4752 6.94227 19.5745 6.72094 19.5746 6.42871C19.5746 6.22417 19.5277 6.05025 19.434 5.9082C19.3403 5.76633 19.2067 5.65879 19.0336 5.58496C18.8631 5.5111 18.6569 5.47363 18.4154 5.47363H17.3129V4.00781H18.2455C18.4527 4.00777 18.6363 3.97546 18.7953 3.91016C18.9541 3.84486 19.0774 3.75087 19.1654 3.62891C19.2563 3.50395 19.3021 3.35175 19.3021 3.17285C19.3021 2.90297 19.2053 2.69673 19.0121 2.55469C18.819 2.40992 18.5749 2.33797 18.2797 2.33789H17.3129V0.479492H18.6879Z" className="accent-fill"/>
               </svg>
             </Link>
-            <nav className="flex gap-0 items-center">
-              {landingContent.socialIcons.map((icon: { name: string; url: string; icon: string }) => (
-                <a
-                  key={icon.name}
-                  href={icon.url}
-                  target="_blank"
-                  rel="noopener noreferrer"
-                  className="w-10 h-10 flex items-center justify-center text-gray-400 hover:text-accent transition-all duration-300 hover:scale-110 modern-border-radius social-icon-container"
-                  aria-label={icon.name}
-                >
-                  {icon.icon.endsWith('.svg') ? (
-                    <img 
-                      src={`/assets/landing/${icon.icon}`} 
-                      alt={icon.name} 
-                      className="w-7 h-7 social-icon"
-                    />
-                  ) : (
-                    // For inline SVG or fallback, just render the name for now
-                    icon.name
-                  )}
-                </a>
-              ))}
+            <nav className="flex gap-6 items-center">
+              {/* About Link */}
+              <Link 
+                href="/about" 
+                className="font-sans text-foreground-light/80 dark:text-foreground-dark/80 hover:text-accent transition-all duration-300 text-lg"
+              >
+                About me
+              </Link>
+              
+              {/* Social Icons */}
+              <div className="flex gap-0 items-center">
+                {landingContent.socialIcons.map((icon: { name: string; url: string; icon: string }) => (
+                  <Tooltip key={icon.name} label={icon.name}>
+                    <a
+                      href={icon.url}
+                      target="_blank"
+                      rel="noopener noreferrer"
+                      className="w-10 h-10 flex items-center justify-center text-gray-400 hover:text-accent transition-all duration-300 hover:scale-110 modern-border-radius social-icon-container"
+                      aria-label={icon.name}
+                    >
+                      {icon.icon.endsWith('.svg') ? (
+                        <img 
+                          src={`/assets/landing/${icon.icon}`} 
+                          alt={icon.name} 
+                          className="w-7 h-7 social-icon"
+                        />
+                      ) : (
+                        // For inline SVG or fallback, just render the name for now
+                        icon.name
+                      )}
+                    </a>
+                  </Tooltip>
+                ))}
+              </div>
             </nav>
           </header>
           {children}

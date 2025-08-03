@@ -17,7 +17,22 @@ function renderVisual({
     return (
       <figure className="mb-4">
         <img src={asset.src} alt={asset.alt || ""} className={`w-full ${radiusClassMap[asset.radius || 'modern-border-radius']}`} />
-        {asset.caption && <figcaption className="text-xs text-gray-500 mt-1">{asset.caption}</figcaption>}
+        {asset.caption && (
+          <figcaption className="text-xs text-gray-500 mt-1">
+            {asset.href ? (
+              <a 
+                href={asset.href} 
+                target="_blank" 
+                rel="noopener noreferrer"
+                className="hover:text-accent transition-colors duration-300 underline"
+              >
+                {asset.caption}
+              </a>
+            ) : (
+              asset.caption
+            )}
+          </figcaption>
+        )}
       </figure>
     );
   }

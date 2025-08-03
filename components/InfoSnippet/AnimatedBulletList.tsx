@@ -25,7 +25,8 @@ const AnimatedBulletList: React.FC<AnimatedBulletListProps> = ({ items }) => {
   return (
     <motion.ul
       ref={ref}
-      className="custom-bullets mb-2 text-gray-700 dark:text-gray-200 font-sans"
+      className="custom-bullets mb-2 text-gray-700 dark:text-gray-200"
+      style={{ fontFamily: 'var(--font-manrope)' }}
       variants={bulletListVariants}
       initial="hidden"
       animate={inView ? "visible" : "hidden"}

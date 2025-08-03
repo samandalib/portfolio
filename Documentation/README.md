@@ -31,11 +31,13 @@ All images and visual assets are now hosted on Cloudinary (or a similar external
 ## Feature Overview
 
 - The `InfoSnippet` component displays project/case study information with a responsive layout and a floating Docker bar for live controls. Each instance is independent and theme-aware.
-- The `ProjectSlider` is linked to case studies: clicking a card navigates to a dedicated case study page at `/case-study/[slug]`.
+- The `ProjectSlider` is linked to case studies: clicking a card navigates to a dedicated case study page at `/case-study/[slug]`. Navigation is bounded (no looping from last to first card).
 - Case study content is managed in TypeScript files (e.g., `public/assets/case studies/project1/content.ts`) and rendered dynamically on dedicated pages.
 - **Case Study Pages**: Individual case studies are now served via dynamic routes with consistent layout structure (AccentDock, ProjectDetailsDisplay, InfoSnippets).
 - **Navigation**: Project cards navigate to dedicated pages instead of revealing sections on the landing page, providing better SEO and user experience.
 - **Grid Configuration**: InfoSnippet supports custom grid layouts with `gridCols` and `gridRows` properties for precise visual arrangement.
+- **Dynamic Font System**: InfoSnippet components use the global font system from AccentDock, ensuring consistent typography across all content.
+- **About Page**: New `/about` route with dynamic content and font support.
 
 ## Lottie Animation System
 
