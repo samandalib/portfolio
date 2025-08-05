@@ -10,5 +10,22 @@ module.exports = withMDX({
   images: {
     domains: ["images.pexels.com", "res.cloudinary.com"],
   },
+  async headers() {
+    return [
+      {
+        source: '/(.*)',
+        headers: [
+          {
+            key: 'X-Frame-Options',
+            value: 'ALLOWALL'
+          },
+          {
+            key: 'Content-Security-Policy',
+            value: "frame-ancestors 'self' https://samand.design https://localhost:* https://*.vercel.app https://*.netlify.app"
+          }
+        ]
+      }
+    ];
+  }
   // ...add any other Next.js config here
 }); 

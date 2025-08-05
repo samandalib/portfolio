@@ -14,4 +14,6 @@ export interface InfoTileProps {
   external?: boolean;
   disableIconFilter?: boolean;
   italicBody?: boolean;
+  fullHeight?: boolean;
+  contentAlign?: 'top' | 'center' | 'bottom';
 } 

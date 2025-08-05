@@ -7,6 +7,7 @@ import ResearchSynthesis from '../ResearchSynthesis';
 import SingleProjectSlider from '../ProjectSlider/SingleProjectSlider';
 import SimpleProjectStats from '../ProjectStats/SimpleProjectStats';
 import InfoTile from '../InfoTile/InfoTile';
+import MobileFrame from '../MobileFrame';
 
 function renderVisual({ 
   asset, 
@@ -14,9 +15,20 @@ function renderVisual({
   onStateChange 
 }: VisualRendererProps) {
   if (asset.type === "image") {
+    const imageStyle: React.CSSProperties = {};
+    if (asset.maxWidth) imageStyle.maxWidth = asset.maxWidth;
+    if (asset.maxHeight) imageStyle.maxHeight = asset.maxHeight;
+    if (asset.width) imageStyle.width = asset.width;
+    if (asset.height) imageStyle.height = asset.height;
+    
     return (
       <figure className="mb-4">
-        <img src={asset.src} alt={asset.alt || ""} className={`w-full ${radiusClassMap[asset.radius || 'modern-border-radius']}`} />
+        <img 
+          src={asset.src} 
+          alt={asset.alt || ""} 
+          className={`${asset.maxWidth || asset.width ? '' : 'w-full'} ${radiusClassMap[asset.radius || 'modern-border-radius']}`}
+          style={imageStyle}
+        />
         {asset.caption && (
           <figcaption className="text-xs text-gray-500 mt-1">
             {asset.href ? (
@@ -95,16 +107,17 @@ function renderVisual({
   if (asset.type === "embed") {
     // Special handling for Jumpshare embeds
     if (asset.src.includes("jumpshare.com")) {
-      // DISABLED: Aspect ratio wrapper - using simple iframe
       return (
         <div className="mb-4">
-                      <iframe
-              src={asset.src}
-              title={asset.caption || asset.alt || "Jumpshare embed"}
-              className={`w-full h-96 ${radiusClassMap[asset.radius || 'modern-border-radius']} modern-shadow`}
-              frameBorder="0"
-              allowFullScreen
-            />
+          <iframe
+            src={asset.src}
+            title={asset.caption || asset.alt || "Jumpshare embed"}
+            className={`w-full h-96 ${radiusClassMap[asset.radius || 'modern-border-radius']} modern-shadow`}
+            frameBorder="0"
+            allowFullScreen
+            allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
+            loading="lazy"
+          />
           {asset.caption && <div className="text-xs text-gray-500 mt-1">{asset.caption}</div>}
         </div>
       );
@@ -117,7 +130,10 @@ function renderVisual({
           src={asset.src}
           title={asset.caption || asset.alt || "Embedded content"}
           className={`w-full h-64 ${radiusClassMap[asset.radius || 'modern-border-radius']} modern-shadow`}
+          frameBorder="0"
           allowFullScreen
+          allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
+          loading="lazy"
         />
         {asset.caption && <div className="text-xs text-gray-500 mt-1">{asset.caption}</div>}
       </div>
@@ -153,6 +169,9 @@ function renderVisual({
     }
     if (ComponentName === "InfoTile") {
       return <InfoTile {...asset.componentProps} />;
+    }
+    if (ComponentName === "MobileFrame") {
+      return <MobileFrame {...asset.componentProps} />;
     }
     return <div className="text-gray-500">Component {asset.componentName} not found</div>;
   }

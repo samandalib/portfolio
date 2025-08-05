@@ -17,7 +17,9 @@ const InfoTile: React.FC<InfoTileProps> = ({
   href,
   external = false,
   disableIconFilter = false,
-  italicBody = false
+  italicBody = false,
+  fullHeight = false,
+  contentAlign = 'top'
 }) => {
 
   const getColorClasses = (color: string) => {
@@ -113,7 +115,7 @@ const InfoTile: React.FC<InfoTileProps> = ({
     );
   };
 
-  const baseClasses = "bg-white dark:bg-gray-900 rounded-2xl p-6 w-80 h-65 relative";
+  const baseClasses = `bg-white dark:bg-gray-900 rounded-2xl p-6 w-80 relative ${fullHeight ? 'h-full' : 'h-65'}`;
   const borderClasses = showBorder ? "border border-gray-200/50 dark:border-gray-700/50" : "";
   const shadowClasses = showShadow ? "shadow-lg" : "";
   const hoverClasses = hoverEffect ? "hover:shadow-xl transition-all duration-500 transform hover:-translate-y-1" : "";
@@ -145,7 +147,7 @@ const InfoTile: React.FC<InfoTileProps> = ({
         </svg>
       </div>
       
-      <div className="flex flex-col space-y-4">
+      <div className={`flex flex-col space-y-4 ${fullHeight ? 'h-full' : ''} ${contentAlign === 'center' ? 'justify-center' : contentAlign === 'bottom' ? 'justify-end' : 'justify-start'}`}>
         {icon && (
           <div className="flex justify-start">
             {renderIcon()}
