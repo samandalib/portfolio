@@ -370,7 +370,7 @@ const caseStudy: CaseStudyContent = {
       Having an AI chat that is specialized in the science of cardiorespiratory fitness
       seems necessary. So I gathered all the research papers and articles on VO2max training 
       and created a RAG (Retrieval-Augmented Generation) pipeline for the app.
-      
+      </br></br>
       Adding a specialized AI chat added some layers of complexity to the work. I created a RAG pipeline
       and to keep this pipeline up to date and maintainable,
       I decided to create a dashboard so that
@@ -387,18 +387,22 @@ const caseStudy: CaseStudyContent = {
           radius: "rounded-lg"
         },
 
-        {
-          type: "video",
-          src: "https://res.cloudinary.com/dehugbvmc/video/upload/v1754423466/AdminDashboard_dtzruq.mp4",
-          alt: "RAG pipeline dashboard",
-          caption: "RAG pipeline dashboard",
-          autoplay: true,
-          loop: true,
-          muted: true,
-          radius: "rounded-lg"
-        }
+
       ],
-      layout: { textColumns: 6, visualColumns: 6, textAlign: 'top', stacked: true }
+      layout: { textColumns: 6, visualColumns: 6, textAlign: 'top', stacked: false }
+    },
+    {
+      visuals: [        {
+        type: "video",
+        src: "https://res.cloudinary.com/dehugbvmc/video/upload/v1754423466/AdminDashboard_dtzruq.mp4",
+        alt: "RAG pipeline dashboard",
+        caption: "RAG pipeline dashboard",
+        autoplay: true,
+        loop: true,
+        muted: true,
+        radius: "rounded-lg"
+      }],
+      layout: { textColumns: 6, visualColumns: 6, textAlign: 'middle', stacked: true}
     },
     /*
     {
@@ -429,7 +433,7 @@ const caseStudy: CaseStudyContent = {
           maxWidth: "400px"
         }
       ],
-      layout: { textColumns: 6, visualColumns: 6, textAlign: 'middle', stacked: false, canvasLeft: true}
+      layout: { textColumns: 6, visualColumns: 6, textAlign: 'middle', stacked: false, canvasLeft: false}
         
     },
     {
