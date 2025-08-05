@@ -21,12 +21,14 @@ function renderVisual({
     if (asset.width) imageStyle.width = asset.width;
     if (asset.height) imageStyle.height = asset.height;
     
+    const radiusClass = asset.radius ? radiusClassMap[asset.radius] || radiusClassMap['rounded'] : radiusClassMap['rounded'];
+    
     return (
       <figure className="mb-4">
         <img 
           src={asset.src} 
           alt={asset.alt || ""} 
-          className={`${asset.maxWidth || asset.width ? '' : 'w-full'} ${radiusClassMap[asset.radius || 'modern-border-radius']}`}
+          className={`${asset.maxWidth || asset.width ? '' : 'w-full'} ${radiusClass}`}
           style={imageStyle}
         />
         {asset.caption && (
@@ -50,6 +52,7 @@ function renderVisual({
   }
   
   if (asset.type === "video" && asset.embedType === "youtube") {
+    const radiusClass = asset.radius ? radiusClassMap[asset.radius] || radiusClassMap['rounded'] : radiusClassMap['rounded'];
     return (
       <div className="aspect-w-16 aspect-h-9 mb-4">
         <iframe
@@ -57,7 +60,7 @@ function renderVisual({
           title={asset.caption || asset.alt || "YouTube video"}
           allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
           allowFullScreen
-          className={`w-full h-full ${radiusClassMap[asset.radius || 'modern-border-radius']} modern-shadow`}
+          className={`w-full h-full ${radiusClass} modern-shadow`}
         />
         {asset.caption && <div className="text-xs text-gray-500 mt-1">{asset.caption}</div>}
       </div>
@@ -65,6 +68,7 @@ function renderVisual({
   }
   
   if (asset.type === "video" && asset.embedType === "vimeo") {
+    const radiusClass = asset.radius ? radiusClassMap[asset.radius] || radiusClassMap['rounded'] : radiusClassMap['rounded'];
     return (
       <div className="aspect-w-16 aspect-h-9 mb-4">
         <iframe
@@ -72,7 +76,7 @@ function renderVisual({
           title={asset.caption || asset.alt || "Vimeo video"}
           allow="autoplay; fullscreen; picture-in-picture"
           allowFullScreen
-          className={`w-full h-full ${radiusClassMap[asset.radius || 'modern-border-radius']} modern-shadow`}
+          className={`w-full h-full ${radiusClass} modern-shadow`}
         />
         {asset.caption && <div className="text-xs text-gray-500 mt-1">{asset.caption}</div>}
       </div>
@@ -80,6 +84,7 @@ function renderVisual({
   }
   
   if (asset.type === "video" && !asset.embedType) {
+    const radiusClass = asset.radius ? radiusClassMap[asset.radius] || radiusClassMap['rounded'] : radiusClassMap['rounded'];
     return (
       <div className="aspect-w-16 aspect-h-9 mb-4">
         <video
@@ -88,7 +93,7 @@ function renderVisual({
           loop={!!asset.loop}
           muted={!!asset.muted}
           poster={asset.poster}
-          className={`w-full h-full ${radiusClassMap[asset.radius || 'modern-border-radius']}`}
+          className={`w-full h-full ${radiusClass}`}
           onLoadedMetadata={(e) => {
             // Set the video to start at a specific time if startTime is provided
             if (asset.startTime && e.currentTarget.duration >= asset.startTime) {
@@ -107,12 +112,13 @@ function renderVisual({
   if (asset.type === "embed") {
     // Special handling for Jumpshare embeds
     if (asset.src.includes("jumpshare.com")) {
+      const radiusClass = asset.radius ? radiusClassMap[asset.radius] || radiusClassMap['rounded'] : radiusClassMap['rounded'];
       return (
         <div className="mb-4">
           <iframe
             src={asset.src}
             title={asset.caption || asset.alt || "Jumpshare embed"}
-            className={`w-full h-96 ${radiusClassMap[asset.radius || 'modern-border-radius']} modern-shadow`}
+            className={`w-full h-96 ${radiusClass} modern-shadow`}
             frameBorder="0"
             allowFullScreen
             allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
@@ -124,12 +130,13 @@ function renderVisual({
     }
     
     // Default embed handling
+    const radiusClass = asset.radius ? radiusClassMap[asset.radius] || radiusClassMap['rounded'] : radiusClassMap['rounded'];
     return (
       <div className="mb-4">
         <iframe
           src={asset.src}
           title={asset.caption || asset.alt || "Embedded content"}
-          className={`w-full h-64 ${radiusClassMap[asset.radius || 'modern-border-radius']} modern-shadow`}
+          className={`w-full h-64 ${radiusClass} modern-shadow`}
           frameBorder="0"
           allowFullScreen
           allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"

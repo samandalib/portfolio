@@ -29,6 +29,15 @@ export type VisualAssetWithRadius = {
   href?: string; // URL for clickable captions or images
   embedType?: "youtube" | "vimeo" | "other";
   radius?: string;
+  // Optional properties for layout control:
+  maxWidth?: string;   // e.g., "400px" or "80%"
+  maxHeight?: string;  // e.g., "300px" or "50vh"
+  width?: string;      // e.g., "400px" or "80%"
+  height?: string;     // e.g., "300px" or "50vh"
+  marginLeft?: string; // e.g., "16px"
+  marginRight?: string;
+  marginTop?: string;
+  marginBottom?: string;
   autoplay?: boolean;
   loop?: boolean;
   muted?: boolean;
