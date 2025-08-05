@@ -113,18 +113,46 @@ function renderVisual({
     // Special handling for Jumpshare embeds
     if (asset.src.includes("jumpshare.com")) {
       const radiusClass = asset.radius ? radiusClassMap[asset.radius] || radiusClassMap['rounded'] : radiusClassMap['rounded'];
+      
+      // Try different Jumpshare embed formats
+      const jumpshareUrl = asset.src;
+      const alternativeUrl = jumpshareUrl.replace('/embed/', '/v/');
+      
       return (
         <div className="mb-4">
           <iframe
-            src={asset.src}
+            src={jumpshareUrl}
             title={asset.caption || asset.alt || "Jumpshare embed"}
             className={`w-full h-96 ${radiusClass} modern-shadow`}
             frameBorder="0"
             allowFullScreen
             allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
             loading="lazy"
+            sandbox="allow-scripts allow-same-origin allow-forms allow-popups allow-popups-to-escape-sandbox"
+            onError={(e) => {
+              console.error('Jumpshare iframe error:', e);
+              // Try alternative URL format
+              const iframe = e.currentTarget;
+              if (iframe.src === jumpshareUrl) {
+                iframe.src = alternativeUrl;
+              }
+            }}
+            onLoad={() => {
+              console.log('Jumpshare iframe loaded successfully');
+            }}
           />
           {asset.caption && <div className="text-xs text-gray-500 mt-1">{asset.caption}</div>}
+          {/* Fallback link */}
+          <div className="text-xs text-gray-400 mt-1">
+            <a 
+              href={jumpshareUrl.replace('/embed/', '/v/')} 
+              target="_blank" 
+              rel="noopener noreferrer"
+              className="hover:text-accent transition-colors duration-300 underline"
+            >
+              Open in Jumpshare →
+            </a>
+          </div>
         </div>
       );
     }
@@ -141,6 +169,13 @@ function renderVisual({
           allowFullScreen
           allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
           loading="lazy"
+          sandbox="allow-scripts allow-same-origin allow-forms allow-popups allow-popups-to-escape-sandbox"
+          onError={(e) => {
+            console.error('Embed iframe error:', e);
+          }}
+          onLoad={() => {
+            console.log('Embed iframe loaded successfully');
+          }}
         />
         {asset.caption && <div className="text-xs text-gray-500 mt-1">{asset.caption}</div>}
       </div>

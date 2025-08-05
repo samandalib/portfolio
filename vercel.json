@@ -9,7 +9,7 @@
         },
         {
           "key": "Content-Security-Policy",
-          "value": "frame-ancestors 'self' https://samand.design https://localhost:* https://*.vercel.app https://*.netlify.app; frame-src 'self' https://vo2max.app https://www.vo2max.app https://*.jumpshare.com https://*.cloudinary.com https://*.youtube.com https://*.vimeo.com"
+          "value": "frame-ancestors 'self' https://samand.design https://localhost:* https://*.vercel.app https://*.netlify.app; frame-src 'self' https://vo2max.app https://www.vo2max.app https://*.jumpshare.com https://jumpshare.com https://*.cloudinary.com https://*.youtube.com https://*.vimeo.com https://*.vercel.app https://*.netlify.app; script-src 'self' 'unsafe-inline' 'unsafe-eval' https://*.jumpshare.com https://jumpshare.com; style-src 'self' 'unsafe-inline' https://*.jumpshare.com https://jumpshare.com"
         }
       ]
     }
