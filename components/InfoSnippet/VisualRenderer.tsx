@@ -178,7 +178,12 @@ function renderVisual({
       return <InfoTile {...asset.componentProps} />;
     }
     if (ComponentName === "MobileFrame") {
-      return <MobileFrame {...asset.componentProps} />;
+      try {
+        return <MobileFrame {...asset.componentProps} />;
+      } catch (error) {
+        console.error('Error rendering MobileFrame:', error);
+        return <div className="text-gray-500">Error loading MobileFrame component</div>;
+      }
     }
     return <div className="text-gray-500">Component {asset.componentName} not found</div>;
   }

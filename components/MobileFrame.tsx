@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useState, useEffect } from 'react';
 
 /**
  * MobileFrame Component - Highly customizable mobile device frame
@@ -78,6 +78,8 @@ interface MobileFrameProps {
   scale?: number;
   /** Additional CSS classes */
   className?: string;
+  /** Allow fullscreen for iframe (default: true) */
+  allowFullScreen?: boolean;
 }
 
 const MobileFrame: React.FC<MobileFrameProps> = ({
@@ -94,8 +96,27 @@ const MobileFrame: React.FC<MobileFrameProps> = ({
   shadowIntensity = 'medium',
   borderRadius = 'medium',
   scale = 1,
-  className = ""
+  className = "",
+  allowFullScreen = true
 }) => {
+  const [iframeError, setIframeError] = useState(false);
+  const [isLoading, setIsLoading] = useState(true);
+
+  useEffect(() => {
+    // Reset error state when src changes
+    setIframeError(false);
+    setIsLoading(true);
+  }, [src]);
+
+  const handleIframeError = () => {
+    setIframeError(true);
+    setIsLoading(false);
+  };
+
+  const handleIframeLoad = () => {
+    setIsLoading(false);
+  };
+
   const getDeviceStyles = () => {
     const baseStyles = {
       frame: "",
@@ -108,24 +129,24 @@ const MobileFrame: React.FC<MobileFrameProps> = ({
       case 'iphone':
         return {
           ...baseStyles,
-          frame: "rounded-[3rem] border-[14px] border-gray-900 bg-gray-900 shadow-2xl",
-          screen: "rounded-[2.5rem] overflow-hidden",
+          frame: "rounded-3xl border-[14px] border-gray-900 bg-gray-900 shadow-2xl",
+          screen: "rounded-3xl overflow-hidden",
           notch: "absolute top-0 left-1/2 transform -translate-x-1/2 w-32 h-6 bg-gray-900 rounded-b-3xl z-10",
           homeIndicator: "absolute bottom-2 left-1/2 transform -translate-x-1/2 w-32 h-1 bg-gray-900 rounded-full z-10"
         };
       case 'iphone-pro':
         return {
           ...baseStyles,
-          frame: "rounded-[3rem] border-[14px] border-gray-900 bg-gray-900 shadow-2xl",
-          screen: "rounded-[2.5rem] overflow-hidden",
+          frame: "rounded-3xl border-[14px] border-gray-900 bg-gray-900 shadow-2xl",
+          screen: "rounded-3xl overflow-hidden",
           notch: "absolute top-0 left-1/2 transform -translate-x-1/2 w-40 h-6 bg-gray-900 rounded-b-3xl z-10",
           homeIndicator: "absolute bottom-2 left-1/2 transform -translate-x-1/2 w-32 h-1 bg-gray-900 rounded-full z-10"
         };
       case 'iphone-se':
         return {
           ...baseStyles,
-          frame: "rounded-[2rem] border-[10px] border-gray-900 bg-gray-900 shadow-xl",
-          screen: "rounded-[1.5rem] overflow-hidden",
+          frame: "rounded-2xl border-[10px] border-gray-900 bg-gray-900 shadow-xl",
+          screen: "rounded-2xl overflow-hidden",
           notch: null,
           homeIndicator: "absolute bottom-2 left-1/2 transform -translate-x-1/2 w-24 h-1 bg-gray-900 rounded-full z-10"
         };
@@ -207,14 +228,42 @@ const MobileFrame: React.FC<MobileFrameProps> = ({
               className="w-full h-full object-cover"
               loading="lazy"
             />
+          ) : iframeError ? (
+            // Fallback when iframe fails to load
+            <div className="w-full h-full flex flex-col items-center justify-center bg-gray-100 dark:bg-gray-800 p-4 text-center">
+              <div className="text-gray-500 dark:text-gray-400 mb-2">
+                <svg className="w-8 h-8 mx-auto mb-2" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                  <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M12 9v2m0 4h.01m-6.938 4h13.856c1.54 0 2.502-1.667 1.732-2.5L13.732 4c-.77-.833-1.964-.833-2.732 0L3.34 16.5c-.77.833.192 2.5 1.732 2.5z" />
+                </svg>
+                <p className="text-sm font-medium">Iframe blocked</p>
+                <p className="text-xs text-gray-400 mt-1">This content cannot be embedded</p>
+              </div>
+              <a 
+                href={src} 
+                target="_blank" 
+                rel="noopener noreferrer"
+                className="text-xs text-blue-500 hover:text-blue-600 underline"
+              >
+                Open in new tab →
+              </a>
+            </div>
           ) : (
             <iframe
               src={src}
               title={alt}
               className="w-full h-full border-0"
-              allowFullScreen
+              allowFullScreen={allowFullScreen}
               loading="lazy"
+              allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
+              sandbox="allow-scripts allow-same-origin allow-forms allow-popups allow-popups-to-escape-sandbox"
+              onError={handleIframeError}
+              onLoad={handleIframeLoad}
             />
+          )}
+          {isLoading && !iframeError && !isImage && (
+            <div className="absolute inset-0 flex items-center justify-center bg-gray-100 dark:bg-gray-800">
+              <div className="animate-spin rounded-full h-8 w-8 border-b-2 border-gray-900 dark:border-gray-100"></div>
+            </div>
           )}
         </div>
         {showHomeIndicator && styles.homeIndicator && <div className={styles.homeIndicator} />}
