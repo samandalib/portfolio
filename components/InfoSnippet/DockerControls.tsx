@@ -30,6 +30,13 @@ const DockerControls: React.FC<InfoSnippetDockerProps> = ({
 }) => {
   if (!snippet.visuals || snippet.visuals.length === 0) return null;
 
+  // Hide DockerControls if this snippet contains a CaseStudyFooter component
+  const hasCaseStudyFooter = snippet.visuals?.some(visual => 
+    visual.type === "component" && visual.componentName === "CaseStudyFooter"
+  );
+  
+  if (hasCaseStudyFooter) return null;
+
   return (
     <div className="absolute -bottom-16 right-4 z-50">
       <div className="hidden md:flex items-center gap-4 px-3 py-2 modern-border-radius-xl modern-shadow-xl glass-effect flex-wrap transition-all duration-300 ease-in-out overflow-hidden w-fit">

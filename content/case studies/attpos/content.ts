@@ -84,12 +84,12 @@ const caseStudy: CaseStudyContent = {
     notes: "Collaborated with research, prototyping, and Salesforce development teams"
   },
   skills: [
-    "UX Design",
+    "UX+UI Design",
     "Prototyping",
     "Design Systems",
     "Interaction Design",
     "Enterprise UX",
-    "Salesforce Lightning"
+    
   ],
   infoSnippets: [
     {
@@ -515,7 +515,23 @@ const caseStudy: CaseStudyContent = {
         }
       ],
       layout: { textColumns: 6, visualColumns: 6, stacked: true, gridCols: 1, gridRows: 1 }
-    }   
+    },
+    {
+      visuals: [
+        {
+          type: "component",
+          src: "case-study-footer",
+          componentName: "CaseStudyFooter",
+          componentProps: {
+            nextProject: {
+              title: "VR Interior Design Tool",
+              slug: "vr"
+            }
+          }
+        }
+      ],
+      layout: { textColumns: 12, visualColumns: 0, stacked: true }
+    }
   ]
 };
 

@@ -8,6 +8,7 @@ import SingleProjectSlider from '../ProjectSlider/SingleProjectSlider';
 import SimpleProjectStats from '../ProjectStats/SimpleProjectStats';
 import InfoTile from '../InfoTile/InfoTile';
 import MobileFrame from '../MobileFrame';
+import CaseStudyFooter from '../CaseStudyFooter';
 
 function renderVisual({ 
   asset, 
@@ -219,6 +220,9 @@ function renderVisual({
         console.error('Error rendering MobileFrame:', error);
         return <div className="text-gray-500">Error loading MobileFrame component</div>;
       }
+    }
+    if (ComponentName === "CaseStudyFooter") {
+      return <CaseStudyFooter {...asset.componentProps} />;
     }
     return <div className="text-gray-500">Component {asset.componentName} not found</div>;
   }

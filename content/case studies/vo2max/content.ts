@@ -455,8 +455,22 @@ const caseStudy: CaseStudyContent = {
       visuals: [],
       layout: { textColumns: 6, visualColumns: 6, textAlign: 'middle', stacked: true, canvasLeft: true}
     },
-
-        
+    {
+      visuals: [
+        {
+          type: "component",
+          src: "case-study-footer",
+          componentName: "CaseStudyFooter",
+          componentProps: {
+            nextProject: {
+              title: "AT&T Retail POS Redesign",
+              slug: "attpos"
+            }
+          }
+        }
+      ],
+      layout: { textColumns: 12, visualColumns: 0, stacked: true }
+    }
   ]
 };
 

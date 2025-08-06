@@ -65,14 +65,14 @@ const aboutContent: AboutContent = {
  
   infoSnippets: [
     {
-      heading: "About Me",
+      heading: "A little more about me",
       body: [
         "If you're looking for a TL;DR, here it is:",
         [
             "Creator by DNA",
             "Artist and art enthusiast (modern sculptures)",
             "Science enthusiast (currently fixated on health)",
-            "Hybrid/rollercoaster background"
+            "Mostly on the left side of Roger's curve"
 
         ]
     ],
@@ -81,6 +81,7 @@ const aboutContent: AboutContent = {
           type: "image",
           src: "https://res.cloudinary.com/dehugbvmc/image/upload/v1753301861/Profile2_pb1o0o.png",
           alt: "Hesam Andalib profile photo",
+          maxWidth: "300px",
           //caption: "Designing and building digital experiences"
         }
       ],
@@ -98,7 +99,7 @@ const aboutContent: AboutContent = {
           caption: "Trieciou algae under a microscope with 3 distinct sexes"
         }
       ],*/
-      layout: { textColumns: 6, visualColumns: 6, textAlign: 'middle', stacked: true }
+      layout: { textColumns: 8, visualColumns: 4, textAlign: 'middle', stacked: false }
     },
     {
       //subheading: "Earlier in Life",
@@ -116,6 +117,10 @@ const aboutContent: AboutContent = {
       field perfect for someone like me. Since then, I’ve been designing, coding, and creating 
       nonstop; professionally and passionately on the side.
       </br></br>
+      Oh, and I almost forgot, I still make physical stuff too, mostly wooden sculptures. 
+      I leave you some here to see. If you are asking who my favorite sculptor is? Without pause,
+      Constantin Brancusi.
+
       `,
       visuals: [
         {
@@ -132,8 +137,7 @@ const aboutContent: AboutContent = {
       layout: { textColumns: 8, visualColumns: 4, textAlign: 'top', stacked: false }
     },
     {   
-        
-        body: `Oh, and I almost forgot, I still make physical stuff too, mostly wooden sculptures. I leave you some here to see. If you are asking who my favorite sculptor is? Without pause, Constantin Brancusi.`,
+
         visuals: [
             {
                 type: "image",

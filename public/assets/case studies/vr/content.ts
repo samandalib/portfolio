@@ -363,6 +363,22 @@ const caseStudy: CaseStudyContent = {
         }
       ],
       layout: { textColumns: 8, visualColumns: 4, stacked: false, canvasLeft:true }
+    },
+    {
+      visuals: [
+        {
+          type: "component",
+          src: "case-study-footer",
+          componentName: "CaseStudyFooter",
+          componentProps: {
+            nextProject: {
+              title: "Road265: AI Companion for Independent Aging",
+              slug: "Road265"
+            }
+          }
+        }
+      ],
+      layout: { textColumns: 12, visualColumns: 0, stacked: true }
     }
   ]
 };

@@ -91,12 +91,16 @@ const caseStudy: CaseStudyContent = {
   skills: [
     "Product Strategy",
     "UX Research", 
-    "UX/UI Design",
+    "UX+UI Design",
     "Branding",
     "Prototyping",
     "Design Systems",
     "Motion Design",
-    "AI Design"
+    "AI Design",
+    "After Effects",
+    "Illustrator",
+    "Figma",
+    "ElevenLabs"
   ],
   infoSnippets: [
     {
@@ -416,6 +420,22 @@ const caseStudy: CaseStudyContent = {
       heading: "What is next?",
       body: "Since starting this passion project, I learned a lot about entrepreneurship, various tools to kick off a business, and many new design skills. Right now it is time to go to market and see how it would work in the real world. I'm humbled by the fact that it takes so much work to get a product to a stage where people start to care about it, and I'm going to carry the lessons of this initiative to any next steps in my career and professional path. I'm proud of the work I did.",
       layout: { textColumns: 6, visualColumns: 6, textAlign: 'top', stacked: true }
+    },
+    {
+      visuals: [
+        {
+          type: "component",
+          src: "case-study-footer",
+          componentName: "CaseStudyFooter",
+          componentProps: {
+            nextProject: {
+              title: "VO2Max: AI-Powered Cardiorespiratory Fitness App",
+              slug: "vo2max"
+            }
+          }
+        }
+      ],
+      layout: { textColumns: 12, visualColumns: 0, stacked: true }
     }
   ]
 };

@@ -144,7 +144,7 @@ a {
   }
   
   .animate-info-tile-border {
-    animation: info-tile-border 20s ease-in-out infinite;
+    animation: info-tile-border 20s ease-in-out;
   }
   .accent-fill {
     fill: var(--accent-color) !important;
