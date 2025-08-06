@@ -35,6 +35,8 @@ export interface VisualAsset {
   // Optional properties for layout control:
   maxWidth?: string;   // e.g., "400px" or "80%"
   maxHeight?: string;  // e.g., "300px" or "50vh"
+  width?: string;      // e.g., "400px" or "80%"
+  height?: string;     // e.g., "300px" or "50vh"
   marginLeft?: string; // e.g., "16px"
   marginRight?: string;
   marginTop?: string;
@@ -42,6 +44,7 @@ export interface VisualAsset {
   autoplay?: boolean;
   loop?: boolean;
   muted?: boolean;
+  aspectRatio?: string; // e.g., "16/9", "4/3", "1/1"
   // Component-specific properties:
   componentName?: string; // e.g., "DesignSystemSpecs"
   componentProps?: any;   // Props to pass to the component

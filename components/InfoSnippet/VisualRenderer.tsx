@@ -119,12 +119,35 @@ function renderVisual({
       const jumpshareUrl = asset.src;
       const alternativeUrl = jumpshareUrl.replace('/embed/', '/v/');
       
+      // Create styles that only apply on large screens
+      const embedStyle: React.CSSProperties = {};
+      
+      // Only apply custom styles if they exist
+      if (asset.width || asset.height || asset.maxWidth || asset.maxHeight || asset.aspectRatio) {
+        // Use CSS custom properties for large screen styles
+        const customProperties: { [key: string]: string } = {};
+        if (asset.width) customProperties['--lg-width'] = asset.width;
+        if (asset.height) customProperties['--lg-height'] = asset.height;
+        if (asset.maxWidth) customProperties['--lg-max-width'] = asset.maxWidth;
+        if (asset.maxHeight) customProperties['--lg-max-height'] = asset.maxHeight;
+        if (asset.aspectRatio) {
+          const [width, height] = asset.aspectRatio.split('/').map(Number);
+          if (width && height) {
+            customProperties['--lg-aspect-ratio'] = `${width}/${height}`;
+          }
+        }
+        
+        // Apply custom properties to the style object
+        Object.assign(embedStyle, customProperties);
+      }
+      
       return (
         <div className="mb-4">
           <iframe
             src={jumpshareUrl}
             title={asset.caption || asset.alt || "Jumpshare embed"}
-            className={`w-full h-96 ${radiusClass} modern-shadow`}
+            className={`w-full h-96 lg:w-[var(--lg-width,auto)] lg:h-[var(--lg-height,auto)] lg:max-w-[var(--lg-max-width,none)] lg:max-h-[var(--lg-max-height,none)] lg:aspect-[var(--lg-aspect-ratio,auto)] ${radiusClass} modern-shadow`}
+            style={embedStyle}
             frameBorder="0"
             allowFullScreen
             allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
@@ -149,12 +172,36 @@ function renderVisual({
     
     // Default embed handling
     const radiusClass = asset.radius ? radiusClassMap[asset.radius] || radiusClassMap['rounded'] : radiusClassMap['rounded'];
+    
+    // Create styles that only apply on large screens
+    const embedStyle: React.CSSProperties = {};
+    
+    // Only apply custom styles if they exist
+    if (asset.width || asset.height || asset.maxWidth || asset.maxHeight || asset.aspectRatio) {
+      // Use CSS custom properties for large screen styles
+      const customProperties: { [key: string]: string } = {};
+      if (asset.width) customProperties['--lg-width'] = asset.width;
+      if (asset.height) customProperties['--lg-height'] = asset.height;
+      if (asset.maxWidth) customProperties['--lg-max-width'] = asset.maxWidth;
+      if (asset.maxHeight) customProperties['--lg-max-height'] = asset.maxHeight;
+      if (asset.aspectRatio) {
+        const [width, height] = asset.aspectRatio.split('/').map(Number);
+        if (width && height) {
+          customProperties['--lg-aspect-ratio'] = `${width}/${height}`;
+        }
+      }
+      
+      // Apply custom properties to the style object
+      Object.assign(embedStyle, customProperties);
+    }
+    
     return (
       <div className="mb-4">
         <iframe
           src={asset.src || ""}
           title={asset.caption || asset.alt || "Embedded content"}
-          className={`w-full h-64 ${radiusClass} modern-shadow`}
+          className={`w-full h-64 lg:w-[var(--lg-width,auto)] lg:h-[var(--lg-height,auto)] lg:max-w-[var(--lg-max-width,none)] lg:max-h-[var(--lg-max-height,none)] lg:aspect-[var(--lg-aspect-ratio,auto)] ${radiusClass} modern-shadow`}
+          style={embedStyle}
           frameBorder="0"
           allowFullScreen
           allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"

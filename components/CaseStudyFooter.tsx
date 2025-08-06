@@ -20,7 +20,7 @@ const CaseStudyFooter: React.FC<CaseStudyFooterProps> = ({ nextProject }) => {
   return (
     <footer className="w-full border-t border-gray-200/50 dark:border-gray-700/50 bg-background-light/80 dark:bg-background-dark/80 backdrop-blur-sm mt-16">
       <div className="max-w-6xl mx-auto px-8 py-12">
-        <div className="flex flex-col sm:flex-row justify-center items-center gap-6">
+        <div className="flex flex-col sm:flex-row justify-center sm:justify-between items-center sm:items-start gap-6">
           {/* Back to Top Button */}
           <button
             onClick={scrollToTop}
@@ -46,7 +46,7 @@ const CaseStudyFooter: React.FC<CaseStudyFooterProps> = ({ nextProject }) => {
           {nextProject && (
             <Link
               href={`/case-study/${nextProject.slug}`}
-              className="flex flex-col items-center gap-0.5 text-accent hover:text-accent/80 transition-colors duration-300 group"
+              className="flex flex-col items-center sm:items-end gap-0.5 text-accent hover:text-accent/80 transition-colors duration-300 group"
             >
               <div className="flex items-center gap-1">
                 <span className="font-medium">Next Project</span>

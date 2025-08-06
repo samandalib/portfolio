@@ -35,6 +35,8 @@ export interface VisualAsset {
   // Optional properties for layout control:
   maxWidth?: string;   // e.g., "400px" or "80%"
   maxHeight?: string;  // e.g., "300px" or "50vh"
+  width?: string;      // e.g., "400px" or "80%"
+  height?: string;     // e.g., "300px" or "50vh"
   marginLeft?: string; // e.g., "16px"
   marginRight?: string;
   marginTop?: string;
@@ -42,6 +44,7 @@ export interface VisualAsset {
   autoplay?: boolean;
   loop?: boolean;
   muted?: boolean;
+  aspectRatio?: string; // e.g., "16/9", "4/3", "1/1"
   // Component-specific properties:
   componentName?: string; // e.g., "DesignSystemSpecs"
   componentProps?: any;   // Props to pass to the component (InfoTile, ProjectStats, etc.)
@@ -254,10 +257,10 @@ const caseStudy: CaseStudyContent = {
           src: "https://res.cloudinary.com/dehugbvmc/image/upload/v1753892274/JourneyMapLight_r1tobz.png",
           alt: "Flexible",
           caption: "A high-level view of the customer journey used to map scenarios and capture stakeholder input.(FPO)",
-          radius: "rounded-lg"
+          radius: "rounded"
         }
       ],
-      layout: { textColumns: 4, visualColumns: 8, stacked: false }
+      layout: { textColumns: 3, visualColumns: 9, stacked: false }
     },
 
     {
@@ -275,7 +278,7 @@ const caseStudy: CaseStudyContent = {
         {
           type: "image",
           src: "https://res.cloudinary.com/dehugbvmc/image/upload/v1753893317/lofi1_f9fbcn.png",
-          alt: "Lo-fi explorations for layout: Left panel with detailed selections for each line and right panel with summary of the cart.",
+          alt: "Lo-fi explorations: Left panel with detailed selections for each line and right panel with summary of the cart.",
           caption: "Layout 1: Left panel with detailed selections for each line and right panel with summary of the cart.",
           radius: "rounded-lg"
         },
@@ -314,25 +317,31 @@ const caseStudy: CaseStudyContent = {
           src: "https://jumpshare.com/embed/1BdC89DdHknVkOaPtl3e",
           alt: "Video demonstration of the interface",
           caption: "Customer profile to review account and user level details.",
-          radius: "rounded-lg"
+          radius: "rounded-lg",
+          width: "1000px",
+          height: "900px"
         },
         {
           type: "embed",
           src: "https://jumpshare.com/embed/KUFnZfWsvf7iCXqd62ug",
           alt: "Video demonstration of the interface",
           caption: "Cart Builder page to add customer's selections to the cart.",
-          radius: "rounded-lg"
+          radius: "rounded-lg",
+          width: "1000px",
+          height: "900px"
         },
         {
           type: "embed",
           src: "https://jumpshare.com/embed/TeuGIBQB3hyTPMxOLaXn",
           alt: "Video demonstration of the interface",
           caption: "Billing and final review page to confirm the customer's selections.",
-          radius: "rounded-lg"
+          radius: "rounded-lg",
+          width: "1000px",
+          height: "900px"
         },
  
       ],
-      layout: { textColumns: 4, visualColumns: 8, stacked: true , gridCols: 3, gridRows: 1}
+      layout: { textColumns: 4, visualColumns: 8, stacked: true , gridCols: 1, gridRows: 3}
     },
     {
 
@@ -388,25 +397,30 @@ const caseStudy: CaseStudyContent = {
           src: "https://jumpshare.com/embed/BWQ04sQkErEihcfXBbXS",
           alt: "Making changes to a line.",
           caption: "Start to build an order for a multi-line account.",
-          radius: "rounded-lg"
+          radius: "rounded-lg",
+          width: "1000px",
+          height: "900px"
         }, 
         {
           type: "embed",
           src: "https://jumpshare.com/embed/qfC3LQ9Z8JmY1iC9Atll",
           alt: "Integrating online inventory with in-store experience.",
           caption: "Integrating online inventory with in-store purchase experience.",
-          radius: "rounded-lg"
+          radius: "rounded-lg",
+          width: "1000px",
+          height: "900px"
         }, 
         {
           type: "embed",
           src: "https://jumpshare.com/embed/owTUrD3NpHbxrSYbvXPQ",
           alt: "Reviewing multi-line changes.",
           caption: "Reviewing multi-line changes.",
-          radius: "rounded-lg"
+          width: "1000px",
+          height: "900px"
         },
 
       ],
-      layout: { textColumns: 6, visualColumns: 6, stacked: true, gridCols: 3, gridRows: 1 }
+      layout: { textColumns: 6, visualColumns: 6, stacked: true, gridCols: 1, gridRows: 3}
     },
     {
       subheading: "Under the hood",

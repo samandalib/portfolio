@@ -4,6 +4,28 @@
 
 The original `InfoSnippet.tsx` component was 771 lines long and contained multiple responsibilities. It has been refactored into smaller, more focused components to improve maintainability, performance, and code organization.
 
+## ⚠️ **Critical Layout Requirement**
+
+### **Bottom Margin (`mb-24`) Requirement**
+
+The InfoSnippet component **requires** a `mb-24` (6rem/96px bottom margin) on its grid container to prevent double scrollbar issues:
+
+```tsx
+// ✅ CORRECT - Required for proper layout
+<div className="grid grid-cols-1 md:grid-cols-6 lg:grid-cols-12 gap-6 mt-8 mb-24 items-start w-full relative">
+
+// ❌ INCORRECT - Will cause double scrollbar issues
+<div className="grid grid-cols-1 md:grid-cols-6 lg:grid-cols-12 gap-6 mt-8 items-start w-full relative">
+```
+
+**Why this is required:**
+- **Provides space for DockerControls** - Even when hidden, reserves space to prevent layout shifts
+- **Prevents content overlap** - Ensures proper spacing between InfoSnippet sections  
+- **Fixes scrollbar issues** - Missing margin causes content to be too close to bottom, creating layout conflicts
+- **Maintains consistent spacing** - Ensures uniform spacing across all InfoSnippet instances
+
+**Note:** This margin was temporarily removed during DockerControls refactoring but is essential for proper layout functionality.
+
 ## File Structure
 
 ```
