@@ -26,7 +26,7 @@ function renderVisual({
     return (
       <figure className="mb-4">
         <img 
-          src={asset.src} 
+          src={asset.src || ""} 
           alt={asset.alt || ""} 
           className={`${asset.maxWidth || asset.width ? '' : 'w-full'} ${radiusClass}`}
           style={imageStyle}
@@ -56,7 +56,7 @@ function renderVisual({
     return (
       <div className="aspect-w-16 aspect-h-9 mb-4">
         <iframe
-          src={asset.src.replace("watch?v=", "embed/")}
+          src={asset.src?.replace("watch?v=", "embed/") || ""}
           title={asset.caption || asset.alt || "YouTube video"}
           allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
           allowFullScreen
@@ -72,7 +72,7 @@ function renderVisual({
     return (
       <div className="aspect-w-16 aspect-h-9 mb-4">
         <iframe
-          src={asset.src.replace("vimeo.com", "player.vimeo.com/video")}
+          src={asset.src?.replace("vimeo.com", "player.vimeo.com/video") || ""}
           title={asset.caption || asset.alt || "Vimeo video"}
           allow="autoplay; fullscreen; picture-in-picture"
           allowFullScreen
@@ -101,7 +101,7 @@ function renderVisual({
             }
           }}
         >
-          <source src={asset.src} type="video/mp4" />
+          <source src={asset.src || ""} type="video/mp4" />
           Your browser does not support the video tag.
         </video>
         {asset.caption && <div className="text-xs text-gray-500 mt-1">{asset.caption}</div>}
@@ -111,7 +111,7 @@ function renderVisual({
   
   if (asset.type === "embed") {
     // Special handling for Jumpshare embeds
-    if (asset.src.includes("jumpshare.com")) {
+    if (asset.src?.includes("jumpshare.com")) {
       const radiusClass = asset.radius ? radiusClassMap[asset.radius] || radiusClassMap['rounded'] : radiusClassMap['rounded'];
       
       // Try different Jumpshare embed formats
@@ -162,7 +162,7 @@ function renderVisual({
     return (
       <div className="mb-4">
         <iframe
-          src={asset.src}
+          src={asset.src || ""}
           title={asset.caption || asset.alt || "Embedded content"}
           className={`w-full h-64 ${radiusClass} modern-shadow`}
           frameBorder="0"
@@ -185,7 +185,7 @@ function renderVisual({
   if (asset.type === "lottie") {
     return (
       <LottieVisual 
-        src={asset.src} 
+        src={asset.src || ""} 
         caption={asset.caption} 
         loop={asset.loop}
         onRef={onLottieRef}
