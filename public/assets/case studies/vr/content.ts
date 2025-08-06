@@ -231,7 +231,7 @@ const caseStudy: CaseStudyContent = {
               color: "blue",
               disableIconFilter: true,
               italicBody: true,
-              
+              fullHeight: true,
             }
           },
           {
@@ -244,6 +244,7 @@ const caseStudy: CaseStudyContent = {
               body: "My only feedback will be trying to make the tool less modal. Right now it seems like the user needs to switch between modes (translate, rotate, scale, etc..) very often. That'd probably make a slow workflow for him. Rather than that, I think your tool is super neat! Congrats! ",
               italicBody: true,
               disableIconFilter: true,
+              fullHeight: true,
             }
           },
           {
@@ -256,10 +257,11 @@ const caseStudy: CaseStudyContent = {
               body: "What I recommend to increase the affordance/reduce friction are: 1) provide a grid system to know where your object is placed (especially a symmetry is required). 2) pre-configured rotation to make it simpler (custom rotation option can be provided as well). I would also consider more UI feedback on object selection and what editing mode the user is in. It was difficult for me to tell what object is being copied, etc",
               italicBody: true,
               disableIconFilter: true,
+              fullHeight: true,
             }
           }
         ],
-        layout: { textColumns: 6, visualColumns: 6, stacked: true }
+        layout: { textColumns: 6, visualColumns: 6, stacked: true, gridCols: 3, gridRows: 1 }
       },
       {
         heading: "Final iteration",

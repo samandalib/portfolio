@@ -101,7 +101,7 @@ const caseStudy: CaseStudyContent = {
   infoSnippets: [
     {
       heading: "The north star vision",
-      body: "A true AI companion for aging would look like. Then we started moving toward that direction. We knew we needed a foundation first to get there.",
+      body: "A true AI companion for aging would look like a real person. We started moving toward that direction. We knew we needed a foundation first to get there.",
       visuals: [
         {
           type: "video",
@@ -261,7 +261,7 @@ const caseStudy: CaseStudyContent = {
         },
 
       ],
-      layout: { textColumns: 4, visualColumns: 8, textAlign: 'top', stacked: true }
+      layout: { textColumns: 4, visualColumns: 8, textAlign: 'top', stacked: true , gridCols: 3, gridRows: 1 }
     },
 
     {
@@ -348,7 +348,7 @@ const caseStudy: CaseStudyContent = {
           },
         
       ],
-      layout: { textColumns: 4, visualColumns: 8, textAlign: 'top' }
+      layout: { textColumns: 4, visualColumns: 8, textAlign: 'top', gridCols: 3, gridRows: 2 }
     },
     {
       subheading: "Set the tone for the app with the onboarding visuals",
@@ -396,7 +396,7 @@ const caseStudy: CaseStudyContent = {
         
       
       ],
-      layout: { textColumns: 6, visualColumns: 6, textAlign: 'top' }
+      layout: { textColumns: 6, visualColumns: 6, textAlign: 'top', canvasLeft: false }
     },
     {
       body: "I created more animations for social media posts and the app website to convey the emotional aspect of aging. I used ElevenLabs AI voice generator for voiceovers.",

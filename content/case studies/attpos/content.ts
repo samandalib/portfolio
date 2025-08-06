@@ -115,7 +115,7 @@ const caseStudy: CaseStudyContent = {
             radius: "rounded-2xl"
           }
       ],
-      layout: { textColumns: 4, visualColumns: 8, stacked: false }
+      layout: { textColumns: 4, visualColumns: 8, stacked: false, gridCols: 2, gridRows: 1 }
     },
     {
       heading: "The opportunity",
@@ -332,7 +332,7 @@ const caseStudy: CaseStudyContent = {
         },
  
       ],
-      layout: { textColumns: 4, visualColumns: 8, stacked: true }
+      layout: { textColumns: 4, visualColumns: 8, stacked: true , gridCols: 3, gridRows: 1}
     },
     {
 
@@ -514,7 +514,7 @@ const caseStudy: CaseStudyContent = {
           }
         }
       ],
-      layout: { textColumns: 6, visualColumns: 6, stacked: true, gridCols: 1, gridRows: 2 }
+      layout: { textColumns: 6, visualColumns: 6, stacked: true, gridCols: 1, gridRows: 1 }
     }   
   ]
 };

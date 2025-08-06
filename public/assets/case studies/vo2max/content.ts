@@ -256,7 +256,7 @@ const caseStudy: CaseStudyContent = {
         },
 
       ],
-      layout: { textColumns: 4, visualColumns: 8, textAlign: 'top', stacked: false, gridCols: 3, gridRows: 2 }
+      layout: { textColumns: 4, visualColumns: 8, textAlign: 'top', stacked: false, gridCols: 3, gridRows: 1 }
     },
     {
       heading: "The first iteration",
