@@ -47,9 +47,15 @@ export interface VisualAsset {
   autoplay?: boolean;
   loop?: boolean;
   muted?: boolean;
+  // Video-specific properties for poster and timing:
+  poster?: string;     // URL to poster image (shows before video plays)
+  startTime?: number;  // Time in seconds to start the video at (e.g., 5.5 for 5.5 seconds)
   // Component-specific properties:
   componentName?: string; // e.g., "DesignSystemSpecs"
   componentProps?: any;   // Props to pass to the component
+  aspectRatio?: string;   // e.g. "16/9", "4/3", "1/1"
+  // Horizontal alignment for visuals within their grid cells
+  align?: 'left' | 'center' | 'right';
 }
 
 export interface InfoSnippet {
@@ -140,7 +146,8 @@ const caseStudy: CaseStudyContent = {
             showHomeIndicator: false,
             width: "390px",
             height: "850px",
-            allowFullScreen: true
+            allowFullScreen: true,
+            align: "right", 
           }
         }
 
@@ -355,9 +362,10 @@ const caseStudy: CaseStudyContent = {
           type: "image",
           src: "https://res.cloudinary.com/dehugbvmc/image/upload/v1754415753/IMG_4740_lk4e6b.png",
           alt: "VO2Max Training App shared in Reddit",
-          caption: "Example of reactions to a screenshot of the app on Reddit",
+          caption: "Example of reactions to` app on Reddit",
           maxWidth: "250px",
           radius: "rounded-2xl",
+          align: "right",
         }
       ],
       layout: { textColumns: 8, visualColumns: 4, textAlign: 'middle', stacked: false }
@@ -384,7 +392,8 @@ const caseStudy: CaseStudyContent = {
           alt: "AI chatbot demo",
           caption: "Specialized AI chat",
           embedType: "other",
-          radius: "rounded-lg"
+          radius: "rounded-lg",
+          align: "center",
         },
 
 
@@ -394,7 +403,7 @@ const caseStudy: CaseStudyContent = {
     {
       visuals: [        {
         type: "video",
-        src: "https://res.cloudinary.com/dehugbvmc/video/upload/v1754423466/AdminDashboard_dtzruq.mp4",
+        src: "https://res.cloudinary.com/dehugbvmc/video/upload/v1754441807/AdminDashboardHiRes_1_imdxp1.mp4",
         alt: "RAG pipeline dashboard",
         caption: "RAG pipeline dashboard",
         autoplay: true,
@@ -428,12 +437,13 @@ const caseStudy: CaseStudyContent = {
           type: "image",
           src: "https://res.cloudinary.com/dehugbvmc/image/upload/v1754425970/Documentation_e24gcz.png",
           alt: "Documentation of the app",
-          caption: "Documents I constantly update as I go for grounding the AI agents",
+          caption: "The grounding documention for the AI agents",
           radius: "rounded-lg",
-          maxWidth: "400px"
+          maxWidth: "300px",
+          align: "right" // Example: left-align this image within its grid cell
         }
       ],
-      layout: { textColumns: 6, visualColumns: 6, textAlign: 'middle', stacked: false, canvasLeft: false}
+      layout: { textColumns: 8, visualColumns: 4, textAlign: 'middle', stacked: false, canvasLeft: false}
         
     },
     {

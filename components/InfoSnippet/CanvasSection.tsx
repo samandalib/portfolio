@@ -94,15 +94,33 @@ const CanvasSection: React.FC<InfoSnippetCanvasSectionProps> = ({
             gridTemplateRows: gridRows ? `repeat(${gridRows}, 1fr)` : `repeat(${snippet.visuals.length}, auto)`,
           }}
         >
-          {snippet.visuals.map((asset, i) => (
-            <div key={i} className="flex items-center justify-center w-full h-full">
-              {renderVisual({ 
-                asset, 
-                onLottieRef, 
-                onStateChange: onAnimationStateChange 
-              })}
-            </div>
-          ))}
+          {snippet.visuals.map((asset, i) => {
+            // Determine alignment class based on asset.align prop
+            const getAlignmentClass = (align?: 'left' | 'center' | 'right') => {
+              switch (align) {
+                case 'left':
+                  return 'justify-start';
+                case 'right':
+                  return 'justify-end';
+                case 'center':
+                default:
+                  return 'justify-center';
+              }
+            };
+
+            return (
+              <div 
+                key={i} 
+                className={`flex items-center ${getAlignmentClass(asset.align)} w-full h-full`}
+              >
+                {renderVisual({ 
+                  asset, 
+                  onLottieRef, 
+                  onStateChange: onAnimationStateChange 
+                })}
+              </div>
+            );
+          })}
         </div>
         
         {/* Pointer crosshairs */}

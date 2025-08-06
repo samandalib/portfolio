@@ -46,6 +46,8 @@ export type VisualAssetWithRadius = {
   aspectRatio?: string; // e.g. '16/9', '4/3', '1/1'
   componentName?: string;
   componentProps?: any;
+  // Horizontal alignment for visuals within their grid cells
+  align?: 'left' | 'center' | 'right';
 };
 
 export interface LottieVisualProps {

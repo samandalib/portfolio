@@ -306,6 +306,14 @@ You can override these per-snippet in your content file as needed.
 
 ## Recent Updates
 
+### Horizontal Alignment for Visuals (Latest Update)
+- **Added**: `align` property to VisualAsset interface for horizontal alignment control
+- **Options**: `'left'`, `'center'`, `'right'` alignment within grid cells
+- **Implementation**: Uses Tailwind CSS flexbox classes (`justify-start`, `justify-center`, `justify-end`)
+- **Backward Compatibility**: Defaults to center alignment for existing visuals
+- **Usage**: Perfect for creating asymmetrical layouts and visual balance
+- **Example**: `{ type: "image", src: "...", align: "left" }`
+
 ### Grid Configuration System (Latest Update)
 - **Added**: Custom grid layout support with `gridCols` and `gridRows` properties
 - **Implementation**: Explicit Tailwind class mapping for JIT compilation compatibility
@@ -459,3 +467,115 @@ The InfoSnippet component includes a sophisticated Lottie animation system with 
 - Add React.memo to prevent unnecessary re-renders.
 - Implement Suspense boundaries for better loading states.
 - Add error boundaries for better error handling. 
+
+## Visual Asset Types & Properties
+
+The InfoSnippet component supports various visual asset types with extensive customization options:
+
+### Supported Visual Types
+- **Images** - Static images with caption and styling options
+- **Videos** - YouTube, Vimeo, and direct video files
+- **Embeds** - Jumpshare, iframes, and other embed types
+- **Lottie Animations** - Interactive animations with play/pause controls
+- **Custom Components** - DesignSystemSpecs, ResearchSynthesis, InfoTile, etc.
+
+### Visual Asset Properties
+
+```typescript
+interface VisualAsset {
+  type: "image" | "video" | "embed" | "lottie" | "component";
+  src: string;
+  alt?: string;
+  caption?: string;
+  embedType?: "youtube" | "vimeo" | "other";
+  radius?: string; // 'rounded', 'rounded-md', 'rounded-lg', 'rounded-xl', 'rounded-2xl', 'rounded-full'
+  
+  // Layout Control Properties
+  maxWidth?: string;   // e.g., "400px" or "80%"
+  maxHeight?: string;  // e.g., "300px" or "50vh"
+  width?: string;      // e.g., "400px" or "80%"
+  height?: string;     // e.g., "300px" or "50vh"
+  marginLeft?: string; // e.g., "16px"
+  marginRight?: string;
+  marginTop?: string;
+  marginBottom?: string;
+  
+  // Horizontal Alignment (NEW)
+  align?: 'left' | 'center' | 'right'; // Controls horizontal alignment within grid cell
+  
+  // Video-specific properties
+  autoplay?: boolean;
+  loop?: boolean;
+  muted?: boolean;
+  poster?: string;     // URL to poster image
+  startTime?: number;  // Time in seconds to start video
+  
+  // Component-specific properties
+  componentName?: string;
+  componentProps?: any;
+  aspectRatio?: string; // e.g. '16/9', '4/3', '1/1'
+}
+```
+
+### Horizontal Alignment Feature
+
+The `align` property allows you to control how visuals are positioned horizontally within their grid cells:
+
+#### Usage Examples
+
+```typescript
+// Left-aligned image
+{
+  type: "image",
+  src: "https://example.com/image.jpg",
+  caption: "Left-aligned image",
+  align: "left"
+}
+
+// Center-aligned video (default)
+{
+  type: "video",
+  src: "https://example.com/video.mp4",
+  caption: "Center-aligned video",
+  align: "center" // or omit for default
+}
+
+// Right-aligned embed
+{
+  type: "embed",
+  src: "https://jumpshare.com/embed/example",
+  caption: "Right-aligned embed",
+  align: "right"
+}
+```
+
+#### Alignment Behavior
+
+- **`align: "left"`** - Visual is left-aligned within its grid cell using `justify-start`
+- **`align: "center"`** - Visual is center-aligned within its grid cell using `justify-center` (default)
+- **`align: "right"`** - Visual is right-aligned within its grid cell using `justify-end`
+
+#### Implementation Details
+
+The alignment is implemented in `CanvasSection.tsx` using Tailwind CSS flexbox classes:
+
+```typescript
+const getAlignmentClass = (align?: 'left' | 'center' | 'right') => {
+  switch (align) {
+    case 'left':
+      return 'justify-start';
+    case 'right':
+      return 'justify-end';
+    case 'center':
+    default:
+      return 'justify-center';
+  }
+};
+```
+
+#### Responsive Behavior
+
+- **Mobile**: Alignment works consistently across all screen sizes
+- **Grid Cells**: Each visual maintains its alignment within its assigned grid cell
+- **Multiple Visuals**: Each visual can have different alignment settings
+- **Backward Compatibility**: Existing visuals without `align` property default to center alignment 

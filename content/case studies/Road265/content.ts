@@ -30,6 +30,8 @@ export interface VisualAsset {
   // New optional properties for layout control:
   maxWidth?: string;   // e.g., "400px" or "80%"
   maxHeight?: string;  // e.g., "300px" or "50vh"
+  width?: string;      // e.g., "400px" or "80%"
+  height?: string;     // e.g., "300px" or "50vh"
   marginLeft?: string; // e.g., "16px"
   marginRight?: string;
   marginTop?: string;
@@ -44,6 +46,8 @@ export interface VisualAsset {
   componentName?: string; // e.g., "DesignSystemSpecs"
   componentProps?: any;   // Props to pass to the component
   aspectRatio?: string;   // e.g. "16/9", "4/3", "1/1"
+  // Horizontal alignment for visuals within their grid cells
+  align?: 'left' | 'center' | 'right';
 }
 
 export interface InfoSnippet {
