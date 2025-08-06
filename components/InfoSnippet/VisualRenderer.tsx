@@ -143,17 +143,6 @@ function renderVisual({
             }}
           />
           {asset.caption && <div className="text-xs text-gray-500 mt-1">{asset.caption}</div>}
-          {/* Fallback link */}
-          <div className="text-xs text-gray-400 mt-1">
-            <a 
-              href={jumpshareUrl.replace('/embed/', '/v/')} 
-              target="_blank" 
-              rel="noopener noreferrer"
-              className="hover:text-accent transition-colors duration-300 underline"
-            >
-              Open in Jumpshare →
-            </a>
-          </div>
         </div>
       );
     }

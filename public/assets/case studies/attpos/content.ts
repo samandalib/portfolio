@@ -101,7 +101,7 @@ const caseStudy: CaseStudyContent = {
         {
 
           type: "image",
-          src: "https://res.cloudinary.com/dehugbvmc/image/upload/v1753831635/OPUS_ubnow8.png", // Not used for components
+          src: "https://res.cloudinary.com/dehugbvmc/image/upload/v1754513101/OPUSlight_rmtwuk.png", // Not used for components
         
             alt: "Before and after comparison of POS interface",
             caption: "The legacy POS system interface.",
