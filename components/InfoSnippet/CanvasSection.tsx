@@ -75,23 +75,49 @@ const CanvasSection: React.FC<InfoSnippetCanvasSectionProps> = ({
 
   return (
     <div
-      className={`canvas flex items-center justify-center h-full modern-border-radius-lg ${stackedState ? 'col-span-12 w-full' : `col-span-1 md:col-span-${Math.min(visualCols,6)} md:w-full ${canvasGridClass}`}`}
+      className={`canvas flex modern-border-radius-lg ${
+        (gridCols === 1 || (snippet.visuals && snippet.visuals.length === 1)) 
+          ? 'h-auto items-start justify-start' 
+          : 'h-full items-center justify-center'
+      } ${stackedState ? 'col-span-12 w-full' : `col-span-1 md:col-span-${Math.min(visualCols,6)} md:w-full ${canvasGridClass}`}`}
       style={{ transition: 'background 0.2s', position: 'relative' }}
     >
       <div
         ref={canvasRef}
-        className="w-full aspect-w-16 aspect-h-9 relative"
+        className={`w-full relative ${
+          (gridCols === 1 || (snippet.visuals && snippet.visuals.length === 1)) 
+            ? 'h-auto' 
+            : 'aspect-w-16 aspect-h-9'
+        }`}
         style={{ position: 'relative' }}
       >
         <div
-          className={`h-full w-full grid gap-2 sm:gap-3 md:gap-4 ${
+          className={`w-full grid gap-2 sm:gap-3 md:gap-4 ${
             gridCols ? `grid-cols-1 sm:${getGridColsClass(gridCols)} md:${getGridColsClass(gridCols)} lg:${getGridColsClass(gridCols)} xl:${getGridColsClass(gridCols)}` :
             snippet.visuals.length === 1 ? 'grid-cols-1' :
             snippet.visuals.length === 2 ? 'grid-cols-1 sm:grid-cols-2' :
             'grid-cols-1 sm:grid-cols-2 md:grid-cols-3'
-          }`}
+          } ${(() => {
+            // Check if this is a single column layout
+            const isSingleColumn = gridCols === 1 || (snippet.visuals && snippet.visuals.length === 1);
+            // Use auto height for single column layouts, full height for multi-column
+            return isSingleColumn ? 'h-auto' : 'h-full';
+          })()}`}
           style={{
-            gridTemplateRows: gridRows ? `repeat(${gridRows}, 1fr)` : `repeat(${snippet.visuals.length}, auto)`,
+            gridTemplateRows: (() => {
+              // If gridRows is explicitly set, use it
+              if (gridRows) {
+                return `repeat(${gridRows}, 1fr)`;
+              }
+              
+              // Check if this is a single column layout
+              const isSingleColumn = gridCols === 1 || (snippet.visuals && snippet.visuals.length === 1);
+              
+              // Use auto height for single column layouts, 1fr for multi-column
+              return isSingleColumn 
+                ? `repeat(${snippet.visuals?.length || 0}, auto)` 
+                : `repeat(${snippet.visuals?.length || 0}, 1fr)`;
+            })(),
           }}
         >
           {snippet.visuals.map((asset, i) => {
@@ -111,7 +137,9 @@ const CanvasSection: React.FC<InfoSnippetCanvasSectionProps> = ({
             return (
               <div 
                 key={i} 
-                className={`flex items-center ${getAlignmentClass(asset.align)} w-full h-full`}
+                className={`flex items-center ${getAlignmentClass(asset.align)} w-full ${
+                  (gridCols === 1 || (snippet.visuals && snippet.visuals.length === 1)) ? 'h-auto' : 'h-full'
+                }`}
               >
                 {renderVisual({ 
                   asset, 

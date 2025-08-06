@@ -23,7 +23,7 @@ export interface InfoSnippetProps {
 
 export type VisualAssetWithRadius = {
   type: "image" | "video" | "embed" | "lottie" | "component";
-  src: string;
+  src?: string; // Made optional for component types
   alt?: string;
   caption?: string;
   href?: string; // URL for clickable captions or images

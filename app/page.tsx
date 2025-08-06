@@ -1,6 +1,6 @@
 "use client";
 import Image from "next/image";
-import ProjectSlider from "../components/ProjectSlider";
+import ProjectSliderSwitcher from "../components/ProjectSliderSwitcher";
 // @ts-ignore: If type declaration is missing, ignore for now
 import { landingContent } from "../content/landing/landing-content";
 import React from "react";
@@ -61,7 +61,7 @@ export default function Home() {
           {/* Right Column - Project Slider */}
           <div className="flex items-center justify-center w-full max-w-lg lg:max-w-xl mx-auto">
             {landingContent.projectSlider && (
-              <ProjectSlider />
+              <ProjectSliderSwitcher />
             )}
           </div>
         </div>

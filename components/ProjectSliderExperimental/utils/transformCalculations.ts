@@ -20,7 +20,7 @@ export function calculateCardTransform(offset: number, isActive: boolean) {
     return {
       transform: 'translateX(0) translateZ(0) rotateY(0deg)',
       opacity: 1,
-      zIndex: 100, // Much higher z-index for active card
+      zIndex: 10,
     };
   } else if (offset > 0) {
     // Cards to the right - fan out
@@ -29,8 +29,8 @@ export function calculateCardTransform(offset: number, isActive: boolean) {
     const translateZ = -Math.min(offset * 50, 100);
     return {
       transform: `translateX(${translateX}px) translateZ(${translateZ}px) rotateY(-${angle}deg)`,
-      opacity: Math.max(0.8 - (absOffset - 1) * 0.15, 0.4), // Adjusted opacity calculation
-      zIndex: 100 - absOffset, // Higher z-index for closer cards
+      opacity: Math.max(0.7 - (absOffset - 1) * 0.2, 0.3),
+      zIndex: 0,
     };
   } else {
     // Cards to the left - fan out
@@ -39,8 +39,8 @@ export function calculateCardTransform(offset: number, isActive: boolean) {
     const translateZ = -Math.min(absOffset * 50, 100);
     return {
       transform: `translateX(${translateX}px) translateZ(${translateZ}px) rotateY(${angle}deg)`,
-      opacity: Math.max(0.8 - (absOffset - 1) * 0.15, 0.4), // Adjusted opacity calculation
-      zIndex: 100 - absOffset, // Higher z-index for closer cards
+      opacity: Math.max(0.7 - (absOffset - 1) * 0.2, 0.3),
+      zIndex: 0,
     };
   }
 } 

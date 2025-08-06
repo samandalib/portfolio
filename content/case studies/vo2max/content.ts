@@ -111,21 +111,20 @@ const caseStudy: CaseStudyContent = {
   infoSnippets: [
     {
       heading: "Context and background",
-      body: `VO2max is the metric for measuring cardiorespiratory fitness.
-      Many people are tracking it through their wearable devices and struggle to improve it.
-      There are many technical details that should be right to make a training program work for VO2Max
-      that makes it hard for health enthusiasts to train for it. This app is designed to make the knowledge
-      accessible and easy to use and provide tools for training for VO2Max.
+      body: `VO2max is a key measure of cardiorespiratory fitness, often tracked through wearables 
+      but hard to improve without the right training. This app simplifies the science and provides 
+      practical tools to train effectively.
       </br></br>
       This project started as a detour to explore a hypothesis to see why I couldn't get the traction that 
       I hoped for the Road265 project despite seeing good signs in user testing. The hypothesis was that the
       outcome of that app was not measurable and clear to users. So I decided to narrow down on a specific health metric
-      that is measurable and already established. And it worked.
+      that is measurable and already established.
       </br></br>
       </br></br>
-      <i>The visual in this section is not a mockup or prototype. It is the live app that you can see 
-      on <strong>vo2max.app</strong>. If you don't want to sign up, you can use the credentials below to login and
-      see the dashboard.</i>
+      <strong>Interact with the live app right here → </strong></br>
+      <i>The visual in this section is not a mockup or prototype. It is the live app. 
+      If you don't want to sign up, you can use the credentials below to login and
+      see full features.</i>
       <br></br>
       <i>Username: <strong>devteam162@gmail.com</strong></i>
       <br>
@@ -147,12 +146,12 @@ const caseStudy: CaseStudyContent = {
             width: "390px",
             height: "850px",
             allowFullScreen: true,
-            align: "right", 
           }
-        }
+        },
+
 
       ],
-      layout: { textColumns: 6, visualColumns: 6, textAlign: 'middle', stacked: false }
+      layout: { textColumns: 6, visualColumns: 6, textAlign: 'top', stacked: false, }
     },
     {
       heading: "Product generation process",
