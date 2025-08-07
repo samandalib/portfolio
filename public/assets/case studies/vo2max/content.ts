@@ -121,14 +121,15 @@ const caseStudy: CaseStudyContent = {
       that is measurable and already established.
       </br></br>
       </br></br>
-      <strong>Interact with the live app right here → </strong></br>
-      <i>The visual in this section is not a mockup or prototype. It is the live app. 
+      <span class="text-accent"><strong>Interact with the live app right here → </strong></span>
+      </br>
+      The visual in this section is the live app. 
       If you don't want to sign up, you can use the credentials below to login and
-      see full features.</i>
+      see full features.
       <br></br>
-      <i>Username: <strong>devteam162@gmail.com</strong></i>
+      <span class="text-accent">Username: </span><strong>devteam162@gmail.com</strong>
       <br>
-      <i>Password: <strong>Samand10</strong></i>
+      <span class="text-accent">Password: </span><strong>Samand10</strong>
       `,
       visuals: [
         {
@@ -364,25 +365,21 @@ const caseStudy: CaseStudyContent = {
           caption: "Example of reactions to` app on Reddit",
           maxWidth: "250px",
           radius: "rounded-2xl",
-          align: "right",
+          align: "center",
         }
       ],
-      layout: { textColumns: 8, visualColumns: 4, textAlign: 'middle', stacked: false }
+      layout: { textColumns: 6, visualColumns: 6, textAlign: 'middle', stacked: false }
     },
     {
-      heading: "Adding Specialized AI Chatbot",
+      heading: "Adding specialized AI assistant",
       subheading: "RAG pipeline and its challenges",
       //subheading: "The new way to design: AI-assisted design",
       body: `Users can have a lot of other questions that I'm not covering in the app. 
       Having an AI chat that is specialized in the science of cardiorespiratory fitness
       seems necessary. So I gathered all the research papers and articles on VO2max training 
       and created a RAG (Retrieval-Augmented Generation) pipeline for the app.
-      </br></br>
-      Adding a specialized AI chat added some layers of complexity to the work. I created a RAG pipeline
-      and to keep this pipeline up to date and maintainable,
-      I decided to create a dashboard so that
-      instead of going through the codebase and updating the endpoints, or manually uploading new resources,
-      I do all through this interface.
+
+    
       `,
       visuals: [
         {
@@ -392,14 +389,21 @@ const caseStudy: CaseStudyContent = {
           caption: "Specialized AI chat",
           embedType: "other",
           radius: "rounded-lg",
-          align: "center",
+          align: "right",
+          width: "500px",
+          height: "700px",
         },
 
 
       ],
-      layout: { textColumns: 6, visualColumns: 6, textAlign: 'top', stacked: false }
+      layout: { textColumns: 6, visualColumns: 6, textAlign: 'middle', stacked: false }
     },
     {
+      body: `  Adding a specialized AI chat added some layers of complexity to the work. I created a RAG pipeline
+      and to keep this pipeline up to date and maintainable,
+      I decided to create a dashboard so that
+      instead of going through the codebase and updating the endpoints, or manually uploading new resources,
+      I do all through this interface.`,
       visuals: [        {
         type: "video",
         src: "https://res.cloudinary.com/dehugbvmc/video/upload/v1754441807/AdminDashboardHiRes_1_imdxp1.mp4",
@@ -432,17 +436,28 @@ const caseStudy: CaseStudyContent = {
       reality to avoid hallucinations.
       `,
       visuals: [
+
+        {
+          type: "image",
+          src: "https://res.cloudinary.com/dehugbvmc/image/upload/v1754529363/DocumentationColor_oo64p1.svg",
+          alt: "Documentation of the app",
+          caption: "The grounding documention for the AI agents",
+          radius: "rounded-lg",
+          maxWidth: "300px",
+          align: "right" // Example: left-align this image within its grid cell
+        },
+        
         {
           type: "image",
           src: "https://res.cloudinary.com/dehugbvmc/image/upload/v1754425970/Documentation_e24gcz.png",
           alt: "Documentation of the app",
           caption: "The grounding documention for the AI agents",
           radius: "rounded-lg",
-          maxWidth: "300px",
+          width: "240px",
           align: "right" // Example: left-align this image within its grid cell
         }
       ],
-      layout: { textColumns: 8, visualColumns: 4, textAlign: 'middle', stacked: false, canvasLeft: false}
+      layout: { textColumns: 4, visualColumns: 8, textAlign: 'middle', stacked: false, canvasLeft: false, gridCols: 2, gridRows: 1}
         
     },
     {

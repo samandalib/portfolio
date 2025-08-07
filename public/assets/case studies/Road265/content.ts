@@ -135,8 +135,8 @@ const caseStudy: CaseStudyContent = {
           componentName: "InfoTile",
           componentProps: {
             icon: "https://res.cloudinary.com/dehugbvmc/image/upload/v1754526473/Adults_btxlhw.svg",
-            heading: "78.4% of US midlife adults",
-            body: "have at least one chronic condition.(CDC, 2023)",
+            heading: "78.4%",
+            body: "of US midlife adults have at least one chronic condition.(CDC, 2023)",
             color: "blue",
             iconSize: "lg",
             headingSize: "lg",
@@ -170,8 +170,8 @@ const caseStudy: CaseStudyContent = {
             embedType: "other",
             caption: "A view of the Aging dashboard",
             radius: 'rounded-2xl',
-            width: "400px",
-            height: "600px",
+            width: "500px",
+            height: "700px",
             loop: false,
           }
         ],
@@ -274,28 +274,28 @@ const caseStudy: CaseStudyContent = {
         src: "https://jumpshare.com/embed/FDuliqoPNStIEuAZens3",
         caption: "Setting goal for wellness planning and seeing immediate impact of planning decisions on aging trajectory.",
         radius: 'rounded-2xl',
-        width: "400px",
-        height: "600px",
+        width: "600px",
+        height: "800px",
       },
       {
         type: "embed",
         src: "https://jumpshare.com/embed/wH6KdL9ykq72VpCR53bu",
         caption: "Planning a comprehensive wellness routine for healthy aging.",
         radius: 'rounded-2xl',
-        width: "400px",
-        height: "600px",
+        width: "600px",
+        height: "800px",
       },
       {
           type: "embed",
           src: "https://jumpshare.com/embed/htwJm58nicCfUJSmM479",
           caption: "Walkthrough of the various parts of the app, including the dashboard, AI chat, and scoring system.",
           radius: 'rounded-2xl',
-          width: "400px",
-          height: "600px",
+          width: "600px",
+          height: "800px",
         },
 
       ],
-      layout: { textColumns: 4, visualColumns: 8, textAlign: 'top', stacked: true , gridCols: 3, gridRows: 1 }
+      layout: { textColumns: 4, visualColumns: 8, textAlign: 'top', stacked: true , gridCols: 1, gridRows: 3}
     },
 
     {
@@ -424,8 +424,8 @@ const caseStudy: CaseStudyContent = {
             src: "https://jumpshare.com/embed/1eB4DaG5D1dvDtMbwhRX",
             caption: "Incorporating animations to the onboarding flow.",
             radius: 'rounded-2xl',
-  width: "400px",
-            height: "600px",
+            width: "600px",
+            height: "800px",
         },
         
       
