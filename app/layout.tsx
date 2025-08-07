@@ -19,7 +19,7 @@ export default function RootLayout({ children }: { children: React.ReactNode }) 
     <html lang="en" className={`${bodoni_moda.variable} ${manrope.variable} dark`}> 
       <body className="font-sans bg-background-light text-foreground-light dark:text-foreground-dark dark:bg-background-dark transition-all duration-500 ease-out flex">
         {/* Main Content */}
-        <div className="flex-1 min-h-screen flex flex-col">
+        <div className="flex-1 flex flex-col">
           <header className="w-full flex justify-between items-center px-8 py-8 backdrop-blur-sm bg-background-light/80 dark:bg-background-dark/80 border-b border-gray-200/50 dark:border-gray-800/50 sticky top-0 z-40">
             {/* Logo with navigation to landing page */}
             <Link href="/" className="transition-transform duration-300 hover:scale-105">

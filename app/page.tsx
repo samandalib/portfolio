@@ -13,12 +13,12 @@ export default function Home() {
   );
 
   return (
-    <main className="main-content flex flex-col min-h-screen px-8 py-16">
+    <main className="main-content flex flex-col px-8 py-16">
       <section className="w-full max-w-6xl mx-auto">
-        <div className="grid grid-cols-1 lg:grid-cols-2 gap-16 lg:gap-20 items-center min-h-[calc(100vh-300px)]">
+        <div className="grid grid-cols-1 lg:grid-cols-2 gap-8 lg:gap-20 items-center min-h-[calc(100vh-300px)]">
           {/* Left Column - Text Content */}
           <div className="flex flex-col items-center lg:items-start justify-center lg:pr-16">
-            <div className="flex flex-col md:flex-row lg:flex-col items-center lg:items-start gap-10">
+            <div className="flex flex-col md:flex-row lg:flex-col items-center lg:items-start gap-6 lg:gap-10">
               {/* Profile Image */}
               <div
                 className="relative flex-shrink-0 flex items-center justify-center group"
