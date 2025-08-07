@@ -78,13 +78,13 @@ export interface CaseStudyContent {
 
 const caseStudy: CaseStudyContent = {
   projectHeading: "AT&T Retail POS Design",
-  projectSubheading: "Improving efficiency and flexibility for a $47B retail operation by reimagining the Salesforce-powered POS experience.",
+  projectSubheading: "Improving efficiency and flexibility for a $47B retail operation by designing an efficient POS system.",
   domain: "RETAIL SALES PLATFORM",
   details: {
     year: 2023,
     company: "AT&T",
     role: "Lead Designer for Retail POS",
-    notes: "Collaborated with research, prototyping, and Salesforce development teams"
+    notes: "Collaborated with research, business partners, and development teams"
   },
   skills: [
     "UX+UI Design",

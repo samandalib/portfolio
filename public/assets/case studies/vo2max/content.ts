@@ -372,7 +372,7 @@ const caseStudy: CaseStudyContent = {
     },
     {
       heading: "Adding specialized AI assistant",
-      subheading: "RAG pipeline and its challenges",
+
       //subheading: "The new way to design: AI-assisted design",
       body: `Users can have a lot of other questions that I'm not covering in the app. 
       Having an AI chat that is specialized in the science of cardiorespiratory fitness
@@ -397,6 +397,7 @@ const caseStudy: CaseStudyContent = {
       layout: { textColumns: 6, visualColumns: 6, textAlign: 'middle', stacked: false }
     },
     {
+      subheading: "RAG pipeline and its challenges",
       body: `  Adding a specialized AI chat added some layers of complexity to the work. I created a RAG pipeline
       and to keep this pipeline up to date and maintainable,
       I decided to create a dashboard so that
