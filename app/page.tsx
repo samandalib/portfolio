@@ -13,7 +13,7 @@ export default function Home() {
   );
 
   return (
-    <main className="main-content flex flex-col px-8 py-16">
+    <main className="main-content flex flex-col min-h-screen px-8 py-16">
       <section className="w-full max-w-6xl mx-auto">
         <div className="grid grid-cols-1 lg:grid-cols-2 gap-8 lg:gap-20 items-center min-h-[calc(100vh-300px)]">
           {/* Left Column - Text Content */}

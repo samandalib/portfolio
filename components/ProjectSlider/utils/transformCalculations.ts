@@ -1,15 +1,7 @@
 export function getHorizontalOffset(offset: number) {
-  if (typeof window === 'undefined') return Math.min(offset * 120, 200); // SSR fallback
-  
-  const screenWidth = window.innerWidth;
-  
-  if (screenWidth < 640) { // Mobile
-    return Math.min(offset * 20, 40);
-  } else if (screenWidth < 1024) { // Tablet
-    return Math.min(offset * 40, 80);
-  } else { // Desktop
-    return Math.min(offset * 120, 200);
-  }
+  // Use consistent values that work for both SSR and client
+  // This prevents hydration mismatches while still providing good visual results
+  return Math.min(offset * 60, 120);
 }
 
 export function calculateCardTransform(offset: number, isActive: boolean) {
