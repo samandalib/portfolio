@@ -127,7 +127,9 @@ const caseStudy: CaseStudyContent = {
     },
     {
       heading: "About the problem",
-      body: "Functional decline is preventable. As the leading cause of lost independence, chronic conditions gradually reduce mobility, strength, cognitive clarity, and energy, complicating daily tasks. Notably, 80% of midlife Americans have one, often due to lifestyle choices.",
+      body: `Functional decline is preventable. As the leading cause of lost independence, 
+      chronic conditions gradually reduce mobility, strength, cognitive clarity, and energy, 
+      complicating daily tasks.`,
       visuals: [
         {
           type: "component",
@@ -198,7 +200,7 @@ const caseStudy: CaseStudyContent = {
     },
     {
       heading: "Tour of the features",
-      subheading: "I created these demo videos to showcase the app to end users, investors, and developers.",
+      subheading: "I created demo videos to showcase the app to end users, investors, and developers.",
       body: [
         "Personalized coaching across cardio, strength, cognition, and emotional health",
         "Progress tracking and scorecards (L-Score, inAge, Decline Curve)",
@@ -448,8 +450,29 @@ const caseStudy: CaseStudyContent = {
     },
     {
       heading: "What is next?",
-      body: "Since starting this passion project, I learned a lot about entrepreneurship, various tools to kick off a business, and many new design skills. Right now it is time to go to market and see how it would work in the real world. I'm humbled by the fact that it takes so much work to get a product to a stage where people start to care about it, and I'm going to carry the lessons of this initiative to any next steps in my career and professional path. I'm proud of the work I did.",
-      layout: { textColumns: 6, visualColumns: 6, textAlign: 'top', stacked: true }
+      body: `Since starting this passion project, I learned a lot of new skills. Right now it is 
+      It takes so much work to have a product to a stage where people start 
+      to care about it, and I'm going to carry the lessons of this initiative to any next steps 
+      in my career and professional path. I'm proud of the work I did.`,
+      visuals: [
+        {
+          type:"component",
+          src: "info-tile-1",
+          componentName: "InfoTile",
+          componentProps: {
+            icon: "https://res.cloudinary.com/dehugbvmc/image/upload/v1754585168/265colorLogo_wx8jkh.svg",
+            heading: "ProductWebsite",
+            body: "You can visit the website to stay tuned for the progress.",
+            iconSize: "lg",
+            disableIconFilter: true,
+            href: "https://road265.life",
+            
+
+            }
+          }
+        
+      ],
+      layout: { textColumns: 8, visualColumns: 4, textAlign: 'top', canvasLeft: true, stacked: false }
     },
     {
       visuals: [
