@@ -13,7 +13,7 @@ const GridLayout: React.FC<CardFanProps> = ({
   return (
     <div className="w-full max-w-4xl mx-auto">
       {/* Responsive Grid Container */}
-      <div className="grid grid-cols-1 md:grid-cols-2 gap-4 md:gap-6">
+      <div className="grid grid-cols-1 sm:grid-cols-2 gap-4 sm:gap-6">
         {projects.map((project, index) => (
           <div key={project.id} className="w-full">
             <ProjectCard

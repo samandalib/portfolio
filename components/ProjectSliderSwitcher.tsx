@@ -54,10 +54,10 @@ const ProjectSliderSwitcher: React.FC = () => {
 
   return (
     <div className="w-full max-w-5xl mx-auto relative">
-      {/* Container that matches slider dimensions */}
-      <div className="relative w-full h-[400px] sm:h-[500px] md:h-[600px]">
+      {/* Container that allows natural height */}
+      <div className="relative w-full">
         {/* Project Slider - positioned to fill the container */}
-        <div className="absolute inset-0">
+        <div className="relative">
           <ProjectSliderWrapper useExperimental={getLayoutToUse()} />
         </div>
         
