@@ -47,7 +47,7 @@ export const projectSliderCards: ProjectSliderCard[] = [
     title: "XR app for Interior Design",
     description: "Building immersive experience for interior design.",
     image: "https://res.cloudinary.com/dehugbvmc/image/upload/v1753545980/VR_xdnx4d.png",
-    tags: ["Productivity", "Immersive", "AR/VR", "Unity", "C#", "Full-stack"],
+    tags: ["Immersive design", "AR/VR", "Unity", "C#", "Full-stack"],
     color: "from-orange-500 to-red-500",
     caseStudyIndex: 3, // Shows the fourth case study (when you add it)
     slug: 'vr',
