@@ -279,7 +279,7 @@ const caseStudy: CaseStudyContent = {
           type: "image",
           src: "https://res.cloudinary.com/dehugbvmc/image/upload/v1753893317/lofi1_f9fbcn.png",
           alt: "Lo-fi explorations: Left panel with detailed selections for each line and right panel with summary of the cart.",
-          caption: "Layout 1: Left panel with detailed selections for each line and right panel with summary of the cart.",
+          caption: "Layout 1: Left panel with detailed selections and right panel with summary of the cart.",
           radius: "rounded-lg"
         },
         {
