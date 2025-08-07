@@ -61,9 +61,9 @@ const ProjectSliderSwitcher: React.FC = () => {
           <ProjectSliderWrapper useExperimental={getLayoutToUse()} />
         </div>
         
-        {/* Layout Switcher Controls - positioned at bottom of container, hidden on mobile and tablet */}
+        {/* Layout Switcher Controls - positioned at bottom of content, hidden on mobile and tablet */}
         {!isMobile && !isTablet && (
-          <div className="absolute bottom-2 left-1/2 transform -translate-x-1/2 flex flex-col items-center gap-4">
+          <div className="flex justify-center mt-4">
             {/* Layout Switcher Buttons */}
             <div className="flex items-center gap-3 px-3 py-2 modern-border-radius-xl modern-shadow-xl glass-effect">
               {/* Fan Layout Button */}
