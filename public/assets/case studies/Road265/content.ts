@@ -104,6 +104,12 @@ const caseStudy: CaseStudyContent = {
   ],
   infoSnippets: [
     {
+      heading: "Age-related functional decline is a leading cause of disability in older adults that can be prevented in midlife.",
+      //body: "A true AI companion for aging would look like a real person. We started moving toward that direction. We knew we needed a foundation first to get there.",
+      layout: { textColumns: 12, visualColumns: 0, textAlign: 'middle', stacked: true }
+    
+    },
+    {
       heading: "The north star vision",
       body: "A true AI companion for aging would look like a real person. We started moving toward that direction. We knew we needed a foundation first to get there.",
       visuals: [
@@ -117,15 +123,32 @@ const caseStudy: CaseStudyContent = {
           radius: 'rounded-2xl'
         }
       ],
-      layout: { textColumns: 4, visualColumns: 8, textAlign: 'top'}
+      layout: { textColumns: 4, visualColumns: 8, textAlign: 'middle'}
     },
     {
       heading: "About the problem",
       body: "Functional decline is preventable. As the leading cause of lost independence, chronic conditions gradually reduce mobility, strength, cognitive clarity, and energy, complicating daily tasks. Notably, 80% of midlife Americans have one, often due to lifestyle choices.",
       visuals: [
-        // VISUAL: Personas slide { type: "image", src: "personas.png", alt: "User personas", caption: "Key personas and unmet needs" }
+        {
+          type: "component",
+          src: "info-tile-1",
+          componentName: "InfoTile",
+          componentProps: {
+            icon: "https://res.cloudinary.com/dehugbvmc/image/upload/v1754526473/Adults_btxlhw.svg",
+            heading: "78.4% of US midlife adults",
+            body: "have at least one chronic condition.(CDC, 2023)",
+            color: "blue",
+            iconSize: "lg",
+            headingSize: "lg",
+            bodySize: "md"
+          }
+        },
+  
+
+
+        
       ],
-      layout: { textColumns: 6, visualColumns: 6, textAlign: 'middle', stacked: true}
+      layout: { textColumns: 6, visualColumns: 6, textAlign: 'middle', stacked: false, gridCols: 1, gridRows: 1}
     },
 
     {
@@ -147,6 +170,9 @@ const caseStudy: CaseStudyContent = {
             embedType: "other",
             caption: "A view of the Aging dashboard",
             radius: 'rounded-2xl',
+            width: "400px",
+            height: "600px",
+            loop: false,
           }
         ],
         layout: { textColumns: 6, visualColumns: 6, textAlign: 'middle' }
@@ -248,20 +274,24 @@ const caseStudy: CaseStudyContent = {
         src: "https://jumpshare.com/embed/FDuliqoPNStIEuAZens3",
         caption: "Setting goal for wellness planning and seeing immediate impact of planning decisions on aging trajectory.",
         radius: 'rounded-2xl',
-        maxWidth: "800px",
-        maxHeight: "450px" // 16:9 ratio (800 * 9/16 = 450)
+        width: "400px",
+        height: "600px",
       },
       {
         type: "embed",
         src: "https://jumpshare.com/embed/wH6KdL9ykq72VpCR53bu",
         caption: "Planning a comprehensive wellness routine for healthy aging.",
-        radius: 'rounded-2xl'
+        radius: 'rounded-2xl',
+        width: "400px",
+        height: "600px",
       },
       {
           type: "embed",
           src: "https://jumpshare.com/embed/htwJm58nicCfUJSmM479",
           caption: "Walkthrough of the various parts of the app, including the dashboard, AI chat, and scoring system.",
-          radius: 'rounded-2xl'
+          radius: 'rounded-2xl',
+          width: "400px",
+          height: "600px",
         },
 
       ],
@@ -313,46 +343,46 @@ const caseStudy: CaseStudyContent = {
             src: "https://res.cloudinary.com/dehugbvmc/raw/upload/v1753563433/JumpSplash_jptkm9.json",
             //alt: "App connections animation",
             loop: true,
-            //caption: "Animated connections using Lottie"
+            caption: "Kick out"
           },
           {
             type: "lottie",
             src: "https://res.cloudinary.com/dehugbvmc/raw/upload/v1753563432/Appear3Direction_rizzys.json",
             //alt: "App connections animation",
             loop: true,
-            //caption: "Animated connections using Lottie"
+            caption: "Come out"
           },
           {
             type: "lottie",
             src: "https://res.cloudinary.com/dehugbvmc/raw/upload/v1753563419/ShapesFillup_gxpque.json",
             //alt: "App connections animation",
             loop: true,
-            //caption: "Animated connections using Lottie"
+            caption: "Fill up"
           },
           {
             type: "lottie",
             src: "https://res.cloudinary.com/dehugbvmc/raw/upload/v1753563409/Transformers_w5vzog.json",
             //alt: "App connections animation",
             loop: true,
-            //caption: "Animated connections using Lottie"
+            caption: "Turn around"
           },
           {
             type: "lottie",
             src: "https://res.cloudinary.com/dehugbvmc/raw/upload/v1753563419/RotationlShapes_msetpw.json",
             //alt: "App connections animation",
             loop: true,
-            //caption: "Animated connections using Lottie"
+            caption: "Flip up"
           },
           {
             type: "lottie",
             src: "https://res.cloudinary.com/dehugbvmc/raw/upload/v1753563410/subtleOvershootAppearance_fpurhr.json",
             //alt: "App connections animation",
             loop: true,
-            //caption: "Animated connections using Lottie"
+            caption: "Jump up"
           },
         
       ],
-      layout: { textColumns: 4, visualColumns: 8, textAlign: 'top', gridCols: 3, gridRows: 2 }
+      layout: { textColumns: 4, visualColumns: 8, textAlign: 'middle', gridCols: 3, gridRows: 2 }
     },
     {
       subheading: "Set the tone for the app with the onboarding visuals",
@@ -394,13 +424,13 @@ const caseStudy: CaseStudyContent = {
             src: "https://jumpshare.com/embed/1eB4DaG5D1dvDtMbwhRX",
             caption: "Incorporating animations to the onboarding flow.",
             radius: 'rounded-2xl',
-            maxWidth: "800px",
-            maxHeight: "450px" // 16:9 ratio (800 * 9/16 = 450)
+  width: "400px",
+            height: "600px",
         },
         
       
       ],
-      layout: { textColumns: 6, visualColumns: 6, textAlign: 'top', canvasLeft: false }
+      layout: { textColumns: 6, visualColumns: 6, textAlign: 'middle', canvasLeft: false }
     },
     {
       body: "I created more animations for social media posts and the app website to convey the emotional aspect of aging. I used ElevenLabs AI voice generator for voiceovers.",

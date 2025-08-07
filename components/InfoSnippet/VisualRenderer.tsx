@@ -116,8 +116,14 @@ function renderVisual({
       const radiusClass = asset.radius ? radiusClassMap[asset.radius] || radiusClassMap['rounded'] : radiusClassMap['rounded'];
       
       // Try different Jumpshare embed formats
-      const jumpshareUrl = asset.src;
+      let jumpshareUrl = asset.src;
       const alternativeUrl = jumpshareUrl.replace('/embed/', '/v/');
+      
+      // Add loop parameter if specified
+      if (asset.loop) {
+        const separator = jumpshareUrl.includes('?') ? '&' : '?';
+        jumpshareUrl += `${separator}loop=1`;
+      }
       
       // Create styles that only apply on large screens
       const embedStyle: React.CSSProperties = {};
@@ -195,10 +201,14 @@ function renderVisual({
       Object.assign(embedStyle, customProperties);
     }
     
+    // Note: Loop support for default embeds depends on the specific embed service
+    // Most embed services don't support loop parameters via URL
+    let embedSrc = asset.src || "";
+    
     return (
       <div className="mb-4">
         <iframe
-          src={asset.src || ""}
+          src={embedSrc}
           title={asset.caption || asset.alt || "Embedded content"}
           className={`w-full h-64 lg:w-[var(--lg-width,auto)] lg:h-[var(--lg-height,auto)] lg:max-w-[var(--lg-max-width,none)] lg:max-h-[var(--lg-max-height,none)] lg:aspect-[var(--lg-aspect-ratio,auto)] ${radiusClass} modern-shadow`}
           style={embedStyle}
