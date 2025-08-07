@@ -378,8 +378,6 @@ const caseStudy: CaseStudyContent = {
       Having an AI chat that is specialized in the science of cardiorespiratory fitness
       seems necessary. So I gathered all the research papers and articles on VO2max training 
       and created a RAG (Retrieval-Augmented Generation) pipeline for the app.
-
-    
       `,
       visuals: [
         {
