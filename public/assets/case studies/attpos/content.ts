@@ -77,7 +77,7 @@ export interface CaseStudyContent {
 }
 
 const caseStudy: CaseStudyContent = {
-  projectHeading: "AT&T Retail POS Redesign",
+  projectHeading: "AT&T Retail POS Design",
   projectSubheading: "Improving efficiency and flexibility for a $47B retail operation by reimagining the Salesforce-powered POS experience.",
   domain: "RETAIL SALES PLATFORM",
   details: {
@@ -98,7 +98,9 @@ const caseStudy: CaseStudyContent = {
     {
       heading: "The problem",
       body: 
-        "AT&T's legacy POS system was difficult to learn, rigid, and error-prone. It required retail reps to bounce between multiple systems to complete a sale, leading to inefficiencies and poor customer experiences. </br></br>Despite a major investment in Salesforce, the out-of-the-box experience wasn't enough. The new system needed a thoughtful redesign from the ground up to support real-world sales conversations."
+        `AT&T's legacy POS system was difficult to learn, rigid, and error-prone. 
+        It required retail reps to bounce between multiple systems to complete a sale, 
+        leading to inefficiencies and poor customer experiences.`
       ,
       visuals: [
         {
@@ -441,7 +443,7 @@ const caseStudy: CaseStudyContent = {
       heading: "Measuring success",
       subheading: "How did I assure the business partners that the new design works better than the legacy system, and not just aesthetically better?",
       body: 
-        "There are very few methods that can show how redesigning an E2E flow can be impactful. I created a novel interaction analysis method to compare our design against the legacy system. This method helped business partners to see the full picture of the impact of the redesign.",
+        "There are very few methods that can show how designing an E2E flow can be impactful. I created a novel interaction analysis method to compare our design against the legacy system. This method helped business partners to see the full picture of the impact of the design.",
       visuals: [
         {
           type: "component",

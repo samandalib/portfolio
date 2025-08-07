@@ -101,7 +101,7 @@ const caseStudy: CaseStudyContent = {
     notes: "AI-assisted full-stack design and development"
   },
   skills: [
-    "AI-assisted design: Builder.io, Cursor",
+    "AI design",
     "AI-assisted development: Cursor", 
     "AI-assisted research: ChatGPT",
     "Frontend stack: React, Tailwind, Shadcn, Framer Motion",

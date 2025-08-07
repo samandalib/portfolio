@@ -25,7 +25,7 @@ export const projectSliderCards: ProjectSliderCard[] = [
   {
     id: 3,
     title: "AT&T Retail POS App",
-    description: "Redesigning AT&T POS app for reatail store representives.",
+    description: "Designing AT&T POS app for reatail store representives.",
     image: "https://res.cloudinary.com/dehugbvmc/image/upload/v1753547999/AccSlider_sq_web_ucxz4r.png",
     tags: ["Telecom","Commerce","iPad", "UX+UI","Prototyping"],
     color: "from-blue-500 to-cyan-500",
@@ -35,9 +35,9 @@ export const projectSliderCards: ProjectSliderCard[] = [
   {
     id: 1,
     title: "VO2Max Training App",
-    description: "Simplifying complex financial data into clear, actionable insights for better decision making.",
+    description: "AI-powered training app for improving cardiorespiratory fitness.",
     image: "https://res.cloudinary.com/dehugbvmc/image/upload/v1753550454/vo2max4web_te6hai.png",
-    tags: ["Health & Wellness", "Dashboard", "Cursor", "Programming"],
+    tags: ["AI","Health & Wellness", "RAG", "Cursor", "Full-stack"],
     color: "from-green-500 to-emerald-500",
     caseStudyIndex: 2, // Shows the third case study (when you add it)
     slug: 'vo2max',
@@ -45,9 +45,9 @@ export const projectSliderCards: ProjectSliderCard[] = [
   {
     id: 4,
     title: "XR app for Interior Design",
-    description: "Building meaningful connections through innovative social features and community-driven design.",
+    description: "Building immersive experience for interior design.",
     image: "https://res.cloudinary.com/dehugbvmc/image/upload/v1753545980/VR_xdnx4d.png",
-    tags: ["Productivity", "Immersive", "AR/VR", "Unity", "Programming"],
+    tags: ["Productivity", "Immersive", "AR/VR", "Unity", "C#", "Full-stack"],
     color: "from-orange-500 to-red-500",
     caseStudyIndex: 3, // Shows the fourth case study (when you add it)
     slug: 'vr',
